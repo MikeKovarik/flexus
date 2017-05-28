@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css" polyfill>
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+</head>
+<body dark fx-app>
+
+
+	<flexus-drawer>
+	</flexus-drawer>
+
+
+	<flexus-view id="panel" detail elevation="4">
+		<flexus-toolbar seam>
+			<button icon="x"></button>
+			<h1>Details</h1>
+		</flexus-toolbar>
+		<main>
+			<div fx-item two-line><div>Bastille</div><div secondary>Band</div></div>
+			<div fx-item two-line><div>An Act of Kindness</div><div secondary>Title</div></div>
+			<div fx-item two-line><div>Alternative Rock</div><div secondary>Genre</div></div>
+			<div fx-item two-line><div>2007</div><div secondary>Year</div></div>
+		</main>
+	</flexus-view>
+
+
+	<flexus-view panel elevation="5">
+		<div two-line flex>
+			<div animation="songtitle">An Act of Kindness</div>
+			<div secondary>Bastille</div>
+		</div>
+	</flexus-view>
+
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+	<script src="elements/drawer.js"></script>
+	<script src="elements/fabdial.js"></script>
+	<script src="elements/view.js"></script>
+	<script src="elements/scene.js"></script>
+	<script src="elements/pages.js"></script>
+
+</body>
+</html>

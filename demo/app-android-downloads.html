@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<!-- polyfills -->
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+</head>
+<body light fx-app primary="blue-gray">
+
+	<flexus-drawer>
+		<flexus-toolbar tinted>Downloads</flexus-toolbar>
+		<!--a fx-item icon="image">Images</a-->
+		<a fx-item icon="image-album">Images</a>
+		<a fx-item icon="movie">Videos</a>
+		<a fx-item icon="music-box">Audio</a>
+		<a fx-item icon="clock">Recent</a>
+		<hr spaced>	
+		<a fx-item icon="download">Downloads</a>
+		<a fx-item>
+			<i icon="google-drive"></i>
+			<div multi-line>
+				<div>Google Drive</div>
+				<div secondary>my.email@gmail.com</div>
+			</div>
+		</a>
+		<a fx-item>
+			<i icon="onedrive"></i>
+			<div multi-line>
+				<div>OneDrive</div>
+				<div secondary>my.email@gmail.com</div>
+			</div>
+		</a>
+	</flexus-drawer>
+
+	<flexus-view>
+		<flexus-toolbar tinted>
+			<button icon="menu"></button>
+			<div flex>Recent files</div>
+			<button icon="sort-variant"></button>
+			<button icon="more"></button>
+		</flexus-toolbar>
+
+		<main>
+			<div fx-item icon="file">
+				<div multi-line>
+					<div>Filename.doc</div>
+					<div secondary>Document</div>
+				</div>
+			</div>
+			<div fx-item icon="file">
+				<div multi-line>
+					<div>Filename.doc</div>
+					<div secondary>Document</div>
+				</div>
+			</div>
+			<div fx-item icon="image">
+				<div multi-line>
+					<div>Filename.jpg</div>
+					<div secondary>Picture</div>
+				</div>
+			</div>
+			<div fx-item icon="file">
+				<div multi-line>
+					<div>Filename.doc</div>
+					<div secondary>Document</div>
+				</div>
+			</div>
+			<div fx-item icon="file">
+				<div multi-line>
+					<div>Filename.doc</div>
+					<div secondary>Document</div>
+				</div>
+			</div>
+			<div fx-item icon="image">
+				<div multi-line>
+					<div>Filename.jpg</div>
+					<div secondary>Picture</div>
+				</div>
+			</div>
+			<div fx-item icon="image">
+				<div multi-line>
+					<div>Filename.jpg</div>
+					<div secondary>Picture</div>
+				</div>
+			</div>
+			<div fx-item icon="image">
+				<div multi-line>
+					<div>Filename.jpg</div>
+					<div secondary>Picture</div>
+				</div>
+			</div>
+		</main>
+	</flexus-view>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/drawer.js"></script>
+
+</body>
+</html>

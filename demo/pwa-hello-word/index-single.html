@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+
+	<meta http-equiv=X-UA-Compatible content="IE=edge">
+
+	<meta charset="utf-8">
+	<link rel="manifest" href="manifest.json">
+	<meta name="theme-color" content="#2196F3">
+
+	<title>Flexus Demo</title>
+	<meta name=application-name content="Flexus Demo">
+	<meta name=apple-mobile-web-app-title content="Flexus Demo">
+
+	<meta name="description" content="Flexus test description">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<style>
+	flexus-toolbar {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		margin: 0 !important;
+	}
+	[fit][parallax] {
+		height: initial;
+	}
+	</style>
+
+</head>
+<body light fx-app primary="red">
+
+	<flexus-drawer hidden="phone">
+		<button icon="menu"></button>
+		<a fx-item icon="cloud-outline">Online Collection</a>
+		<a fx-item icon="cart">Shop</a>
+		<a fx-item icon="folder">Folders</a>
+		<a fx-item icon="account" slot="bottom">Account</a>
+		<a fx-item icon="settings" slot="bottom">settings</a>
+	</flexus-drawer>
+
+	<flexus-view>
+		<flexus-toolbar tinted light>
+			<section overlay sticky>
+				<button icon="arrow-back"></button>
+				<div flex></div>
+				<button icon="share"></button>
+				<button icon="plus"></button>
+				<button icon="download"></button>
+				<button icon="more"></button>
+			</section>
+			<img fade src="/flexus/demo/img/dovolene/zapad1.jpg">
+			<section overlay>
+				<h2 id="album-name" indent>Croatia</h2>
+			</section>
+		</flexus-toolbar>
+		<main>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt odio ipsum, eu rutrum erat semper ut. Cras nec faucibus mi, id viverra nibh. Vestibulum pulvinar, lectus a condimentum dapibus, lectus lectus lacinia sem, sed vestibulum erat augue ut purus. Duis suscipit metus ut nisi suscipit, in sagittis mauris gravida. Aliquam facilisis neque eu finibus dapibus. Cras viverra dolor vitae faucibus suscipit. Vivamus tristique ultricies enim faucibus auctor. Etiam at nisi pellentesque enim dapibus ullamcorper.</p>
+			<p>Nullam eget elit quis erat varius semper. Morbi faucibus ante viverra ipsum porta sollicitudin. Quisque interdum tristique metus, quis imperdiet felis. Aenean fermentum bibendum nisl, in tempus elit iaculis ut. Nam nulla ante, facilisis sed faucibus vitae, sodales at enim. Nulla et mauris aliquet leo lacinia vehicula. Curabitur interdum dolor nibh, ac interdum nisi facilisis ac. Nullam tincidunt ipsum ac dictum rutrum. Duis faucibus odio quis arcu vehicula, eget volutpat justo egestas.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt odio ipsum, eu rutrum erat semper ut. Cras nec faucibus mi, id viverra nibh. Vestibulum pulvinar, lectus a condimentum dapibus, lectus lectus lacinia sem, sed vestibulum erat augue ut purus. Duis suscipit metus ut nisi suscipit, in sagittis mauris gravida. Aliquam facilisis neque eu finibus dapibus. Cras viverra dolor vitae faucibus suscipit. Vivamus tristique ultricies enim faucibus auctor. Etiam at nisi pellentesque enim dapibus ullamcorper.</p>
+			<p>Nullam eget elit quis erat varius semper. Morbi faucibus ante viverra ipsum porta sollicitudin. Quisque interdum tristique metus, quis imperdiet felis. Aenean fermentum bibendum nisl, in tempus elit iaculis ut. Nam nulla ante, facilisis sed faucibus vitae, sodales at enim. Nulla et mauris aliquet leo lacinia vehicula. Curabitur interdum dolor nibh, ac interdum nisi facilisis ac. Nullam tincidunt ipsum ac dictum rutrum. Duis faucibus odio quis arcu vehicula, eget volutpat justo egestas.</p>
+		</main>
+	</flexus-view>
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/drawer.js"></script>
+	<script src="/flexus/elements/view.js"></script>
+
+</body>
+</html>

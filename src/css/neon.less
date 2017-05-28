@@ -1,0 +1,128 @@
+@import "core";
+@import "neon-color";
+@import "neon-icons";
+@import "neon-typography";
+
+
+:root,
+[screensize="s"] {
+	//--gutter: 12px;
+	--gutter: 16px;
+}
+[screensize="m"],
+[screensize="l"] {
+	--gutter: 24px;
+}
+
+body {
+	font-size: 16px;
+}
+
+:root {
+	// baseline indendation
+	--indent: 48px;
+	--seam-size: 2px;
+}
+
+
+// todo: investigate this selector. is there something else, like :empty that would work better?
+a[href]:not([fx-item]) {
+	color: var(--tint);
+}
+
+
+
+
+p {
+	padding-top: 4px;
+	padding-bottom: 6px;
+}
+
+progress[circle]::-ms-fill,
+progress[ring]::-ms-fill {
+	animation-name: -ms-ring;
+}
+
+
+
+/*
+[titlebar] {
+	display: flex;
+	align-items: center;
+	//.fx-layout-horizontal;
+	//.fx-layout-align-center;
+	height: 30px;
+	padding-left: 12px;
+	line-height: 30px;
+	font-size: 13px;
+	letter-spacing: 0;
+
+	i,
+	button {
+		width: 30px;
+		height: 30px;
+	}
+	i,
+	[icon]:before {
+		font-size: 10px;
+	}
+	[drag] {
+		-webkit-app-region: drag;
+	}
+	[icon^="win"] {
+		width: 48px;
+		flex-shrink: 0;
+		&:before {
+			font-size: 10px;
+		}
+		&:hover {
+			@{theme-dark}  & {background-color: fade(#FFF, 10)}
+			@{theme-light} & {background-color: fade(#000, 10)}
+		}
+		&:active {
+			@{theme-dark}  & {background-color: fade(#FFF, 20)}
+			@{theme-light} & {background-color: fade(#000, 20)}
+		}
+	}
+	[icon="win-close"]:hover {
+		//background-color: #e04343;
+		background-color: #e81123 !important;
+		color: #FFF !important;
+	}
+}
+*/
+
+[avatar] {
+	/*&:not(:checked) {
+		color: inherit;
+	}*/
+	//&:not(:checked)::before {
+	//	color: var(--custom-foreground, var(--background, var(--background-default))) !important;
+	//}
+	input[type="checkbox"]& {
+		&:active,
+		&:checked {
+			background-image: none !important;
+		}
+		&:not(:checked):not(:hover) {
+			border-color: transparent !important;
+		}
+	}
+	&[round] {
+		border-radius: 50%;
+	}
+}
+
+
+
+[card]:not(flexus-view) {
+	background-color: ~'rgba(var(--foreground-rgb), 0.1)';
+}
+
+
+
+
+@import "neon-body";
+@import "neon-overlay";
+@import "neon-input";
+@import "neon-item";

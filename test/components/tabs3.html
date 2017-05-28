@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+	<!--script src="polyfill/shadycss.min.js"></script-->
+	<!--script src="lib/css-polyfill.js"></script-->
+	<script src="src/animate-polyfill.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css" polyfill>
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+<style>
+	flexus-list {
+		display: block;
+		margin: 8px 0;
+	}
+	[card] header {
+		margin: -1rem -1rem 1rem -1rem;
+		padding: 1rem;
+	}
+	[fx-item][card] + [fx-item][card] {
+		margin-top: 8px;
+	}
+	[fab] {
+		position: fixed;
+	}
+	h3 {
+		margin-top: 16px;
+		margin-bottom: 8px;
+	}
+</style>
+
+</head>
+<body light fx-app primary="blue" accent="yellow">
+
+
+	<flexus-drawer hidden="phone">
+		<button icon="menu"></button>
+		<a fx-item icon="slideshow">Collection</a>
+		<a fx-item icon="slideshow">Albums</a>
+		<a fx-item icon="folder">Folders</a>
+		<a fx-item icon="account-circle" slot="sticky">Account</a>
+		<a fx-item icon="settings" slot="sticky">settings</a>
+	</flexus-drawer>
+
+
+	<flexus-scene type="master-detail">
+
+
+		<flexus-view master subtle>
+			<flexus-toolbar multisection colored bg-transition="origin">
+				<section>
+					<button icon="menu"></button>
+					<h1></h1>
+				</section>
+				<flexus-tabs fixed stretched>
+					<div primary="blue" icon="album" title="Albums"></div>
+					<div primary="red" accent="light-green" icon="account" title="Artists"></div>
+					<div primary="light-green" accent="pink" icon="library-music" title="Playlists"></div>
+				</flexus-tabs>
+			</flexus-toolbar>
+
+			<flexus-pages>
+				<section>
+					<h3 primary>Latest releases</h3>
+					<div fx-item icon="album">A Thousand Suns</div>
+					<div fx-item icon="album">Living Things</div>
+					<div fx-item icon="album">Wild World</div>
+					<h3 primary>In my library</h3>
+					<button fab bottom right icon="share"></button>
+					<div fx-item card two-line icon="album">
+						<div>Linkin Park</div>
+						<div>Hunting Party</div>
+					</div>
+					<div fx-item card two-line icon="album">
+						<div>Linkin Park</div>
+						<div>Hunting Party</div>
+					</div>
+					<div fx-item two-line icon="album">
+						<div>Linkin Park</div>
+						<div>Hunting Party</div>
+					</div>
+				</section>
+				<section primary="red" accent="light-green">
+					<h3 primary>latest</h3>
+					<flexus-list>
+						<div fx-item icon="account">Bastille</div>
+						<div fx-item icon="account">Linkin Park</div>
+					</flexus-list>
+					<div card colored>
+						<header primary>
+							<div large>Bastille</div>
+							<div>Just released a new album</div>
+						</header>
+						<footer layout right>
+							<button>Add to wishlist</button>
+							<button>Buy now</button>
+						</footer>
+					</div>
+				</section>
+				<section primary="light-green" accent="pink">
+					<h3 primary>Playlists</h3>
+					<button primary icon="plus">Add new playlist</button>
+					<button fab bottom right icon="edit"></button>
+					<div fx-item>
+						<input type="checkbox" checked>
+						Nice and shiny checkbox
+					</div>
+				</section>
+			</flexus-pages>
+
+		</flexus-view>
+
+		<!--flexus-view detail card>
+			<flexus-toolbar multisection>
+				<section>
+					<button icon="menu"></button>
+					<h1>Name</h1>
+					<button icon="star" title="Remove from favorites"></button>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more"></button>
+				</section>
+			</flexus-toolbar>
+			<main>
+				main
+			</main>
+		</flexus-view-->
+
+
+	</flexus-scene>
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+	<!--script src="elements/toolbar.js"></script-->
+	<script src="elements/toolbar-tabsbg.js"></script>
+	<script src="elements/drawer.js"></script>
+	<script src="elements/tabs.js"></script>
+	<script src="elements/pages.js"></script>
+
+</body>
+</html>

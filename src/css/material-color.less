@@ -1,0 +1,98 @@
+/*body:not([primary]) {
+	--default-theme-primary: #2196F3;
+	--default-theme-primary-foreground: #FFF;
+}*/
+/*
+body:not([primary]):not([accent]) {
+	&[light] {
+		--theme-accent-adaptive: #000;
+	}
+	&[dark] {
+		--theme-accent-adaptive: #FFF;
+	}
+}
+*/
+
+// #000 87%   Primary text
+// #000 54%   Secondary text
+// #000 38%   Disabled text, hint text, and icons
+// #000 12%   Dividers
+[light] {
+	// background and foreground may vary
+	--background-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	// these are invariable absolute color values 
+	--background-base-rgb: 255, 255, 255;
+	--foreground-base-rgb: 0, 0, 0;
+}
+[light="100"],
+[light][subtle][card],
+[light][subtle] {
+	--background-rgb: 238, 238, 238;
+	--foreground-rgb: 97, 97, 97;
+}
+
+[light] {
+
+	[card] {
+		--background-rgb: 255, 255, 255;
+		--foreground-rgb: 0, 0, 0;
+	}
+
+	--secondary-color: fade(#000, 54);
+	--disabled-color: fade(#000, 38); // todo - implement these official material values into buttons/inputs
+	// [avatar]
+	--avatar-background: ~'rgba(var(--foreground-rgb), 0.3)';
+	// [icon] & input[type="checkbox"]
+	--opacity-normal:   0.54;
+	--opacity-disabled: 0.26;
+	--checkbox-normal:   ~'rgba(var(--foreground-rgb), 0.54)';
+	--checkbox-disabled: ~'rgba(var(--foreground-rgb), 0.26)';
+	--checkbox-ripple: #000;
+	// flexus-drawer
+	--drawer-background-default: #FFF;
+	// toolbar seam
+	--seam-color: rgba(0, 0, 0, 0.12);
+}
+
+// #FFF 100%  Primary text
+// #FFF 70%   Secondary text
+// #FFF 50%   Disabled text, hint text, and icons
+// #FFF 12%   Dividers
+[dark] {
+	// background and foreground may vary
+	--background-rgb: 0, 0, 0;
+	--foreground-rgb: 255, 255, 255;
+	// these are invariable absolute color values 
+	--background-base-rgb: 0, 0, 0;
+	--foreground-base-rgb: 255, 255, 255;
+}
+[dark="100"],
+[dark][subtle][card],
+[dark][subtle] {
+	--background-rgb: 51, 51, 51;
+	--foreground-rgb: 255, 255, 255;
+}
+
+[dark] {
+
+	[card] {
+		--background-rgb: 68, 68, 68;
+		--foreground-rgb: 255, 255, 255;
+	}
+
+	--secondary-color: fade(#FFF, 70);
+	--disabled-color: fade(#FFF, 50); // todo - implement these official material values into buttons/inputs
+	// [avatar]
+	--avatar-background: ~'rgba(var(--foreground-rgb), 0.3)';
+	// [icon] & input[type="checkbox"]
+	--opacity-normal:   0.7;
+	--opacity-disabled: 0.3;
+	--checkbox-normal:   ~'rgba(var(--foreground-rgb), 0.7)';
+	--checkbox-disabled: ~'rgba(var(--foreground-rgb), 0.3)';
+	--checkbox-ripple: #FFF;
+	// flexus-drawer
+	--drawer-background-default: red;
+	// toolbar seam
+	--seam-color: rgba(255, 255, 255, 0.12);
+}

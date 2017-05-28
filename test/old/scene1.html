@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material-icons.css">
+
+</head>
+<body horizontal layout fx-app light>
+
+<style>
+flexus-view flexus-toolbar + * {
+	position: relative;
+}
+
+
+flexus-view {
+	width: 360px;
+}
+
+flexus-item[elevation="-1"] {
+	background-color: #EEE;
+}
+flexus-item[swipeable="done"] {
+	background-color: #8BC34A;
+}
+flexus-item[swipeable="delete"] {
+	background-color: #FF5722;
+}
+[template][swipeable] {
+	background-color: #EEE;
+}
+
+[todo-overlay] {
+	color: #EC407A;
+	font-size: 24px;
+	font-weight: 200;
+	position: absolute;
+	width: 100%;
+}
+</style>
+
+
+	<!-- todo: udelat dalsi kde nebude ani jeden card, ale oba dva budou bleedovat over toolbar -->
+	<flexus-scene type="master-detail" detailcard fab-outside>
+
+
+		<flexus-view>
+
+			<flexus-toolbar elevation="2">
+				<button nav icon="menu"></button>
+				<div flex>All</div>
+				<button icon="search"></button>
+				<button icon="more"></button>
+			</flexus-toolbar>
+
+			<main>
+
+				<div fx-item todo-overlay>
+					<i icon="star"></i>
+					<div avatar style="visibility:hidden"></div>
+				</div>
+				<a fx-item indent>
+					<div flex>Janet Perkins</div>
+					<img avatar>
+				</a>
+				<a fx-item indent>
+					<div flex>Mary Johnson</div>
+					<img avatar>
+				</a>
+				<a fx-item indent>
+					<div flex>Agent Coulson</div>
+					<img avatar src="img/coulson.jpg">
+				</a>
+				<a fx-item indent>
+					<div flex>Nicolas Fury</div>
+					<img avatar src="img/fury.jpg">
+				</a>
+
+				<hr indent>
+				<div fx-item todo-overlay>
+					A
+					<div avatar style="visibility:hidden"></div>
+				</div>
+
+				<a fx-item indent>
+					<div flex>Name Surname</div>
+					<img avatar>
+				</a>
+				<a fx-item indent>
+					<div flex>Name Surname</div>
+					<img avatar>
+				</a>
+				<a fx-item indent>
+					<div flex>Name Surname</div>
+					<img avatar>
+				</a>
+			</main>
+
+		</flexus-view>
+
+
+		<flexus-view>
+
+			<flexus-toolbar elevation="2">
+				<div flex></div>
+				<button icon="edit"></button>
+				<button icon="star"></button>
+				<button icon="share"></button>
+				<button icon="more"></button>
+			</flexus-toolbar>
+
+			<main>
+			</main>
+
+		</flexus-view>
+
+
+	</flexus-scene>
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.shadowmaster.js"></script>
+	<script src="build/elements/flexus-toolbar.js"></script>
+	<script src="build/elements/flexus-list.js"></script>
+
+</body>
+</html>

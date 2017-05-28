@@ -1,0 +1,513 @@
+:root {
+	// minimal height of item
+	--fx-item-min-height: 48px;
+	// padding from top and bottom ensure properly looking item if content exceeds min height
+	--fx-item-padding-vertical: 8px;
+	// left and right padding
+	--fx-item-padding-horizontal: 1rem;
+	// experimental margin between fx-items and rest of the content
+	--fx-item-margin-vertical: 8px;
+	// spaces between children of fx-item
+	--fx-item-gutter: 16px;
+
+	// base 40px + 1rem (24px)
+	--toolbar-font-size: 20px;
+}
+/*
+Toolbars can be:
+	48px tall on desktop, phone landscape
+	56px tall on phone portrait
+	64px tall on tablets
+*/
+
+:root,
+[touch] {
+	--toolbar-min-height: calc(40px + var(--gutter));
+}
+[screensize="s"][landscape],
+[nontouch] {
+	--toolbar-min-height: 48px;
+}
+
+[screensize="s"] {
+	--tab-gutter: 12px;
+}
+[screensize="m"],
+[screensize="l"] {
+	--tab-gutter: 24px;
+}
+
+// default margin around lists
+[dense] {
+	--fx-item-margin-vertical: 2px;
+	--fx-item-min-height: 32px;
+}
+[narrow] {
+	--fx-item-margin-vertical: 4px;
+	--fx-item-min-height: 40px;
+}
+[spacious] {
+	--fx-item-margin-vertical: 12px;
+}
+// removes vertical padding and leaves only shell of the fx-item
+// (horizontal padding and min-height)
+[bare] {
+	--fx-item-padding-vertical: 0px;
+}
+
+
+[two-line] {
+	--fx-item-min-height: 72px;
+}
+[multi-line] {
+	--fx-item-min-height: 88px;
+}
+[nontouch] [multi-line],
+[nontouch] [two-line] {
+	--fx-item-min-height: 56px;
+}
+[dense] [two-line],
+[dense][two-line] {
+	--fx-item-min-height: 60px;
+}
+[dense] [multi-line],
+[dense][multi-line] {
+	--fx-item-min-height: 76px;
+}
+
+
+
+[fx-item] {
+
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: 400;
+/*
+	// FORCED SPACING AROUND
+	margin-top: var(--fx-item-margin-vertical);
+	margin-bottom: var(--fx-item-margin-vertical);
+	& + & {
+		margin-top: ~'calc(0px - var(--fx-item-margin-vertical))';
+	}
+*/
+	flexus-view > flexus-pages > * > &,
+	flexus-view > main > & {
+		&:first-child {
+			margin-top: 0;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	//padding-top: calc(1rem - 8px);
+	//padding-bottom: calc(1rem - 8px);
+
+	/*.fx-layout;
+	&:not([two-line]) {
+		flex-direction: row !important;
+		align-items: center;
+	}*/
+
+	&[indent][two-line][icon]:before,
+	&[indent][multi-line][icon]:before {
+		left: ~'calc(var(--indent) + 1rem)';
+	}
+
+	// since item itself became vertical flexbox (displaying the two lines), the icon cannot be inlined
+	// position absolute takes it out of flow and positions it on the place where the icon should be
+	&[two-line][icon]:before,
+	&[multi-line][icon]:before {
+		position: absolute;
+		left: 1rem;
+	}
+	&[two-line][icon]:before {
+		top: 50%;
+		line-height: 0;
+	}
+	&[multi-line][icon]:before {
+		top: 16px;
+		line-height: 24px;
+	}
+
+	&[icon]:before {
+		width: 24px;
+	}
+
+
+	//& > div,
+	&[two-line] > div,
+	[two-line] > div,
+	&[multi-line] > div,
+	[multi-line] > div {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	&[two-line] > div,
+	[two-line] > div {
+		white-space: nowrap;
+	}
+
+
+	[two-line] {
+		padding-top: 8px;
+		padding-bottom: 7px;
+	}
+	[multi-line] {
+		padding-top: 5px;
+		padding-bottom: 6px;
+	}
+	[dense] & [two-line],
+	&[dense] [two-line] {
+		padding-top: 2px;
+		padding-bottom: 2px;
+	}
+	[dense] & [multi-line],
+	&[dense] [multi-line] {
+		padding-top: 0px;
+		padding-bottom: 0px;
+	}
+	[two-line],
+	[multi-line] {
+		margin-top: 0px !important;
+		margin-bottom: 0px !important;
+	}
+
+	&[top] > *,
+	&[top][icon]::before,
+	> [top] {
+		margin-top: 8px;
+	}
+	&[bottom] > *,
+	&[bottom][icon]::before,
+	> [bottom] {
+		margin-bottom: 8px;
+	}
+
+	// TODO - reimplement this properly
+	/*[lines="1"] {max-height: 20px}
+	[lines="2"] {max-height: 40px}
+	[lines="3"] {max-height: 60px}
+	[lines="4"] {max-height: 80px}
+	[lines="5"] {max-height: 100px}*/
+/*
+	&[overlay] {
+		display: none !important; // TODO: disabled for now
+		height: 0;
+		min-height: 0;
+	}
+*/
+	[secondary] {
+		font-size: 14px !important;
+	}
+
+	button:last-child {
+		&[icon]:empty {
+			// buttons are 36px wide but the icon inside is only 24px
+			// shift the remaining 6px to align with baseline
+			margin-right: -6px;
+		}
+		&:not(:empty):not([raised]) {
+			// default padding on both sides of a button is 16px;
+			margin-right: -16px;
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TOOLBAR
+/*
+Mobile Landscape: 48dp
+Mobile Portrait: 56dp
+Tablet/Desktop: 64dp
+*/
+
+// vychozi pismo v obecnych sections
+// 400 16px/24px Roboto,sans-serif
+
+/*
+flexus-view {
+	//& > *:nth-child(1):not([card]):not([transparent]) {
+	& > flexus-tabs,
+	& > flexus-toolbar {
+		.fx-elevation-4dp;
+	}
+	//flexus-view > *:nth-child(1) {
+	& > flexus-tabs[transparent],
+	& > flexus-toolbar[transparent] {
+		box-shadow: none;
+	}
+
+	flexus-toolbar[card] + * {
+		// flexus-toolbar[card] is always 48px high with margin 8px all around
+		padding-top: calc(64px + 1rem);
+	}
+}
+*/
+
+
+/*
+[screensize="s"][landscape] {
+	--toolbar-min-height: 48px;
+	--toolbar-font-size: 14px;
+}
+[screensize="s"][portrait] {
+	// base 40px + 1rem (16px)
+	--toolbar-min-height: 56px;
+	--toolbar-font-size: 20px;
+}
+[screensize]:not([screensize="s"]) {
+	// base 40px + 1rem (24px)
+	--toolbar-min-height: 64px;
+	--toolbar-font-size: 20px;
+}
+*/
+[screensize="s"][landscape] flexus-toolbar {
+	--gutter: 8px;
+	--toolbar-font-size: 14px;
+}
+
+
+flexus-toolbar {
+
+	//.fx-toolbar;
+
+	//&[acrylic],
+	&[translucent],
+	&[transparent] {
+		box-shadow: none;
+	}
+
+	font-weight: 500 !important;
+
+	button {
+		// cancel default button hoverable/clickable behavior
+		padding: 0 !important;
+		min-width: 0 !important;
+		height: initial !important;
+		min-height: 24px;
+	}
+
+	//a[icon]:not([fab]),
+	//button[icon]:not([fab]) {
+	[icon] {
+		// cancel default button hoverable/clickable behavior
+		//padding: 0 !important;
+		//min-width: 0;
+		display: inline-flex;
+		/*&:empty::before {
+			margin-right: 0 !important;
+		}
+		&:not(:empty)::before {
+			margin-right: 0px !important;
+		}*/
+		/*&::before {
+			width: auto !important;
+		}*/
+
+		position: relative;
+		&:empty {
+			width: 24px;
+			height: 24px;
+			line-height: 40px;
+		}
+		//background-color: rgba(255,0,0,0.4);
+
+		&[icon="more"] {
+			width: 12px;
+		}
+
+	}
+
+	// Hitbox
+	// button[icon]:empty size is only 24px but touch hitbox should be at least 48px
+	// thus overwrite default hitbox values. But keep in mind the 16px space between icons
+	// doesn't allow for hitbox wider than 40px
+	[touch] & button::after {
+	//[touch] & button[icon]:empty::after {
+		margin: -12px -8px;
+	}
+
+	input[type="search"],
+	input[transparent]:not([type="checkbox"]),
+	section[search] input:not([type="checkbox"]) {
+		flex: 1;
+		margin: 0;
+		padding: 0;
+		border: none;
+		height: 100%;
+		margin-left: -16px;
+		padding-left: 16px;
+		font-size: inherit;
+		font-weight: inherit;
+		&::-webkit-input-placeholder {
+			color: inherit;
+			opacity: 0.5;
+		}
+	}
+
+	/*&:not([multisection]),
+	&[multisection] > section {
+		.fx-item-mixin-material;
+	}*/
+
+	&[multisection] > section {
+
+		&[free] {
+			// todo - try to unify naming with metro [fx-item]
+			padding-top: 16px;
+			padding-bottom: 16px;
+			&[narrow] {
+				padding-top: 8px;
+				padding-bottom: 8px;
+			}
+			&[spacious] {
+				padding-top: 24px;
+				padding-bottom: 24px;
+			}
+		}
+
+	}
+
+	&:not([multisection]),
+	&[multisection] > section:not([flexible]):not([free]) {
+		min-height: var(--toolbar-min-height);
+		font-size: var(--toolbar-font-size);
+	}
+
+	&[card],
+	& > [card] {
+		--fx-item-padding-horizontal: calc(1rem - 8px);
+	}
+	&[card] {
+		.fx-elevation-4dp;
+		position: absolute;
+		left: 8px;
+		right: 8px;
+		top: 8px;
+		height: 48px;
+		padding: 8px 16px;
+		--indent: 48px;
+	}
+	& > [card] {
+		min-height: 48px !important;
+		padding-top: 0;
+		padding-bottom: 0;
+		margin: 8px;
+	}
+
+	// TODO zkusit to vyřešit nasypáním [main] [search] a [selection] sekci do jednoho
+	// shadow seskupení a tomu nastavit 64px
+	&[hascard] > section:not([flexible]):not([free]) {
+		min-height: 64px;
+	}
+
+
+	// multisection fading
+	[showing] & [icon]:empty::before,
+	[showing] [icon]:empty::before {
+		animation: icon-rotate-show 200ms ease-in-out forwards;
+	}
+	[hiding] & [icon]:empty::before,
+	[hiding] [icon]:empty::before {
+		animation: icon-rotate-hide 200ms ease-in-out forwards;
+	}
+
+}
+
+@keyframes icon-rotate-show {
+	from {transform: scale(0) rotate(-90deg)}
+	to   {transform: scale(1) rotate(0deg)}
+}
+@keyframes icon-rotate-hide {
+	from {transform: scale(1) rotate(0deg)}
+	to   {transform: scale(0) rotate(90deg)}
+}
+
+
+
+
+
+
+
+flexus-tabs {
+	font-size: 14px;
+	line-height: 14px;
+	text-transform: uppercase;
+	font-weight: 500;
+
+		& > * {
+			height: 48px !important;
+			text-transform: uppercase;
+		}
+		&[spacious] > * {
+			padding: 0 1rem;
+		}
+		& > *[icon]:not(:empty) {
+			height: 72px;
+			justify-content: flex-end;
+			padding-bottom: 16px;
+			&:before {
+				margin-bottom: 6px;
+			}
+		}
+}
+
+
+
+/*
+[subtitle] {
+	.fx-behavior-item-padding;
+	.fx-item-mixin-material;
+	color: gray; // TODO - it always has some
+	line-height: 24px;
+	font-weight: 600;
+	padding-top: 12px;
+
+	> :not(:last-child) {
+		margin-right: 16px;
+	}
+}
+*/
+/*
+[fx-item-expandable] {
+	.fx-behavior-item-padding;
+
+	& > section[expand] {
+		min-height: 44px;
+
+		& > button[flat]:first-child {
+			margin-left: -8px; // align padded text of button with indentation line
+		}
+	}
+	&[expanded] {
+		.fx-elevation-2;
+	}
+	&:not([expanded]) > section[expand] {
+		// todo. implement height animation
+		display: none !important;
+	}
+}
+*/
+

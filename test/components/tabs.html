@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+</head>
+<body dark>
+
+<style>
+[tabs-placeholder] {
+	height: 100%
+}
+</style>
+
+	<flexus-toolbar multisection>
+		<flexus-tabs flex>
+			<a href="home">Home</a>
+			<a href="update">Update</a>
+			<a href="history">History</a>
+		</flexus-tabs>
+		<section slot="main" style="background-color: #03A9F4 !important;">
+			<button icon="menu"></button>
+			<div flex tabs-placeholder></div>
+			<button icon="more" title="More"></button>
+		</section>
+		<section slot="main" style="background-color: #00a460 !important">
+			<button icon="menu"></button>
+			<div flex tabs-placeholder></div>
+			<button icon="share" title="Share" slot="priority1"></button>
+			<button icon="edit" title="Edit" slot="priority2"></button>
+		</section>
+		<section slot="main" style="background-color: #ea8d0a !important">
+			<button icon="menu"></button>
+			<div flex tabs-placeholder></div>
+			<button icon="history" title="history"></button>
+		</section>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<flexus-tabs flex>
+			<a href="#">Home</a>
+			<a href="#">Update</a>
+			<a href="#">History</a>
+		</flexus-tabs>
+		<button icon="more" title="More"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar multisection>
+		<section>
+			<button icon="menu"></button>
+			<div flex>title</div>
+			<button icon="share" title="Share" slot="priority1"></button>
+			<button icon="edit" title="Edit" slot="priority2"></button>
+			<button icon="star" title="Favorite" slot="priority3"></button>
+		</section>
+		<flexus-tabs>
+			<a href="#">Item One</a>
+			<a href="#">Two</a>
+			<a href="#">Item Number Three</a>
+			<a href="#">The Fourth Item</a>
+			<a href="#">Fast Five</a>
+		</flexus-tabs>
+	</flexus-toolbar>
+
+	<flexus-toolbar multisection>
+		<section>
+			<button icon="menu"></button>
+			<div flex>title</div>
+			<button icon="share" title="Share" slot="priority1"></button>
+			<button icon="edit" title="Edit" slot="priority2"></button>
+			<button icon="star" title="Favorite" slot="priority3"></button>
+		</section>
+		<flexus-tabs center fixed="phone">
+			<a href="#" icon="star">Favorites</a>
+			<a href="#" icon="star">Favorites</a>
+			<a href="#" icon="star">Favorites</a>
+		</flexus-tabs>
+	</flexus-toolbar>
+
+	<flexus-toolbar multisection>
+		<section>
+			<button icon="menu"></button>
+			<div flex>title</div>
+			<button icon="share" title="Share" slot="priority1"></button>
+			<button icon="edit" title="Edit" slot="priority2"></button>
+			<button icon="star" title="Favorite" slot="priority3"></button>
+		</section>
+		<flexus-tabs indent="tablet" fixed="phone">
+			<a href="#">Home</a>
+			<a href="#">Update</a>
+			<a href="#">History</a>
+		</flexus-tabs>
+	</flexus-toolbar>
+
+	<flexus-scene style="height: 180px">
+		<flexus-view flex-3>
+			<flexus-tabs center subtle>
+				<a href="#">Overview</a>
+				<a href="#">Achivements</a>
+				<a href="#">Devices and Activity</a>
+			</flexus-tabs>
+			<main>
+				main content
+			</main>
+		</flexus-view>
+		<flexus-view flex-2 style="background-color: #333 !important">
+			<flexus-toolbar multisection transparent>
+				<flexus-tabs fixed>
+					<a href="#" icon="sync"></a>
+					<a href="#" icon="history"></a>
+					<a href="#" icon="account-circle"></a>
+					<a href="#" icon="computer"></a>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<main>side content</main>
+		</flexus-view>
+	</flexus-scene>
+
+
+	<style>
+		#layout-defender[primary="green"] {
+			--theme-primary: #00a460;
+			--theme-primary-foreground: #FFF;
+		}
+		#layout-defender flexus-tabs * {
+			min-width: 80px;
+		}
+	</style>
+	<flexus-view id="layout-defender" primary="green">
+		<flexus-toolbar multisection style="height: 160px">
+			<section colored flex layout center thin large>
+				Your PC is being monitored and protected
+			</section>
+			<flexus-tabs center small>
+				<a href="#" icon="home">Home</a>
+				<a href="#" icon="sync">Update</a>
+				<a href="#" icon="history">History</a>
+				<a href="#" icon="settings">Settings</a>
+				<a href="#" icon="help">Help</a>
+			</flexus-tabs>
+		</flexus-toolbar>
+		<main layout>
+			<div flex>
+				<h3>Real-time protection</h3>
+				<h4 colored>turned on</h4>
+				<hr>
+			</div>
+			<div flex>
+				<h3>Virus and spyware definitions</h3>
+				<h4 colored>up to date</h4>
+				<hr>
+			</div>
+			<div flex>
+				<h3>Last quick scan</h3>
+				<h4 colored>4 days ago</h4>
+				<hr>
+			</div>
+		</main>
+	</flexus-view>
+
+
+	<style>
+		body > * {
+			margin-bottom: 4px;
+		}
+	</style>
+
+	<script src="polyfill/webcomponents-lite.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+	<script src="polyfill/shadycss.min.js"></script>
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+	<!--script src="elements/toolbar.js"></script-->
+	<script src="elements/tabs.js"></script>
+
+
+</body>
+</html>

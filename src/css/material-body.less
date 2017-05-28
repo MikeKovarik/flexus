@@ -1,0 +1,311 @@
+:root {
+	--space-top: 64px;
+	//--space-right: 24px;
+	--space-left: 64px;
+	--space-right: 64px;
+	--master-width: 40vw;
+	//--master-width: 40%;
+}
+
+
+
+[fx-app] {
+	@{screensize-s} & {
+		// NOTE: this is necessary because of Material toast messages
+		// need to squeze from bottom (and push up the view, FABs and everything)
+		// and not just overlay the content
+		flex-direction: column;
+	}
+}
+/*
+.fx-view-panel-drawer() {
+	@{screensize-s} & {
+		width: var(--panel-width-phone);
+	}
+	@{screensize-m} &,
+	@{screensize-l} & {
+		width: var(--panel-width-tablet);
+	}
+}
+*/
+
+.fx-toolbar-default-shadow() {
+	&:not([elevation]) {
+		box-shadow: var(--shadow-elevation-4dp);
+	}
+}
+
+
+.fx-panel-behavior() {
+	&[hidden]:not([dragging]) {
+		box-shadow: 0 0 rgba(0,0,0,0) !important;
+	}
+	//&[dragging] {
+		// turn of transform transitions but keep the shadow!
+		transition: transform 0.3s, box-shadow 0.3s;
+	//}
+}
+
+[panel] {
+	.fx-panel-behavior;
+}
+
+flexus-drawer {
+
+	.fx-panel-behavior;
+
+	max-width: var(--drawer-max-width, var(--panel-max-width));
+	width: var(--drawer-width);
+	//.fx-view-panel-drawer();
+
+	& > &:first-child:not(flexus-toolbar) {
+		margin-top: 8px;
+	}
+	& > flexus-toolbar:first-child,
+	& > &:last-child {
+		margin-bottom: 8px;
+	}
+
+	// override default [hidden] behavior to enable animations
+	&[hidden] {
+		display: block !important;
+		visibility: initial;
+	}
+
+	// TODO: only allow this when layout 0 (phone)
+	// moved to custom element inside
+	//&[expanded],
+	//&[dragging] {
+	//	.fx-elevation-5;
+	//}
+
+	.fx-absolute-left;
+
+	transform: translate3d(-100%, 0, 0);
+	&[expanded] {
+		transform: translate3d(0%, 0, 0);
+	}
+
+	& > flexus-toolbar {
+		.fx-toolbar-default-shadow;
+		//.fx-elevation-4dp;
+	}
+
+	hr {
+		margin-left: -1rem;
+		margin-right: -1rem;
+	}
+
+	[user-profile] {
+		// TODO
+		margin-bottom: 8px;
+
+		[avatar] {
+			position: absolute;
+			left: 1rem;
+			top: 16px;
+			--size: 64px;
+		}
+	}
+
+	& > [icon="menu"] {
+		display: none;
+	}
+
+}
+
+
+
+flexus-view {
+
+	& > flexus-tabs,
+	& > flexus-toolbar {
+		.fx-toolbar-default-shadow;
+		//.fx-elevation-4dp;
+	}
+	
+	hr {
+		margin-left: -1rem;
+		margin-right: -1rem;
+	}
+
+/*
+	&[phabletoptimization] {
+		@media @phablet {
+			> *:nth-child(1),
+			> *:nth-child(2) {
+				padding-left: 64px;
+				padding-right: 64px;
+			}
+		}
+	}
+*/
+}
+
+
+
+flexus-scene[type="master-detail"] {
+
+	[screensize="s"] & flexus-view[card] {
+		border-radius: 0;
+		box-shadow: none;
+	}
+
+	[screensize]:not([screensize="s"]) & {
+		& > [detail] > flexus-toolbar [icon="arrow-back"] {
+			display: none;
+		}
+	}
+
+	& {
+	//&[look="card-detail"] {
+
+		//@media @tablet {
+		[screensize]:not([screensize="s"]) & {
+			& > flexus-view[master] {
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				width: var(--master-width);
+				overflow: initial;
+			}
+			& > flexus-view[master] > flexus-toolbar {
+				padding-top: var(--space-top);
+				padding-right: calc(100vw - var(--master-width));
+				&[absolute-top] {
+					margin-right: calc(-100vw + var(--master-width));
+				}
+				&:not([absolute-top]) {
+					margin-right: calc(-100vw + var(--master-width) - var(--gutter));
+				}
+			}
+			&[spacious] > flexus-view[master] > flexus-toolbar[multisection] {
+				padding-left: var(--space-left);
+			}
+			&[spacious] > flexus-view[master] > flexus-toolbar:not([multisection]),
+			&[spacious] > flexus-view[master] > flexus-pages,
+			&[spacious] > flexus-view[master] > main {
+				padding-left: calc(var(--space-left) + 1rem);
+			}
+			& > flexus-view[detail] {
+				top: var(--space-top);
+				right: var(--space-right);
+				left: var(--master-width);
+				max-height: calc(100% - var(--space-top));
+				height: 100%; // temp, until pages are fixed
+				position: absolute;
+				z-index: 5;
+			}
+		}
+
+	}
+
+
+/*
+	&[type="sidepane"] {
+		> [detail] {
+			z-index: 70; // master possibly has FAB which is 60, detail has to be higher to overlay it
+		}
+		//.fx-overlay {
+		//	z-index: 60;
+		//	opacity: 0.7;
+		//	display: none;
+		//}
+		&[breakpoint-state="0"] > [detail] {
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		} 
+		//&[breakpoint-state="0"] {
+		//	&[selected="detail"] .fx-overlay {
+		//		display: block;
+		//	}
+		//}
+		> [hidden] {
+			display: none;
+		}
+	}
+*/
+
+}
+
+
+	/*[tablet] [type="master-detail"][look="1"] > flexus-view[master] > flexus-toolbar [icon="menu"][corner] {
+		display: none;
+	}*/
+
+
+
+
+
+/*
+flexus-view[explode] {
+
+	.fx-fit;
+	z-index: 1;
+	overflow: hidden;
+	// makes blank spaces click through
+	pointer-events: none;
+
+	& > * {
+		// resets clickability to all children
+		pointer-events: auto;
+	}
+
+	// NOTE: toolbar has by default elevation 4dp
+	& > main {
+		//box-shadow: var(--shadow-elevation-2dp);
+		box-shadow: 0 1px 10px rgba(0,0,0,0.6);
+	}
+	// Delay showing toolbar when showing view because <main> has a longer
+	// travel time. Material animations duration are based on travel time.
+	// But these two elements should meet at the same time
+	& > flexus-toolbar {
+		transition: transform 150ms 150ms;
+	}
+	// Prevent delaying toolbar animation when hiding view and hide it right
+	// away to avoid awkward stale animation
+	&[hidden] > flexus-toolbar {
+		transition: transform 150ms 0ms;
+	}
+	// Main is larger than toolbar and should have longer travel time
+	& > main {
+		transition: transform 300ms;
+	}
+
+
+	&[hidden] {
+		// override general [builtin] attr 
+		visibility: visible !important;
+		& > flexus-toolbar,
+		& > flexus-tabs {
+			transform: translateY(-110%)
+		}
+		& > main {
+			transform: translateY(100%)
+		}
+		[sneakpeek] {
+			display: flex;
+		}
+	}
+
+	[sneakpeek] {
+		z-index: 1;
+		display: none;
+		animation: fade-in 150ms forwards;
+	}
+
+}
+*/
+@keyframes fade-out-hidden {
+	0%   {opacity: 1; display: block;}
+	99%  {opacity: 0; display: block;}
+	100% {opacity: 0; display: none;}
+}
+@keyframes fade-in {
+	0%   {opacity: 0}
+	100% {opacity: 1}
+}

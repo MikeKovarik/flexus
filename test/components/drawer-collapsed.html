@@ -1,0 +1,78 @@
+<!doctype html>
+<html touch>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<style>
+	.visible,
+	.hidden,
+	.collapsed,
+	.pinned,
+	.pinnable {
+		display: none;
+	}
+	[visible] .visible {
+		display: inline-block;
+	}
+	[hidden] .hidden {
+		display: inline-block;
+	}
+	[collapsed] .collapsed {
+		display: inline-block;
+	}
+	[pinned] .pinned {
+		display: inline-block;
+	}
+	[pinnable] .pinnable {
+		display: inline-block;
+	}
+	</style>
+
+</head>
+<body light fx-app>
+
+	<flexus-drawer collapsed id="drawer">
+		<a fx-item icon="laptop">Laptop</a>
+		<a fx-item icon="cellphone">Phone</a>
+		<a fx-item icon="tablet">Tablet</a>
+		<a fx-item icon="computer">Computer</a>
+		<a fx-item bottom icon="account-circle">User</a>
+		<a fx-item bottom icon="settings">Settings</a>
+		<strong blue tag class="visible">visible</strong>
+		<strong blue tag class="hidden">hidden</strong>
+		<br>
+		<strong blue tag class="pinned">pinned</strong>
+		<br>
+		<strong blue tag class="collapsed">collapsed</strong>
+	</flexus-drawer>
+
+	<flexus-view>
+		<flexus-toolbar elevation="1">
+			<button icon="menu"></button>
+			<div flex>Title</div>
+			<button icon="more"></button>
+		</flexus-toolbar>
+		<main vertical layout right>
+			<button onclick="drawer.show()">show</button>
+			<button onclick="drawer.hide()">hide</button>
+			<button onclick="drawer.toggle()">toggle</button>
+		</main>
+	</flexus-view>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/drawer.js"></script>
+
+	<script>
+	var drawer = document.querySelector('flexus-drawer');
+	</script>
+
+</body>
+</html>

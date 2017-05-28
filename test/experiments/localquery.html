@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro-icons.css">
+
+
+	<style>
+		[layout] {
+			margin: 200px;
+			width: 100%;
+			display: flex;
+			height: 20px;
+		}
+		[flex] {
+			background-color: yellow;
+			flex: 1;
+		}
+		[thing] {
+			flex: 9999999;
+			max-width: 20px;
+			background-color: red;
+		}
+	</style>
+
+</head>
+<body fx-app dark>
+
+	<div layout>
+		<div flex></div>
+		<div thing></div>
+		<div flex></div>
+	</div>
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+	<script>
+	/*console.log(Flexus.platform)
+	document.addEventListener('formfactor-update', e => {
+		console.log('formfactor-update')
+		console.log(Flexus.platform)
+	})*/
+
+
+
+	var thing = document.querySelector('[thing]')
+
+	watchElement(thing, e => {
+		console.log('resize', thing.offsetWidth)
+	})
+
+
+
+
+
+
+
+
+	</script>
+
+</body>
+</html>

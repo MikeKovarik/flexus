@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+	<style>
+		flexus-view {
+			background-color: transparent !important;
+		}
+		flexus-view > :not(flexus-toolbar):not(flexus-tabs) {
+			background-color: var(--theme-background);
+		}
+		[toolbar] {
+			height: calc(40px + 1rem);
+			padding: 0 1rem;
+		}
+
+
+/*
+		flexus-view[explode] flexus-toolbar {
+			transform: translateY(-50%);
+		}
+		flexus-view[explode] main {
+			transform: translateY(50%);
+		}
+*/
+	</style>
+
+</head>
+<body light fx-app>
+
+	<flexus-scene type="explode">
+
+
+		<flexus-view subtle accent="red">
+			<flexus-toolbar card>
+				<button icon="menu"></button>
+				<!--h1>Title</h1-->
+				<input flex type="search" placeholder="search">
+				<button icon="x"></button>
+			</flexus-toolbar>
+			<main>
+				<p>primary view main</p>
+				<div fx-item icon="edit">Hello</div>
+				<div fx-item icon="edit">Hello</div>
+				<div fx-item icon="edit">Hello</div>
+				<input>
+				<input type="checkbox">
+				<button raised>raised</button>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</main>
+			<button fab bottom right icon="edit" title="Edit"></button>
+		</flexus-view>
+
+
+		<flexus-view explode hidden accent="lightblue">
+
+			<flexus-toolbar multisection colored>
+				<section>
+					<button icon="arrow-back"></button>
+					<div flex>Secondary toolbar</div>
+					<button icon="more"></button>
+				</section>
+			</flexus-toolbar>
+
+			<main>
+				secondary view main
+				<input>
+				<input type="checkbox">
+			</main>
+
+			<footer sneakpeek toolbar>
+				<i icon="link"></i>
+				<div>Sneak peek</div>
+			</footer>
+
+			<flexus-fabdial bottom right>
+				<button fab icon="share" title="Share"></button>
+				<button icon="link" title="Copy link"></button>
+				<button icon="content-copy" title="Copy"></button>
+				<button icon="email" title="Email"></button>
+			</flexus-fabdial>
+
+		</flexus-view>
+
+
+	</flexus-scene>
+
+
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+	<script src="elements/fabdial.js"></script>
+	<script src="elements/toolbar.js"></script>
+	<script src="elements/view.js"></script>
+	<script src="elements/scene.js"></script>
+
+</body>
+</html>

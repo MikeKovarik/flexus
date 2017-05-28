@@ -1,0 +1,41 @@
+@font-face {
+	font-family: 'Segoe MDL2 Assets';
+	font-style: normal;
+	font-weight: 100;
+	src: local('Segoe MDL2 Assets'), url('../../img/segmdl2.ttf') format('truetype');
+}
+
+.fx-icon-font() {
+	font-family: Segoe MDL2 Assets, Symbols, Segoe UI, sans-serif;
+}
+
+// https://docs.microsoft.com/en-us/windows/uwp/style/icons
+
+// changes icon size
+[small] ::before, // TODO: Remove when Edge fixes a bug with CSS variables inside pseudo elements
+[small] {
+	--size: 16px;
+}
+[normal] ::before, // TODO: Remove when Edge fixes a bug with CSS variables inside pseudo elements
+[normal] {
+	--size: 24px;
+}
+// large?
+[big] {
+	--size: 32px;
+}
+[huge] {
+	--size: 48px;
+}
+/*
+// WARNING: do not remove!!!
+// TODO: Remove when Edge fixes a bug with CSS variables inside pseudo elements
+[icon]::before {
+	--size: 24px;
+}
+flexus-drawer [icon]::before,
+[small] [icon]::before,
+[small][icon]::before {
+	--size: 16px;
+}
+*/

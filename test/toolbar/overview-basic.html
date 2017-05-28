@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="../../css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="../../css/flexus-material-icons.css">
+
+</head>
+<body dark>
+<div scroll primary="blue" fullwidth>
+
+	<button onclick="ganymede.emit(document.body.firstElementChild, 'selection-show')">selection-show</button>
+	<button onclick="ganymede.emit(document.body.firstElementChild, 'selection-hide')">selection-hide</button>
+	<button onclick="ganymede.emit(document.body.firstElementChild, 'search-show')">search-show</button>
+	<button onclick="ganymede.emit(document.body.firstElementChild, 'search-hide')">search-hide</button>
+
+	<flexus-toolbar dark>
+		<button icon="menu"></button>
+		<h2 bold>COLLECTION</h2>
+		<button icon="sync">Refresh</button>
+		<button icon="checklist">Select</button>
+		<button icon="slideshow">Slideshow</button>
+	</flexus-toolbar>
+	TODO
+
+	<div horizontal layout>
+		<div flex>
+
+			<flexus-toolbar tinted>
+				<button icon="menu"></button>
+				<h2>Title</h2>
+				<button icon="edit" title="Edit" disabled></button>
+				<button icon="more"></button>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<button icon="menu"></button>
+				<h2>Title</h2>
+				<button icon="shuffle" title="Shuffle"></button>
+				<button icon="repeat" title="Repeat"></button>
+				<button icon="more"></button>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<button icon="menu"></button>
+				<h2>Title</h2>
+				<button icon="shuffle">Shuffle</button>
+				<button icon="repeat">Repeat</button>
+				<button icon="more"></button>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<button icon="menu"></button>
+				<h2>Title</h2>
+				<button>Cancel</button>
+				<hr>
+				<button icon="share" title="Share"></button>
+				<button icon="x" title="Cancel"></button>
+				<button icon="more"></button>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<button icon="menu"></button>
+				<h2>Title</h2>
+				<button icon="save" title="Save"></button>
+				<hr>
+				<button icon="share" title="Share"></button>
+				<button icon="x" title="Cancel"></button>
+				<button icon="more"></button>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<button icon="menu"></button>
+				<h2>Title</h2>
+				<i icon="save"></i>
+				<i icon="sync"></i>
+				<a icon="more"></a>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<button icon="arrow-back"></button>
+				<button icon="arrow-forward"></button>
+				<div flex>Sectionless</div>
+				<button icon="plus"></button>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<button nav icon="menu"></button>
+				<div flex>Main Section</div>
+				<button icon="search"></button>
+				<a href="#" icon="plus"></a>
+				<button icon="more"></button>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<button icon="arrow-back"></button>
+				<input type="text" flex placeholder="Filter">
+				<button icon="more"></button>
+			</flexus-toolbar>
+
+
+
+		</div>
+		<div flex>
+
+
+
+			<!--flexus-toolbar>
+				<section main search card enter-animation="circle" leave-animation="fade">
+					<button icon="arrow-back"></button>
+					<input type="search" flex placeholder="Search">
+					<button icon="close"></button>
+				</section>
+				<section secondary indent>
+					<h2>Title</h2>
+				</section>
+			</flexus-toolbar-->
+
+
+			<flexus-toolbar tinted>
+				<section main>
+					<button nav icon="menu"></button>
+					<div flex>Card search</div>
+					<button icon="search"></button>
+					<a href="#" icon="edit"></a>
+					<button icon="more"></button>
+				</section>
+				<section search card enter-animation="circle" leave-animation="fade">
+					<button icon="arrow-back"></button>
+					<input type="search" flex placeholder="Search">
+					<button icon="close"></button>
+				</section>
+			</flexus-toolbar>
+
+			<flexus-toolbar tinted>
+				<section main>
+					<button nav icon="menu"></button>
+					<div flex>Card light</div>
+					<button icon="search"></button>
+					<a href="#" icon="edit"></a>
+					<button icon="more"></button>
+				</section>
+				<section search light card enter-animation="circle" leave-animation="fade">
+					<button icon="arrow-back"></button>
+					<input type="search" flex placeholder="this should be light even on dark theme">
+					<button icon="close"></button>
+				</section>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<section main>
+					<button nav icon="menu"></button>
+					<div flex>Light search</div>
+					<button icon="search"></button>
+					<a href="#" icon="edit"></a>
+					<button icon="more"></button>
+				</section>
+				<section search light enter-animation="circle" leave-animation="fade">
+					<button icon="arrow-back"></button>
+					<input type="search" flex placeholder="Search">
+					<button icon="close"></button>
+				</section>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<section main>
+					<button nav icon="menu"></button>
+					<div flex>Ordinary search</div>
+					<button icon="search"></button>
+					<a href="#" icon="edit"></a>
+					<button icon="more"></button>
+				</section>
+				<section search>
+					<button icon="arrow-back"></button>
+					<input type="search" flex placeholder="Search">
+					<button icon="close"></button>
+				</section>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<section main>
+					<button nav icon="menu"></button>
+					<div flex>Main Section</div>
+					<button icon="search"></button>
+					<a href="#" icon="edit"></a>
+					<button icon="more"></button>
+				</section>
+				<section search>
+					<button icon="arrow-back"></button>
+					<input type="text" flex placeholder="Search">
+					<button icon="close"></button>
+				</section>
+				<section selection>
+					<button icon="arrow-back"></button>
+					<div flex>Selected: 1</div>
+					<button icon="share"></button>
+					<button icon="delete"></button>
+					<button icon="more"></button>
+				</section>
+			</flexus-toolbar>
+
+
+			<flexus-toolbar tinted>
+				<section main>
+					<button nav icon="menu"></button>
+					<div flex>Main & Search & Selection</div>
+					<button wow icon="search"></button>
+					<button icon="more"></button>
+				</section>
+				<section search light enter-animation="circle" leave-animation="fade">
+					<button nav icon="arrow-back"></button>
+					<input type="text" flex placeholder="Search">
+					<button icon="more"></button>
+				</section>
+				<section selection dark enter-animation="fade" leave-animation="fade">
+					<button wow icon="arrow-back"></button>
+					<div flex title>Selected: 1</div>
+					<button wow icon="share"></button>
+					<button wow icon="delete"></button>
+					<button wow icon="more"></button>
+				</section>
+			</flexus-toolbar>
+
+
+
+			<!--flexus-toolbar>
+				<section>
+					<button nav icon="arrow-back"></button>
+					<h2>Title</h2>
+					<button icon="more"></button>
+				</section>
+				<section primary>
+					<paper-input indent flex label="Primary" value="Primary"></paper-input>
+				</section>
+				<section secondary>
+					<paper-input indent flex label="Secondary" value="Secondary"></paper-input>
+				</section>
+			</flexus-toolbar-->
+
+
+
+			<flexus-toolbar tinted multisection elevation="2">
+
+				<section>
+					<button nav icon="menu"></button>
+					<h2>Title</h2>
+					<button icon="search"></button>
+					<button icon="more"></button>
+				</section>
+
+				<flexus-tabs selected="0">
+					<div>ITEM ONE</div>
+					<div>ITEM TWO</div>
+					<div>ITEM THREE</div>
+				</flexus-tabs>
+
+			</flexus-toolbar>
+
+
+
+		</div>
+	</div>
+
+
+
+	<!--flexus-toolbar>
+
+		<button icon="menu"></button>
+		<h2>Title</h2>
+		<button icon="more"></button>
+
+		<paper-input indent flex label="Primary" value="Primary" primary></paper-input>
+		<paper-input indent flex label="Secondary" value="Secondary" secondary></paper-input>
+
+	</flexus-toolbar-->
+
+
+	<br><br>
+	<h3>TODO</h3>
+	<ul>
+		<li>unable to have [card] section as main (for simple apps like contacts)</li>
+		<li>-> make section[card] independent of [search][card]</li>
+		<li>-> make section[card] always white even in dark theme</li>
+		<li>section[light]/section[dark] does not set background (to #FFF) (in material)</li>
+		<li>transparent input in simple toolbar</li>
+		<li>i icon="" tag in metro should take the same space as button</li>
+		<li>non touchscreen metro should have option to have narrow buttons</li>
+		<li>[strong][flex] for title</li>
+		<li>[toolbar][dark]</li>
+		<li>[toolbar][dark] should not be #000 but the gray</li>
+		<li>autohide items under [icon="more"] when not enough space</li>
+		<li>autohide text in buttons (those with text inside tag, not the title) when not enough space</li>
+	</ul>
+
+	<!--script src="polyfill/web-animations.min.js"></script>
+	<script src="polyfill/webcomponents-lite.min.js"></script>
+	<script src="polyfill/pep.js"></script>
+	<script src="build/animate-polyfill.js"></script-->
+
+	<script src="../../lib/ganymede.js"></script>
+	<script src="../../lib/flexus.js"></script>
+
+	<script src="../../elements/toolbar.js"></script>
+	<script src="../../elements/tabs.js"></script>
+
+</div>
+</body>
+</html>

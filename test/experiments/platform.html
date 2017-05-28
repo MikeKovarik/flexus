@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="flexus/polyfill/custom-elements.min.js"></script>
+	<script src="flexus/polyfill/shadydom.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="flexus/css/flexus-neon-icons.css">
+
+	<link rel="stylesheet" type="text/css" href="flexus/test/app-music.css">
+
+	<style>
+		[visible] {
+			visibility: hidden;
+		}
+
+		[screensize="s"]  [visible="eqs"]  {visibility: visible}
+		[screensize="m"]  [visible="eqm"]  {visibility: visible}
+		[screensize="l"]  [visible="eql"]  {visibility: visible}
+
+		[screensize="xs"] [visible="eqxs"] {visibility: visible}
+		[screensize="xl"] [visible="eqxl"] {visibility: visible}
+
+		[screensize*="s"] [visible="s"] {visibility: visible}
+		[screensize="m"]  [visible="m"] {visibility: visible}
+		[screensize*="l"] [visible="l"] {visibility: visible}
+
+		[screensize]:not([screensize*="s"]) [visible="gts"] {visibility: visible}
+/*
+		[screensize="m"] [visible="gts"],
+		[screensize*="l"] [visible="gts"] {visibility: visible}
+*/
+	</style>
+
+</head>
+<body light vertical layout fullbleed fx-app>
+
+	<div flex relative>
+		<div fit tinted visible="eqxs" primary="red">EQ XS - Extra Small</div>
+		<div fit tinted visible="eqs" primary="orange">EQ S - Small</div>
+		<div fit tinted visible="eqm" primary="yellow">EQ M - Medium</div>
+		<div fit tinted visible="eql" primary="light-green">EQ L - Large</div>
+		<div fit tinted visible="eqxl" primary="green">EQ XL - Extra Large</div>
+	</div>
+	<div flex relative>
+		<div fit tinted visible="s" primary="orange">S - Small</div>
+		<div fit tinted visible="m" primary="yellow">M - Medium</div>
+		<div fit tinted visible="l" primary="light-green">L - Large</div>
+	</div>
+	<div flex relative>
+		<div fit tinted visible="gts" primary="blue">GTS - Greater than Small</div>
+	</div>
+
+	<script src="flexus/lib/Ganymede.js"></script>
+	<script src="flexus/lib/Flexus.js"></script>
+
+</body>
+</html>

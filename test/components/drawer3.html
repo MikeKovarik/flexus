@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<style>
+		[icon="microphone"]::before {
+			content: '\E720';
+		}
+		[icon="tvmonitor"]::before {
+			content: '\E7F4';
+		}
+		[icon="speakers"]::before {
+			content: '\E7F5';
+		}
+		[icon="headphone"]::before {
+			content: '\E7F6';
+		}
+		[icon="camera"]::before {
+			content: '\E722';
+		}
+		[icon="package"]::before {
+			content: '\E7B8';
+		}
+		[icon="earth"]::before {
+			content: '\E774';
+		}
+	</style>
+
+</head>
+<body light fx-app>
+
+
+	<flexus-drawer>
+		<button icon="menu"></button>
+
+		<div not-pinned>
+			<input type="search">
+		</div>
+
+		<div fx-item sticky list-head icon="star"></div>
+		<a fx-item indent not-pinned>front page</a>
+		<a fx-item indent not-pinned>all</a>
+		<a fx-item indent not-pinned>saved</a>
+
+		<div fx-item sticky list-head not-pinned icon="A"></div>
+		<a fx-item indent not-pinned>Subreddit A 1</a>
+		<a fx-item indent not-pinned>Subreddit A 2</a>
+		<a fx-item indent not-pinned>Subreddit A 3</a>
+
+		<div fx-item sticky list-head not-pinned icon="B"></div>
+		<a fx-item indent not-pinned>Subreddit B 1</a>
+		<a fx-item indent not-pinned>Subreddit B 2</a>
+		<a fx-item indent not-pinned>Subreddit B 3</a>
+
+		<div fx-item sticky list-head not-pinned icon="C"></div>
+		<a fx-item indent not-pinned>Subreddit C 1</a>
+		<a fx-item indent not-pinned>Subreddit C 2</a>
+		<a fx-item indent not-pinned>Subreddit C 3</a>
+
+		<div fx-item sticky list-head not-pinned icon="D"></div>
+		<a fx-item indent not-pinned>Subreddit D 1</a>
+		<a fx-item indent not-pinned>Subreddit D 2</a>
+		<a fx-item indent not-pinned>Subreddit D 3</a>
+
+		<div fx-item sticky list-head not-pinned icon="E"></div>
+		<a fx-item indent not-pinned>Subreddit E 1</a>
+		<a fx-item indent not-pinned>Subreddit E 2</a>
+		<a fx-item indent not-pinned>Subreddit E 3</a>
+
+		<div fx-item sticky list-head not-pinned icon="F"></div>
+		<a fx-item indent not-pinned>Subreddit F 1</a>
+		<a fx-item indent not-pinned>Subreddit F 2</a>
+		<a fx-item indent not-pinned>Subreddit F 3</a>
+
+		<div fx-item sticky list-head not-pinned icon="G"></div>
+		<a fx-item indent not-pinned>Subreddit G 1</a>
+		<a fx-item indent not-pinned>Subreddit G 2</a>
+		<a fx-item indent not-pinned>Subreddit G 3</a>
+
+		<div fx-item sticky list-head not-pinned icon="H"></div>
+		<a fx-item indent not-pinned>Subreddit H 1</a>
+		<a fx-item indent not-pinned>Subreddit H 2</a>
+		<a fx-item indent not-pinned>Subreddit H 3</a>
+
+		<div fx-item sticky list-head not-pinned icon="I"></div>
+		<a fx-item indent not-pinned>Subreddit I 1</a>
+		<a fx-item indent not-pinned>Subreddit I 2</a>
+		<a fx-item indent not-pinned>Subreddit I 3</a>
+
+		<a fx-item bottom icon="account-circle">User</a>
+		<a fx-item bottom icon="settings">Settings</a>
+	</flexus-drawer>
+
+	<flexus-view>
+		<flexus-toolbar elevation="1">
+			<button icon="menu"></button>
+			<div flex>Reddit</div>
+			<button icon="more"></button>
+		</flexus-toolbar>
+		<main>
+			content
+
+			<div fx-item sticky list-head icon="A"></div>
+			<a fx-item indent>Subreddit A 1</a>
+			<a fx-item indent>Subreddit A 2</a>
+			<a fx-item indent>Subreddit A 3</a>
+
+			<div fx-item sticky list-head icon="B"></div>
+			<a fx-item indent>Subreddit B 1</a>
+			<a fx-item indent>Subreddit B 2</a>
+			<a fx-item indent>Subreddit B 3</a>
+
+			<div fx-item sticky list-head icon="C"></div>
+			<a fx-item indent>Subreddit C 1</a>
+			<a fx-item indent>Subreddit C 2</a>
+			<a fx-item indent>Subreddit C 3</a>
+		</main>
+	</flexus-view>
+
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+	<script src="elements/drawer.js"></script>
+
+	<script>
+	var drawer = document.querySelector('flexus-drawer');
+	</script>
+
+</body>
+</html>

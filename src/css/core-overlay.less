@@ -1,0 +1,17 @@
+.fx-overlay {
+	background-color: #000;
+	z-index: 500;
+	opacity: 0;
+	&[fade] {
+		opacity: 0.7;
+	}
+	&[hidden] {
+		opacity: 0;
+		pointer-events: none;
+	}
+	transition: opacity 0.2s;
+	.fx-fit;
+	// override default [hidden] behavior
+	visibility: visible !important;
+	display: block;
+}

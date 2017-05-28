@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+	<style>
+	body,
+	[fx-app] {
+		background-color: #DDD !important;
+	}
+	[fx-app] {
+		flex-wrap: wrap;
+		padding: 4px;
+	}
+	flexus-view {
+		min-width: 260px;
+		max-width: 400px;
+		max-height: 340px;
+		margin: 4px;
+		overflow: hidden;
+	}
+	</style>
+
+</head>
+<body light>
+
+	<div id="view-demo" fx-app>
+
+		<flexus-view flex>
+			<flexus-toolbar waterfall>
+				<button icon="menu"></button>
+				<div flex>Waterfall</div>
+				<button icon="search"></button>
+				<button icon="more"></button>
+			</flexus-toolbar>
+			<main>Here goes the content!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar waterfall>
+				<section sticky>
+					<button icon="menu"></button>
+					<div flex></div>
+					<button icon="search"></button>
+					<button icon="more"></button>
+				</section>
+				<section indent>non sticky</section>
+			</flexus-toolbar>
+			<main>Here goes the content!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar waterfall>
+				<section sticky opaque>
+					<button icon="menu"></button>
+					<div flex></div>
+					<button icon="search"></button>
+					<button icon="more"></button>
+				</section>
+				<section indent>non sticky</section>
+			</flexus-toolbar>
+			<main>Here goes the content!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></main>
+		</flexus-view>
+
+		<flexus-view flex primary="red">
+			<flexus-toolbar>
+				<section sticky>
+					<button icon="menu"></button>
+					<div flex></div>
+					<button icon="search"></button>
+					<button icon="more"></button>
+				</section>
+				<section flexible ratio="1:1" tinted></section>
+				<section collapse title indent>Scale Title</section>
+			</flexus-toolbar>
+			<main>Here goes the content!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar>
+				<section>
+					<button icon="menu"></button>
+					<div flex></div>
+					<button icon="search"></button>
+					<button icon="more"></button>
+				</section>
+				<h2 indent spaced display1>The Avengers</h2>
+				<h3 indent spaced subhead>Jun 12, 2013</h3>
+			</flexus-toolbar>
+			<main>Here goes the content!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar>
+				<section sticky opaque>
+					<button icon="menu"></button>
+					<div flex></div>
+					<button icon="search"></button>
+					<button icon="more"></button>
+				</section>
+				<h2 indent spaced display1>The Avengers</h2>
+				<h3 indent spaced subhead>Jun 12, 2013</h3>
+			</flexus-toolbar>
+			<main>Here goes the content!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar waterfall>
+				<section>
+					<div fx-item>
+						<div avatar></div>
+						Hello world
+					</div>
+				</section>
+				<section sticky opaque>
+					<button icon="menu"></button>
+					<div flex></div>
+					<button icon="search"></button>
+					<button icon="more"></button>
+				</section>
+			</flexus-toolbar>
+			<main>Here goes the content!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar>
+				<section sticky opaque>
+					<button icon="menu"></button>
+					<div flex></div>
+					<button icon="search"></button>
+					<button icon="more"></button>
+				</section>
+				<section>
+					<div fx-item>
+						<div avatar></div>
+						Hello world
+					</div>
+				</section>
+			</flexus-toolbar>
+			<main>Here goes the content!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></main>
+		</flexus-view>
+
+		<flexus-view flex primary="cyan">
+			<flexus-toolbar tinted>
+				<section collapse>
+				</section>
+				<section>
+					<div fx-item>
+						<div avatar></div>
+						<div two-line>
+							<div>Mike Kovařík</div>
+							<div secondary>Mobile, 5 minutes ago</div>
+						</div>
+					</div>
+				</section>
+			</flexus-toolbar>
+			<main>Here goes the content!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></main>
+		</flexus-view>
+
+		<flexus-view flex primary="blue" accent="yellow">
+			<flexus-toolbar tinted>
+				<section card style="visibility: visible">
+					<button icon="search"></button>
+					<input type="search" placeholder="search people">
+					<button icon="microphone"></button>
+					<button icon="more"></button>
+				</section>
+				<section card collapse fade fx-item>
+					<div avatar></div>
+					<div two-line>
+						<div normal>Mike Kovařík</div>
+						<div secondary>Mobile, 5 minutes ago</div>
+					</div>
+				</section>
+				<flexus-tabs fixed>
+					<div>Speed dial</div>
+					<div>Recents</div>
+					<div>Contacts</div>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<main>Here goes the content!
+			<div fx-item>
+				<i icon="phone" tinted></i>
+				<input type="text" placeholder="This is a text field">
+			</div>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			</main>
+		</flexus-view>
+
+		<flexus-view flex primary="blue" accent="yellow">
+			<flexus-toolbar tinted>
+				<section>
+					<h1>Social hub</h1>
+					<button icon="search"></button>
+					<button icon="more"></button>
+				</section>
+				<section search card>
+					<button icon="arrow-back"></button>
+					<input type="search" placeholder="search people">
+					<button icon="more"></button>
+				</section>
+				<section card collapse fade fx-item>
+					<div avatar></div>
+					<div two-line>
+						<div normal>Mike Kovařík</div>
+						<div secondary>Mobile, 5 minutes ago</div>
+					</div>
+				</section>
+				<flexus-tabs fixed>
+					<div>Speed dial</div>
+					<div>Recents</div>
+					<div>Contacts</div>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<main>Here goes the content!
+			<div fx-item>
+				<i icon="phone" tinted></i>
+				<input type="text" placeholder="This is a text field">
+			</div>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			</main>
+		</flexus-view>
+
+	</div>
+
+	<br>
+
+	<h3>TO-DO In Future</h3>
+	<li>fade-in background (ov [sticky][overlay]section) instead of fading-out background image</li>
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+	<script src="elements/toolbar.js"></script>
+
+</body>
+</html>

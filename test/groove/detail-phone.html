@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="/flexus/demo/scripts/Vibrant.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<style>
+	flexus-toolbar {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		margin: 0 !important;
+	}
+	[fit][parallax] {
+		height: initial;
+	}
+	</style>
+
+</head>
+<body dark fx-app accent="pink">
+
+	<flexus-drawer hidden="phone">
+		<button icon="menu"></button>
+		<a fx-item icon="cloud-outline">Online Collection</a>
+		<a fx-item icon="cart">Shop</a>
+		<a fx-item icon="folder">Folders</a>
+		<a fx-item icon="account" slot="bottom">Account</a>
+		<a fx-item icon="settings" slot="bottom">settings</a>
+	</flexus-drawer>
+
+	<flexus-view primary="blue" shade="300">
+		<!--flexus-toolbar tinted acrylic-->
+		<flexus-toolbar tinted>
+			<section overlay sticky>
+				<button icon="arrow-back"></button>
+				<div flex></div>
+				<button icon="play"></button>
+				<button icon="share"></button>
+				<button icon="plus"></button>
+				<button icon="download"></button>
+				<button icon="more"></button>
+			</section>
+			<!--section overlay sticky fade hidden="s" two-line>
+				<div id="album-artist">Ubisoft</div>
+				<div id="album-details">2014 * Classical * 30 songs</div>
+			</section-->
+			<img fade="gts" src="/flexus/demo/img/albums/switchfoot-fading-west.jpg">
+			<section overlay sticky>
+				<h2 id="album-name" h2-like-tempname indent>Fading West</h2>
+			</section>
+		</flexus-toolbar>
+		<main>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</main>
+	</flexus-view>
+
+	<flexus-view primary="brown" shade="300">
+		<!--flexus-toolbar tinted acrylic-->
+		<flexus-toolbar tinted>
+			<section>
+				<button icon="arrow-back"></button>
+				<div flex></div>
+				<button icon="play"></button>
+				<button icon="share"></button>
+				<button icon="plus"></button>
+				<button icon="download"></button>
+				<button icon="more"></button>
+			</section>
+			<img flexible parallax fade="gts" src="/flexus/demo/img/albums/assassins-creed-unity.jpg">
+			<section indent="gts">
+				<h2 id="album-name" h2-like-tempname>Assassin's Creed Unity, Vol, 1, Original Game Soundtrack</h2>
+			</section>
+		</flexus-toolbar>
+		<main>
+			<h3>Foo</h3>
+			<br><br><br><br><br><br><br><br><br><br><br>
+			<h3>Parallax</h3>
+			<div ratio="16:9" fullwidth relative overflow>
+				<img fit parallax src="/flexus/demo/img/albums/assassins-creed-unity.jpg">
+			</div>
+			<br><br><br><br><br><br><br><br><br><br><br>
+			<h3>Parallax</h3>
+			<div ratio="16:9" fullwidth relative overflow>
+				<img fit parallax="0.1" src="/flexus/demo/img/albums/overwatch.jpg">
+			</div>
+			<br><br><br><br><br><br><br><br><br><br><br>
+		</main>
+		<button icon="play" bottom right fab></button>
+	</flexus-view>
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/drawer.js"></script>
+	<script src="/flexus/elements/view.js"></script>
+
+</body>
+</html>

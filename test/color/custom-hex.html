@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta name="theme-color" content="#689F38">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+</head>
+<body fx-app light>
+
+	<flexus-view>
+		<flexus-toolbar tinted>Title</flexus-toolbar>
+		<main>
+			<button raised tinted>button</button>
+			<button raised>button</button>
+			<div style="color: var(--theme-primary)">lorem ipsum</div>
+			<div primary>primary</div>
+			<div accent>accent</div>
+			<div tinted>tinted</div>
+			<br>
+			<p>[primary] is green, inherited from the &lt;meta&gt;</p>
+			<p>[secondary] is undefined</p>
+			<p>[tinted] remains green</p>
+		</main>
+	</flexus-view>
+
+	<flexus-view primary="#FF6F00" accent="#FFFF00">
+		<flexus-toolbar tinted>Title</flexus-toolbar>
+		<main>
+			<button raised tinted>button</button>
+			<button raised>button</button>
+			<div style="color: var(--theme-primary)">lorem ipsum</div>
+			<div primary>primary</div>
+			<div accent>accent</div>
+			<div tinted>tinted</div>
+			<br>
+			<p>[primary] is orange, custom hex on &lt;flexus-view&gt;</p>
+			<p>[secondary] is yellow, custom hex on &lt;flexus-view&gt;</p>
+			<p>[tinted] should be yellow, (advanced tint disabling yellow on black is only available for named colors)</p>
+		</main>
+	</flexus-view>
+
+	<flexus-view primary="#C2185B" accent="yellow">
+		<flexus-toolbar tinted>Title</flexus-toolbar>
+		<main>
+			<button raised tinted>button</button>
+			<button raised>button</button>
+			<div style="color: var(--theme-primary)">lorem ipsum</div>
+			<div primary>primary</div>
+			<div accent>accent</div>
+			<div tinted>tinted</div>
+			<br>
+			<p>[primary] is red, custom hex on &lt;flexus-view&gt;</p>
+			<p>[secondary] is yellow, named on &lt;flexus-view&gt;</p>
+			<p>[tinted] should be yellow in dark theme, red in light</p>
+		</main>
+	</flexus-view>
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+</body>
+</html>

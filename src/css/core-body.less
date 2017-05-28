@@ -1,0 +1,450 @@
+:root {
+	--sneakpeek-height: calc(40px + 1rem);
+	--panel-width-phone: calc(100% - 40px - 1rem);
+	//--panel-width-tablet: 320px;
+	--panel-min-width: 320px;
+	--panel-max-width: 320px;
+}
+
+// experimental
+:root {
+	--drawer-width: calc(100% - 40px - 1rem);
+}
+/*
+@{screensize-s} {
+	--drawer-max-width: calc(100% - 40px - 1rem);
+}
+@{screensize-m},
+@{screensize-l} {
+	--drawer-max-width: 320px;
+}
+[fullwidth] {
+	--drawer-max-width: 100%;
+}
+*/
+[fx-app] {
+	width: 100%;
+	height: 100%;
+	.apply-colors;
+
+	display: flex;
+
+	/*& > flexus-scene,
+	& > flexus-view {
+		flex: 1;
+	}*/
+}
+flexus-scene,
+flexus-view {
+	flex: 1;
+	overflow: hidden;
+}
+
+
+.fx-panel-sizing() {
+	&:not([fullwidth]) {
+		min-width: var(--panel-min-width);
+		max-width: var(--panel-max-width);
+
+		// this is not set but is open to user
+		width: var(--panel-width);
+		//@media @phone {
+		//	width: var(--panel-width-phone);
+		//}
+	}
+}
+.fx-panel-positioning() {
+	//@media @phone {
+	//[small] & {
+	&:not([pinned]) {
+		position: absolute !important;
+	}
+	&[left],
+	&[right] {
+		top: 0;
+		bottom: 0;
+	}
+	&[top],
+	&[bottom] {
+		left: 0;
+		right: 0;
+	}
+	&[left] {
+		left: 0;
+	}
+	&[right] {
+		right: 0;
+	}
+	&[top] {
+		top: 0;
+	}
+	&[bottom] {
+		bottom: 0;
+	}
+/*
+	// temporarily disabled due to the mess when combining and switching between Panels [pinned] and unpinned modes
+	&[right] {
+		animation: slidein-from-right 120ms;
+	}
+	&[left] {
+		animation: slidein-from-left 120ms;
+	}*/
+}
+
+@keyframes slidein-from-right {
+	from {transform: translateX(100%)}
+	to   {transform: translateX(0%)}
+}
+@keyframes slidein-from-left {
+	from {transform: translateX(-100%)}
+	to   {transform: translateX(0%)}
+}
+
+
+[panel] {
+	.fx-elevation-8dp;
+	.fx-panel-sizing;
+	.fx-panel-positioning;
+}
+
+
+
+[drag-orientation="vertical"] {
+	touch-action: pan-x;
+}
+[drag-orientation="horizontal"] {
+	touch-action: pan-y;
+}
+[drag-edge][drag-orientation="horizontal"] {
+	overflow: initial;
+	& > [edge] {
+		position: absolute;
+		width: 1rem;
+		top: 0;
+		bottom: 0;
+	}
+	[nontouch] & > [edge] {
+		display: none;
+	}
+	&[left] > [edge] {
+		left: 100%;
+	}
+	&[right] > [edge] {
+		right: 100%;
+	}
+}
+[drag-edge]:not([draggable]) > [edge] {
+	display: none;
+}
+
+
+
+
+
+flexus-drawer {
+
+
+	.set-colors-override() {
+		--background: ~'rgb(var(--drawer-background-rgb, var(--background-rgb)))';
+		--foreground: ~'rgb(var(--drawer-foreground-rgb, var(--foreground-rgb)))';
+	}
+	//.set-colors;
+	.set-colors-override;
+	.apply-colors;
+
+	/*&,
+	[opaque] {
+		background-color: var(--drawer-background, var(--drawer-background-default));
+		color: var(--foreground-custom, var(--drawer-foreground, var(--drawer-foreground-default)));
+	}*/
+	[sticky] {
+		z-index: 1;
+	}
+
+	transition: transform 200ms, width 200ms, background-color 200ms, box-shadow 120ms;
+
+	//.fx-layout-vertical;
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	align-items: stretch;
+
+	z-index: 600;
+
+	a {
+		cursor: default;
+	}
+
+	& > * {
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	& /*>*/ [edge] {
+		left: 100%;
+	}
+
+	& /*>*/ [fx-item] {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+	button[fx-item]:not([icon="menu"]) {
+		width: 100% !important;
+		text-align: left !important;
+		justify-content: flex-start;
+	}
+/*
+	[not-pinned] {
+		padding: 0 1rem;
+	}
+	&[hidden] [not-pinned] {
+		display: none;
+	}
+*/
+	// hides hamburger menu from all neighbouring views
+	&[pinned][has-hamburger] {
+		& ~ * [icon="menu"] {
+			display: none !important;
+		}
+		& ~ * [icon="menu"] + * {
+			margin-left: 0 !important;
+		}
+	}
+
+}
+
+
+flexus-view,
+flexus-scene {
+	max-width: 100%;
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	//flex-shrink: 0;
+}
+
+flexus-view {
+
+	.apply-colors;
+
+	transition: transform 200ms, box-shadow 120ms;
+
+	//max-width: 100%;
+	//position: relative;
+	//align-items: stretch;
+	//flex-shrink: 0;
+
+	flex-direction: column;
+
+	// !important is there to override [visible's] display:initial
+	// flexus-pages do not get flexed properly otherwise
+	// override default [hidden] behavior to enable animations
+	display: flex !important;
+	&[hidden] {
+		display: none !important;
+	}
+	&[hidden][draggable] {
+		display: flex !important;
+		visibility: initial;
+	}
+
+	//padding: 1rem;
+	padding: var(--gutter);
+
+	& > flexus-tabs:not([absolute-top]),
+	& > flexus-toolbar:not([absolute-top]):not([card]) {
+		//margin: -1rem -1rem 1rem -1rem;
+		margin: calc(-1 * var(--gutter));
+		margin-bottom: var(--gutter);
+	}
+	/*& > flexus-tabs[transparent][no-bar],
+	& > flexus-toolbar[transparent] {
+		margin-bottom: 0 !important;
+	}*/
+
+	& > flexus-pages,
+	& > main {
+		//margin: -1rem -1rem -1rem -1rem;
+		margin: calc(-1 * var(--gutter));
+		//padding: 1rem;
+		padding: var(--gutter);
+		/*[fullwidth] {
+			width: initial;
+			margin: 0 calc(-1 * var(--gutter));
+		}*/
+	}
+	//& > flexus-tabs + main,
+	//& > flexus-toolbar + main {
+	& > main,
+	& > flexus-pages {
+		flex: 1;
+	}
+
+	[sticky] {
+		top: 0;
+		//top: -1rem;
+	}
+
+	//.fx-vertical-scrollable; // because of [scroll]
+
+	// in material design if the toolbar is scrollable (shrinks/grows by scrolling)
+	// not only the content but whole view has to have a scrollbar.
+	// in all other cases we automatically assume that the second child of view contains all
+	// of the content and therefore makes it scrollable and flex the rest of the height 
+
+	// update: temporarily removed because of change in handling scrollable toolbar (it's not adding [scroll] to view anymore)
+	// [scroll] makes the toolbar sticked to content and it scrolls with it
+	& > main {
+		.fx-vertical-scrollable;
+	}
+
+
+	//body[phone] &[seam="phone"],
+	//body[tablet] &[seam="tablet"],
+	&[seam=""] {
+		box-shadow: none;
+		&[left] {
+			border-right: var(--seam-size) solid var(--seam-color);
+		}
+		&[right] {
+			border-left: var(--seam-size) solid var(--seam-color);
+		}
+		&[top] {
+			border-bottom: var(--seam-size) solid var(--seam-color);
+		}
+		&[bottom] {
+			border-top: var(--seam-size) solid var(--seam-color);
+		}
+	}
+
+
+	&[drag-orientation="vertical"] > [sneakpeek] {
+		.fx-absolute-top;
+		height: var(--sneakpeek-height);
+	}
+	&[drag-orientation="horizontal"] > [sneakpeek] {
+		.fx-absolute-left;
+		width: var(--sneakpeek-width);
+	}
+	& > [sneakpeek] {
+		.apply-colors;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 200ms;
+		z-index: 1;
+		display: flex;
+		padding: 0 1rem;
+	}
+	&[hidden] > [sneakpeek] {
+		pointer-events: initial;
+		opacity: 1;
+	}
+
+
+}
+
+:root {
+	--sneakpeek-height: var(--toolbar-min-height);
+}
+
+
+flexus-scene {
+
+	//max-width: 100%;
+	//position: relative;
+	//display: flex;
+	//align-items: stretch;
+	flex-direction: row;
+	//flex-shrink: 0;
+
+	> [master] {
+		flex: 1;
+	}
+	> [detail] {
+		flex: 1;
+	}
+	//> * {
+	//	flex: 1;
+	//}
+/*
+	.responsive-formfactor(vertical, {
+		flex-direction: column;
+	}, {
+		[detail] {
+			max-height: 40vh;
+		}
+	});
+*/
+
+	&[type="dragup"] {
+		> [master] {
+			margin-bottom: var(--sneakpeek-height);
+		}
+		> [detail] {
+			.fx-fit;
+			z-index: 70; // master possibly has FAB which is 60, detail has to be higher to overlay it
+			bottom: var(--sneakpeek-height);
+		}
+	}
+
+}
+
+
+
+
+
+
+//	& > main {
+//		//overflow-x: hidden;
+//		position: relative;
+//		// cancel view[card]>page side margin
+//		margin-left: 0;
+//		margin-right: 0;
+//
+//		&[indent] {
+//			padding-left: ~'calc(1rem + var(--indent))';
+//		}
+//
+//		[card][fullwidth] {
+//			width: auto;
+//			margin-left: -1rem;
+//			margin-right: -1rem;
+//			border-radius: 0;
+//		}
+//
+//		flexus-pages[fullwidth=""] {
+//			width: auto;
+//			margin-left: -1rem;
+//			margin-right: -1rem;
+//			padding-left: 1rem;
+//			padding-right: 1rem;
+//		}
+//	}
+
+
+
+/*
+	&[type="dragup"] {
+		flexus-view[hidden] {
+			visibility: initial;
+			transform: translateY(100%);
+		}
+		> [master] {
+			margin-bottom: var(--sneakpeek-height);
+		}
+		> [detail] {
+			.fx-fit;
+			z-index: 70; // master possibly has FAB which is 60, detail has to be higher to overlay it
+			bottom: var(--sneakpeek-height);
+			[sneakpeek] {
+				.fx-absolute-top;
+				.fx-behavior-item-padding2;
+				height: var(--sneakpeek-height);
+				z-index: 100;
+				background-color: var(--theme-background);
+			}
+		}
+	}
+*/
+
+

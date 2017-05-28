@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+	<!--script src="polyfill/shadycss.min.js"></script-->
+	<!--script src="lib/css-polyfill.js"></script-->
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+</head>
+<body light>
+
+	<button icon="plus" fab>Add</button>
+	<button icon="plus" fab></button>
+	<button icon="plus" fab title="Add"></button>
+
+	<br><div></div>
+
+	<a href="" icon="plus" fab>Add</a>
+	<a href="" icon="plus" fab></a>
+	<a href="" icon="plus" fab title="Add"></a>
+
+	<flexus-fabdial top right>
+		<button fab icon="share" title="Share"></button>
+		<button icon="link" title="Copy link"></button>
+		<button icon="content-copy" title="Copy"></button>
+		<button icon="email" title="Email"></button>
+	</flexus-fabdial>
+
+	<flexus-fabdial bottom right>
+		<button fab icon="share" title="Share"></button>
+		<button icon="link" title="Copy link"></button>
+		<button icon="content-copy" title="Copy"></button>
+		<button icon="email" title="Email"></button>
+	</flexus-fabdial>
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+	<script src="elements/fabdial.js"></script>
+
+</body>
+</html>

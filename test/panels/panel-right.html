@@ -1,0 +1,139 @@
+<!doctype html>
+<html touch>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<style>
+	flexus-scene > div {
+		overflow: hidden;
+	}
+	.visible,
+	.hidden,
+	.pinned,
+	.pinnable {
+		display: none;
+	}
+	[visible] .visible {
+		display: inline-block;
+	}
+	[hidden] .hidden {
+		display: inline-block;
+	}
+	[pinned] .pinned {
+		display: inline-block;
+	}
+	[pinnable] .pinnable {
+		display: inline-block;
+	}
+	</style>
+
+</head>
+<body light fx-app vertical layout primary="red">
+
+	<flexus-scene flex>
+
+		<div flex style="padding: 1rem">
+			<button onclick="panel1.show()">show</button>
+			<button onclick="panel1.hide()">hide</button>
+			<p>No attributes except for [panel] are defined</p>
+			<p>Stays hidden until user opens it or drags it out with touch gesture</p>
+			<p>It's always in overlay mode (not pinned) and draws shade overlay on the content below</p>
+			<p>Does not open even after screensize change</p>
+			<hr>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue eros eget rhoncus tincidunt. Maecenas a mauris finibus, condimentum velit ut, placerat metus. Morbi porttitor consequat iaculis. Vestibulum lacinia est ac lectus rhoncus, scelerisque auctor arcu dapibus. Ut maximus risus vitae mi lacinia, ac aliquam felis iaculis. Vestibulum id turpis augue. Vivamus fermentum in nibh sit amet accumsan. Nunc porttitor sapien sed ipsum rutrum, non lacinia augue dignissim. Etiam eu porta orci. Nullam id volutpat risus, id vulputate libero. Nulla lacinia neque leo, et consequat massa porttitor non. In hac habitasse platea dictumst.</p>
+		</div>
+
+		<flexus-view panel id="panel1">
+			<flexus-toolbar seam>
+				<button icon="x"></button>
+				<h3>Default panel</h3>
+			</flexus-toolbar>
+			<main>
+				<p>This should be automatically picked up and detected as [right][panel]</p>
+				<p>
+					<strong blue tag class="visible">visible</strong>
+					<strong blue tag class="hidden">hidden</strong>
+					<strong blue tag class="pinned">pinned</strong>
+					<strong blue tag class="pinnable">pinnable</strong>
+				<p>
+			</main>
+		</flexus-view>
+
+	</flexus-scene>
+
+
+	<flexus-scene flex>
+
+		<div flex style="padding: 1rem">
+			<button onclick="panel2.show()">show</button>
+			<button onclick="panel2.hide()">hide</button>
+			<p>Becomes unpinned (overlay mode), out out flow and casting shadow on content below, when screen size reduces. Becomes pinned back again when screen size is large. Starts of in one of two cases:</p>
+			<p>1) on large screen is automatically visible and pinned</p>
+			<p>2) on small screen is hidden, and it remains in overlay (not pinned) mode (with the drag gesture) until screen is large enough to fit it in pinned mode</p>
+			<p>[panel] and [pinned] are defined</p>
+			<p>behaviour can be further modified with [auto-hide] and [auto-show] and [pinnable]</p>
+			<hr>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue eros eget rhoncus tincidunt. Maecenas a mauris finibus, condimentum velit ut, placerat metus. Morbi porttitor consequat iaculis. Vestibulum lacinia est ac lectus rhoncus, scelerisque auctor arcu dapibus. Ut maximus risus vitae mi lacinia, ac aliquam felis iaculis. Vestibulum id turpis augue. Vivamus fermentum in nibh sit amet accumsan. Nunc porttitor sapien sed ipsum rutrum, non lacinia augue dignissim. Etiam eu porta orci. Nullam id volutpat risus, id vulputate libero. Nulla lacinia neque leo, et consequat massa porttitor non. In hac habitasse platea dictumst.</p>
+		</div>
+
+		<flexus-view panel pinned id="panel2">
+			<flexus-toolbar seam>
+				<button icon="x"></button>
+				<h3>Pinned pannel</h3>
+			</flexus-toolbar>
+			<main>
+				<p>This should be automatically picked up and detected as [right][panel]</p>
+				<p>
+					<strong blue tag class="visible">visible</strong>
+					<strong blue tag class="hidden">hidden</strong>
+					<strong blue tag class="pinned">pinned</strong>
+					<strong blue tag class="pinnable">pinnable</strong>
+				<p>
+			</main>
+		</flexus-view>
+
+	</flexus-scene>
+
+
+	<flexus-scene flex>
+
+		<div flex style="padding: 1rem">
+			<button onclick="panel3.show()">show</button>
+			<button onclick="panel3.hide()">hide</button>
+			<p>Loads up as visible, opened panel in overlay mode (not pinned) and casts shadow on content below</p>
+			<p>Does not hide even after screensize change</p>
+			<p>[panel] and [visible] are defined</p>
+			<hr>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue eros eget rhoncus tincidunt. Maecenas a mauris finibus, condimentum velit ut, placerat metus. Morbi porttitor consequat iaculis. Vestibulum lacinia est ac lectus rhoncus, scelerisque auctor arcu dapibus. Ut maximus risus vitae mi lacinia, ac aliquam felis iaculis. Vestibulum id turpis augue. Vivamus fermentum in nibh sit amet accumsan. Nunc porttitor sapien sed ipsum rutrum, non lacinia augue dignissim. Etiam eu porta orci. Nullam id volutpat risus, id vulputate libero. Nulla lacinia neque leo, et consequat massa porttitor non. In hac habitasse platea dictumst.</p>
+		</div>
+
+		<flexus-view panel visible id="panel3">
+			<flexus-toolbar seam>
+				<button icon="x"></button>
+				<h3>Visible pannel</h3>
+			</flexus-toolbar>
+			<main>
+				<p>This should be automatically picked up and detected as [right][panel]</p>
+				<p>
+					<strong blue tag class="visible">visible</strong>
+					<strong blue tag class="hidden">hidden</strong>
+					<strong blue tag class="pinned">pinned</strong>
+					<strong blue tag class="pinnable">pinnable</strong>
+				<p>
+			</main>
+		</flexus-view>
+
+	</flexus-scene>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/view.js"></script>
+
+</body>
+</html>

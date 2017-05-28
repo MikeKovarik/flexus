@@ -1,0 +1,167 @@
+@import "core";
+@import "material-color";
+@import "material-icons";
+@import "material-typography";
+@import "material-input";
+@import "material-item";
+@import "material-body";
+@import "material-overlay";
+
+
+:root,
+[screensize="s"] {
+	--gutter: 16px;
+}
+[screensize="m"][touch],
+[screensize="l"][touch] {
+	--gutter: 24px;
+}
+
+body {
+	font-size: 16px;
+}
+
+:root {
+	// baseline indendation
+	--indent: 56px;
+	--seam-size: 1px;
+}
+
+
+p + p {
+	margin-top: 8px;
+}
+
+
+// IMPORTANT
+// min-hitbox 48px
+
+// https://material-design.storage.googleapis.com/publish/material_v_4/material_ext_publish/0Bx4BSt6jniD7eEVhSW1nVjBrZnM/layout_metrics_touchtarget1.png
+// avatar 40x40 (+4px all around)
+// icon 24x24 (+12px all around)
+
+// TODO
+/*
+Make sure non-touch devices have 16px gutter (non standard but follows most of googles sites)
+	- https://material.io/devices/
+	- https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android
+	- https://keep.google.com (has 32px tall menu items)
+*/
+
+
+// NOTE/TODO: implement all the indents (60,80,104) as some attributes like (indent, indent="1", indent="2", indent="3")
+
+/*
+--shadow-transition {
+	transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+};
+*/
+// slightly modified shadows
+:root {
+	--shadow-elevation-2dp:  0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	--shadow-elevation-4dp:  0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+	--shadow-elevation-6dp:  0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4);
+	--shadow-elevation-8dp:  0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
+	--shadow-elevation-10dp: 0 12px 24px 2px rgba(0, 0, 0, 0.14), 0 3px 30px 5px rgba(0, 0, 0, 0.12), 0 5px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+.fx-elevation-seam {box-shadow: none}
+.fx-elevation-2dp  {box-shadow: var(--shadow-elevation-2dp)}
+.fx-elevation-4dp  {box-shadow: var(--shadow-elevation-4dp)}
+.fx-elevation-6dp  {box-shadow: var(--shadow-elevation-6dp)}
+.fx-elevation-8dp  {box-shadow: var(--shadow-elevation-8dp)}
+.fx-elevation-10dp {box-shadow: var(--shadow-elevation-10dp)}
+
+.fx-elevation-seam {z-index: 0; .fx-elevation-seam}
+.fx-elevation-0dp  {z-index: 0; .fx-elevation-0dp}
+.fx-elevation-2dp  {z-index: 2; .fx-elevation-2dp}
+.fx-elevation-4dp  {z-index: 4; .fx-elevation-4dp}
+.fx-elevation-6dp  {z-index: 6; .fx-elevation-6dp}
+.fx-elevation-8dp  {z-index: 8; .fx-elevation-8dp}
+.fx-elevation-10dp {z-index: 10;.fx-elevation-10dp}
+// todo 16dp: drawer, modal bottom sheet
+// todo 24dp: dialog, picker
+
+
+// note: there should be 8px margin top and bottom for each separator
+//       In lists with avatars it is necessary. I'm currently using <hr indent>
+//       instead of <flexus-item indent hr-indent>. TODO look into it
+//       It might not be wanted to automatically add 8px margin to each [hr]
+
+
+[avatar] {
+	z-index: 0;
+	border-radius: 50%;
+	// this is a workaround for bug in glitchy chrome
+	& > img {
+		border-radius: 50%;
+	}
+	
+	/*i&[icon]::before,
+	[touch] &:not(i)[icon]:not(:checked)::before,
+	[nontouch] &:not(i)[icon]:not(:checked):not(:hover)::before,
+	& > [icon]:not(:checked)::before {
+		color: var(--custom-foreground, var(--background, var(--background-default))) !important;
+	}*/
+	input[type="checkbox"]& {
+		[touch] &:not([icon]):not([title]):not(:checked)::before,
+		[nontouch] &:not([icon]):not([title]):not(:checked):not(:hover)::before {
+			//opacity: 0;
+			display: none;
+		}
+		[nontouch] & {
+			&[type="checkbox"]:not(:checked):hover {
+				color: var(--checkbox-normal) !important;
+			}
+			&[type="checkbox"]:checked {
+				color: var(--selection-background, var(--tint)) !important;
+			}
+			&:hover,
+			&:checked {
+				background-image: none !important;
+				background-color: transparent !important;
+			}
+		}
+		[touch] & {
+			&:checked::before {
+				content: '\f1fe' !important; // check icon
+				z-index: 1;
+			}
+			&:checked::after {
+				z-index: 0;
+				background-color: var(--selection-background, var(--tint)) !important;
+				opacity: 1 !important;
+				transform: none !important;
+				animation: 120ms scalein ease-in-out !important;
+				top: 0px;
+				right: 0px;
+				bottom: 0px;
+				left: 0px;
+			}
+			&:not(:checked)::after {
+				display: none;
+			}
+		}
+	}
+}
+
+
+[tag] {
+	border-radius: 3px;
+	font-weight: 500;
+}
+
+
+
+@keyframes scalein {
+	from {transform: scale(0)}
+	to   {transform: scale(1)}
+}
+
+[card-look],
+[card] {
+	border-radius: 3px;
+	.fx-elevation-2dp;
+	.set-colors;
+	.apply-colors;
+}

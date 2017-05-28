@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>drawer</title>
+
+	<script src="polyfill/webcomponents-lite.js"></script>
+	<script src="polyfill/pep.js"></script>
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-metro.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-metro-icons.css">
+
+	<style>
+	flexus-view[sidebar] {
+		width: 360px;
+	}
+	</style>
+
+</head>
+<body dark fx-app fullbleed>
+
+		<flexus-drawer breakpoint2="600" expanded="false">
+			<button fx-item icon="star">Map</button>
+			<button fx-item icon="search">Search</button>
+			<button fx-item icon="star">Favorites</button>
+			<button fx-item icon="star">Favorites</button>
+			<button fx-item icon="star">Favorites</button>
+			<div fx-item sticky><img avatar>Mike Kovařík</div>
+			<button fx-item icon="settings" sticky>Settings</button>
+		</flexus-drawer>
+
+		<flexus-view sidebar>
+			<flexus-toolbar>SETTINGS</flexus-toolbar>
+			<main vertical layout>
+				<h3>General</h3>
+
+				<label>Units</label>
+				<select><option>Metric (meters, kilometers)<option></select>
+
+				<label>Preffered directions</label>
+				<select><option>Driving<option></select>
+
+				<label>Offline maps</label>
+				<button>Download or update maps</button>
+
+				<label>Saved location</label>
+				<div>We'll use this address whenever we have trouble finding you</div>
+				<div>Jasenická, 755 01 Vsetín, Czech Republic</div>
+				<a>Change</a>
+				<button>Save a location</button>
+
+				<h3>Search</h3>
+				<label>Remember what i search for</label>
+				<input type="checkbox" toggle>
+				<button>Delete history</button>
+
+				<h3>Privacy</h3>
+				<label>Maps can use your location</label>
+				<button>Open location settings</button>
+
+				<label>Use location data to improve maps</label>
+				<select><option>Always<option></select>
+				<div>Maps will collect and share location data with Microsoft to help improve map and location-related services.</div>
+
+				<h3>About this app</h3>
+				<div>Maps 4.1601.10150.0</div>
+				<div>2015 HERE, 2015 Microsoft Corporation</div>
+				<a>Microsoft Services Agreement</a>
+				<a>Microsoft Privacy Statement</a>
+				<div>Additional terms</div>
+				<a>HERE Terms of Use</a>
+				<a>HERE Privacy Statement</a>
+			</main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar elevation="1" dark>
+				<button icon="menu"></button>
+				<div flex>Title</div>
+				<button icon="more"></button>
+			</flexus-toolbar>
+			<main>
+				This is a copy of Maps app settings
+			</main>
+		</flexus-view>
+
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.shadowmaster.js"></script>
+	<script src="build/elements/flexus-drawer.js"></script>
+	<script src="build/elements/flexus-item.js"></script>
+	<script>
+	var drawer = document.querySelector('flexus-drawer');
+	</script>
+</body>
+</html>

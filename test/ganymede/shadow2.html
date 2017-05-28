@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro-icons.css">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+	<script src="polyfill/shadycss.min.js"></script>
+
+	<custom-style>
+		<style>
+			html {
+				--content-color: pink;
+			}
+		</style>
+	</custom-style>
+</head>
+<body dark>
+
+<my-element><span>This text will be brown!<span></my-element>
+<template id="myElementTemplate">
+  <style>
+    :host {
+      display: block;
+      padding: 8px;
+    }
+
+    /*#content {
+      background-color: var(--content-color);
+    }*/
+    #content {
+    	border: 1px solid green;
+    }
+
+    .slot-container ::slotted(*) {
+      border: 1px solid steelblue;
+      margin: 4px;
+    }
+  </style>
+  <div id="content">Content</div>
+  <div class="slot-container">
+    <slot></slot>
+  </div>
+</template>
+<script>
+  ShadyCSS.prepareTemplate(myElementTemplate, 'my-element');
+  class MyElement extends HTMLElement {
+    connectedCallback() {
+      this.attachShadow({mode: 'open'});
+      this.shadowRoot.appendChild(
+        document.importNode(myElementTemplate.content, true));
+      ShadyCSS.applyStyle(this);
+    }
+  }
+
+  customElements.define('my-element', MyElement);
+</script>
+
+
+	<testy-two>
+		<button icon="settings" slot="s1"></button>
+		<input type="checkbox" slot="s2">
+	</testy-two>
+
+	<testy-two>
+		<input type="checkbox" slot="s2">
+	</testy-two>
+
+	<testy-three>
+		<button icon="settings"></button>
+	</testy-three>
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+	<script src="elements/testy-two.js"></script>
+	<script src="elements/testy-three.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+function hexToRgb(hex) {
+	if (hex.startsWith('#'))
+		hex = hex.slice(1)
+	var r = parseInt(hex.substr(0,2), 16)
+	var g = parseInt(hex.substr(2,2), 16)
+	var b = parseInt(hex.substr(4,2), 16)
+	return [r, g, b]
+}
+
+console.log(hexToRgb('F44336'))
+console.log(hexToRgb('E91E63'))
+console.log(hexToRgb('9C27B0'))
+console.log(hexToRgb('673AB7'))
+console.log(hexToRgb('3F51B5'))
+console.log(hexToRgb('2196F3'))
+console.log(hexToRgb('03A9F4'))
+console.log(hexToRgb('00BCD4'))
+console.log(hexToRgb('009688'))
+console.log(hexToRgb('4CAF50'))
+console.log(hexToRgb('8BC34A'))
+console.log(hexToRgb('CDDC39'))
+console.log(hexToRgb('FFEB3B'))
+console.log(hexToRgb('FFC107'))
+console.log(hexToRgb('FF9800'))
+console.log(hexToRgb('FF5722'))
+console.log(hexToRgb('795548'))
+console.log(hexToRgb('9E9E9E'))
+console.log(hexToRgb('607D8B'))

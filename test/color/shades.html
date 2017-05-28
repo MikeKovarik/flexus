@@ -1,0 +1,295 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<style>
+		flexus-view {
+			margin: 4px;
+		}
+		:root {
+			/*--toolbar-icons-color: red;*/
+			/*--primary: purple;*/
+			/*--primary: rgb(169,57,255);*/
+		}
+		/*[light],
+		[dark] {
+			--theme-base: 169,57,255;
+		}*/
+		/*
+		[light] {
+			--toolbar-foreground: green;
+		}
+		[dark] {
+			--toolbar-foreground: orange;
+		}*/
+		.gray {
+			background: linear-gradient(to bottom right, #123344 0%,#444 100%);
+		}
+	</style>
+
+</head>
+<body dark vertical layout primary="blue" accent="pink">
+
+	<div horizontal layout>
+
+		<flexus-view flex>
+			<flexus-toolbar multisection transparent>
+				<section tinted>
+					<button icon="menu"></button>
+					<div flex>[transparent] > [tinted]</div>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more" title="more"></button>
+				</section>
+				<section tinted darker>
+					<div flex>> [tinted][darker]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section tinted shade="900">
+					<div flex>> [tinted][shade="900"]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+			</flexus-toolbar>
+			<main>view</main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar multisection transparent>
+				<section acrylic tinted>
+					<button icon="menu"></button>
+					<div flex>[transparent] > [tinted]</div>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more" title="more"></button>
+				</section>
+				<section acrylic tinted darker>
+					<div flex>> [tinted][darker]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section acrylic tinted shade="900">
+					<div flex>> [tinted][shade="900"]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+			</flexus-toolbar>
+			<main>view</main>
+		</flexus-view>
+
+	</div>
+	<div horizontal layout>
+
+		<flexus-view flex>
+			<flexus-toolbar multisection tinted>
+				<section>
+					<button icon="menu"></button>
+					<div flex>[tinted]</div>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more" title="more"></button>
+				</section>
+				<section opaque>
+					<div flex>> [opaque]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section primary>
+					<div flex>> [primary]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section accent>
+					<div flex>> [accent]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section tinted>
+					<div flex>> [tinted]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section lighter>
+					<div flex>> [lighter]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section shade="300">
+					<div flex>> [shade="300"]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section shade="700">
+					<div flex>> [shade="700"]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section darker>
+					<div flex>> [darker]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section light>
+					<div flex>> [light]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section dark>
+					<div flex>> [dark]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+			</flexus-toolbar>
+			<main>view</main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar multisection primary>
+				<section>
+					<button icon="menu"></button>
+					<div flex>[primary]</div>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more" title="more"></button>
+				</section>
+				<section opaque>
+					<div flex>> [opaque]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section primary>
+					<div flex>> [primary]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section accent>
+					<div flex>> [accent]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section tinted>
+					<div flex>> [tinted]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section lighter>
+					<div flex>> [lighter]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section shade="300">
+					<div flex>> [shade="300"]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section shade="700">
+					<div flex>> [shade="700"]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section darker>
+					<div flex>> [darker]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section light>
+					<div flex>> [light]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section dark>
+					<div flex>> [dark]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+			</flexus-toolbar>
+			<main>view</main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar multisection primary acrylic>
+				<section>
+					<button icon="menu"></button>
+					<div flex>[primary]</div>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more" title="more"></button>
+				</section>
+				<section opaque>
+					<div flex>> [opaque]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section primary>
+					<div flex>> [primary]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section accent>
+					<div flex>> [accent]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section tinted>
+					<div flex>> [tinted]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section lighter>
+					<div flex>> [lighter]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section shade="300">
+					<div flex>> [shade="300"]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section shade="700">
+					<div flex>> [shade="700"]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section darker>
+					<div flex>> [darker]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section light>
+					<div flex>> [light]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section dark>
+					<div flex>> [dark]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+			</flexus-toolbar>
+			<main>view</main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar multisection primary acrylic>
+				<section>
+					<button icon="menu"></button>
+					<div flex>[primary]</div>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more" title="more"></button>
+				</section>
+				<section opaque>
+					<div flex>> [opaque]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section primary>
+					<div flex>> [primary]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section accent>
+					<div flex>> [accent]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section tinted>
+					<div flex>> [tinted]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section opaque lighter>
+					<div flex>> [opaque][lighter]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section opaque shade="300">
+					<div flex>> [opaque][shade="300"]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section opaque shade="700">
+					<div flex>> [opaque][shade="700"]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section opaque darker>
+					<div flex>> [opaque][darker]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section light>
+					<div flex>> [light]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section dark>
+					<div flex>> [dark]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+			</flexus-toolbar>
+			<main>view</main>
+		</flexus-view>
+
+	</div>
+
+</body>
+</html>

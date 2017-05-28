@@ -1,0 +1,145 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+</head>
+<body light fx-app primary="red" accent="light-blue">
+
+	<flexus-scene type="master-detail" ng-controller="HeroesController">
+
+		<flexus-view master subtle>
+			<flexus-toolbar multisection tinted>
+				<section>
+					<button icon="menu" corner></button>
+					<h1>Contacts</h1>
+					<button icon="more"></button>
+				</section>
+				<flexus-tabs>
+					<div primary="red">All</div>
+					<div primary="light-green" accent="indigo">Favorites</div>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<flexus-pages>
+				<div>
+					<a ng-repeat="h in heroes" href="#/hero/{{h.callsign}}" ng-click="select(h)" fx-item>
+						<img src="img/portrait/{{h.callsign}}.png" avatar>
+						<div animate="title">{{h.name}}</div>
+					</a>
+				</div>
+				<div>
+					<a ng-repeat="h in heroes | filter:{favorite: true}" href="#/hero/{{h.callsign}}" ng-click="select(h)" fx-item>
+						<img src="img/portrait/{{h.callsign}}.png" avatar>
+						<div animate="title">{{h.name}}</div>
+					</a>
+				</div>
+			</flexus-pages>
+		</flexus-view>
+
+		<flexus-view detail card="medium,large">
+			<flexus-toolbar multisection tinted>
+				<section overlay>
+					<button icon="arrow-back"></button>
+					<div flex></div>
+					<button icon="heart-outline" ng-if="!hero.favorite" ng-click="hero.favorite = true"></button>
+					<button icon="heart" ng-if="hero.favorite" ng-click="hero.favorite = false"></button>
+				</section>
+				<div collapse fade ratio="16:9" image-cover style="background-image: url('img/storybg/{{hero.callsign}}.jpg')"></div>
+				<section overlay indent capitalize>
+					<h2 animate="title">{{hero.callsign}}</h2>
+				</section>
+			</flexus-toolbar>
+			<main>
+				<div fx-item>
+					<div avatar animate="avatar" style="background-image: url('img/portrait/{{hero.callsign}}.png')"></div>
+					<div two-line>
+						<div>{{hero.name}}</div>
+						<div muted>Full name</div>
+					</div>
+				</div>
+				<hr indent>
+				<div fx-item icon="home"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="cloud"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="mail"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<hr indent>
+				<div fx-item icon="home"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="cloud"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="mail"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="home"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="cloud"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="mail"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="home"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="cloud"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="mail"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			</main>
+		</flexus-view>
+
+
+	</flexus-scene>
+
+
+	<script src="/flexus/demo/scripts/angular.min.js"></script>
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/view.js"></script>
+	<script src="/flexus/elements/scene.js"></script>
+	<script src="/flexus/elements/tabs.js"></script>
+	<script src="/flexus/elements/pages.js"></script>
+	<script src="/flexus/elements/toolbar.js"></script>
+
+	<script>
+
+		var app = angular.module('app', [])
+
+		app.controller('HeroesController', ['$scope', $scope => {
+			
+			$scope.heroes = [
+				{id: 1,  callsign: 'genji', name: 'Genji Shimada'},
+				{id: 2,  callsign: 'mccree', name: 'Jesse McCree'},
+				{id: 3,  callsign: 'pharah', name: 'Fareeha Amari'},
+				{id: 4,  callsign: 'reaper', name: 'Gabriel Reyes'},
+				{id: 5,  callsign: 'soldier76', name: 'Jack Morrison'},
+				{id: 6,  callsign: 'sombra', name: 'Sombra'},
+				{id: 7,  callsign: 'tracer', name: 'Lena Oxton'},
+				{id: 8,  callsign: 'bastion', name: 'SST Laboratories Siege Automaton E54, “Bastion"'},
+				{id: 9,  callsign: 'hanzo', name: 'Hanzo Shimada'},
+				{id: 10, callsign: 'junkrat', name: 'Jamison Fawkes'},
+				{id: 11, callsign: 'mei', name: 'Mei-Ling Zhou'},
+				{id: 12, callsign: 'torbjorn', name: 'Torbjörn Lindholm'},
+				{id: 13, callsign: 'widowmaker', name: 'Amélie Lacroix'},
+				{id: 14, callsign: 'dva', name: 'Hana Song'},
+				{id: 15, callsign: 'reinhardt', name: 'Wilhelm Reinhardt', favorite: true},
+				{id: 16, callsign: 'roadhog', name: 'Mako Rutledge'},
+				{id: 17, callsign: 'winston', name: 'Winston', favorite: true},
+				{id: 18, callsign: 'zarya', name: 'Aleksandra Zaryanova'},
+				{id: 19, callsign: 'ana', name: 'Ana Amari'},
+				{id: 20, callsign: 'lucio', name: 'Lúcio Correia dos Santos'},
+				{id: 21, callsign: 'mercy', name: 'Angela Zeigler', favorite: true},
+				{id: 22, callsign: 'symmetra', name: 'Satya Vaswani'},
+				{id: 23, callsign: 'zenyatta', name: 'Zenyatta', favorite: true},
+			]
+
+			$scope.hero = $scope.heroes[22]
+			
+			$scope.select = function(hero) {
+				$scope.hero = hero
+			}
+
+		}])
+
+	</script>
+
+</body>
+</html>

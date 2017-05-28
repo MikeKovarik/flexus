@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>flexus-toolbar demo</title>
+
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material-icons.css">
+
+	<style>
+	[subtoolbar] {
+		margin: -1rem -1rem 1rem -1rem;
+	}
+
+	</style>
+
+</head>
+<body light fx-app>
+
+
+	<flexus-view>
+		<flexus-toolbar waterfall>
+			<button icon="arrow-back"></button>
+			<div flex>TODO</div>
+			<button icon="checklist"></button>
+			<button icon="add"></button>
+		</flexus-toolbar>
+		<main>
+
+			<div elevation="2" subtoolbar>
+				<div fx-item>
+					<img avatar>
+					<div two-line>
+						<div>Kaleo</div>
+						<div>Artist</div>
+					</div>
+				</div>
+				<flexus-tabs sticky>
+					<div>About</div>
+					<div>Tracks</div>
+					<div>Playlists</div>
+				</flexus-tabs>
+			</div>
+
+			<p>Tohle ještě nebude uplně fungovat a zbývá doimplementovat</p>
+			<p>Co by to mělo dělat?</p>
+			<p>Nejprve se tvářit jako jednolitý toolbar s informacemi o skupině a pod ní taby. Po začátku scrollování se main část toolbaru zvedne elevation a toolbar je najednou tvořen dvěma vrstvami (main nad subtoolbarem a subtoolbar nad obsahem), po sescrolování o velikost toho subtoolbar obsahu se sticky tabs zvedne na úroveň mainu a zase utvoří jednolitý toolbar</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, dolor sit amet aliquet condimentum, enim justo gravida nisi, et rhoncus sem ligula nec felis. Nunc nec tempor mi. Phasellus consectetur facilisis nisi a molestie. Phasellus eget porttitor nunc, id cursus velit. Quisque vel nibh et augue commodo semper in a mi. Curabitur mollis finibus augue, sed dignissim velit pulvinar at. Pellentesque ut tempus eros. Integer eget tellus metus. Morbi fringilla rutrum justo, semper consectetur nunc varius at.</p>
+			<p>Sed tempor mauris ac dignissim ultricies. Aliquam tincidunt facilisis nisl non efficitur. Proin consectetur nisi in pellentesque ultrices. Etiam ullamcorper sem quis consectetur lobortis. Vestibulum at elementum magna, quis varius purus. Maecenas tincidunt lobortis tellus, ut placerat libero sollicitudin dignissim. Nam arcu leo, dapibus eget ultrices at, dapibus at urna. Sed justo felis, blandit eget enim a, rutrum volutpat massa. Aenean in quam metus. Vestibulum eget venenatis massa. Vestibulum laoreet est at sollicitudin pulvinar. Mauris odio ante, dignissim eget vulputate et, hendrerit ac est. Nunc interdum massa magna, vel congue lacus dapibus quis.</p>
+			<p>Sed vehicula erat in elit ultricies, non venenatis ipsum maximus. Praesent placerat in erat sit amet congue. Cras eget fermentum libero, ac efficitur dui. Duis vel congue dui. Aenean mollis mattis diam, vel tincidunt elit porta a. Ut purus ipsum, tincidunt vel lorem sed, posuere tincidunt diam. Nunc vitae luctus quam. Etiam egestas porttitor dapibus. Donec ac accumsan lectus.</p>
+			<p>In nunc justo, posuere in ultricies vitae, aliquet feugiat arcu. Nunc vitae interdum elit. Pellentesque faucibus efficitur neque. In viverra, mauris eget rutrum pellentesque, diam purus efficitur nunc, vitae viverra turpis tortor quis nisi. Proin massa enim, congue nec sagittis a, vestibulum eu massa. Mauris at urna dolor. Vivamus gravida sagittis ipsum eget egestas. Donec lorem nulla, rhoncus id nisi eget, viverra finibus odio. Curabitur nec sagittis urna, eu accumsan leo. Pellentesque condimentum risus ligula, a hendrerit massa ultrices in. Mauris viverra fermentum convallis. Mauris pulvinar iaculis metus at aliquam. Sed vulputate odio at diam lobortis, vel gravida urna commodo. Suspendisse potenti. Pellentesque est erat, posuere eu ullamcorper at, dapibus at elit.</p>
+		</main>
+	</flexus-view>
+
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.shadowmaster.js"></script>
+	<script src="build/elements/flexus-toolbar.js"></script>
+	<script src="build/elements/flexus-list.js"></script>
+
+</body>
+</html>

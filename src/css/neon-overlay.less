@@ -1,0 +1,169 @@
+flexus-dialog {
+	.fx-style-flyout;
+	padding: 24px;
+	position: fixed;
+	z-index: 99999;
+	top: 50%;
+	margin-bottom: -50%;
+	[screensize="s"] & {
+		animation: dialog-show-phone 0.3s;
+		width: 100%;
+		left: 0;
+		transform: translate(0, -50%);
+	}
+	[screensize="m"] &,
+	[screensize="l"] & {
+		animation: dialog-show-tablet 0.3s;
+		max-width: 530px;
+		left: 50%;
+		margin-right: -50%;
+		transform: translate(-50%, -50%);
+	}
+	// blocks clicking through overlay bg (done through outline)
+	&::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		left: -2000px;
+		right: -2000px;
+		top: -2000px;
+		bottom: -2000px;
+		display: block;
+	}
+	button {
+		//margin-top: 12px;
+		margin: 2px;
+		min-width: 140px !important;
+	}
+
+	display: none;
+	&[visible] {
+		display: block;
+	}
+}
+
+@keyframes dialog-show-phone {
+	from {opacity: 0; transform: translate(0, -50%) scale(1.1)}
+	to   {opacity: 1; transform: translate(0, -50%) scale(1)}
+}
+@keyframes dialog-show-tablet {
+	from {opacity: 0; transform: translate(-50%, -50%) scale(1.1)}
+	to   {opacity: 1; transform: translate(-50%, -50%) scale(1)}
+}
+
+
+
+
+
+
+
+.fx-style-flyout() {
+	--background: ~'rgb(var(--drawer-background-rgb))';
+	.set-foreground;
+	.apply-colors;
+	--seam-size: 1px;
+	border: var(--seam-size) solid var(--seam-color);
+}
+[flyout] {
+	.fx-style-flyout;
+	display: inline-block;
+	padding: 0.5rem;
+}
+
+.fx-menu-animation-wrapper {
+	position: fixed;
+	display: inline-block;
+	z-index: 999;
+	overflow: hidden;
+}
+
+// warning: most of the menu related code has been moved into custom component
+//          but shadow css does not allow accesing slotted ::before pesudo selectors
+[slot="fx-menu"][icon],
+flexus-menu [icon],
+flexus-menu[icon] {
+	&::before {
+		font-size: 16px !important;
+	}
+}
+[slot="fx-menu"][icon],
+flexus-menu > [icon] {
+	&::before {
+		margin-right: 12px;
+	}
+}
+[slot="fx-menu"],
+flexus-menu {
+	i[icon]:first-child:not(:last-child) {
+		margin-right: 12px;
+	}
+	i[icon]:last-child:not(:first-child) {
+		margin-left: 12px;
+	}
+}
+/*
+flexus-menu {
+	.fx-style-flyout;
+	padding: 8px 0;
+	&[narrow] {
+		// NOTE: Maybe think of better name. something like [nopadding].
+		//       [narrow] might want to be used for shrinked items, like in toolbar
+		padding: 0;
+	}
+	font-size: 16px;
+	// can be either inline-block or inline-flex
+	flex-direction: column;
+	// hidden by default, is only shown through JS
+	display: none;
+
+	& > * {
+		// todo - inherit clickable
+		&:hover {
+			.theme(
+				{background-color: #dadada},
+				{background-color: #404040}
+			)
+		}
+		&:active {
+			.theme(
+				{background-color: #c2c2c2},
+				{background-color: #555555}
+			)
+		}
+	}
+
+	&[touch] {
+		& > {
+			//height: 44px;
+			min-height: 44px !important; // overwrite fx-item. Imoportant because of [fx-layout="compact"]. might be deleted in future? todo: investigate
+		}
+	}
+
+	&:not([touch]) {
+		& > {
+			//height: 32px;
+			min-height: 32px !important; // overwrite fx-item. Imoportant because of [fx-layout="compact"]. might be deleted in future? todo: investigate
+		}
+
+		& > button[icon]:empty {
+			min-width: 32px;
+			min-height: 32px;
+			margin: 0;
+
+			&::before {
+				font-size: 16px;
+			}
+		}
+	}
+
+	hr {
+		.theme(
+			{background-color: #919191},
+			{background-color: #808080}
+		);
+		height: 1px;
+		margin: 4px 12px;
+	}
+
+}
+*/

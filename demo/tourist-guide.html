@@ -1,0 +1,127 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+</head>
+<body light fx-app primary="red" accent="light-blue">
+
+	<flexus-scene type="master-detail" ng-controller="PlacesController">
+
+		<flexus-view master light subtle>
+			<flexus-toolbar multisection tinted>
+				<section>
+					<button icon="menu" corner></button>
+					<h1>Tourist guide</h1>
+					<button icon="more"></button>
+				</section>
+				<flexus-tabs>
+					<div primary="red">All</div>
+					<div primary="light-green" accent="indigo">Favorites</div>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<flexus-pages>
+				<div>
+					<a ng-repeat="h in places" href="#/place/{{h.img}}" ng-click="select(h)" fx-item>
+						<img src="img/dovolene/{{h.img}}" avatar>
+						<div animate="title">{{h.name}}</div>
+					</a>
+				</div>
+				<div>
+					<a ng-repeat="h in places | filter:{favorite: true}" href="#/place/{{h.img}}" ng-click="select(h)" fx-item>
+						<img src="img/dovolene/{{h.img}}" avatar>
+						<div animate="title">{{h.name}}</div>
+					</a>
+				</div>
+			</flexus-pages>
+		</flexus-view>
+
+		<flexus-view detail card="medium,large">
+			<flexus-toolbar multisection tinted>
+				<section overlay>
+					<button icon="arrow-back"></button>
+					<div flex></div>
+					<button icon="heart-outline" ng-if="!place.favorite" ng-click="place.favorite = true"></button>
+					<button icon="heart" ng-if="place.favorite" ng-click="place.favorite = false"></button>
+				</section>
+				<div collapse fade ratio="16:9" image-cover style="background-image: url('img/dovolene/{{place.img}}')"></div>
+				<section overlay indent capitalize>
+					<h2 animate="title">{{place.name}}</h2>
+				</section>
+			</flexus-toolbar>
+			<main>
+				<div fx-item icon="home"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="cloud"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="mail"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<hr indent>
+				<div fx-item icon="home"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="cloud"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="mail"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="home"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="cloud"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="mail"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="home"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="cloud"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<div fx-item icon="mail"><div two-line><div>Lorem Ipsum</div><div muted>Lorem Ipsum</div></div></div>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			</main>
+		</flexus-view>
+
+
+	</flexus-scene>
+
+
+	<script src="/flexus/demo/scripts/angular.min.js"></script>
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/view.js"></script>
+	<script src="/flexus/elements/scene.js"></script>
+	<script src="/flexus/elements/tabs.js"></script>
+	<script src="/flexus/elements/pages.js"></script>
+	<script src="/flexus/elements/toolbar.js"></script>
+
+	<script>
+
+		var app = angular.module('app', [])
+
+		app.controller('PlacesController', ['$scope', $scope => {
+			
+			$scope.places = [
+				{id: 1,  img: 'vransko1.jpg', name: 'Vranské jezero'},
+				{id: 2,  img: 'cesta2.jpg', name: 'Pakoštane'},
+				{id: 3,  img: 'voda.jpg', name: 'Vltava', favorite: true},
+				{id: 4,  img: 'drago.jpg', name: 'Drage'},
+				{id: 5,  img: 'praha.jpg', name: 'Praha'},
+				{id: 6,  img: 'petrov.jpg', name: 'Petrov'},
+				{id: 7,  img: 'silingrak.jpg', name: 'Šilingrovo náměstí'},
+				{id: 8,  img: 'kuncice1.jpg', name: 'Kunčice pod Ondřejníkem'},
+				{id: 9,  img: 'zima.jpg', name: 'Vsetín'},
+				{id: 10, img: 'zelnak1.jpg', name: 'Zelný trh', favorite: true},
+				{id: 11, img: 'zapad1.jpg', name: 'Croatia', favorite: true},
+				{id: 12, img: 'vransko5.jpg', name: 'Olives'},
+				{id: 13, img: 'stezka.jpg', name: 'Lipno'},
+			]
+
+			$scope.place = $scope.places[10]
+			
+			$scope.select = function(place) {
+				$scope.place = place
+			}
+
+		}])
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html touch>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<!-- custom theme for this application -->
+	<style>
+		body {
+			background-color: #37474F !important;
+		}
+		[screensize="l"] body {
+			padding: 2rem 2rem 0 2rem;
+		}
+		[screensize="m"] flexus-view,
+		[screensize="l"] flexus-view {
+			max-width: 760px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#graph {
+			width: calc(100% + 2rem);
+			margin: 0 -1rem;
+			padding: 0 1rem;
+		}
+	</style>
+
+
+</head>
+<body light primary="blue-gray" accent="green">
+
+
+
+	<flexus-view card subtle light elevation="4">
+
+		<flexus-toolbar tinted multisection elevation="2">
+			<section>
+				<a href="#" icon="arrow-back"></a>
+				<div>Feb 01, 2014</div>
+				<div flex></div>
+				<button icon="share"></button>
+				<button icon="more"></button>
+			</section>
+			<section free vertical style="height: 300px" collapse fade>
+				<flexus-pages flex fullbleed fullheight id="graphs">
+					<div fit><img fit src="/flexus/demo/img/graph2.png"></div>
+					<div fit><img fit src="/flexus/demo/img/graph1.png"></div>
+					<div fit><img fit src="/flexus/demo/img/graph2.png"></div>
+					<div fit><img fit src="/flexus/demo/img/graph1.png"></div>
+					<div fit><img fit src="/flexus/demo/img/graph2.png"></div>
+				</flexus-pages>
+			</section>
+			<flexus-tabs for="graphs" collapse fade>
+				<div>all</div>
+				<div>Week</div>
+				<div>Month</div>
+				<div>Year</div>
+				<div>Decade</div>
+			</flexus-tabs>
+			<section spacious>
+				<span headline>Company Inc 531.00</span>
+				<span accent weight="300">+3.42 (0.65%)</span>
+			</section>
+			<!--button fab icon="star" elevation="3" bottom right></button-->
+		</flexus-toolbar>
+
+		<main>
+
+			<h3>Annotations</h3>
+
+			<div card fullbleed>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Lorem ipsum dolor sit amet</div>
+						<div secondary>consectetur adipisicing elit, sed do eiusmod</div>
+					</div>
+					<input type="checkbox">
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Ut enim ad minim veniam ex ea commodo</div>
+						<div secondary>quis nostrud exercitation ullamco laboris nisi ut aliquip</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Duis aute irure dolor in reprehenderit in voluptate</div>
+						<div secondary>velit esse cillum dolore eu fugiat nulla pariatur</div>
+					</div>
+				</div>
+			</div>
+
+			<h3>Older articles</h3>
+
+			<div card fullbleed>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Lorem ipsum dolor sit amet</div>
+						<div secondary>consectetur adipisicing elit, sed do eiusmod</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Ut enim ad minim veniam ex ea commodo</div>
+						<div secondary>quis nostrud exercitation ullamco laboris nisi ut aliquip</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Duis aute irure dolor in reprehenderit in voluptate</div>
+						<div secondary>velit esse cillum dolore eu fugiat nulla pariatur</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Lorem ipsum dolor sit amet</div>
+						<div secondary>consectetur adipisicing elit, sed do eiusmod</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Ut enim ad minim veniam ex ea commodo</div>
+						<div secondary>quis nostrud exercitation ullamco laboris nisi ut aliquip</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Duis aute irure dolor in reprehenderit in voluptate</div>
+						<div secondary>velit esse cillum dolore eu fugiat nulla pariatur</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Lorem ipsum dolor sit amet</div>
+						<div secondary>consectetur adipisicing elit, sed do eiusmod</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Ut enim ad minim veniam ex ea commodo</div>
+						<div secondary>quis nostrud exercitation ullamco laboris nisi ut aliquip</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Duis aute irure dolor in reprehenderit in voluptate</div>
+						<div secondary>velit esse cillum dolore eu fugiat nulla pariatur</div>
+					</div>
+				</div>
+			</div>
+
+		</main>
+	</flexus-view>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/tabs.js"></script>
+	<script src="/flexus/elements/pages.js"></script>
+	<script src="/flexus/elements/toolbar.js"></script>
+
+</body>
+</html>

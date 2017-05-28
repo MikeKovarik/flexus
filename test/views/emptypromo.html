@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="flexus/css/flexus-neon-icons.css">
+
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+	<style>
+		[layout][vertical] {
+		}
+		[layout][vertical][center] {
+			align-items: center;
+			justify-content: center;
+		}
+		[background="primary"] {
+			--background: var(--primary);
+			--foreground: var(--primary-foreground);
+		}
+		[background] {
+			background-color: var(--background);
+			color: var(--foreground);
+		}
+	</style>
+
+</head>
+<body dark fx-app primary="blue" background="primary">
+
+	<flexus-drawer transparent>
+		<button icon="menu"></button>
+		<a fx-item icon="slideshow">Collection</a>
+		<a fx-item icon="slideshow">Albums</a>
+		<a fx-item icon="folder">Folders</a>
+		<a fx-item icon="account-circle" slot="sticky">Account</a>
+		<a fx-item icon="settings" slot="sticky">settings</a>
+	</flexus-drawer>
+
+	<flexus-view master>
+		<flexus-toolbar distinct="medium,large">
+			<button icon="menu"></button>
+			<h1>Home</h1>
+			<button icon="star" title="Remove from favorites"></button>
+			<button icon="edit" title="Edit"></button>
+			<button icon="more"></button>
+		</flexus-toolbar>
+		<main vertical layout center>
+			<h1>Big and bold heading</h1>
+			<h2>and a smaler one</h2>
+			<p>and here comes some more description text</p>
+			<button>continue</button>
+		</main>
+	</flexus-view>
+
+	<script src="flexus/lib/Ganymede.js"></script>
+	<script src="flexus/lib/Flexus.js"></script>
+
+	<script src="flexus/elements/drawer.js"></script>
+
+</body>
+</html>

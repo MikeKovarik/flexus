@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<!-- custom app style -->
+	<link rel="stylesheet" type="text/css" href="photos.css">
+
+	<!-- polyfills -->
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+</head>
+<body fx-app>
+
+
+	<flexus-drawer>
+		<a fx-item icon="book-variant">Collection</a>
+		<a fx-item icon="image">Albums</a>
+		<a fx-item icon="folder">Folders</a>
+		<a fx-item icon="account-circle" slot="sticky">Account</a>
+		<a fx-item icon="settings" slot="sticky">settings</a>
+	</flexus-drawer>
+
+
+
+	<flexus-view id="gallery">
+		<flexus-toolbar waterfall>
+			<button icon="menu"></button>
+			<div flex></div>
+			<button icon="search"></button>
+			<button icon="more"></button>
+		</flexus-toolbar>
+		<main nopadding="small"></main>
+	</flexus-view>
+
+
+
+	<flexus-view dark hidden id="photo">
+		<flexus-toolbar translucent>
+			<button icon="arrow-back"></button>
+			<div flex></div>
+			<button icon="share">Share</button>
+			<button icon="edit">Edit</button>
+			<button icon="information" for="infopanel">File info</button>
+		</flexus-toolbar>
+		<main nopadding>
+			<img id="photo-img" fit image-contain>
+		</main>
+	</flexus-view>
+
+
+
+	<flexus-view panel hidden dark subtle id="infopanel">
+		<flexus-toolbar transparent>
+			<button icon="x"></button>
+			<div flex>File Info</div>
+		</flexus-toolbar>
+		<flexus-list>
+			<div fx-item two-line>
+				<div secondary>File name</div>
+				<div>Filename.png</div>
+			</div>
+			<div fx-item two-line>
+				<div secondary>Date</div>
+				<div>Thursday, Octover 27, 2016 2:48 AM</div>
+			</div>
+			<div fx-item two-line>
+				<div secondary>Size</div>
+				<div>12.6 KB</div>
+			</div>
+			<div fx-item two-line>
+				<div secondary>Dimensions</div>
+				<div>514 x 383</div>
+			</div>
+			<div fx-item two-line>
+				<div secondary>Shot</div>
+				<div>--</div>
+			</div>
+			<div fx-item two-line>
+				<div secondary>ISO</div>
+				<div>--</div>
+			</div>
+			<div fx-item two-line>
+				<div secondary>Device</div>
+				<div>--</div>
+			</div>
+		</flexus-list>
+	</flexus-view>
+
+
+	<!-- flexus library -->
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<!-- used flexus components -->
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/view.js"></script>
+	<script src="/flexus/elements/drawer.js"></script>
+
+	<!-- custom application code -->
+	<script src="photos.js"></script>
+
+</body>
+</html>

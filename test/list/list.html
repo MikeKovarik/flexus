@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>flexus-toolbar demo</title>
+
+	<!--script src="PEP.0.3.0.js"></script>
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+	<link rel="import" href="bower_components/polymer/polymer.html">
+
+	<link rel="import" href="import.head.html">
+	<link rel="import" href="import.head.material.html">
+	<link rel="import" href="build/elements/flexus-list.html"-->
+	<style>
+		body {
+			background-color: #EEE !important;
+			margin: 0;
+		}
+		flexus-list {
+			display: block;
+			background-color: #FFF;
+			width: 350px;
+			padding: 16px 0;
+		}
+		[fx-item] {
+			background-color: #FFF;
+			transition: box-shadow 0.07s;
+		}
+		[fx-item]:active {
+			z-index: 999;
+		}
+
+		.up {
+			line-height: 0;
+			align-self: flex-start;
+			font-size: 14px;
+		}
+		.dummyline {
+			min-height: 0 !important;
+			height: 0;
+		}
+	</style>
+
+</head>
+<body horizontal layout nx-theme="light">
+<!--
+list is [layout] by default (should I say extends it?), no need to add this attribute again
+<flexus-list horizontal></flexus-list>
+-->
+
+
+	<div flex>
+
+		<flexus-list sortable>
+			<div fx-item icon="edit">
+				<div flex>Item 1</div>
+				<i icon="more"></i>
+			</div>
+			<div fx-item icon="edit">
+				<div flex>Item 1</div>
+				<i icon="more"></i>
+			</div>
+			<div fx-item icon="edit">
+				<div flex>Item 1</div>
+				<i icon="more"></i>
+			</div>
+		</flexus-list>
+		<hr>
+		<flexus-list sortable>
+			<div fx-item>
+				<div avatar></div>
+				<div flex>Folder 1</div>
+				<i icon="more"></i>
+			</div>
+			<div fx-item>
+				<div avatar></div>
+				<div flex>Folder 1</div>
+				<i icon="more"></i>
+			</div>
+		</flexus-list>
+
+	</div>
+	<div flex>
+
+		<flexus-list sortable handle>
+			<div fx-item hr-between>
+				<div class="up">19:00</div>
+				<div>2:00</div>
+				<div flex>Item 1</div>
+				<i icon="reorder"></i>
+			</div>
+			<div fx-item hr-between>
+				<div class="up">19:00</div>
+				<div>2:00</div>
+				<div flex>Item 1</div>
+				<i icon="reorder"></i>
+			</div>
+			<div fx-item hr-between>
+				<div class="up">19:00</div>
+				<div>2:00</div>
+				<div flex>Item 1</div>
+				<i icon="reorder"></i>
+			</div>
+			<div fx-item class="dummyline">
+				<div class="up">19:00</div>
+			</div>
+		</flexus-list>
+
+	</div>
+	<div flex>
+
+		<flexus-list sortable handle>
+			<div fx-item hr-around>
+				<div class="up">19:00</div>
+				<div>2:00</div>
+				<div flex>Item 1</div>
+				<i icon="reorder"></i>
+			</div>
+			<div fx-item hr-around>
+				<div class="up">19:00</div>
+				<div>2:00</div>
+				<div flex>Item 1</div>
+				<i icon="reorder"></i>
+			</div>
+			<div fx-item hr-around>
+				<div class="up">19:00</div>
+				<div>2:00</div>
+				<div flex>Item 1</div>
+				<i icon="reorder"></i>
+			</div>
+			<div fx-item hr-around>
+				<div class="up">19:00</div>
+				<div>2:00</div>
+				<div flex>Item 1</div>
+				<i icon="reorder"></i>
+			</div>
+			<div fx-item class="dummyline">
+				<div class="up">19:00</div>
+			</div>
+		</flexus-list>
+
+	</div>
+
+</body>
+</html>

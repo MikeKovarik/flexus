@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<style>
+		flexus-toolbar[seam] {
+			--background-rgb: 255,255,255;
+		}
+	</style>
+
+</head>
+<body light fx-app>
+
+
+	<flexus-view>
+		<flexus-toolbar translucent="strong" seam>
+			<button icon="menu"></button>
+			<h1>panel panel test</h1>
+			<button icon="edit" title="Edit"></button>
+			<button icon="more"></button>
+		</flexus-toolbar>
+
+		<main>
+			<div layout wrap>
+				<span flex>Normal content as always</span>
+				<div>
+					<button onclick="panel.show()">show</button>
+					<button onclick="panel.hide()">hide</button>
+				</div>
+			</div>
+			<hr>
+			<div flyout>
+				flyout
+			</div>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in libero sed elit lobortis lobortis quis eget metus. Donec lectus enim, dapibus vitae varius vitae, semper ac justo. Suspendisse accumsan efficitur nunc, et rutrum lorem pulvinar pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis ac blandit sem, a volutpat dui. Morbi a ante dolor. Aliquam viverra luctus nunc non dictum. Integer fringilla mi eget ex sagittis bibendum.</p>
+			<p>Nullam accumsan enim nec nulla auctor, a aliquam libero viverra. Sed ut neque tristique, volutpat urna in, blandit est. Duis hendrerit sem ut gravida posuere. Integer consequat luctus nisi vitae convallis. Suspendisse facilisis egestas est quis cursus. Sed finibus, elit eu mattis lobortis, neque orci sagittis ex, at ornare dolor mauris ac nulla. Sed id urna nunc. Phasellus quis pharetra nulla. Integer id ligula lorem. Integer id enim non dui pellentesque pellentesque sit amet volutpat tellus. Vestibulum blandit mi nisi, eget congue velit ullamcorper sit amet. Vestibulum commodo tellus metus, in varius magna molestie id. Proin eget eros lacus.</p>
+			<p>Praesent vitae placerat libero. Aenean ut dignissim purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec ac leo vel justo elementum ullamcorper. Curabitur ut lorem augue. Donec vel molestie purus. Aliquam fringilla malesuada risus in vestibulum. Ut fermentum mollis risus, tincidunt mollis augue commodo a. Morbi euismod mi a enim vestibulum malesuada. Etiam aliquet, neque sit amet dignissim laoreet, quam libero blandit mauris, a consectetur tellus quam vel lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec porttitor volutpat ante, vitae luctus neque feugiat non. Sed feugiat, ex tempus interdum dignissim, nisi sem viverra justo, at elementum ipsum lectus vulputate nisl. Nam eros magna, euismod quis dolor lacinia, bibendum cursus elit.</p>
+			<p>Mauris augue arcu, euismod a rhoncus ut, lobortis vitae erat. Phasellus nulla nulla, viverra ut mi a, vulputate ornare sem. Integer varius nibh eu ex sollicitudin, quis efficitur risus posuere. Vivamus interdum ultrices erat, in accumsan eros mollis eu. Suspendisse potenti. Praesent sed arcu sagittis, imperdiet mauris sit amet, blandit mi. Maecenas ut imperdiet libero. Sed auctor metus sed tincidunt gravida.</p>
+			<p>Donec luctus lectus vel enim consectetur, ut sodales ligula blandit. Nam pellentesque, sapien in finibus fringilla, felis odio tempor ligula, quis accumsan dolor lorem eget metus. Curabitur non blandit quam, ut iaculis lectus. Mauris efficitur lobortis odio, eu sodales erat tincidunt ac. In a nulla venenatis, pharetra mauris vel, sollicitudin massa. Donec a dui ut ante sodales venenatis id et lacus. Donec ullamcorper dictum eros eget fermentum. Aliquam a erat vel velit feugiat gravida a maximus urna. Nunc non consequat libero. Suspendisse eget metus et lectus dictum ornare.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in libero sed elit lobortis lobortis quis eget metus. Donec lectus enim, dapibus vitae varius vitae, semper ac justo. Suspendisse accumsan efficitur nunc, et rutrum lorem pulvinar pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis ac blandit sem, a volutpat dui. Morbi a ante dolor. Aliquam viverra luctus nunc non dictum. Integer fringilla mi eget ex sagittis bibendum.</p>
+			<p>Nullam accumsan enim nec nulla auctor, a aliquam libero viverra. Sed ut neque tristique, volutpat urna in, blandit est. Duis hendrerit sem ut gravida posuere. Integer consequat luctus nisi vitae convallis. Suspendisse facilisis egestas est quis cursus. Sed finibus, elit eu mattis lobortis, neque orci sagittis ex, at ornare dolor mauris ac nulla. Sed id urna nunc. Phasellus quis pharetra nulla. Integer id ligula lorem. Integer id enim non dui pellentesque pellentesque sit amet volutpat tellus. Vestibulum blandit mi nisi, eget congue velit ullamcorper sit amet. Vestibulum commodo tellus metus, in varius magna molestie id. Proin eget eros lacus.</p>
+			<p>Praesent vitae placerat libero. Aenean ut dignissim purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec ac leo vel justo elementum ullamcorper. Curabitur ut lorem augue. Donec vel molestie purus. Aliquam fringilla malesuada risus in vestibulum. Ut fermentum mollis risus, tincidunt mollis augue commodo a. Morbi euismod mi a enim vestibulum malesuada. Etiam aliquet, neque sit amet dignissim laoreet, quam libero blandit mauris, a consectetur tellus quam vel lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec porttitor volutpat ante, vitae luctus neque feugiat non. Sed feugiat, ex tempus interdum dignissim, nisi sem viverra justo, at elementum ipsum lectus vulputate nisl. Nam eros magna, euismod quis dolor lacinia, bibendum cursus elit.</p>
+		</main>
+
+	</flexus-view>
+
+		<flexus-view seam panel right id="panel"
+		translucent="strong"
+		draggable drag-orientation="horizontal">
+			<!--
+			<flexus-toolbar>
+				<button icon="menu"></button>
+				<h1>The Panel</h1>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more"></button>
+			</flexus-toolbar>
+			<main>
+			-->
+				<p>This is a &#60;flexus-view&#62; within another one, next to its &#60;main&#62;</p>
+				<p>Only works for views with non-flexible (scrollable) toolbars</p>
+				<p>Also this does not comply with Material Design guidelines which states that all panel panels should always overlay everything, including toolbars (parent view's toolbar in this case)</p>
+			<!--
+			</main>
+			-->
+		</flexus-view>
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+	<script src="elements/toolbar.js"></script>
+	<script src="elements/view.js"></script>
+
+
+</body>
+</html>

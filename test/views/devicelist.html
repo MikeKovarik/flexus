@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=1">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+	<style>
+	button[prominent] {
+		background-color: var(--toolbar-foreground, var(--toolbar-foreground-default)) !important;
+		color: var(--toolbar-background, var(--toolbar-background-default)) !important;
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+	}
+
+	[grid] {
+		display: flex;
+		flex-wrap: wrap;
+		margin: -0.5rem;
+	}
+	[grid] > * {
+		flex: 1;
+		margin: 0.5rem;
+	}
+	[grid] > [fx-item] {
+		margin: 0 -0.5rem;
+	}
+	[grid][columns] > * {
+		min-width: 140px;
+	}
+	h3 {
+		font-size: 16px;
+		font-weight: 500;
+		margin-top: 1rem;
+		padding-bottom: 1rem;
+	}
+	</style>
+
+</head>
+<body light fx-app primary="gray">
+
+	<flexus-scene>
+
+		<flexus-view subtle>
+			<flexus-toolbar colored multisection>
+				<section>
+					<h1 flex>Device metrics</h1>
+				</section>
+				<section sticky style="font-size: 16px">
+					<div flex>Type</div>
+					<div flex>Device</div>
+					<div flex>Platform</div>
+					<div flex>Aspect ratio</div>
+					<div flex>W x H dp</div>
+					<div flex>W x H</div>
+					<div flex>Denstiy</div>
+				</section>
+			</flexus-toolbar>
+			<main>
+				<div fx-item>
+					<div flex>phone</div>
+					<div flex>Nexus 5</div>
+					<div flex>Android</div>
+					<div flex>16:9</div>
+					<div flex>360 x 640 dp</div>
+					<div flex>1080 x 1920 px</div>
+					<div flex>3.0</div>
+				</div>
+			</main>
+		</flexus-view>
+
+		<flexus-view right panel elevation="4">
+			<flexus-toolbar seam multisection>
+				<section>
+					<button icon="x"></button>
+					<h2>Nexus 5</h2>
+				</section>
+				<flexus-tabs>
+					<div>portrait</div>
+					<div>landscape</div>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<main>
+				<h3>Material metrics</h3>
+				<div grid columns>
+					<div fx-item two-line>
+						<div>56 dp</div>
+						<div secondary>Toolbar unit</div>
+					</div>
+					<div fx-item two-line>
+						<div>48 dp</div>
+						<div secondary>UI depth</div>
+					</div>
+					<div fx-item two-line>
+						<div>4</div>
+						<div secondary>Columns</div>
+					</div>
+					<div fx-item two-line>
+						<div>16 dp</div>
+						<div secondary>Gutter width</div>
+					</div>
+					<div fx-item two-line>
+						<div>1</div>
+						<div secondary>Side by side views</div>
+					</div>
+				</div>
+				<hr>
+				<h3>Ideal touch size range</h3>
+				<div fx-item two-line>
+					<div>41 - 53 dp</div>
+					<div secondary>7 - 9 mm</div>
+				</div>
+				<hr>
+				<h3></h3>
+			</main>
+		</flexus-view>
+
+	</flexus-scene>
+
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+	<script src="elements/drawer.js"></script>
+	<!--script src="elements/toolbar.js"></script-->
+	<script src="elements/scene.js"></script>
+	<script src="elements/view.js"></script>
+	<script src="elements/tabs.js"></script>
+	<script src="elements/pages.js"></script>
+
+</body>
+</html>

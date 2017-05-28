@@ -1,0 +1,112 @@
+[dragging],
+[dragging] *,
+[notransition] {
+	transition: none !important;
+	//transition: all 0s !important;
+}
+
+[ratio="2:1"],
+[filler-ratio="2:1"] {
+	padding-top: 50%;
+}
+[ratio="16:9"],
+[filler-ratio="16:9"] {
+	padding-top: 56.25%;
+}
+[ratio="3:2"],
+[filler-ratio="3:2"] {
+	padding-top: 66.6666%;
+}
+[ratio="4:3"],
+[filler-ratio="4:3"] {
+	padding-top: 75%;
+}
+[ratio="1:1"],
+[filler-ratio="1:1"] {
+	padding-top: 100%;
+}
+
+
+// ANIMATIONS
+
+@keyframes scale-in {
+	0%   {transform: scale(0)}
+	100% {transform: scale(1)}
+}
+
+
+// [nopadding] with phone/tablet/true option
+.responsive-screensize(nopadding, {
+	padding: 0 !important;
+});
+.responsive-screensize(nomargin, {
+	margin: 0 !important;
+});
+
+
+// [hidden]
+// TODO - probbably replace [hidden] with [ivisible]
+//        since [hidden] is semantic builtin to html5
+[hidden] {
+	// css3/html5 set display:none by default
+	display: initial;
+}
+.responsive-screensize(hidden, {
+	display: none;
+	visibility: hidden;
+});
+.responsive-screensize(invisible, {
+	visibility: hidden;
+});
+.responsive-screensize(visible, {
+	display: initial;
+	visibility: visible;
+});
+
+
+
+// MIXINS
+
+.responsive-screensize(@attrName, @defaultRules: {}) {
+	&[@{attrName}=""],
+	[neon] &[@{attrName}*="neon"],
+	[material] &[@{attrName}*="material"],
+	[screensize*="s"] &[@{attrName}*="small"],
+	[screensize*="m"] &[@{attrName}*="medium"],
+	[screensize*="l"] &[@{attrName}*="large"] {
+		@defaultRules();
+	}
+}
+
+.theme-inherited(@light, @dark) {
+	// TODO: deprecate
+	[dark] & {
+		@dark();
+	}
+	[light] & {
+		@light();
+	}
+}
+
+/*
+.responsive-formfactor(@attrName, @defaultRules: {}, @phoneRules: {}, @tabletRules: {}) {
+	&[@{attrName}="true"],
+	&[@{attrName}=""] {
+		@defaultRules();
+	}
+	// NOTE: *="..." matches everything containing these characters. *="flower" matches on 'flowers' and flower_test
+	// NOTE: ~="..." matches only this exact word. does not match 'flower' in 'flowers' 
+	@media @phone {
+		&[@{attrName}*="phone"] {
+			@defaultRules();
+			@phoneRules();
+		}
+	}
+	@media @tablet {
+		&[@{attrName}*="tablet"] {
+			@defaultRules();
+			@tabletRules();
+		}
+	}
+}
+*/

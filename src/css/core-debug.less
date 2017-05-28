@@ -1,0 +1,37 @@
+[debug] {
+	[edge] {
+		background-color: rgba(255,128,0,0.4);
+	}
+}
+
+body[grid] {
+	flexus-view main {
+		//position: relative;
+		&::before,
+		&::after {
+			content: '';
+			opacity: 0.5;
+			display: block;
+			z-index: 999;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			pointer-events: none;
+		}
+		&::before {
+			left: 1rem;
+			right: 1rem;
+			border-left: 1px solid red;
+			border-right: 1px solid red;
+		}
+		&::after {
+			//left: var(--indent);
+			//left: ~'calc(var(--indent) - 16px + 1rem)';
+			//width: 16px;
+			left: calc(1rem + var(--size));
+			width: calc(var(--indent) - 1rem);
+			border-left: 1px solid red;
+			border-right: 1px solid red;
+		}
+	}
+}

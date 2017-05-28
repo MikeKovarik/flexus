@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>nexus-toolbar demo</title>
+
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+	<link rel="import" href="bower_components/polymer/polymer.html">
+
+	<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+	<link rel="import" href="bower_components/paper-input/paper-input.html">
+	<link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
+	<link rel="import" href="bower_components/paper-tabs/paper-tab.html">
+	<link rel="import" href="bower_components/iron-icons/iron-icons.html">
+	<link rel="import" href="bower_components/iron-icons/social-icons.html">
+	<link rel="import" href="bower_components/paper-styles/paper-styles.html">
+	<link rel="import" href="build/nexus-toolbar.html">
+	<link rel="stylesheet" type="text/css" href="build/css/breakpoints.css">
+
+	<style>
+
+		body {
+			margin: 0;
+			background-color: #EEE;
+			display: flex;
+		}
+
+		nexus-page {
+			display: block;
+			flex: 1;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<nexus-page>
+
+		<!--
+		nostyle will be applied to nexus-toolbar by nexus-page to remove all the styles
+		and use it as shell of content which will be <contented> into it's own toolbar with menu/arrow-back 
+	-->
+		<nexus-toolbar>
+			<section main>
+				<paper-icon-button nav icon="menu"></paper-icon-button>
+				<div flex>Contacts</div>
+				<paper-icon-button icon="search">+</paper-icon-button>
+				<paper-icon-button icon="more-vert"></paper-icon-button>
+			</section>
+			<section search>
+				<paper-icon-button icon="arrow-back"></paper-icon-button>
+				<paper-input flex value="Search" no-label-float label="Placeholder"></paper-input>
+				<paper-icon-button icon="close"></paper-icon-button>
+			</section>
+			<section selection>
+				<paper-icon-button icon="arrow-back"></paper-icon-button>
+				<div class="flex">Selected: 1</div>
+				<paper-icon-button icon="social:share"></paper-icon-button>
+				<paper-icon-button icon="delete"></paper-icon-button>
+				<paper-icon-button icon="more-vert"></paper-icon-button>
+			</section>
+		</nexus-toolbar>
+
+	</nexus-page>
+
+	<nexus-page>
+
+		<nexus-toolbar>
+			<section>
+				<paper-icon-button nav icon="arrow-back"></paper-icon-button>
+				<div flex>New Contact</div>
+			</section>
+			<section primary>
+				<paper-input indent flex label="Mike" value="First Name"></paper-input>
+			</section>
+			<section secondary>
+				<paper-input indent flex label="Kovařík" value="Last Name"></paper-input>
+			</section>
+		</nexus-toolbar>
+
+	</nexus-page>
+
+
+</body>
+</html>

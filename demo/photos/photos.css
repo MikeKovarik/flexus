@@ -1,0 +1,16 @@
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+	margin: -2px;
+}
+	.grid > div {
+		flex: 1;
+		margin: 2px;
+		min-width: 110px;
+		position: relative;
+	}
+		.grid > div div {
+			background-size: cover;
+			background-position: center;
+			padding-top: 100%;
+		}

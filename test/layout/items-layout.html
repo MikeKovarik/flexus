@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<style>
+		[card] {
+			padding: 1rem;
+		}
+		[semi-large] {
+			font-size: 18px;
+		}
+		[icon="warning"]::before {
+			content: '\E8C9';
+		}
+		[neon] [icon="information-outline"]::before {
+			content: '\E946';
+		}
+		hr {
+			width: 100%;
+		}
+		hr[spacer] {
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		main::before,
+		main::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			border-left: 1px solid rgba(var(--theme-base), 0.2);
+		}
+		main::before {
+			left: 1rem;
+		}
+		main::after {
+			left: calc(1rem + var(--indent));
+		}
+
+		table:not([reset]) {
+			margin: 0 -10px;
+			border-spacing: 0;
+			line-height: 16px;
+		}
+		table:not([reset]) td {
+			padding: 8px 10px;
+			height: 40px; /* works like min-height on <td>*/
+		}
+
+/*
+moved to core-item
+		:root {
+			--indent: 36px;
+			--item-padding: 10px;
+		}
+		[fx-item] {
+			padding-left: var(--item-padding);
+			padding-right: var(--item-padding);
+			margin-left: calc(-1* var(--item-padding));
+			margin-right: calc(-1* var(--item-padding));
+		}
+		[fx-item] > [icon]:first-child,
+		[fx-item] > input[type="radio"]:first-child,
+		[fx-item] > input[type="checkbox"]:first-child {
+			margin-right: calc(var(--indent) - 24px);
+		}
+
+		[indent] {
+			padding-left: var(--indent);
+		}
+		[outdent] {
+			margin-left: calc(0px - var(--indent));
+		}
+		[fx-item][indent] {
+			padding-left: calc(var(--item-padding) + var(--indent));
+		}
+		[fx-item][outdent] {
+			margin-left: calc(0px - var(--item-padding) - var(--indent));
+		}
+		*/
+	</style>
+
+</head>
+<body fx-app light primary="green">
+
+
+	<flexus-view id="layout-defender">
+		<flexus-toolbar multisection>
+			<section>
+				<button icon="menu"></button>
+				<h1>Title</h1>
+			</section>
+		</flexus-toolbar>
+
+
+		<main primary="green">
+
+			<div fx-item>
+				<i icon="check" colored></i>
+				<div two-line>
+					<div>Virus and spyware definitions</div>
+					<span colored>up to date</span>
+				</div>
+			</div>
+			<div indent>
+				<div fx-item outdent>
+					<i icon="information-outline" orange></i>
+					<div two-line>
+						<div>Last scan was performed on</div>
+						<span orange>Monday</span>
+					</div>
+				</div>
+				<div fx-item>
+					<div two-line>
+						<div>Virus and spyware definitions</div>
+						<span colored>up to date</span>
+					</div>
+				</div>
+				<div fx-item two-line>
+					<div>Virus and spyware definitions</div>
+					<span colored>up to date</span>
+				</div>
+				<table>
+					<tr>
+						<td>Definitions created on:</td><td>25.08.2016 08:30</td>
+					</tr>
+					<tr>
+						<td>Definitions updated on:</td><td>25.08.2016 14:43</td>
+					</tr>
+					<tr>
+						<td>Virus definitions versions:</td><td>1.227.638.0</td>
+					</tr>
+					<tr>
+						<td>Spyware definitions versions:</td><td>1.227.638.0</td>
+					</tr>
+				</table>
+				<div fx-item>
+					<span flex>Definitions created on:</span><span flex shrink>25.08.2016 08:30</span>
+				</div>
+				<div fx-item>
+					<span flex>Definitions updated on:</span><span flex shrink>25.08.2016 14:43</span>
+				</div>
+				<div fx-item>
+					<span flex>Virus definitions versions:</span><span flex shrink>1.227.638.0</span>
+				</div>
+				<div fx-item>
+					<span flex>Spyware definitions versions:</span><span flex shrink>1.227.638.0</span>
+				</div>
+			</div>
+
+			<hr>
+
+			<div fx-item>
+				<i icon="check" colored></i>
+				<div two-line>
+					<div>Virus and spyware definitions</div>
+					<span colored>up to date</span>
+				</div>
+			</div>
+			Plain text
+			<table>
+				<tr>
+					<td>Definitions created on:</td><td>25.08.2016 08:30</td>
+				</tr>
+			</table>
+		</main>
+
+
+	</flexus-view>
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+</body>
+</html>

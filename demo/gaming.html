@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<style>
+		:root {
+			--seam-opacity: 0.1;
+		}
+	</style>
+
+</head>
+<body dark fx-app primary="green">
+
+	<flexus-drawer collapsed>
+		<button fx-item icon="menu"></button>
+		<div fx-item="" icon="edit">Edit</div>
+		<button fx-item icon="home">Home</button>
+		<button fx-item icon="gamepad">My Games</button>
+		<button fx-item icon="message" for="hub">Communications hub</button>
+		<button fx-item icon="settings" bottom for="setttings">Settings</button>
+	</flexus-drawer>
+
+	<flexus-scene>
+
+		<flexus-view dark subtle panel hidden id="setttings">
+			<flexus-toolbar transparent>
+				<button icon="close"></button>
+				<h2>Settings</h2>
+			</flexus-toolbar>
+			<main>
+				<div fx-item>
+					<input type="checkbox" checked>
+					<div two-line>
+						<div>Achivements</div>
+						<div muted>Notify me when I unlock achivements.</div>
+					</div>
+				</div>
+				<div fx-item>
+					<input type="checkbox">
+					<div two-line>
+						<div>Activity feed</div>
+						<div muted>Notify me when someone likes one of my feed items</div>
+					</div>
+				</div>
+				<div fx-item>
+					<input type="checkbox" checked>
+					<div two-line>
+						<div>Message</div>
+						<div muted>Notify me when I get a new message</div>
+					</div>
+				</div>
+			</main>
+		</flexus-view>
+		
+		<flexus-view>
+			<flexus-toolbar translucent>
+				<section>
+					<button icon="menu"></button>
+					<h1>My Games</h1>
+				</section>
+				<flexus-tabs subtle fixed="false">
+					<button>Info</button>
+					<button>Activity feed</button>
+					<button>Friends & clubs</button>
+					<button>Looking for Group</button>
+					<button>Captures</button>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<flexus-pages>
+				<section>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt mauris nec erat dapibus accumsan. Etiam facilisis ligula non feugiat luctus. Donec sed est non elit dignissim semper. In consectetur nulla id ligula tempor imperdiet nec eget nunc. Ut ut quam a metus sollicitudin gravida. Vivamus dui nisl, blandit ac purus eget, fringilla rhoncus magna. Phasellus ac fermentum augue. Morbi sagittis sapien at est volutpat, nec euismod massa fermentum. Nunc ultricies quis erat vitae venenatis. Duis ut bibendum enim, in varius sem. Nulla scelerisque lobortis enim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc molestie facilisis sapien, nec malesuada neque tincidunt finibus. Quisque ultricies laoreet sem ac aliquet.</p>
+				</section>
+				<section>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt mauris nec erat dapibus accumsan. Etiam facilisis ligula non feugiat luctus. Donec sed est non elit dignissim semper. In consectetur nulla id ligula tempor imperdiet nec eget nunc. Ut ut quam a metus sollicitudin gravida. Vivamus dui nisl, blandit ac purus eget, fringilla rhoncus magna. Phasellus ac fermentum augue. Morbi sagittis sapien at est volutpat, nec euismod massa fermentum. Nunc ultricies quis erat vitae venenatis. Duis ut bibendum enim, in varius sem. Nulla scelerisque lobortis enim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc molestie facilisis sapien, nec malesuada neque tincidunt finibus. Quisque ultricies laoreet sem ac aliquet.</p>
+				</section>
+				<section>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt mauris nec erat dapibus accumsan. Etiam facilisis ligula non feugiat luctus. Donec sed est non elit dignissim semper. In consectetur nulla id ligula tempor imperdiet nec eget nunc. Ut ut quam a metus sollicitudin gravida. Vivamus dui nisl, blandit ac purus eget, fringilla rhoncus magna. Phasellus ac fermentum augue. Morbi sagittis sapien at est volutpat, nec euismod massa fermentum. Nunc ultricies quis erat vitae venenatis. Duis ut bibendum enim, in varius sem. Nulla scelerisque lobortis enim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc molestie facilisis sapien, nec malesuada neque tincidunt finibus. Quisque ultricies laoreet sem ac aliquet.</p>
+				</section>
+				<section>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt mauris nec erat dapibus accumsan. Etiam facilisis ligula non feugiat luctus. Donec sed est non elit dignissim semper. In consectetur nulla id ligula tempor imperdiet nec eget nunc. Ut ut quam a metus sollicitudin gravida. Vivamus dui nisl, blandit ac purus eget, fringilla rhoncus magna. Phasellus ac fermentum augue. Morbi sagittis sapien at est volutpat, nec euismod massa fermentum. Nunc ultricies quis erat vitae venenatis. Duis ut bibendum enim, in varius sem. Nulla scelerisque lobortis enim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc molestie facilisis sapien, nec malesuada neque tincidunt finibus. Quisque ultricies laoreet sem ac aliquet.</p>
+				</section>
+				<section>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt mauris nec erat dapibus accumsan. Etiam facilisis ligula non feugiat luctus. Donec sed est non elit dignissim semper. In consectetur nulla id ligula tempor imperdiet nec eget nunc. Ut ut quam a metus sollicitudin gravida. Vivamus dui nisl, blandit ac purus eget, fringilla rhoncus magna. Phasellus ac fermentum augue. Morbi sagittis sapien at est volutpat, nec euismod massa fermentum. Nunc ultricies quis erat vitae venenatis. Duis ut bibendum enim, in varius sem. Nulla scelerisque lobortis enim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc molestie facilisis sapien, nec malesuada neque tincidunt finibus. Quisque ultricies laoreet sem ac aliquet.</p>
+				</section>
+			</flexus-pages>
+		</flexus-view>
+
+		<flexus-view id="hub" dark subtle panel pinned>
+			<flexus-tabs fixed small subtle>
+				<button icon="account"></button>
+				<button icon="accounts"></button>
+				<button icon="message"></button>
+				<button icon="message"></button>
+			</flexus-tabs>
+			<flexus-pages>
+				<section>
+					<h4>Friends & clubs</h4>
+					<input type="search" fullbleed spacious seam vertical-margin placeholder="Find people or clubs">
+					<h5>Suggestions</h5>
+					<div fx-item>
+						<img avatar>
+						<div two-line>
+							<div>Friend 1</div>
+							<div muted>last seen 28m ago</div>
+						</div>
+					</div>
+					<div fx-item>
+						<img avatar>
+						<div two-line>
+							<div>Friend 2</div>
+							<div muted>offline</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h4>Parties</h4>
+					<div fullbleed layout seam-around vertical-margin>
+						<button flex spacious flat nomargin>Start a party</button>
+						<hr>
+						<button flex spacious flat nomargin>Looking for Group</button>
+					</div>
+					<div text-center>
+						<i icon="message"></i>
+						<p>Need more players?</p>
+						<p muted>Lookig for Group can help you find people that play like you.</p>
+					</div>
+				</section>
+				<section>
+					<div layout center>
+						<h4 flex>Messages</h4>
+						<button flat small icon="plus">New Message</button>
+					</div>
+					<div text-center margin-top>
+						<i icon="message"></i>
+						<p>Things sure are quiet around here. Try sending a message!</p>
+					</div>
+				</section>
+				<section>
+					<h4>Activity alerts</h4>
+					<div text-center margin-top>
+						<i icon="message"></i>
+						<p>When people like, share and commend on things in your activity feed, or you as a friend, you'll see it here.</p>
+					</div>
+				</section>
+			</flexus-pages>
+		</flexus-view>
+
+	</flexus-scene>
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<!--script src="/flexus/elements/scene.js"></script-->
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/drawer.js"></script>
+	<script src="/flexus/elements/tabs.js"></script>
+	<script src="/flexus/elements/pages.js"></script>
+	<script src="/flexus/elements/view.js"></script>
+
+</body>
+</html>

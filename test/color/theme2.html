@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+	<style>
+		body > div {
+			padding: 0.5rem;
+		}
+		body > span {
+			margin-left: 0.5rem;
+		}
+		.padded {
+			padding: 0.5rem;
+		}
+	</style>
+
+</head>
+<body light vertical layout primary="blue" accent="pink">
+
+	<div primary lighter>
+		<span>foreground</span>
+		<span primary dark>dark</span>
+		<span primary light>light</span>
+	</div>
+
+	<div primary darker>
+		<span>foreground</span>
+		<span primary dark>dark</span>
+		<span primary light>light</span>
+	</div>
+
+	<br>
+
+	<flexus-toolbar multisection primary>
+		<section light>
+			<span>foreground</span>
+			<span primary dark>dark</span>
+			<span primary light>light</span>
+		</section>
+		<section dark>
+			<span>foreground</span>
+			<span primary dark>dark</span>
+			<span primary light>light</span>
+		</section>
+		<section lighter>
+			<span>foreground</span>
+			<span primary dark>dark</span>
+			<span primary light>light</span>
+		</section>
+		<section>
+			<span>foreground</span>
+			<span primary dark>dark</span>
+			<span primary light>light</span>
+		</section>
+		<section darker>
+			<span>foreground</span>
+			<span primary dark>dark</span>
+			<span primary light>light</span>
+		</section>
+	</flexus-toolbar>
+
+
+
+	<br><br>
+
+
+
+	<div>
+		<input type="checkbox" checked>
+		<input type="checkbox">
+		<button raised>button</button>
+		<span inline>span</span>
+		<div inline>div</div>
+		<h3>h3</h3>
+	</div>
+
+	<div>
+		<input colored type="checkbox" checked>
+		<input colored type="checkbox">
+		<button colored raised>button[colored]</button>
+		<span colored inline>span[colored]</span>
+		<div colored inline>div[colored]</div>
+		<h3 colored>h3[colored]</h3>
+		<div colored class="padded"><button raised>button</button></div>
+	</div>
+
+	<div>
+		<input primary type="checkbox" checked>
+		<input primary type="checkbox">
+		<button primary raised>button[primary]</button>
+		<span primary inline>span[primary]</span>
+		<div primary inline>div[primary]</div>
+		<h3 primary>h3[primary]</h3>
+		<div primary class="padded"><button raised>button</button></div>
+	</div>
+
+	<div>
+		<input accent type="checkbox" checked>
+		<input accent type="checkbox">
+		<button accent raised>button[accent]</button>
+		<span accent inline>span[accent]</span>
+		<div accent inline>div[accent]</div>
+		<h3 accent>h3[accent]</h3>
+		<div accent class="padded"><button raised>button</button></div>
+	</div>
+
+TODO
+<span orange>orange</span>
+<span green>green</span>
+<span red>red</span>
+<span blue>blue</span>
+<span indigo>indigo</span>
+
+
+</body>
+<!--body dark vertical layout primary="bluegray">
+
+	<flexus-view flex light>
+		<flexus-toolbar primary multisection>
+			<section free lighter>
+				<span>default</span>
+				<span primary>primary</span>
+				<span darker>darker</span>
+				<span lighter>lighter</span>
+			</section>
+			<section free>
+				<span>default</span>
+				<span primary>primary</span>
+				<span darker>darker</span>
+				<span lighter>lighter</span>
+			</section>
+			<section free darker>
+				<span>default</span>
+				<span primary>primary</span>
+				<span darker>darker</span>
+				<span lighter>lighter</span>
+			</section>
+		</flexus-toolbar>
+	</flexus-view>
+
+</body-->
+</html>

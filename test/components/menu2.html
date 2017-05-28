@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+	<!--script src="polyfill/shadycss.min.js"></script-->
+	<!--script src="lib/css-polyfill.js"></script-->
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro.css" polyfill>
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro-icons.css">
+
+	<style>
+		:root,
+		[light] flexus-menu,
+		[dark] flexus-menu {
+			--theme-base: 169,57,255;
+		}
+		:root {
+			--accent: #a939ff;
+			/*--color-accent: var(--accent);
+			--color-contour: var(--color-accent);
+			--color-hr: var(--color-accent);*/
+		}
+		main flexus-menu:first-of-type {
+			--color-hr: #a939ff;
+			--color-contour: #a939ff;
+		}
+		flexus-toolbar,
+		flexus-drawer {
+			opacity: 0;
+		}
+
+
+		flexus-view[sidepane] {
+			flex-basis: 260px;
+			flex: initial;
+			background-color: #222;
+		}
+		flexus-scene[vertical=""] flexus-view[sidepane],
+		flexus-scene[vertical="true"] flexus-view[sidepane] {
+			max-height: 300px;
+		}
+	</style>
+
+</head>
+<body dark fx-app>
+
+
+	<!--flexus-menu narrow hidden="false">
+		<div fx-item>Send feedback</div>
+		<div fx-item>Notification settings</div>
+		<hr>
+		<div fx-item icon="edit">edit</div>
+		<div fx-item icon="check">check</div>
+	</flexus-menu>
+
+	<flexus-menu narrow hidden="false">
+		<button>Send feedback</button>
+		<button>Notification settings</button>
+		<hr>
+		<button icon="edit">edit</button>
+		<button icon="check">check</button>
+	</flexus-menu>
+
+	<flexus-menu touch hidden="false">
+		<button>Off</button>
+		<button>English</button>
+		<button>Czech<i icon="check"></i></button>
+		<button><span>Czech</span><i icon="check"></i></button>
+		<button fx-item><span>Czech</span><i icon="check"></i></button>
+		<button fx-item><span flex>Czech</span><i icon="check"></i></button>
+		<hr>
+		<button>Chose subtitle file</button>
+	</flexus-menu-->
+
+	<!--hr>
+
+	<div light>
+		<flexus-menu narrow hidden="false">
+			<button>Off</button>
+		</flexus-menu>
+	</div>
+	<div>
+		<flexus-menu light narrow hidden="false">
+			<button>Off</button>
+		</flexus-menu>
+	</div-->
+
+
+
+	<!--br>
+	<br>
+	<flexus-menu style="display: inline-block">
+		<a fx-item>something</a>
+		<a fx-item icon="edit">edit</a>
+		<a fx-item icon="paste">paste</a>
+	</flexus-menu>
+	<flexus-menu style="display: inline-block;">
+		<div fx-item>unpin</div>
+		<div fx-item>resize</div>
+		<div fx-item>remove</div>
+	</flexus-menu>
+	<flexus-menu narrow style="display: inline-block;">
+		<div fx-item>unpin</div>
+		<div fx-item>resize</div>
+		<div fx-item>remove</div>
+	</flexus-menu-->
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+	<script src="elements/scene.js"></script>
+	<script src="elements/toolbar.js"></script>
+	<script src="elements/drawer.js"></script>
+	<script src="elements/menu.js"></script>
+
+</body>
+</html>

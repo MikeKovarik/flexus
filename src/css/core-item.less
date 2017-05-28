@@ -1,0 +1,386 @@
+// TODO rename --tabs-gutter to tabs-horizontal-padding or so
+// TODO rename --fx-item-variabled to just --item-variables
+
+.responsive-screensize(indent, {
+	padding-left: var(--indent);
+});
+.responsive-screensize(outdent, {
+	margin-left: calc(0px - var(--indent));
+});
+
+.fx-item-mixin-margin() {
+	margin-left:  calc(-1* var(--fx-item-padding-left,  var(--fx-item-padding-horizontal)));
+	margin-right: calc(-1* var(--fx-item-padding-right, var(--fx-item-padding-horizontal)));
+}
+.fx-item-mixin-padding() {
+	&[indent] {
+		padding-left: calc(var(--fx-item-padding-left,   var(--fx-item-padding-horizontal)) + var(--indent));
+	}
+	&[outdent] {
+		margin-left: calc(0px - var(--fx-item-padding-left,   var(--fx-item-padding-horizontal)) - var(--indent));
+	}
+	padding-left:   var(--fx-item-padding-left,   var(--fx-item-padding-horizontal));
+	padding-right:  var(--fx-item-padding-right,  var(--fx-item-padding-horizontal));
+	padding-top:    var(--fx-item-padding-top,    var(--fx-item-padding-vertical));
+	padding-bottom: var(--fx-item-padding-bottom, var(--fx-item-padding-vertical));
+}
+.fx-item-mixin-children-spacing() {
+
+	> :not(:last-child) {
+		margin-right: var(--fx-item-gutter);
+	}
+
+	// WARNING, TODO: THIS DOESN'T REALLY WORK WELL
+	&:not([free]) > * {
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+	}
+
+	// indented item has bigger padding on left side where would usually be icon
+	//&[indent],
+	//&[two-line][icon],
+	//&[multi-line][icon] {
+	//	padding-left: ~'calc(var(--indent) + 1rem)';
+	//}
+	//&[indent][two-line],
+	//&[indent][multi-line] {
+	//	padding-left: ~'calc(var(--indent) + 1rem)';
+	//}
+
+	&[two-line][icon],
+	&[multi-line][icon],
+	&[indent][two-line],
+	&[indent][multi-line] {
+		padding-left: ~'calc(var(--indent) + 1rem)';
+	}
+
+	//&:not([icon]) > *:first-child,
+	&[icon]::before,
+	& > [icon]:first-child,
+	& > [avatar]:first-child,
+	& > input[type="radio"]:first-child,
+	& > input[type="checkbox"]:first-child {
+		margin-right: calc(var(--indent) - var(--size, 0px));
+	}
+}
+.fx-item-layout() {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+
+[fx-item] {
+
+	//.text-overflow;
+
+	.fx-layout-horizontal;
+	.fx-item-layout;
+
+	//padding-top: var(--fx-item-padding-vertical);
+	//padding-bottom: var(--fx-item-padding-vertical);
+	.fx-item-mixin-padding;
+	.fx-item-mixin-margin;
+	min-height: var(--fx-item-min-height);
+	.fx-item-mixin-children-spacing;
+
+	[two-line],
+	[multi-line] {
+		flex: 1;
+	}
+
+}
+
+[fullbleed],
+[bleed][fullwidth] {
+	width: calc(100% + 2 * var(--gutter));
+}
+[fullbleed],
+[bleed] {
+	margin-left: calc(-1 * var(--gutter)) !important;
+	margin-right: calc(-1 * var(--gutter)) !important;
+	border-left: none !important;
+	border-right: none !important;
+}
+input[fullbleed],
+input[bleed] {
+	padding-left: var(--gutter) !important;
+	padding-right: var(--gutter) !important;
+}
+
+
+
+
+flexus-list {
+	position: relative;
+	&[card] {
+		padding-top: 8px !important;
+		padding-bottom: 8px !important;
+	}
+}
+
+[card]:not(flexus-view):not(flexus-toolbar) {
+	padding: 1rem;
+	& > img {
+		width: calc(100% + 2rem);
+		max-width: initial;
+		margin: -1rem -1rem 1rem -1rem;
+		& + h2,
+		& + h3 {
+			margin-top: 0;
+		}
+	}
+}
+/*
+flexus-pages > *,
+flexus-view > main {
+	& > [card] {
+		margin: 0.5rem;
+	}
+}
+*/
+flexus-view > main > flexus-pages,
+[card] > flexus-pages {
+	.fx-item-mixin-padding;
+	.fx-item-mixin-margin;
+}
+
+
+
+
+
+[two-line],
+[multi-line] {
+	display: flex;
+	flex-direction: column !important;
+	align-items: stretch !important;
+	justify-content: center;
+}
+[two-line] {
+	overflow: hidden;
+}
+/*
+[fx-item][multiline] section,
+[fx-item] {
+
+}
+[fx-item][multiline] {
+	//.fx-layout-vertical;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+*/
+[list-head] {
+	z-index: 0;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	
+}
+
+
+
+[toolbar] {
+	display: flex;
+	align-items: center;
+}
+
+
+flexus-toolbar {
+
+	z-index: 1;
+	// experimental - since Android M the ripple is not bigger than toolbar and (at least in material) does not need to be overflow:hidden;
+	// note: might break something. but is necessary for [overlap] and will probably be needed for [fab] as well
+	overflow: initial !important;
+
+	.set-colors-override() {
+		--background: ~'rgb(var(--toolbar-background-rgb, var(--background-rgb)))';
+		--foreground: ~'rgb(var(--toolbar-foreground-rgb, var(--foreground-rgb)))';
+	}
+
+	.apply-colors;
+
+	&,
+	&[dark],
+	& [dark],
+	&[light],
+	& [light] {
+		.set-colors-override;
+	}
+
+	&[tinted],
+	& [tinted] {
+		--background-rgb: var(--primary-rgb) !important;
+		--foreground-rgb: var(--primary-foreground-rgb) !important;
+	}
+
+	.responsive-screensize(seam, {
+		border-bottom: var(--seam-size) solid var(--seam-color);
+	});
+
+	&,
+	&[multisection] > * {
+		position: relative;
+		transition: background-color 0.2s;
+		//transition: background-color 0.2s, color 0.2s;
+	}
+
+	a[href] {
+		// inherit toolbars color, important for <a> because all links have accent color by default
+		color: inherit;
+	}
+
+	[icon]::before {
+		color: var(--toolbar-icons, var(--foreground));
+	}
+
+	// override default [sticky]
+	&[sticky] {
+		position: absolute;
+		//left: 0;
+		//right: 0;
+		//top: 0;
+	}
+	left: 0;
+	right: 0;
+	top: 0;
+
+	&[multisection] {
+		display: flex;
+		flex-direction: column;
+	}
+
+
+	&:not([multisection]),
+	&[multisection] > section {
+		.fx-item-mixin-padding;
+		.fx-item-mixin-children-spacing;
+	}
+
+	&:not([multisection]),
+	&[multisection] > *:not([free]) {
+		.fx-item-layout;
+		overflow: hidden;
+		h1,
+		h2,
+		h3 {
+			flex: 1;
+			.fx-text-overflow;
+		}
+	}
+	&:not([multisection]),
+	&[multisection] > *:not([free]) {
+		h1,
+		h2,
+		h3 {
+			font-size: inherit;
+			font-weight: inherit;
+			text-transform: inherit;
+		}
+	}
+	// mini version of [layout]
+	&[multisection] > section:not([free]) {
+		// TODO - integrate better with [layout]. maybe through css vars
+		&[center] {
+			justify-content: center;
+		}
+		&[vertical] {
+			align-items: flex-start;
+			&[center] {
+				align-items: center;
+			}
+		}
+	}
+
+	// direct children of multisection
+
+	flexus-tabs {
+		flex: 1;
+	}
+
+	& > [fx-item] {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	// other stuff
+
+	::-webkit-input-placeholder {
+		color: inherit;
+		opacity: 0.5;
+	}
+	:-ms-input-placeholder {  
+		color: inherit;
+		opacity: 0.5;  
+	}
+
+}
+
+main > .fx-toolbar-expander {
+	margin: -1rem -1rem 1rem -1rem;
+}
+.fx-toolbar-expander[absolute-top] {
+	margin: 0;
+}
+.fx-toolbar-expander.img {
+	z-index: -1;
+	background-size: cover;
+	background-position: center;
+}
+
+
+
+
+
+
+
+flexus-tabs {
+	position: relative;
+	display: flex;
+
+	&[center] {
+		justify-content: center;
+	}
+
+	&[centered] {
+		// TODO
+	}
+
+	&[fixed] > *, // TODO deprecate
+	&[stretched] > * {
+		flex: 1;
+	}
+	&[scrollable] > * {
+		flex-shrink: 0;
+		white-space: nowrap;
+	}
+	& > * {
+		// cancel default <button> and [icon] styles
+		transform: none !important;
+		min-width: initial !important;
+		background-color: transparent !important;
+		border: none !important;
+		width: initial !important;
+		margin: 0 !important;
+		// layout
+		padding: 0 var(--tab-gutter) !important; // TODO rename to tabs-horizontal-padding or so
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		//justify-content: center;
+		text-align: center;
+	}
+	& > *[icon] {
+		flex-direction: column;
+	}
+	/*& .bar {
+		height: 2px;
+		background-color: currentColor;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transform-origin: left center;
+	}*/
+}

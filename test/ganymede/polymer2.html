@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro-icons.css">
+
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+	<link rel="import" href="bower_components/polymer/polymer-element.html">
+	<link rel="import" href="test/polymer-element.html">
+
+	<custom-style>
+		<style>
+			html {
+				--accent: pink;
+			}
+		</style>
+	</custom-style>
+
+	<!--script>
+class MyElement extends Polymer.Element {
+  static get is() { return 'my-element'}
+
+  constructor() {
+    super()
+    console.log('my Element constructor')
+  }
+}
+
+customElements.define(MyElement.is, MyElement)
+	</script-->
+
+</head>
+<body dark>
+
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>hello world</div>
+	</flexus-toolbar>
+
+
+</body>
+</html>

@@ -1,0 +1,530 @@
+:root {
+	// minimal height of item
+	--fx-item-min-height: 40px;
+	// padding from top and bottom ensure properly looking item if content exceeds min height
+	--fx-item-padding-vertical: 8px;
+	// left and right padding
+	--fx-item-padding-horizontal: 8px;
+	// experimental margin between fx-items and rest of the content
+	--fx-item-margin-vertical: 8px;
+	// spaces between children of fx-item
+	--fx-item-gutter: 12px;
+	// used for default 40x40 empty icon buttons
+	--fx-item-base-height: 40px;
+
+	--toolbar-min-height: 48px;
+}
+
+:root {
+	--tab-gutter: 12px; // item's side padding
+	--tabs-font-size: 16px;
+	--tabs-line-height: 18px;
+}
+[dense],
+[narrow] {
+	--tabs-font-size: 16px;
+	--tabs-line-height: 18px;
+}
+
+
+// some lists on desktop can contain extensive ammount of items
+// it is needed to have special layout for these lists
+[dense] {
+	//font-size: 14px;
+	//line-height: 18px;
+	--fx-item-min-height: 18px;
+	--fx-item-padding-vertical: 2px;
+}
+[narrow] {
+	// TODO
+	// this removes top/bottom padding for multiline/twoline to prevent big gaps in long lists
+	--fx-item-min-height: 40px;
+	--fx-item-padding-vertical: 4px;
+}
+[spacious] {
+	--fx-item-min-height: 48px;
+	--fx-item-padding-vertical: 12px;
+	/*padding-left: 12px;
+	padding-right: 12px;
+	margin-left: -12px;
+	margin-right: -12px;*/
+}
+// removes vertical padding and leaves only shell of the fx-item
+// (horizontal padding and min-height)
+[bare] {
+	--fx-item-padding-vertical: 0px;
+}
+
+
+[two-line] {
+	// experimental
+	--fx-item-gutter: 0px;
+}
+
+[fx-item] {
+
+	//.fx-behavior-item-indent;
+	//.fx-behavior-item-metro-padding;
+
+	// ------------------- LAYOUT & ALIGNMENT ----------------------
+
+	&[top][icon]::before,
+	&[top] > [icon]:not([center]):not([bottom]):not(button)::before,
+	& > [top][icon]:not([center]):not([bottom]):not(button)::before {
+		padding-top: 4px;
+	}
+	&[bottom][icon]::before,
+	&[bottom] > [icon]:not(button):not([center]):not([top])::before,
+	& > [bottom][icon]:not(button):not([center]):not([top])::before {
+		padding-bottom: 4px;
+	}
+
+	// ------------------- MULTILINE ----------------------
+
+	//&[indent],
+	&[two-line][icon],
+	&[multi-line][icon] {
+		// 48px of hamburger button + 12px padding
+		//padding-left: calc(60px - 12px + var(--fx-item-padding));
+		padding-left: calc(var(--fx-item-padding) + 24px + 12px);
+		flex-direction: column;
+	}
+
+	//line-height: 20px;
+	line-height: 16px; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// NOTE: original was 20, but 16 seems nicer for simpler interfaces.
+	// also line-height 20 + 8px padding on top and bottom causes minimal item to be 36
+	// but flexus-menu items needs to be 32 (those look really nice by the way - todo make it [mini] or something)
+	// WARNING: if it needs to be reverted to 20, please add rule: flexus-menu>[fx-item] padding-top/bottom:0
+
+	// some lists on desktop can contain extensive ammount of items
+	// it is needed to have special layout for these lists
+	&[small] {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	> input[type="radio"]:first-child,
+	> input[type="checkbox"]:first-child:not([avatar]) {
+		transform: translate(2px);
+		//margin-left: 2px;
+		//margin-right: calc(2px + var(--fx-item-gutter));
+	}
+	> input[type="checkbox"][avatar] {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	// only have the bigass item-expanding border around avatar if
+	//  item is not compact (compact has 2px top/bottom)
+	/*&:not([compact]) > [avatar] {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	&[compact] > [avatar] {
+		margin-top: 2px;
+		margin-bottom: 2px;
+	}*/
+	/*> [avatar] {
+		margin-right: 8px;
+	}*/
+
+
+	&[two-line][icon]:before,
+	&[multi-line][icon]:before {
+		position: absolute;
+		left: 10px;
+	}
+	&[two-line][icon]:before {
+		top: 50%;
+		line-height: 0;
+	}
+	/*&[multi-line][icon]:before {
+		top: 10px;
+	}*/
+
+	button[icon]:empty {
+		min-width: var(--fx-item-base-height);
+		height: var(--fx-item-base-height);
+		// cancel button defaults & fight against item padding
+		margin-top:    calc(0px - var(--fx-item-padding-top,    var(--fx-item-padding-vertical)));
+		margin-bottom: calc(0px - var(--fx-item-padding-bottom, var(--fx-item-padding-vertical)));
+	}
+	// todo - tohle plati jen po automaticky paddovany itemy v fx-view
+	flexus-view & {
+		a[icon]:empty:last-child,
+		button[icon]:empty:last-child {
+			margin-right: calc(-1 * var(--fx-item-padding-horizontal));
+		}
+		button[icon]:empty:first-child {
+			margin-left: calc(-1 * var(--fx-item-padding-horizontal));
+		}
+	}
+
+}
+
+
+
+
+:root {
+	--toolbar-hr-width: 32px;
+	--toolbar-item-width: 68px;
+}
+[dense],
+[narrow] {
+	--toolbar-hr-width: 8px;
+	--toolbar-item-width: 48px;
+}
+
+.fx-toolbar() {
+	font-size: 16px;
+	font-weight: 400;
+
+	h1 {
+		flex: 1;
+		margin: 0;
+		letter-spacing: inherit;
+	}
+
+	input[transparent] {
+		margin: 0 !important;
+		padding: 0 !important;
+		height: 100%;
+		background-color: transparent;
+		border: none;
+	}
+
+	hr {
+		width: var(--toolbar-hr-width);
+		height: 20px;
+		text-align: center;
+		// this resets global behavior of padding/margin inside main or flexus-list. might be removed after/if that is solved
+		padding: 0;
+		// resets default hr behavior based on borders
+		border: none;
+		&:before {
+			content: '';
+			display: inline-block;
+			width: 1px;
+			height: 100%;
+		}
+	}
+
+	progress[ring],
+	[icon]:empty {
+		width: var(--toolbar-item-width);
+	}
+
+	progress[ring] {
+		height: 24px;
+	}
+
+
+	//[icon] {
+		// according to win10 metro specs toolbar icon is 20x20
+		--size: 20px;
+	//}
+
+	a[icon],
+	button:not([disabled]) {
+		// the hover/active styles
+		.fx-style-button-simple;
+	}
+	button {
+		// cancel default button behavior
+		margin-top: 0;
+		margin-bottom: 0;
+		transform: none !important;
+		min-width: inherit !important;
+	}
+	button[icon] {
+		font-size: 12px !important;
+		//text-transform: none !important;
+		letter-spacing: 0 !important;
+	}
+	a[icon]:empty,
+	button {
+		align-self: flex-start;
+		min-height: var(--toolbar-min-height) !important;
+	}
+	a[icon]:empty,
+	button[icon]:empty {
+		display: flex;
+		align-items: stretch;
+		justify-content: flex-start;
+		flex-direction: column;
+		padding-top: 14px !important;
+
+		&[title] {
+			&:after {
+				content: attr(title);
+				//text-transform: capitalize;
+				display: none;
+				//animation: fadein 0.2s;
+				line-height: 16px;
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+			// the button shows title on the right side of the icon, just like windows photos app
+			&[inline] {
+				width: auto;
+				flex-direction: row;
+				align-items: center;
+				padding: 0 12px;
+				padding-top: 0 !important;
+				&:before {
+					margin-right: 8px;
+				}
+				&:after {
+					display: inline;
+					//opacity: 1;
+					white-space: nowrap;
+					margin: 0;
+				}
+			}
+		}
+
+	}
+	&[expanded] {
+		//a[icon]:empty,
+		//button[icon]:empty {
+		[icon]:empty {
+			&::after {
+				display: block;
+			}
+		}
+	}
+
+}
+
+
+
+[toolbar] {
+	display: flex;
+	align-items: center;
+	.fx-toolbar;
+}
+
+flexus-toolbar {
+
+	.fx-toolbar;
+
+	--fx-item-padding-left: 1rem;
+	--fx-item-padding-right: 0.5rem;
+	--fx-item-padding-vertical: 0;
+
+
+	.responsive-screensize(distinct, {
+	//&[distinct=""],
+	//[screensize*="s"] &[distinct*="s"],
+	//[screensize*="m"] &[distinct*="m"],
+	//[screensize*="l"] &[distinct*="l"] {
+		--toolbar-min-height: 72px;
+		--fx-item-min-height: 48px;
+		--fx-item-padding-vertical: 12px;
+		//.fx-item-spacious;
+		--background: transparent !important;
+		height: auto !important;
+		/*[icon="menu"] {
+			display: none !important;
+			// this is temp only, solve this with drawer
+		}*/
+		--font-size: 34px; // just a concept, this doesnt exists
+		--tabs-font-size: 34px; // this exists and might be reworked
+		/*h1 {
+			//padding-top: 14px;
+			//padding-bottom: 14px;
+			.h2-like-tempname;
+			//line-height: 1;
+			// todo remove as this gets solved with drawer
+			margin-left: 0 !important;
+		}*/
+	});
+/*
+	h1,
+	h2,
+	h3 {
+		// fluent design Title preset
+		font-size: 24px;
+		font-weight: 300;
+	}
+*/
+	&[multisection] {
+		& > flexus-tabs {
+			width: 100%;
+		}
+	}
+
+	//&:not([multisection]),
+	//&[multisection] > section {
+	//	.fx-item-mixin-neon;
+	//}
+
+	&:not([multisection]),
+	&[multisection] > section {
+		overflow: hidden;
+		//height: var(--toolbar-min-height);
+		min-height: var(--toolbar-min-height);
+		//line-height: var(--toolbar-min-height); // disabled because it's centered layout and this basically did height:100%
+
+		// default spacing between common elements
+		@minimalSpace: 4px;
+		//*:not(:first-child):not(hr) {
+		*:not(hr) {
+			margin-left: @minimalSpace;
+			margin-right: @minimalSpace;
+			//margin: 0 @minimalSpace;
+		}
+		*:first-child {
+			margin-left: 0;
+		}
+
+		button,
+		//button:not([raised]),
+		[icon]:empty,
+		input[transparent],
+		hr {
+			margin: 0;
+		}
+		:not([icon]):not(:empty) + hr {
+			margin-left: 8px;
+		}
+		hr + :not([icon]):not(:empty) {
+			margin-left: 12px; // @minimalSpace + 8px
+		}
+
+		// default padding of toolbar & some exceptions that defy
+		// Warning: do not move this code before the default spacing between common elements
+		//padding: 0 0.5rem 0 1rem;
+
+		& > [icon]:empty {
+		//& > [icon]:not([raised]) {
+			// negating left and right padding for simple icon buttons
+			&:first-child {
+				margin-left: -1rem;
+			}
+			// cancel toolbar padding for the first and last direct child button 
+			// (navigation or hamburger menu and three dots for more)
+			&:first-child,
+			&[icon="more"] {
+				width: 48px;
+			}
+			// set margin between adjusted first icon element and title
+			// (in other words: put title where it would without the preceeding button)
+			&:first-child + :not([icon]):not(:empty) {
+				margin-left: calc(1rem - 12px);
+			}
+		}
+		// cancel default spacing of the last element
+		//& > :not([icon]):last-child {
+		& > :last-child {
+			margin-right: 0;
+		}
+		//& > [icon]:not([raised]):last-child,
+		//& > button:not([raised]):last-child {
+		& > [icon]:last-child,
+		& > button:last-child {
+			margin-right: -0.5rem;
+		}
+
+		transition: height 0.2s, padding-bottom 0.2s;
+		&[expanded] {
+		}
+		
+	}
+
+	[card] {
+		// temp fix
+		background: var(--background) !important;
+	}
+
+}
+
+
+
+
+
+/*
+[subtitle] {
+	font-weight: 700;
+	color: #666; // TODO - this is dark
+	text-transform: uppercase;
+
+	*:not([toolbar]) + & { // todo: this needs to be worked on
+		margin-top: 0.5rem;
+	}
+}
+*/
+
+
+flexus-tabs {
+	// TODO - inherit button[simple]
+	// because of tabs outside toolbar
+	font-size: var(--tabs-font-size);
+	line-height: var(--tabs-line-height);
+
+	flexus-view > main > &[subtle] {
+		//margin-top: -16px; // compensation for 48px high items
+		margin-left: calc(-1 * var(--tab-gutter));
+	}
+
+	& > a[href] {
+		// cancelling default link accent color
+		color: inherit !important;
+	}
+	&[subtle] > * {
+		& {
+			opacity: 0.5
+		}
+		&[selected] {
+			opacity: 1
+		}
+	}
+	& > * {
+		// tabs styles
+		//transition: color 100ms; // disabled due to lag in transition when changing primary/accent color
+		//min-width: 80px;
+		height: var(--toolbar-min-height) !important;
+		color: inherit;
+	}
+	&:not([subtle]) > *:not(:disabled):not([disabled]) {
+		.fx-style-button-simple;
+	}
+	& > *[icon]:not(:empty) {
+		height: 68px !important;
+		&:before {
+			font-size: 18px;
+			margin-bottom: 6px;
+		}
+	}
+
+	&[small] {
+		font-size: 14px;
+		line-height: 16px;
+		& > *[icon]:not(:empty) {
+			&:before {
+				font-size: 14px;
+			}
+		}
+	}
+
+}
+
+
+
+/*
+// put on hold for now
+[fx-item-expandable] {
+	.fx-behavior-item-padding(var(--fx-item-padding));
+
+	& > section[expand] {
+		padding-top: 0 !important;
+		justify-content: flex-end;
+	}
+	&[expanded] {
+		background-color: ~'rgba(var(--foreground-rgb), 0.05)';
+	}
+	&:not([expanded]) > section[expand] {
+		display: none !important;
+	}
+}
+*/

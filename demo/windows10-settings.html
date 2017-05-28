@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<!-- custom style to make paragraph wrap after 400 pixels -->
+	<style>
+		flexus-view p {
+			max-width: 400px;
+		}
+	</style>
+
+</head>
+<body dark fx-app>
+
+	<flexus-drawer transparent>
+		<div fx-item icon="settings">Home</div>
+		<div fx-item icon="settings">Windows Update</div>
+		<div fx-item icon="settings">Windows Defender</div>
+		<div fx-item icon="settings">Backup</div>
+		<div fx-item icon="settings">Recovery</div>
+		<div fx-item icon="settings">Activation</div>
+		<div fx-item icon="settings">For Developers</div>
+		<div fx-item icon="settings">Windows Insider Program</div>
+	</flexus-drawer>
+
+	<flexus-view>
+		<main>
+			<h2>Windows Defender</h2>
+
+			<p>Windows Defender protects your computer against viruses, spyware and other malicious software. Open Windows Defender to use it.</p>
+			<button>Open Windows Defender</button>
+
+			<h3>Real-time protection</h3>
+			<p>This helps find and stop malware from installing or urnning on your PC. You can turn this off temporarily, but if it's off for a while we'll turn it back on automatically.</p>
+			<input type="checkbox" checked toggle>
+
+			<h3>Cloud-based Protection</h3>
+			<p>Get Real-time protection when Windows Defender sends info to Microsoft about potential security threats. This feature works best with Automatic sample submission enabled.</p>
+			<input type="checkbox" toggle>
+			<p><a href="#">Privacy Statement</a></p>
+			
+			<h3>Automatic sample submission</h3>
+			<p>Allow windows Defender to send samples of suspicious files to Microsoft, to help improve malware detection. Turn this off to be prompted before sending samples to Microsoft.</p>
+			<input type="checkbox" checked toggle>
+			<p><a href="#">Privacy Statement</a></p>
+
+			<h3>Exclusions</h3>
+			<p>Windows Defender won't scan excluded files, making your PC more vulnerable to mallware.</p>
+			<p><a href="#">Add an exclusion</a>
+			
+			<h3>Enhanced notifications</h3>
+			<p>Windows Defender sends notifications to help nesure you are informed about the health of your PC. Even if this options is turned off, you'll still get critical notifications for issues that need immediate attention.</p>
+			<input type="checkbox" checked toggle>
+			<p><a href="#">Privacy Statement</a></p>
+			
+			<h3>Windows Defender Offline</h3>
+			<p>Some malicious software can be particularly difficult to remove from your PC. Windows Defender Offline can help find and remove them using up-to-date threat definitions. This will restart your pc and wil take about 15 minutes.</p>
+			<button>Scan Offline</button>
+
+			<h3>Version info</h3>
+			<table>
+				<tr>
+					<td>Antimallware client version:</td>
+					<td>4.10.14931.1000</td>
+				</tr>
+				<tr>
+					<td>Engine version:</td>
+					<td>1.1.13303.0</td>
+				</tr>
+				<tr>
+					<td>Antivirus definition:</td>
+					<td>1.231.2187.0</td>
+				</tr>
+				<tr>
+					<td>Antispyware definition:</td>
+					<td>1.231.2187.0</td>
+				</tr>
+				<tr>
+					<td>Network inspection system engine version:</td>
+					<td>2.1.12706.0</td>
+				</tr>
+				<tr>
+					<td>Network inspection system definition version:</td>
+					<td>116.66.0.0</td>
+				</tr>
+			</table>
+		</main>
+	</flexus-view>
+
+
+</body>
+</html>

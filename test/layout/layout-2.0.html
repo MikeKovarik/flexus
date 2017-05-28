@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<style>
+		[left] {
+			text-align: left;
+		}
+		[center] {
+			text-align: center;
+			margin: auto;
+		}
+		[right] {
+			text-align: right;
+		}
+
+		[layout] {
+			display: flex;
+		}
+		[layout][inline] {
+			display: inline-flex;
+		}
+		[layout][center] {
+			align-items: center;
+			justify-content: center;
+		}
+		[layout][vertical] {
+			flex-direction: column;
+		}
+		[layout][vertical][top] {
+			justify-content: flex-start;
+		}
+		[layout][vertical][bottom] {
+			justify-content: flex-end;
+		}
+		[layout] > [left] {
+			align-self: flex-start;
+		}
+		[layout] > [center] {
+			align-self: center;
+			margin: initial;
+		}
+		[layout] > [right] {
+			align-self: flex-end;
+		}
+
+		body {
+			font-size: 15px;
+			font-family: Segoe UI;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		h1 {
+			margin: 0;
+			padding: 0;
+			font-size: 22px;
+			font-weight: 500;
+		}
+		body > div {
+			width: 150px;
+			height: 150px;
+			margin: 10px !important;
+			border: 1px solid #999;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div layout>
+		<div>first</div>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+	<div layout center>
+		<div>first</div>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+	<div layout>
+		<div center>first</div>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+
+	<div layout vertical>
+		<h1>first</h1>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+	<div layout vertical center>
+		<h1>first</h1>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+	<div layout vertical>
+		<h1 center>first</h1>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+
+
+	<div layout center vertical>
+		<h1 left>first</h1>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+	<div layout center vertical center>
+		<h1 center>first</h1>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+	<div layout center vertical>
+		<h1 right>first</h1>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+
+
+	<div layout center top vertical>
+		<h1 left>first</h1>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+	<div layout center top vertical center>
+		<h1 center>first</h1>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+	<div layout center top vertical>
+		<h1 right>first</h1>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+
+	<div>
+		<h1 left>first</h1>
+		<div center>second</div>
+		<div center>third</div>
+	</div>
+
+	<div>
+		<h1 center>first</h1>
+		<div center>second</div>
+		<div center>third</div>
+	</div>
+
+	<div>
+		<h1 right>first</h1>
+		<div center>second</div>
+		<div center>third</div>
+	</div>
+
+
+	<div>
+		<button left>first</button>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+	<div>
+		<button center>first</button>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+	<div>
+		<button right>first</button>
+		<div>second</div>
+		<div>third</div>
+	</div>
+
+</body>
+</html>

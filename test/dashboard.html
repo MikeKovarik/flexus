@@ -1,0 +1,341 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+	<!--script src="polyfill/shadycss.min.js"></script-->
+	<!--script src="lib/css-polyfill.js"></script-->
+	<script src="src/animate-polyfill.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css" polyfill>
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+<style>
+	/* SPACED ITEMS WITH 8PX MARGIN ON FIRST AND LAST ITEM */
+	[fx-item] {
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+	[fx-item] + [fx-item] {
+		margin-top: -8px;
+	}
+	flexus-list {
+		padding-top: 8px;
+		padding-bottom: 8px;
+	}
+	flexus-list [fx-item] {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	hr {
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+	[layout][spaced] {
+		margin: -0.5rem;
+	}
+	[layout][spaced] > * {
+		margin: 0.5rem;
+	}
+	/*[spacious] [layout][spaced],
+	[layout][spaced][spacious] {
+		margin: -1rem;
+	}
+	[spacious] [layout][spaced] > *,
+	[layout][spaced][spacious] > * {
+		margin: 1rem;
+	}*/
+	[layout][wrap] {
+		flex-wrap: wrap;
+	}
+	/*flexus-view > main[spacious] {
+		padding: 2rem;
+	}*/
+	flexus-list {
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: column;
+	}
+	flexus-list > * {
+		flex-grow: 0;
+		flex-shrink: 0;
+	}
+	flexus-list[horizontal] {
+		flex-direction: row;
+		overflow-y: hidden;
+		overflow-x: auto;
+	}
+	flexus-list[horizontal][temp-fullwidth] {
+		margin: 0 -1rem;
+		padding: 0 1rem;
+	}
+
+	[card] {
+		margin: 4px;
+		padding: 1rem;
+		overflow: hidden;
+	}
+	img[card] {
+		padding: 0;
+	}
+	[card] > [fx-item] {
+		margin-left: -1rem;
+		margin-right: -1rem;
+	}
+	[card] > flexus-tabs {
+		margin: -1rem -1rem 1rem -1rem;
+	}
+	[card] > header {
+		margin: -1rem -1rem 1rem -1rem;
+		padding: 1rem;
+	}
+	[card] > header > flexus-tabs {
+		margin: 0 -1rem;
+	}
+	[card] > header > flexus-tabs:last-child {
+		margin-top: 8px;
+		margin-bottom: -1rem;
+	}
+
+	[tag] {
+		padding: 2px 4px;
+		font-size: 13px;
+		line-height: 16px;
+		border-radius: 2px;
+		display: inline-block;
+	}
+
+	/* nesmi byt display block */
+	progress {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 100%;
+		margin: 8px 0;
+		height: 4px;
+		background-color: rgba(var(--theme-base), 0.15) !important;
+	}
+	progress::-webkit-progress-bar {
+		background-color: transparent;
+	}
+	progress::-webkit-progress-value {
+		background-color: var(--the-color-background, var(--theme-accent, var(--theme-primary)));
+	}
+	progress[primary]::-webkit-progress-value {
+		background-color: var(--theme-primary);
+	}
+
+	/*
+	on tablet, toolbar is on top, not centered, all icons are pushed to the edge
+	and view is spaced from sides by many rems to make space for the view to be
+	scrolled over the toolbar
+	*/
+	flexus-view[tablet-waterfall-scrooll-over] > flexus-toolbar {
+		position: absolute;
+		left: 0;
+		right: 0;
+	}
+	flexus-view[tablet-waterfall-scrooll-over] > main {
+		padding-left: 3rem;
+		padding-right: 3rem;
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+	}
+
+
+
+	flexus-view > main[max-width] {
+		max-width: 1200px;
+		width: 100%;
+		align-self: center;
+	}
+
+	#instagram  {
+		margin-bottom: 1rem;
+	}
+	#instagram > [card] {
+		width: 180px;
+		height: 120px;
+		margin: 4px 0; /* to protect the shadow from being cut off */
+		object-fit: cover;
+		background-size: cover;
+	}
+	#instagram > [card].more {
+		width: 140px;
+	}
+	#instagram > [card] + [card] {
+		margin-left: 0.5rem;
+	}
+	#instagram > [card] > img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	#thedash flexus-list[flex-1] {
+		min-width: 200px;
+	}
+	#thedash flexus-list[flex-2] {
+		min-width: 300px;
+	}
+	[card] header flexus-tabs {
+		color: #FFF;
+	}
+
+	flexus-pages {
+		min-height: 30px;
+	}
+</style>
+
+</head>
+<body light fx-app primary="blue" accent="yellow">
+
+
+
+	<flexus-view subtle master tablet-waterfall-scrooll-over>
+		<flexus-toolbar multisection colored style="height: 200px; margin-bottom: -120px;" elevation="0">
+			<section>
+				<button icon="menu"></button>
+			</section>
+		</flexus-toolbar>
+		<main max-width>
+
+			<h3 style="margin-bottom: 0.5rem; color: #FFF; font-weight: 500">Instagram</h3>
+			<flexus-list horizontal id="instagram">
+				<img card clickable src="test/img/Ilios_small_4.jpg">
+				<img card clickable src="test/img/Ilios_small_12.jpg">
+				<img card clickable src="test/img/Ilios_small_13.jpg">
+				<img card clickable src="test/img/Ilios_small_15.jpg">
+				<img card clickable src="test/img/Ilios_small_22.jpg">
+				<button href="" card center vertical layout center class="more">
+					<i icon="arrow-forward"></i>
+					more photos
+				</button>
+			</flexus-list>
+
+			<div spaced wrap layout id="thedash">
+
+				<flexus-list flex-1 accent="pink" primary="indigo">
+					<h3>Novinky</h3>
+					<div card>
+						<div>Red progress</div>
+						<progress value="70" max="100" red></progress>
+						<div>Blue progress</div>
+						<progress value="15" max="100" blue></progress>
+						<div>Orange progress</div>
+						<progress value="40" max="100" orange></progress>
+						<div>Default (accent) progress</div>
+						<progress value="60" max="100"></progress>
+						<div>Primary progress</div>
+						<progress value="85" max="100" primary></progress>
+					</div>
+				</flexus-list>
+
+				<flexus-list flex-1>
+					<h3>Facebook</h3>
+					<div card>card</div>
+					<div card>card</div>
+					<div card>card</div>
+				</flexus-list>
+
+				<!--flexus-list flex-1>
+					<h3>Twitter</h3>
+					<div card>card</div>
+					<div card>card</div>
+					<div card>card</div>
+				</flexus-list-->
+
+				<div flex-2>
+					<div card primary="blue" accent="yellow">
+						<header primary>
+							<div title>Google Inc</div>
+							<div>NASDAQ: GOOG</div>
+							<div large>540,48</div>
+						</header>
+						<flexus-tabs fixed stretched for="#mypages1">
+							<div>Day</div>
+							<div>Week</div>
+							<div>Month</div>
+						</flexus-tabs>
+						<flexus-pages id="mypages1">
+							<section>page 0</section>
+							<section>page 1</section>
+							<section>page 2</section>
+						</flexus-pages>
+					</div>
+				</div>
+
+				<div flex-2>
+					<div card primary="red" accent="yellow">
+						<header primary>
+							<div title>Google Inc</div>
+							<div>NASDAQ: GOOG</div>
+							<div large>540,48</div>
+							<flexus-tabs fixed stretched for="#mypages2">
+								<div>Day</div>
+								<div>Week</div>
+								<div>Month</div>
+							</flexus-tabs>
+						</header>
+						<flexus-pages id="mypages2">
+							<section>page 0</section>
+							<section>page 1</section>
+							<section>page 2</section>
+						</flexus-pages>
+					</div>
+				</div>
+
+				<div flex-2>
+					<div card>
+						<h3>Pravě teď</h3>
+						<flexus-list>
+							<div fx-item>
+								<input type="checkbox">
+								<div two-line>
+									<div>Název koncertu</div>
+									<div>
+										<span red tag>koncert</span>
+										<span gray tag>zdarma</span>
+									</div>
+								</div>
+								<span>15:00</span>
+							</div>
+							<div fx-item>
+								<input type="checkbox">
+								<div two-line>
+									<div>Název workshopu</div>
+									<div>
+										<span blue tag>workshop</span>
+										<span gray tag>placený</span>
+									</div>
+								</div>
+								<span>15:30</span>
+							</div>
+						</flexus-list>
+					</div>
+				</div>
+
+			</div>
+
+		</main>
+	</flexus-view>
+
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+	<!--script src="elements/toolbar.js"></script-->
+	<script src="elements/toolbar-tabsbg.js"></script>
+	<script src="elements/drawer.js"></script>
+	<script src="elements/tabs.js"></script>
+	<script src="elements/pages.js"></script>
+
+</body>
+</html>

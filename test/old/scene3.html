@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material-icons.css">
+
+</head>
+<body horizontal layout fx-app light>
+
+<style>
+#playlist {
+	width: 360px;
+}
+flexus-view[peek-bottom] {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	z-index: 99;
+	transform: translate(-50%, calc(100% - 56px));
+}
+</style>
+
+
+	<flexus-view light id="playlist" peek-bottom drag-up-reveal elevation="4">
+
+		<flexus-toolbar elevation="2">
+			<button icon="x"></button>
+			<div flex>Playlist</div>
+			<button icon="share"></button>
+			<button icon="delete"></button>
+		</flexus-toolbar>
+
+		<main>
+			<div fx-item hoverable clickable><div two-line>
+				<span>A light that never comes</span>
+				<span secondary>Linkin Park</span>
+			</div></div>
+			<div fx-item hoverable clickable><div two-line>
+				<span>A light that never comes</span>
+				<span secondary>Linkin Park</span>
+			</div></div>
+			<div fx-item hoverable clickable><div two-line>
+				<span>A light that never comes</span>
+				<span secondary>Linkin Park</span>
+			</div></div>
+			<div fx-item hoverable clickable><div two-line>
+				<span>A light that never comes</span>
+				<span secondary>Linkin Park</span>
+			</div></div>
+		</main>
+
+	</flexus-view>
+
+
+	<flexus-scene flex>
+
+
+		<flexus-view flex relative>
+
+			<flexus-toolbar elevation="2">
+				<button nav icon="arrow-back"></button>
+				<div flex>Currently playing</div>
+			</flexus-toolbar>
+
+			<main relative>
+				<img src="img/wall1.jpg" image-cover width100 height100 fit>
+			</main>
+
+		</flexus-view>
+
+
+	</flexus-scene>
+
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.shadowmaster.js"></script>
+	<script src="build/elements/flexus-toolbar.js"></script>
+	<script src="build/elements/flexus-list.js"></script>
+
+</body>
+</html>

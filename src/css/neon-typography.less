@@ -1,0 +1,136 @@
+.fx-font-base() {
+	font-family: 'Segoe UI', sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.fx-font-monospace() {
+	font-family: 'Consolas', 'Menlo', monospace;
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	font-size: 15px;
+	font-weight: 400;
+	letter-spacing: -0.5px;
+}
+
+
+[secondary],
+[muted] {
+	font-size: 14px !important;
+	color: ~'rgba(var(--foreground-rgb), 0.6)';
+}
+
+
+// TODO: this is straight out copied from material. change
+.fx-font-display4() {
+	font-size: 112px;
+	font-weight: 300;
+	letter-spacing: -.044em;
+	line-height: 120px;
+}
+.fx-font-display3() {
+	font-size: 56px;
+	font-weight: 400;
+	letter-spacing: -.026em;
+	line-height: 60px;
+}
+.fx-font-display2() {
+	font-size: 45px;
+	font-weight: 400;
+	letter-spacing: -.018em;
+	line-height: 48px;
+}
+.fx-font-display1() {
+	font-size: 34px;
+	font-weight: 400;
+	letter-spacing: -.01em;
+	line-height: 40px;
+}
+.fx-font-headline() {
+	font-size: 24px;
+	font-weight: 400;
+	letter-spacing: -.012em;
+	line-height: 32px;
+}
+.fx-font-title() {
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 28px;
+}
+.fx-font-subhead() {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+
+// TODO deprecate
+
+[h1-like-tempname],
+h1 {
+	font-size: 46px;
+	font-weight: 200;
+	//line-height: 1.216;
+	letter-spacing: 0px;
+}
+
+.h2-like-tempname() {
+	font-size: 34px;
+	font-weight: 200;
+	//line-height: 1.176;
+}
+h2 {
+	.h2-like-tempname;
+}
+[h2-like-tempname] {
+	.h2-like-tempname !important;
+}
+
+[h3-like-tempname],
+h3 {
+	font-size: 25px; // slight modification. docs says 24, settings app has is 25
+	font-weight: 300;
+	//line-height: 1.167;
+}
+h3 {
+	// docs says nothing about spacing, this was measures from settings app
+	margin-bottom: 12px;
+	* + & {
+		margin-top: 38px;
+	}
+}
+
+[h4-like-tempname],
+h4 {
+	font-size: 20px;
+	font-weight: 400;
+	//line-height: 1.2;
+}
+h4 {
+	// docs says nothing about spacing, this was measures from settings app
+	margin-bottom: 5px;
+	* + & {
+		margin-top: 20px;
+	}
+}
+
+[h5-like-tempname],
+h5 {
+	font-size: 15px;
+	font-weight: 500;
+	//line-height: 1.333;
+}
+h5 {
+	// docs says nothing about spacing, this was measures from settings app
+	margin-bottom: 2px;
+	* + & {
+		margin-top: 10px;
+	}
+}
+
+figcaption {
+	font-size: 12px;
+	font-weight: 400;
+	//line-height: 1.167;
+}

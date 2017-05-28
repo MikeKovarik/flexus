@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<style>
+		img[fit] {
+			width: 100%;
+			height: 100%;
+		}
+		/*
+		flexus-toolbar,
+		flexus-drawer {
+			opacity: 0;
+		}
+*/
+/*
+		flexus-scene[vertical=""] flexus-view[sidepane],
+		flexus-scene[vertical="true"] flexus-view[sidepane] {
+			max-height: 300px;
+		}
+*/
+		[toolbar][bottom][center] {
+			background-color: rgba(0,0,0,0.5);
+			bottom: 1rem;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		[toolbar][large] button {
+			width: 60px;
+			height: 60px;
+		}
+		.video-toolbar {
+			position: absolute;
+			left: 1rem;
+			right: 1rem;
+			bottom: 1rem;
+		}
+	</style>
+</head>
+<body dark fx-app>
+
+
+	<flexus-drawer pinned="false">
+		<a fx-item icon="slideshow">Collection</a>
+		<a fx-item icon="slideshow">Albums</a>
+		<a fx-item icon="folder">Folders</a>
+		<a fx-item icon="account-circle" slot="sticky">Account</a>
+		<a fx-item icon="settings" slot="sticky">settings</a>
+	</flexus-drawer>
+
+	<flexus-scene flex vertical="phone">
+
+		<flexus-view flex>
+			<flexus-toolbar sticky translucent>
+				<button icon="menu"></button>
+				<h1>Filename.png</h1>
+
+				<!--button slot="fx-menu" icon>Open with</button>
+				<button slot="fx-menu" icon>Copy</button>
+				<button slot="fx-menu" icon>Print</button>
+				<button slot="fx-menu" icon>Set as</button>
+				<hr slot="fx-menu">
+				<button slot="fx-menu" icon="edit">File info</button>
+				<button slot="fx-menu" icon="edit">something</button-->
+
+				<button priority="1" icon="share">Share</button>
+				<button priority="3" icon="slideshow">Slideshow</button>
+				<button priority="1" icon="add">Add to album</button>
+				<button priority="2" icon="edit">Edit</button>
+				<!--button priority="1" icon="rotate" title="Rotate"></button>
+				<button priority="1" icon="delete" title="delete"></button-->
+			</flexus-toolbar>
+
+			<main nopadding>
+				
+				<img src="/flexus/demo/img/img2.jpg" fit image-contain>
+				<!--img src="/flexus/demo/img/win.png" fit image-contain-->
+
+				<!--div toolbar large absolute bottom center>
+					<button icon="arrow-back"></button>
+					<button icon="delete"></button>
+					<button icon="arrow-forward"></button>
+				</div-->
+
+				<div class="video-toolbar" narrow toolbar>
+					<button icon="volume"></button>
+					<button icon="repeat"></button>
+					<div flex text-center>01:31</div>
+					<button icon="prev"></button>
+					<button icon="play"></button>
+					<button icon="next"></button>
+					<div flex text-center>03:49</div>
+					<button icon="fullscreen"></button>
+					<button icon="more"></button>
+				</div>
+
+			</main>
+		</flexus-view>
+
+		<flexus-view subtle>
+			<flexus-toolbar transparent>
+				<button icon="x"></button>
+				<div flex>File Info</div>
+			</flexus-toolbar>
+			<flexus-list>
+				<div fx-item two-line>
+					<div secondary>File name</div>
+					<div>Filename.png</div>
+				</div>
+				<div fx-item two-line>
+					<div secondary>Date</div>
+					<div>Thursday, Octover 27, 2016 2:48 AM</div>
+				</div>
+				<div fx-item two-line>
+					<div secondary>Size</div>
+					<div>12.6 KB</div>
+				</div>
+				<div fx-item two-line>
+					<div secondary>Dimensions</div>
+					<div>514 x 383</div>
+				</div>
+				<div fx-item two-line>
+					<div secondary>Shot</div>
+					<div>--</div>
+				</div>
+				<div fx-item two-line>
+					<div secondary>ISO</div>
+					<div>--</div>
+				</div>
+				<div fx-item two-line>
+					<div secondary>Device</div>
+					<div>--</div>
+				</div>
+			</flexus-list>
+		</flexus-view>
+
+	</flexus-scene>
+
+	<script src="/flexus/lib/Ganymede.js"></script>
+	<script src="/flexus/lib/Flexus.js"></script>
+
+	<!--script src="/flexus/elements/scene.js"></script-->
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/drawer.js"></script>
+	<script src="/flexus/elements/menu.js"></script>
+
+</body>
+</html>

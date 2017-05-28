@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>slider</title>
+
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material-icons.css">
+
+	<script src="polyfill/webcomponents-lite.js"></script>
+	<script src="polyfill/pep.js"></script>
+	<style>
+	body {
+		padding: 20px;
+	}
+
+	button.red flexus-ripple {
+		color: red;	
+	}
+	button.blue {
+		color: #03A9F4;
+	}
+
+	</style>
+
+</head>
+<body material dark>
+
+	<button>normal ripple</button>
+	<button class="red">red ripple</button>
+	<button class="blue">blue ripple</button>
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.styleloader.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="../www/build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="../www/build/css/flexus-metro.css">
+	<link rel="stylesheet" type="text/css" href="../www/build/css/flexus-metro-icons.css">
+
+	<style>
+		testy-test {
+			width: 200px;
+			white-space: pre-line;
+		}
+	</style>
+
+</head>
+<body dark fx-app>
+
+
+	<testy-test id="first"></testy-test>
+	<testy-test id="second" falsebool truebool="false" bool number42 number="2" str="wow" string></testy-test>
+
+	<wow-wow foo="bar"></wow-wow>
+
+	<script src="../dist/Ganymede2.js"></script>
+	<script src="../dist/Flexus2.js"></script>
+	<script src="../dist/elements/TestyTest.js"></script>
+	<script>
+		var {$, $$} = Ganymede
+
+		var first = $$('testy-test')[0]
+		var second = $$('testy-test')[1]
+		setTimeout(() => {
+			console.log('first.falsebool', first.falsebool)
+			console.log('first.truebool', first.truebool)
+		}, 500)
+		setTimeout(() => {
+			first.emit('navigation', 'home')
+		}, 1000)
+/*
+		setTimeout(() => {
+			first.setAttribute('number', 76)
+			first.setAttribute('str', 'hello doge')
+		}, 1000)
+		setTimeout(() => {
+			first.setAttribute('number', 76)
+			first.setAttribute('str', 'hello world')
+		}, 1300)
+*/
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<style>
+		.colorbox {
+			display: flex;
+		}
+		.colorbox > div {
+			display: flex;
+			font-size: 14px;
+			flex: 1;
+			padding: 0.5rem;
+			background-color: var(--background);
+			color: var(--foreground);
+		}
+	</style>
+
+</head>
+<body fx-app vertical layout>
+
+	<!--div class="colorbox" primary="red">
+		<div tinted lighter>[lighter]</div>
+		<div tinted>default</div>
+		<div tinted darker>[darker]</div>
+	</div-->
+
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+	<script>
+
+	var {iridescent} = flexus
+
+	var computed = getComputedStyle(document.body)
+
+	var names = ['red', 'pink', 'purple', 'deep-purple', 'indigo', 'blue', 'light-blue', 'cyan', 'teal', 'green', 'light-green', 'lime', 'yellow', 'amber', 'orange', 'deep-orange', 'brown', 'gray', 'blue-gray']
+	var shades = [100, 300, 500, 700, 900]
+
+	var palette = {}
+	names.forEach(name => {
+		palette[name] = {}
+		shades.forEach(shade => {
+			var string = computed.getPropertyValue(`--palette-${name}-${shade}-rgb`).trim()
+			palette[name][shade] = string.split(',').map(Number)
+		})
+	})
+
+	rowsHtml = names.map(name => {
+		var shadesHtml = shades
+			.map(shade => {
+				var rgb = palette[name][shade]
+				var hex = iridescent.rgbToHex(rgb)
+				var hsl = iridescent.round(iridescent.rgbToHsl(rgb))
+				var [r, g, b] = rgb
+				var [h, s, l] = hsl
+				h = Math.round(h * 360)
+				s = Math.round(s * 100)
+				l = Math.round(l * 100)
+				return `<div primary shade="${shade}">
+					<span flex-3>
+						<!--${shade}-->
+						#${hex}
+					</span>
+					<span flex>${h}°</span>
+					<span flex>${s}</span>
+					<span flex>${l}</span>
+				</div>`
+			})
+			.join('')
+		var html = `<div class="colorbox" primary="${name}">${shadesHtml}</div>`
+		return html
+	}).join('')
+	var fragment = new DocumentFragment
+	fragment.appendChild(document.createElement('div'))
+	fragment.firstChild.innerHTML = rowsHtml
+	Array.from(fragment.children)
+		.forEach(row => {
+			document.body.appendChild(row)
+		})
+
+	</script>
+
+</body>
+</html>

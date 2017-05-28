@@ -1,0 +1,356 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<style>
+		flexus-view {
+			margin: 4px;
+		}
+		:root {
+			/*--toolbar-icons-color: red;*/
+			/*--primary: purple;*/
+			/*--primary: rgb(169,57,255);*/
+		}
+		/*[light],
+		[dark] {
+			--theme-base: 169,57,255;
+		}*/
+		/*
+		[light] {
+			--toolbar-foreground: green;
+		}
+		[dark] {
+			--toolbar-foreground: orange;
+		}*/
+		.gray {
+			background: linear-gradient(to bottom right, #123344 0%,#444 100%);
+		}
+	</style>
+
+</head>
+<body dark vertical layout primary="blue" accent="pink">
+
+	<div layout flex>
+
+		<flexus-view flex light>
+			<flexus-toolbar multisection>
+				<section>
+					<button icon="menu"></button>
+					<div flex>inherited (light)</div>
+				<button icon="more" title="more"></button>
+				</section>
+				<section dark>
+					<div flex>> [dark]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section primary>
+					<div flex>> [primary]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<flexus-tabs fixed>
+					<a href="">One</a>
+					<a href="">Two</a>
+					<a href="">Three</a>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<main>light view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex dark>
+			<flexus-toolbar light multisection>
+				<section>
+					<button icon="menu"></button>
+					<div flex>toolbar[light]</div>
+					<button icon="more" title="more"></button>
+				</section>
+				<section dark>
+					<div flex>> [dark]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section accent>
+					<div flex>> [accent]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<flexus-tabs fixed>
+					<a href="">One</a>
+					<a href="">Two</a>
+					<a href="">Three</a>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<main>dark view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex dark>
+			<flexus-toolbar multisection>
+				<section>
+					<button icon="menu"></button>
+					<div flex>inherited (dark)</div>
+					<button icon="more" title="more"></button>
+				</section>
+				<section light>
+					<div flex>> [light]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section colored>
+					<div flex>> [colored]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<flexus-tabs fixed>
+					<a href="">One</a>
+					<a href="">Two</a>
+					<a href="">Three</a>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<main>dark view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex light>
+			<flexus-toolbar dark multisection>
+				<section>
+					<button icon="menu"></button>
+					<div flex>toolbar[dark]</div>
+				<button icon="more" title="more"></button>
+				</section>
+				<section light>
+					<div flex>> [light]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section tinted>
+					<div flex>> [tinted]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<flexus-tabs fixed>
+					<a href="">One</a>
+					<a href="">Two</a>
+					<a href="">Three</a>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<main>light view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+	</div>
+	<div layout flex>
+
+		<flexus-view flex dark>
+			<flexus-toolbar primary>
+				<button icon="menu"></button>
+				<div flex>primary</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main> view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar dark primary>
+				<button icon="menu"></button>
+				<div flex>dark primary</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main> view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex light>
+			<flexus-toolbar primary>
+				<button icon="menu"></button>
+				<div flex>primary</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main> view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar light primary>
+				<button icon="menu"></button>
+				<div flex>light primary</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main> view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+	</div>
+	<div layout flex>
+
+		<flexus-view flex dark>
+			<flexus-toolbar multisection primary>
+				<section>
+					<button icon="menu"></button>
+					<div flex>[primary]</div>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more" title="more"></button>
+				</section>
+				<section light>
+					<div flex>[primary] > [light]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section dark>
+					<div flex>[primary] > [dark]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+			</flexus-toolbar>
+			<main> view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex dark>
+			<flexus-toolbar multisection accent>
+				<section>
+					<button icon="menu"></button>
+					<div flex>[accent]</div>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more" title="more"></button>
+				</section>
+				<section light>
+					<div flex>[accent] > [light]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section dark>
+					<div flex>[accent] > [dark]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+			</flexus-toolbar>
+			<main> view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex dark>
+			<flexus-toolbar multisection colored>
+				<section>
+					<button icon="menu"></button>
+					<div flex>[colored]</div>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more" title="more"></button>
+				</section>
+				<section light>
+					<div flex>[colored] > [light]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section dark>
+					<div flex>[colored] > [dark]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+			</flexus-toolbar>
+			<main> view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex dark>
+			<flexus-toolbar multisection tinted>
+				<section>
+					<button icon="menu"></button>
+					<div flex>[tinted]</div>
+					<button icon="edit" title="Edit"></button>
+					<button icon="more" title="more"></button>
+				</section>
+				<section light>
+					<div flex>[tinted] > [light]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+				<section dark>
+					<div flex>[tinted] > [dark]</div>
+					<button icon="edit" title="Edit"></button>
+				</section>
+			</flexus-toolbar>
+			<main> view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+	</div>
+	<div layout flex>
+
+		<flexus-view flex class="gray">
+			<flexus-toolbar dark transparent>
+				<button icon="menu"></button>
+				<div flex>transparent</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main>custom view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex class="gray">
+			<flexus-toolbar dark translucent>
+				<button icon="menu"></button>
+				<div flex>translucent</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main>custom view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex class="gray">
+			<flexus-toolbar accrylic>
+				<button icon="menu"></button>
+				<div flex>accrylic</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main>custom view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex class="gray">
+			<flexus-toolbar light accrylic>
+				<button icon="menu"></button>
+				<div flex>light accrylic</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main>custom view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex class="gray">
+			<flexus-toolbar dark accrylic>
+				<button icon="menu"></button>
+				<div flex>dark accrylic</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main>custom view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex class="gray">
+			<flexus-toolbar tinted accrylic>
+				<button icon="menu"></button>
+				<div flex>tinted accrylic</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main>custom view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+	</div>
+	<div layout flex>
+
+		<flexus-view flex light>
+			<flexus-toolbar edge>
+				<button icon="menu"></button>
+				<div flex>primary</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main> view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+		<flexus-view flex>
+			<flexus-toolbar edge>
+				<button icon="menu"></button>
+				<div flex>dark primary</div>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more" title="more"></button>
+			</flexus-toolbar>
+			<main> view<br><input><button>send</button><input type="checkbox" toggle></main>
+		</flexus-view>
+
+	</div>
+	<!--script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+	<script src="elements/tabs.js"></script>
+	<script src="elements/toolbar.js"></script-->
+
+</body>
+</html>

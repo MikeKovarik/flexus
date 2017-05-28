@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="node_modules/babel-polyfill/dist/polyfill.min.js"></script>
+	<script src="dist/ganymede.js"></script>
+	<script src="dist/flexus.js"></script>
+</head>
+<body>
+
+
+	<flexus-test>test element</flexus-test>
+	<div fx-test>test attribute</div>
+
+
+	<script>
+
+		var {$, $$, observe, template, css, on, once, noEventEmitter, noIdList} = ganymede
+		var {fxElement} = flexus
+
+		//@template(`<content></content> <span id="valspan"></span>`)
+		//@fxElement
+		class Test {
+
+			ready() {
+				this.style.backgroundColor = 'cyan'
+				this.value = 42
+			}
+
+			valueChanged() {
+				console.log('valueChanged', this.value)
+				this.$.valspan.textContent = this.value
+			}
+
+			//@observe('value')
+			anotherChangeCallback() {
+				console.log('anotherChangeCallback')
+			}
+
+		}
+
+		template(`<content></content> <span id="valspan"></span>`)(Test)
+		observe('value')(Test.prototype, 'anotherChangeCallback')
+
+		Test = fxElement(Test)
+
+		var element = $('flexus-test')
+		var attribute = $('[fx-test]')
+
+		setTimeout(() => {
+			element.value = 43
+			attribute.value = 43
+		}, 100)
+
+	</script>
+
+
+</body>
+</html>

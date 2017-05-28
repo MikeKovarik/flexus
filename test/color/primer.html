@@ -1,0 +1,429 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+	<meta name="theme-color" content="#607D8B">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<style>
+		:root,
+		html {
+			/* artifically minimized 1rem unit to 8px to have enough space for this demo */
+			font-size: 8px;
+			--gutter: 8px;
+			--fx-item-gutter: 8px;
+			--indent: 32px;
+		}
+		[fx-item],
+		body {
+			font-size: 14px !important;
+			margin-top: 0px !important;
+			margin-bottom: 0px !important;
+			padding-top: 0px !important;
+			padding-bottom: 0px !important;
+		}
+		button {
+			min-height: 28px !important;
+			height: 28px !important;
+			min-width: 0px !important;
+			padding: 0 8px !important;
+		}
+		/*[fx-app] {
+			flex-wrap: wrap;
+		}
+		flexus-view {
+			width: 50%;
+			height: 50%;
+			flex: none !important;
+		}*/
+		flexus-toolbar {
+			font-size: 16px !important;
+			height: 40px !important;
+			min-height: 40px !important;
+			max-height: 40px !important;
+		}
+	</style>
+
+</head>
+<body fx-app light dense>
+
+
+	<template>
+<!--
+		<div fx-item>
+			<div flex>primary</div>
+			<i icon="edit" primary></i>
+			<i icon="edit" foreground="primary"></i>
+			<input type="checkbox" checked primary>
+			<input type="checkbox" checked foreground="primary">
+		</div>
+		<div fx-item>
+			<div flex>tinted</div>
+			<i icon="edit" tinted></i>
+			<i icon="edit" foreground="tinted"></i>
+			<input type="checkbox" checked tinted>
+			<input type="checkbox" checked foreground="tinted">
+		</div>
+		<div fx-item>
+			<div flex>accent</div>
+			<i icon="edit" accent></i>
+			<i icon="edit" foreground="accent"></i>
+			<input type="checkbox" checked accent>
+			<input type="checkbox" checked foreground="accent">
+		</div>
+		<div fx-item>
+			<div flex>green</div>
+			<i icon="edit" green></i>
+			<i icon="edit" foreground="green"></i>
+			<input type="checkbox" checked green>
+			<input type="checkbox" checked foreground="green">
+		</div>
+		<div fx-item>
+			<div flex>purple</div>
+			<i icon="edit" purple></i>
+			<i icon="edit" foreground="purple"></i>
+			<input type="checkbox" checked purple>
+			<input type="checkbox" checked foreground="purple">
+		</div>
+-->
+
+		<div flex fx-item>
+			<i icon="edit"></i>
+			<span flex>text</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+
+		<hr>
+
+		<div flex fx-item foreground="primary">
+			<i icon="edit"></i>
+			<span flex>[fg]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+		<div flex fx-item foreground="tinted">
+			<i icon="edit"></i>
+			<span flex>[fg]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+		<div flex fx-item foreground="accent">
+			<i icon="edit"></i>
+			<span flex>[fg]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+		<div flex fx-item foreground="green">
+			<i icon="edit"></i>
+			<span flex>[fg]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+
+		<hr>
+
+		<div flex fx-item primary>
+			<i icon="edit"></i>
+			<span flex>[color]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+		<div flex fx-item tinted>
+			<i icon="edit"></i>
+			<span flex>[color]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+		<div flex fx-item accent>
+			<i icon="edit"></i>
+			<span flex>[color]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+		<div flex fx-item green>
+			<i icon="edit"></i>
+			<span flex>[color]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+
+		<hr>
+
+		<div flex fx-item background="primary">
+			<i icon="edit"></i>
+			<span flex>[bg]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+		<div flex fx-item background="tinted">
+			<i icon="edit"></i>
+			<span flex>[bg]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+		<div flex fx-item background="accent">
+			<i icon="edit"></i>
+			<span flex>[bg]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+		<div flex fx-item background="green">
+			<i icon="edit"></i>
+			<span flex>[bg]</span>
+			<button>bt</button>
+			<button raised>b</button>
+			<button raised tinted>t</button>
+			<button raised light>l</button>
+			<button raised dark>d</button>
+			<input type="checkbox" toggle>
+			<input type="checkbox" toggle checked>
+			<input type="checkbox">
+			<input type="checkbox" checked>
+		</div>
+
+		<hr>
+
+		<div flex fx-item>
+			<i tinted icon="edit"></i>
+			<span tinted flex>text</span>
+			<button tinted>bt</button>
+			<button tinted raised>bt</button>
+			<input tinted type="checkbox" toggle>
+			<input tinted type="checkbox" toggle checked>
+			<input tinted type="checkbox">
+			<input tinted type="checkbox" checked>
+		</div>
+
+
+<!--
+		<div fx-item>
+			<i icon="email" primary></i>
+			<span flex primary>[primary]</span>
+			<span flex foreground="primary">fg="primary"</span>
+		</div>
+		<div fx-item>
+			<i icon="email" tinted></i>
+			<span flex tinted>[tinted]</span>
+			<span flex foreground="tinted">fg="tinted"</span>
+		</div>
+		<div fx-item>
+			<i icon="email" accent></i>
+			<span flex accent>[accent]</span>
+			<span flex foreground="accent">fg="accent"</span>
+		</div>
+
+		<div flex fx-item foreground="orange">
+			<i icon="alert-circle"></i>
+			<span flex>fg="orange"</span>
+			<button>btn</button>
+			<button raised>btn</button>
+		</div>
+		<div flex fx-item foreground="green">
+			<i icon="checkbox-marked-circle"></i>
+			<span flex>fg="green"</span>
+			<button>btn</button>
+			<button raised>btn</button>
+		</div>
+		<div flex fx-item red>
+			<i icon="close-circle"></i>
+			<span flex>red</span>
+			<button>btn</button>
+			<button raised>btn</button>
+		</div>
+		<div flex fx-item background="purple">
+			<i icon="minus-circle-outline"></i>
+			<span flex>bg="purple"</span>
+			<button>btn</button>
+			<button raised>btn</button>
+		</div>
+		<div flex fx-item background="yellow">
+			<i icon="minus-circle-outline"></i>
+			<span flex>bg="yellow"</span>
+			<button>btn</button>
+			<button raised>btn</button>
+		</div>
+		<div flex fx-item background="accent">
+			<i icon="minus-circle-outline"></i>
+			<span flex>bg="accent"</span>
+			<button>btn</button>
+			<button raised>btn</button>
+		</div>
+-->
+		<div background="deep-purple" foreground="cyan" fx-item>
+			<span flex>bg="deep-purple" fg="cyan"</span>
+			<input type="checkbox" toggle>
+		</div>
+		<div background="deep-purple" foreground="orange" fx-item>
+			<span flex>bg="deep-purple" fg="orange"</span>
+			<input type="checkbox" toggle>
+		</div>
+		<div background="deep-purple" foreground="pink" fx-item>
+			<span flex>bg="deep-purple" fg="pink"</span>
+			<input type="checkbox" toggle>
+		</div>
+		<div background="deep-purple" foreground="cyan">bg="deep-purple" fg="cyan"</div>
+		<div background="primary" foreground="accent">bg="primary" fg="accent"</div>
+
+		<h3 tinted>Tinted heading</h3>
+
+		<div layout>
+			<span flex primary>primary</span>
+			<span flex foreground="primary">fg="primary"</span>
+		</div>
+		<div layout>
+			<span flex tinted>tinted</span>
+			<span flex foreground="tinted">fg="tinted"</span>
+		</div>
+		<div layout>
+			<span flex accent>accent</span>
+			<span flex foreground="accent">fg="accent"</span>
+		</div>
+
+		<div layout>
+			<div flex primary>primary</div>
+			<div flex background="primary">bg="primary"</div>
+		</div>
+		<div layout>
+			<div flex tinted>tinted</div>
+			<div flex background="tinted">bg="tinted"</div>
+		</div>
+		<div layout>
+			<div flex accent>accent</div>
+			<div flex background="accent">bg="accent"</div>
+		</div>
+
+	</template>
+
+
+
+
+
+
+	<flexus-view primary="blue" accent="yellow">
+		<flexus-toolbar tinted>[primary="blue"] [accent="yellow"]</flexus-toolbar>
+		<main></main>
+		<button fab icon="plus" bottom right></button>
+	</flexus-view>
+
+
+	<flexus-view primary="blue" accent="pink">
+		<flexus-toolbar tinted>[primary="blue"] [accent="pink"]</flexus-toolbar>
+		<main></main>
+		<button fab icon="plus" bottom right></button>
+	</flexus-view>
+
+
+	<flexus-view dark primary="blue" accent="yellow">
+		<flexus-toolbar tinted>[primary="blue"] [accent="yellow"]</flexus-toolbar>
+		<main></main>
+		<button fab icon="plus" bottom right></button>
+	</flexus-view>
+
+
+	<!--flexus-view dark accent="#FF0000">
+		<flexus-toolbar tinted>inherited primary, accent="#FF0000"</flexus-toolbar>
+		<main></main>
+		<button fab icon="plus" bottom right></button>
+	</flexus-view-->
+
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+	<script>
+		var {$, $$} = ganymede
+		var template = $('template')
+		$$('flexus-view > main').forEach(node => node.append(template.content.cloneNode(true)))
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+/*
+
+NOTE: icon names are aligned to https://materialdesignicons.com/
+with a few exceptions:
+
+original materialdesignicons name -> alias with a better fitting name
+
+dots-vertical -> more
+share-variant -> share      (the correct share icon is originally 'share-variant' but renamed to correct form 'share')
+arrow-left -> arrow-back
+arrow-right -> arrow-forward
+magnify -> search
+close -> x, clear
+cancel -> block (block doesnt exist in MDI, but block-helper does, so block is alias there as well)
+plus -> add, create
+pencil -> edit
+check -> accept
+content-save -> save
+content-copy -> copy
+content-cut -> cut
+content-paste -> paste
+volume -> volume-high
+skip-previous -> prev
+skip-next -> next
+brightness-6 -> brightness
+account-multiple -> accounts, people
+account-multiple-outline -> accounts-outline
+lock-open -> unlock
+rotate-right -> rotate
+pin-off -> unpin
+volume-off -> mute
+mail -> mail
+information-outline -> info
+*/
+
+
+
+
+.fx-icon-pseudo() {
+	content: '';
+	//content: attr(icon);
+	font-size: var(--size);
+	line-height: 1;
+	letter-spacing: 0;
+	//font-weight: 400;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	.fx-icon-font;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	// optimizelegibility throws things off #1094
+	text-rendering: auto;
+	// ensures no half-pixel rendering in firefox
+	transform: translate(0, 0);
+	// needed for transformation
+	display: inline-block;
+}
+
+[icon] {
+
+	&::before {
+		.fx-icon-pseudo;
+	}
+
+	i& {
+		//font-style: normal;
+		/*width: 24px;
+		height: 24px;*/ // disabled because need of room for margins for [small][icon]
+		font-size: var(--size);
+		line-height: var(--size);
+		//display: inline-block;
+		//display: flex;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	i&::before {
+		font-size: inherit;
+	}
+
+	&:empty {
+		text-align: center;
+	}
+
+	&::before,
+	&:empty {
+		color: ~'rgba(var(--foreground-rgb), var(--opacity-normal))';
+	}
+
+	&[disabled],
+	&:disabled {
+		color: ~'rgba(var(--foreground-rgb), var(--opacity-disabled))';
+	}
+
+}
+
+:root  {
+	--icon-scale: scaleX(1);
+	--icon-rotate: rotate(0deg);
+}
+[icon-rotate="45"]  {--icon-rotate: rotate(45deg)}
+[icon-rotate="90"]  {--icon-rotate: rotate(90deg)}
+[icon-rotate="135"] {--icon-rotate: rotate(135deg)}
+[icon-rotate="180"] {--icon-rotate: rotate(180deg)}
+[icon-rotate="225"] {--icon-rotate: rotate(225deg)}
+[icon-rotate="270"] {--icon-rotate: rotate(270deg)}
+[icon-rotate="315"] {--icon-rotate: rotate(315deg)}
+
+[icon-flip="horizontal"] {--icon-scale: scaleX(-1)}
+[icon-flip="vertical"]   {--icon-scale: scaleY(-1)}
+
+[icon-rotate]::before,
+[icon-flip]::before {
+	transform: var(--icon-rotate) var(--icon-scale);
+}
+
+
+button[icon] {
+	//display: flex;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	//[flat] {} // raised by default
+}
+
+// prevents shrinking icons when layout gets too thin (e.g. closing drawer)
+[icon="menu"]:before {
+	flex-shrink: 0;
+}

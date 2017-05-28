@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+
+	<title>flexus-toolbar demo</title>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+</head>
+<body dark>
+
+
+
+	<flexus-view>
+		<flexus-toolbar>
+			<section>
+				<button icon="menu"></button>
+				<div flex>Sectionless</div>
+				<button icon="checklist"></button>
+				<button icon="add"></button>
+				<button icon="more"></button>
+			</section>
+			<section selection>
+				<button icon="arrow-back"></button>
+				<div flex>selected: 0</div>
+				<button icon="share"></button>
+				<button icon="delete"></button>
+			</section>
+		</flexus-toolbar>
+		<main>
+			<flexus-list>
+				<div fx-item><input type="checkbox" hidden>text</div>
+				<div fx-item><input type="checkbox" hidden>text</div>
+				<div fx-item><input type="checkbox" hidden>text</div>
+				<div fx-item><input type="checkbox" hidden>text</div>
+			</flexus-list>
+			<button onclick="fireEvent('fx-selection-start')">fx-selection-start</button>
+			<button onclick="fireEvent('fx-selection-end')">fx-selection-end</button>
+		</main>
+	</flexus-view>
+
+
+	<!--flexus-toolbar>
+
+		<section main>
+			<button nav icon="menu"></button>
+			<div flex>Main Section</div>
+			<button icon="search"></button>
+			<a href="#" icon="edit"></a>
+			<button icon="more"></button>
+		</section>
+
+		<section search>
+			<button icon="arrow-back"></button>
+			<input type="text" flex placeholder="Search">
+			<button icon="close"></button>
+		</section>
+
+		<section selection>
+			<button icon="arrow-back"></button>
+			<div flex>Selected: 1</div>
+			<button icon="share"></button>
+			<button icon="delete"></button>
+			<button icon="more"></button>
+		</section>
+
+	</flexus-toolbar-->
+
+
+
+
+	<script>
+	var toolbar = document.querySelector('flexus-toolbar')
+	var view = document.querySelector('flexus-view')
+	function fireEvent(name) {
+		console.log('fireEvent', name)
+		var e = new Event(name);
+		view.dispatchEvent(e);
+	}
+	</script>
+
+	<script src="lib/flexus.js"></script>
+	<script src="lib/ganymede.js"></script>
+
+	<script src="elements/toolbar.js"></script>
+
+</body>
+</html>

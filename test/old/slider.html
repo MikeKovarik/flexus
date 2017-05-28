@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>slider</title>
+
+	<script src="polyfill/webcomponents-lite.js"></script>
+	<script src="polyfill/pep.js"></script>
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material-icons.css">
+	<style>
+	body {
+		padding: 20px;
+	}
+	button[transparent],
+	button[transparent="material"] {
+		background-color: transparent;
+	}
+	</style>
+
+</head>
+<body dark fullbleed>
+
+	<flexus-slider min="0" value="5" max="10" pin></flexus-slider>
+	<button transparent="material" action="showRange">showRange</button>
+	<button transparent="material" action="hideRange">hideRange</button>
+	<button transparent="material" action="showValue">showValue</button>
+	<button transparent="material" action="hideValue">hideValue</button>
+
+	<br><br>
+
+	<flexus-slider min="0" value="5" max="10"></flexus-slider>
+	<button transparent="material" action="showRange">showRange</button>
+	<button transparent="material" action="hideRange">hideRange</button>
+	<button transparent="material" action="showValue">showValue</button>
+	<button transparent="material" action="hideValue">hideValue</button>
+
+	<br><br>
+
+	<flexus-slider min="0" max="200" from="0" to="200" pin></flexus-slider>
+	<button transparent="material" action="showRange">showRange</button>
+	<button transparent="material" action="hideRange">hideRange</button>
+	<button transparent="material" action="showValue">showValue</button>
+	<button transparent="material" action="hideValue">hideValue</button>
+
+	<br><br>
+
+	<flexus-slider min="0" max="100" from="30" to="70"></flexus-slider>
+	<button transparent="material" action="showRange">showRange</button>
+	<button transparent="material" action="hideRange">hideRange</button>
+	<button transparent="material" action="showValue">showValue</button>
+	<button transparent="material" action="hideValue">hideValue</button>
+
+	<br><br>
+
+	<flexus-slider min="0" value="40" max="100" from="10" to="70"></flexus-slider>
+	<button transparent="material" action="showRange">showRange</button>
+	<button transparent="material" action="hideRange">hideRange</button>
+	<button transparent="material" action="showValue">showValue</button>
+	<button transparent="material" action="hideValue">hideValue</button>
+
+	<br><br>
+
+	<flexus-slider min="0" value="25" max="100" progress="85"></flexus-slider>
+	<button transparent="material" action="showRange">showRange</button>
+	<button transparent="material" action="hideRange">hideRange</button>
+	<button transparent="material" action="showValue">showValue</button>
+	<button transparent="material" action="hideValue">hideValue</button>
+
+	<br><br><br><br>
+
+	<h3>TODO</h3>
+	<ul>
+	</ul>
+
+	<!--br><br>
+
+	<flexus-slider min="0" value="5" max="10" trimin="0" trimout="0" pin></flexus-slider>
+
+	<br><br>
+
+	<flexus-slider min="0" value="5" max="10" trimin="2" trimout="2" pin></flexus-slider>
+
+	<br><br>
+
+	<flexus-slider min="0" value="25" max="100" progress="85"></flexus-slider>
+
+	<br><br>
+
+	<flexus-slider min="0" value="25" max="100" disabled></flexus-slider-->
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.ripple.js"></script>
+	<script src="build/flexus.shadowmaster.js"></script>
+	<script src="build/elements/flexus-slider.js"></script>
+	<script>
+	var slider = document.querySelector('flexus-slider');
+	Array.from(document.querySelectorAll('button')).forEach(button => {
+		var slider = button
+		while (slider.localName != 'flexus-slider') {
+			slider = slider.previousElementSibling
+		}
+		button.addEventListener('click', e => {
+			slider[button.getAttribute('action')]()
+		})
+	})
+	</script>
+</body>
+</html>

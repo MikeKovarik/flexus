@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+	<!--script src="polyfill/shadycss.min.js"></script-->
+	<!--script src="lib/css-polyfill.js"></script-->
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css" polyfill>
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+<style>
+	[scrollable] {
+		background-color: #EEE !important;
+	}
+	flexus-pages {
+		max-width: 250px;
+		height: 150px;
+		margin: auto;
+		padding: 1rem;
+	}
+</style>
+
+</head>
+<body light primary="blue" accent="yellow">
+
+	<flexus-tabs>
+		<div>ZERO</div>
+		<div>ONE</div>
+		<div>TWO</div>
+		<div>THREE</div>
+		<div>FOUR</div>
+	</flexus-tabs>
+
+	<flexus-pages card id="pages">
+		<div primary-background primary="light-blue">0</div>
+		<div primary-background primary="green">1</div>
+		<div primary-background primary="orange">2</div>
+		<div primary-background primary="red">3</div>
+		<div primary-background primary="indigo">4</div>
+	</flexus-pages>
+
+	<div text-center>
+		<button icon="arrow-back" onclick="pages.prev()"></button>
+		<button icon="arrow-forward" onclick="pages.next()"></button>
+	</div>
+
+	<!--flexus-pages id="pages" selected="1" card>
+		<div primary-background primary="light-blue">page 0</div>
+		<div primary-background primary="green">page 1</div>
+		<div primary-background primary="orange">page 2</div>
+		<div primary-background primary="red">page 3</div>
+		<div primary-background primary="indigo">page 4</div>
+	</flexus-pages>
+	<div text-center>
+		<button icon="arrow-back" onclick="pages.prev()"></button>
+		<button icon="arrow-forward" onclick="pages.next()"></button>
+	</div>
+	<div text-center>
+		<button icon="arrow-back" onclick="pages.selected -= 2"></button>
+		<button icon="arrow-forward" onclick="pages.selected += 2"></button>
+	</div-->
+
+<!--
+	reddit like endless left/right post swipe (with or without preloading)
+	<flexus-pages id="endless" card>
+	</flexus-pages>
+	<div text-center>
+		<button icon="arrow-back">prepend page</button>
+		<button icon="arrow-forward">append page</button>
+	</div>
+-->
+	<flexus-tabs>
+		<div>ITEM ONE</div>
+		<div>ITEM TWO</div>
+		<div>ITEM THREE</div>
+	</flexus-tabs>
+
+	<flexus-tabs>
+		<div>ITEM ONE</div>
+		<div>ITEM TWO</div>
+		<div>ITEM THREE</div>
+		<div>ITEM FOUR</div>
+	</flexus-tabs>
+
+	<flexus-tabs>
+		<div>ITEM ONE</div>
+		<div>ITEM TWO</div>
+		<div>ITEM THREE</div>
+		<div>ITEM FOUR</div>
+		<div>ITEM FIVE</div>
+	</flexus-tabs>
+
+	<flexus-tabs>
+		<div>ITEM ONE</div>
+		<div>ITEM TWO</div>
+		<div>ITEM THREE</div>
+		<div>ITEM FOUR</div>
+		<div>ITEM FIVE</div>
+		<div>ITEM SIX</div>
+	</flexus-tabs>
+
+	<flexus-tabs>
+		<div icon="edit"></div>
+		<div icon="star"></div>
+		<div icon="account"></div>
+	</flexus-tabs>
+
+	<flexus-tabs>
+		<div icon="edit"></div>
+		<div icon="star"></div>
+		<div icon="account"></div>
+		<div icon="settings"></div>
+		<div icon="sync"></div>
+	</flexus-tabs>
+
+	<flexus-tabs>
+		<div icon="edit"></div>
+		<div icon="star"></div>
+		<div icon="account"></div>
+		<div icon="settings"></div>
+		<div icon="sync"></div>
+		<div icon="history"></div>
+	</flexus-tabs>
+
+	<flexus-tabs indent>
+		<div icon="edit"></div>
+		<div icon="star"></div>
+		<div icon="account"></div>
+		<div icon="settings"></div>
+		<div icon="sync"></div>
+		<div icon="history"></div>
+		<div icon="share"></div>
+	</flexus-tabs>
+
+	<flexus-tabs>
+		<div icon="edit"></div>
+		<div icon="star"></div>
+		<div icon="account"></div>
+		<div icon="settings"></div>
+		<div icon="sync"></div>
+		<div icon="history"></div>
+		<div icon="share"></div>
+		<div icon="heart"></div>
+		<div icon="help"></div>
+	</flexus-tabs>
+
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+	<!--script src="elements/toolbar.js"></script-->
+	<script src="elements/tabs.js"></script>
+	<script src="elements/pages.js"></script>
+
+</body>
+</html>

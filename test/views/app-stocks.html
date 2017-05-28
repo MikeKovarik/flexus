@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<style>
+		body {
+			background-color: #37474F !important;
+		}
+		flexus-scene {
+			padding: 2rem;
+		}
+		flexus-view {
+			max-width: 800px;
+			margin: auto;
+			margin-top: 1rem;
+		}
+		flexus-view main {
+			padding-top: 0px;
+		}
+		[elevation="-1"] {
+			background-color: #eaeaea;
+			box-shadow: 0 -5px 6px -5px rgba(0, 0, 0, 0.2) inset, 0 6px 7px -5px rgba(0, 0, 0, 0.3) inset;
+		}
+		[subtitle][elevation] {
+			height: 48px;
+			margin: 0 -1rem 8px -1rem;
+			padding: 0 1rem;
+			display: flex;
+			align-items: center;
+		}
+		* + [subtitle][elevation] {
+			margin-top: 8px;
+		}
+		[fab][bottom] {
+			bottom: -50%;
+		}
+		flexus-toolbar[primary] {
+			--slider-knob: var(--theme-primary-darker);
+			--slider-track: var(--theme-primary-darker);
+		}
+		#graph {
+			width: calc(100% + 2rem);
+			margin: 0 -1rem;
+			padding: 0 1rem;
+		}
+	</style>
+
+
+</head>
+<body light primary="blue-gray" accent="green">
+
+
+	<flexus-scene>
+
+
+		<flexus-view card subtle elevation="4">
+
+			<flexus-toolbar colored multisection elevation="2">
+				<section>
+					<a href="#" icon="arrow-back"></a>
+					<div>Feb 01, 2014</div>
+					<div>Jan 01, 2015</div>
+					<div flex></div>
+					<button icon="share"></button>
+					<button icon="more"></button>
+				</section>
+				<section free vertical style="height: 300px">
+					<flexus-pages flex id="graph">
+					<div fit><img fit src="/flexus/demo/img/graph2.png"></div>
+					<div fit><img fit src="/flexus/demo/img/graph1.png"></div>
+					<div fit><img fit src="/flexus/demo/img/graph2.png"></div>
+					<div fit><img fit src="/flexus/demo/img/graph1.png"></div>
+					<div fit><img fit src="/flexus/demo/img/graph2.png"></div>
+					<div fit><img fit src="/flexus/demo/img/graph1.png"></div>
+					<div fit><img fit src="/flexus/demo/img/graph2.png"></div>
+					</flexus-pages>
+					<input type="range" min="2005" max="2015" step="1" fullwidth>
+				</section>
+				<flexus-tabs for="#graph">
+					<div>1 month</div>
+					<div>3 months</div>
+					<div>6 months</div>
+					<div>ytd</div>
+					<div>1 year</div>
+					<div>all</div>
+				</flexus-tabs>
+				<section free darker>
+					<span headline>Google Inc 531.00</span>
+					<span accent weight="300">+3.42 (0.65%)</span>
+				</section>
+				<button fab icon="star" elevation="3" bottom right></button>
+			</flexus-toolbar>
+
+			<main>
+
+				<h3 subtitle>Annotations</h3>
+
+				<flexus-list card fullwidth>
+					<div fx-item>
+						<input type="checkbox" avatar>
+						<div multi-line>
+							<div>Lorem ipsum dolor sit amet</div>
+							<div secondary>consectetur adipisicing elit, sed do eiusmod</div>
+						</div>
+						<input type="checkbox">
+					</div>
+					<div fx-item>
+						<img avatar>
+						<div multi-line>
+							<div>Ut enim ad minim veniam ex ea commodo</div>
+							<div secondary>quis nostrud exercitation ullamco laboris nisi ut aliquip</div>
+						</div>
+					</div>
+					<div fx-item>
+						<img avatar>
+						<div multi-line>
+							<div>Duis aute irure dolor in reprehenderit in voluptate</div>
+							<div secondary>velit esse cillum dolore eu fugiat nulla pariatur</div>
+						</div>
+					</div>
+				</flexus-list>
+
+				<h3 subtitle>Older articles</h3>
+
+				<div card fullwidth>
+					<div fx-item>
+						<img avatar>
+						<div multi-line>
+							<div>Lorem ipsum dolor sit amet</div>
+							<div secondary>consectetur adipisicing elit, sed do eiusmod</div>
+						</div>
+					</div>
+					<div fx-item>
+						<img avatar>
+						<div multi-line>
+							<div>Ut enim ad minim veniam ex ea commodo</div>
+							<div secondary>quis nostrud exercitation ullamco laboris nisi ut aliquip</div>
+						</div>
+					</div>
+					<div fx-item>
+						<img avatar>
+						<div multi-line>
+							<div>Duis aute irure dolor in reprehenderit in voluptate</div>
+							<div secondary>velit esse cillum dolore eu fugiat nulla pariatur</div>
+						</div>
+					</div>
+				</div>
+
+			</main>
+		</flexus-view>
+
+
+		<!--flexus-view card elevation="4">
+
+			<flexus-toolbar colored multisection elevation="2">
+				<section>
+					<a href="#" icon="arrow-back"></a>
+					<div>Feb 01, 2014</div>
+					<div>Jan 01, 2015</div>
+					<div flex></div>
+					<button icon="share"></button>
+					<button icon="more"></button>
+				</section>
+				<section free vertical style="height: 300px">
+					<flexus-pages flex id="graph">
+					<div><img fit src="/flexus/demo/img/graph2.png"></div>
+					<div><img fit src="/flexus/demo/img/graph1.png"></div>
+					<div><img fit src="/flexus/demo/img/graph2.png"></div>
+					<div><img fit src="/flexus/demo/img/graph1.png"></div>
+					<div><img fit src="/flexus/demo/img/graph2.png"></div>
+					<div><img fit src="/flexus/demo/img/graph1.png"></div>
+					<div><img fit src="/flexus/demo/img/graph2.png"></div>
+					</flexus-pages>
+					<input type="range" min="2005" max="2015" step="1" fullwidth>
+				</section>
+				<flexus-tabs for="#graph">
+					<div>1 month</div>
+					<div>3 months</div>
+					<div>6 months</div>
+					<div>ytd</div>
+					<div>1 year</div>
+					<div>all</div>
+				</flexus-tabs>
+				<section free darker>
+					<span headline>Google Inc 531.00</span>
+					<span accent weight="300">+3.42 (0.65%)</span>
+				</section>
+				<button fab icon="star" elevation="3" bottom right></button>
+			</flexus-toolbar>
+
+			<main>
+
+				<h3 subtitle elevation="-1">Annotations</h3>
+
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Lorem ipsum dolor sit amet</div>
+						<div secondary>consectetur adipisicing elit, sed do eiusmod</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Ut enim ad minim veniam ex ea commodo</div>
+						<div secondary>quis nostrud exercitation ullamco laboris nisi ut aliquip</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Duis aute irure dolor in reprehenderit in voluptate</div>
+						<div secondary>velit esse cillum dolore eu fugiat nulla pariatur</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Excepteur sint occaecat cupidatat non</div>
+						<div secondary>sunt in culpa qui officia deserunt mollit anim id</div>
+					</div>
+				</div>
+
+				<h3 subtitle elevation="-1">Older articles</h3>
+
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Lorem ipsum dolor sit amet</div>
+						<div secondary>consectetur adipisicing elit, sed do eiusmod</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Ut enim ad minim veniam ex ea commodo</div>
+						<div secondary>quis nostrud exercitation ullamco laboris nisi ut aliquip</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Duis aute irure dolor in reprehenderit in voluptate</div>
+						<div secondary>velit esse cillum dolore eu fugiat nulla pariatur</div>
+					</div>
+				</div>
+				<div fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Excepteur sint occaecat cupidatat non</div>
+						<div secondary>sunt in culpa qui officia deserunt mollit anim id</div>
+					</div>
+				</div>
+
+			</main>
+		</flexus-view-->
+
+
+	</flexus-scene>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/tabs.js"></script>
+	<script src="/flexus/elements/pages.js"></script>
+
+</body>
+</html>

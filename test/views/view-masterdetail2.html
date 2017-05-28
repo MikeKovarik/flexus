@@ -1,0 +1,195 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="../polyfill/custom-elements.min.js"></script>
+	<script src="../polyfill/shadydom.min.js"></script>
+	<!--script src="polyfill/shadycss.min.js"></script-->
+	<script src="../src/animate-polyfill.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../css/flexus-material.css" polyfill>
+	<link rel="stylesheet" type="text/css" href="../css/flexus-material-icons.css">
+
+	<style>
+	/*
+	[card] {
+		box-shadow: none;
+		border-radius: 0;
+	}
+	body[phone] [card="phone"],
+	body[tablet] [card="tablet"],
+	[card=""] {
+		box-shadow: 0px 2px 6px rgba(0,0,0,0.5) !important;
+		border-radius: 3px;
+	}
+	*/
+
+	flexus-toolbar[multisection] > section {
+		overflow: initial !important;
+	}
+
+	[tablet] flexus-toolbar[multisection] > section > button[icon]:first-child {
+		margin-left: calc(0px - var(--space-left));
+		transform: translateY(calc(0px - var(--space-top)));
+	}
+	</style>
+
+</head>
+<body light fx-app primary="red" accent="light-blue">
+
+
+	<flexus-scene type="master-detail" look="1" spacious ng-controller="HeroesController">
+
+		<flexus-view master subtle>
+			<flexus-toolbar multisection tinted>
+				<section>
+					<button icon="menu"></button>
+					<h1>Contacts</h1>
+					<button icon="search"></button>
+					<button icon="more"></button>
+				</section>
+				<section light selection transition="fade">
+					<button icon="arrow-back" ng-click="deselect()"></button>
+					<h2>{{selectedHeroes}} Selected</h2>
+					<button icon="delete"></button>
+					<button icon="share"></button>
+					<button icon="more"></button>
+				</section>
+				<!--section search card>
+					<button icon="arrow-back" ng-click="deselect()"></button>
+					<input type="text">
+				</section-->
+				<flexus-tabs>
+					<div primary="red">All</div>
+					<div primary="light-green" accent="indigo">Favorites</div>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<flexus-pages>
+				<div>
+					<a ng-repeat="hero in heroes" href="#/hero/{{hero.callsign}}" ng-click="openHero(hero)" fx-item>
+						<input type="checkbox" avatar animate="avatar" style="background-image: url('img/portrait/{{hero.callsign}}.png')">
+						<div animate="title">{{hero.name}}</div>
+					</a>
+				</div>
+				<div id="favorites-list">
+					<p>No favorites yet.</p>
+					<p>Go out and make some friends.</p>
+				</div>
+			</flexus-pages>
+			<button fab icon="plus" title="Add new contact" bottom right></button>
+		</flexus-view>
+
+		<flexus-view detail card="tablet">
+			<flexus-toolbar multisection dark tinted="phone" seam="tablet">
+				<section overlay>
+					<button icon="arrow-back"></button>
+					<div flex></div>
+					<button icon="more"></button>
+				</section>
+				<div flexible ratio="16:9" image-cover animate="avatar" style="background-image: url('img/storybg/{{hero.callsign}}.jpg')"></div>
+				<section overlay indent>
+					<h2 animate="title">{{hero.name}}</h2>
+				</section>
+			</flexus-toolbar>
+			<div>
+				<!--div fx-item>
+					<div avatar animate="avatar" style="background-image: url('img/portrait/{{hero.callsign}}.png')"></div>
+					<div two-line><div>{{hero.callsign}}</div><div secondary>{{hero.name}}</div></div>
+				</div-->
+				<div fx-item two-line><div>{{hero.callsign}}</div><div secondary>Callsign</div></div>
+				<div fx-item two-line><div>{{hero.name}}</div><div secondary>Name</div></div>
+				<hr>
+				<div fx-item two-line icon="edit"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="wifi"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="undo"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="redo"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="history"><div>First Line</div><div secondary>Secondary line</div></div>
+				<hr indent>
+				<div fx-item two-line icon="settings"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="download"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="folder"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="phone"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="star-outline"><div>First Line</div><div secondary>Secondary line</div></div>
+				<hr indent>
+				<div fx-item two-line icon="edit"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="edit"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="edit"><div>First Line</div><div secondary>Secondary line</div></div>
+				<div fx-item two-line icon="edit"><div>First Line</div><div secondary>Secondary line</div></div>
+			</div>
+		</flexus-view>
+
+
+	</flexus-scene>
+
+
+	<script src="scripts/angular.min.js"></script>
+	<script src="../lib/Ganymede.js"></script>
+	<script src="../lib/Flexus.js"></script>
+
+	<script src="../elements/drawer.js"></script>
+	<script src="../elements/view.js"></script>
+	<script src="../elements/scene.js"></script>
+	<script src="../elements/tabs.js"></script>
+	<script src="../elements/pages.js"></script>
+	<script src="../elements/toolbar.js"></script>
+
+	<script>
+
+		var app = angular.module('app', [])
+
+		app.controller('HeroesController', ['$scope', $scope => {
+			console.log('controller')
+			$scope.heroes = [
+				{id: 1,  callsign: 'genji', name: 'Genji Shimada'},
+				{id: 2,  callsign: 'mccree', name: 'Jesse McCree'},
+				{id: 3,  callsign: 'pharah', name: 'Fareeha Amari'},
+				{id: 4,  callsign: 'reaper', name: 'Gabriel Reyes'},
+				{id: 5,  callsign: 'soldier76', name: 'Jack Morrison'},
+				{id: 6,  callsign: 'sombra', name: 'Sombra'},
+				{id: 7,  callsign: 'tracer', name: 'Lena Oxton'},
+				{id: 8,  callsign: 'bastion', name: 'SST Laboratories Siege Automaton E54, “Bastion"'},
+				{id: 9,  callsign: 'hanzo', name: 'Hanzo Shimada'},
+				{id: 10, callsign: 'junkrat', name: 'Jamison Fawkes'},
+				{id: 11, callsign: 'mei', name: 'Mei-Ling Zhou'},
+				{id: 12, callsign: 'torbjorn', name: 'Torbjörn Lindholm'},
+				{id: 13, callsign: 'widowmaker', name: 'Amélie Lacroix'},
+				{id: 14, callsign: 'dva', name: 'Hana Song'},
+				{id: 15, callsign: 'reinhardt', name: 'Wilhelm Reinhardt'},
+				{id: 16, callsign: 'roadhog', name: 'Mako Rutledge'},
+				{id: 17, callsign: 'winston', name: 'Winston'},
+				{id: 18, callsign: 'zarya', name: 'Aleksandra Zaryanova'},
+				{id: 19, callsign: 'ana', name: 'Ana Amari'},
+				{id: 20, callsign: 'lucio', name: 'Lúcio Correia dos Santos'},
+				{id: 21, callsign: 'mercy', name: 'Angela Zeigler'},
+				{id: 22, callsign: 'symmetra', name: 'Satya Vaswani'},
+				{id: 23, callsign: 'zenyatta', name: 'Zenyatta'},
+			]
+
+			$scope.hero = $scope.heroes[22]
+
+			$scope.openHero = function(hero) {
+				$scope.hero = hero
+			}
+
+			$scope.selectedHeroes = 0
+			$scope.calculateSelected = function(e) {
+				var value = 0
+				$scope.heroes.forEach(hero => hero.checked ? value++ : 0)
+				$scope.selectedHeroes = value
+			}
+
+			$scope.deselect = function() {
+				$scope.heroes.forEach(hero => {
+					hero.checked = false
+				})
+			}
+
+		}])
+
+	</script>
+
+</body>
+</html>

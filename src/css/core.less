@@ -1,0 +1,287 @@
+//@import (reference) "layout";
+@import "layout";
+@import "reset";
+@import "core-layout";
+@import "core-util";
+@import "core-icons";
+@import "core-input";
+@import "core-item";
+@import "core-color";
+@import "core-typography";
+@import "core-overlay";
+@import "core-body";
+//@import "core-debug";
+
+
+:root ::before, // TODO: Remove when Edge fixes a bug with CSS variables inside pseudo elements
+:root {
+	// breakpoints
+	// heavily inspired by https://docs.microsoft.com/en-us/windows/uwp/layout/screen-sizes-and-breakpoints-for-responsive-design
+	--breakpoint-s-m: 600px; // TODO: change to 640 after investigation
+	--breakpoint-m-l: 1000px;
+	//--breakpoint-xs:  400px;
+	//--breakpoint-s-m: 720px;
+	//--breakpoint-m-l: 1024px;
+	//--breakpoint-xl:  1920px;
+	// used mainly for icons and checkboxes
+	--size: 24px;
+}
+
+// TODO-deprecate
+@phone:       ~"(max-width: 600px) and (orientation: portrait), (max-height: 600px) and (orientation: landscape)";
+@tablet:       ~"(min-width: 600px) and (orientation: portrait), (min-height: 600px) and (orientation: landscape)";
+@phablet:     ~"(min-width: 400px) and (max-width: 600px) and (orientation: portrait)";
+
+:root {
+	--breakpoint-1: 600px;
+}
+
+@screensize-s:  ~'[screensize*="s"]';
+@screensize-m:  ~'[screensize*="m"]';
+@screensize-l:  ~'[screensize*="l"]';
+
+// TODO: in future move away from rem and fully embrace css custom properties
+//       so we can move away from [screensize] and [non/touch] on <html>
+html {
+	// ensure 16px grid for REM (global) units
+	font-size: var(--gutter);
+}
+html, body {
+	height: 100%;
+	overflow: hidden;
+	margin: 0;
+	// necessary for draggable views and drawer
+	user-select: none;
+	cursor: default;
+}
+
+body {
+	animation: fadein 200ms 300ms backwards;
+}
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+img {
+	max-width: 100%;
+}
+
+// prevents 300ms click delay
+// note: may conflict with pan-x/pan-y drag/scroll
+a,
+input,
+textarea,
+button {
+	touch-action: manipulation;
+}
+
+// prevent text selection
+flexus-list {
+	display: block;
+}
+
+
+
+.fx-elevation-seam {z-index: 0}
+.fx-elevation-0dp  {z-index: 0}
+.fx-elevation-2dp  {z-index: 2}
+.fx-elevation-4dp  {z-index: 4}
+.fx-elevation-6dp  {z-index: 6}
+.fx-elevation-8dp  {z-index: 8}
+.fx-elevation-10dp {z-index: 10}
+
+[seam],
+[elevation] {
+	position: relative;
+}
+[seam]                              {.fx-elevation-seam}
+[elevation="0"], [elevation="0dp"]  {.fx-elevation-0dp}
+[elevation="1"], [elevation="2dp"]  {.fx-elevation-2dp}
+[elevation="2"], [elevation="4dp"]  {.fx-elevation-4dp}
+[elevation="3"], [elevation="6dp"]  {.fx-elevation-6dp}
+[elevation="4"], [elevation="8dp"]  {.fx-elevation-8dp}
+[elevation="5"], [elevation="10dp"] {.fx-elevation-10dp}
+
+
+
+
+/*hr {
+	border: none;
+	border-top: 1px solid;
+	margin-top: 0;
+	margin-bottom: 0;
+	&[spacer] {
+		margin-top: 0.5rem; // todo investigate
+		margin-bottom: 0.5rem; // todo investigate
+	}
+}*/
+hr {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	align-self: stretch;
+	&::before {
+		content: '';
+		display: block;
+		background-color: var(--seam-color);
+	}
+	[layout] > &::before,
+	&[vertical]::before {
+		width: 1px;
+		height: 100%;
+	}
+	&::before,
+	[layout][vertical] > &::before,
+	&[horizontal]::before {
+		width: 100%;
+		height: 1px;
+	}
+
+	margin: 0;
+	[layout] > &[spaced],
+	&[vertical][spaced] {
+		margin: 0 0.5rem;
+	}
+	[layout][vertical] > &[spaced],
+	&[spaced] {
+		margin: 0.5rem 0;
+	}
+}
+
+// hr is the same as hr-between because it suits most cases with less typing
+[seam-between] + [seam-between],
+[hr] + [hr],
+[hr-between] + [hr-between] {
+	border-top: 1px solid var(--seam-color);
+}
+[hr-top] {
+	border-top: 1px solid var(--seam-color);
+}
+[seam-bottom],
+[hr-bottom] {
+	border-bottom: 1px solid var(--seam-color);
+}
+[seam-around],
+[hr-around] {
+	border-top: 1px solid var(--seam-color);
+	border-bottom: 1px solid var(--seam-color);
+	& + & {
+		border-top: none;
+	}
+}
+
+
+[hr-indent] {
+	position: relative;
+
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: block;
+		height: 1px;
+		left: calc(var(--indent) + 1rem);
+		background-color: var(--seam-color);
+	}
+}
+
+
+
+
+
+[avatar] {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+
+	--size: 40px !important;
+	[dense] & {
+		--size: 32px !important;
+	}
+
+	flex-shrink: 0;
+	text-align: center;
+	// relative so other items could be stacked inside using absolute pos, [fit], ...
+	position: relative;
+	overflow: hidden;
+	// center imageless avatars like <div avatar>C</div>
+	line-height: var(--size);
+	background-size: cover;
+	background-repeat: no-repeat;
+	&:not([transparent]) {
+		background-color: var(--avatar-background);
+	}
+
+	&,
+	& > img {
+		object-fit: cover;
+	}
+	&,
+	& > img {
+		width: var(--size) !important;
+		height: var(--size) !important;
+	}
+	& > img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 0;
+	}
+
+	&:not(:checked) {
+		color: var(--custom-foreground, inherit) !important;
+		&::before {
+			color: inherit !important;
+		}
+	}
+	[touch] &[title]:not(:checked)::before,
+	[nontouch] &[title]:not(:checked):not(:hover)::before {
+		//color: var(--selection-foreground, var(--background, var(--background-default)));
+		//color: var(--custom-foreground, var(--selection-foreground, var(--background, var(--background-default))));
+		content: attr(title);
+		font-family: inherit;
+		font-size: 16px;
+		font-weight: 400;
+	}
+	input[type="checkbox"]& {
+		&:checked::before {
+			color: var(--selection-foreground, var(--background, var(--background-default))) !important;
+		}
+		&:checked {
+			background-color: var(--selection-background, var(--theme-accent-adaptive)) !important;
+		}
+	}
+
+}
+
+[tag] {
+	padding: 4px 8px;
+	font-size: 14px;
+	background-color: var(--background);
+	color: var(--foreground);
+}
+progress {
+	&[value] {
+		-webkit-appearance: none;
+		appearance: none;
+		&::-webkit-progress-value {
+			background-color: var(--tint);
+		}
+	}
+}
+
+
+
+
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

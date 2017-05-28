@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+
+	<title>flexus-toolbar demo</title>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<script src="polyfills/webcomponents-lite.js"></script>
+	<script src="polyfills/shadydom.min.js"></script>
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+	<script src="elements/tabs.js"></script>
+	<script src="elements/pages.js"></script>
+
+</head>
+<body fx-app>
+
+	<flexus-view primary="blue" accent="yellow">
+
+		<flexus-tabs center tinted>
+			<div>First</div>
+			<div>Second</div>
+			<div>Third</div>
+		</flexus-tabs>
+
+		<flexus-pages flex>
+			<main>First</main>
+			<main>Second</main>
+			<main>Third</main>
+		</flexus-pages>
+
+	</flexus-view>
+
+	<flexus-view primary="blue" accent="yellow">
+
+		<flexus-toolbar tinted multisection>
+			<flexus-tabs fixed for="tabs2">
+				<div>First</div>
+				<div>Second</div>
+				<div>Third</div>
+			</flexus-tabs>
+		</flexus-toolbar>
+
+		<main>
+			<flexus-pages id="tabs2">
+				<div>First</div>
+				<div>Second</div>
+				<div>Third</div>
+			</flexus-pages>
+		</main>
+
+	</flexus-view>
+
+</body>
+</html>

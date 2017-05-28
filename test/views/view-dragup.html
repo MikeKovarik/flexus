@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+	<!--script src="polyfill/shadycss.min.js"></script-->
+	<!--script src="lib/css-polyfill.js"></script-->
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css" polyfill>
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+	<style>
+	[type="dragup"],
+	[type="dragup"] * {
+		touch-action: pan-x;
+	}
+
+	.albumart {
+		background-color: #DDD;
+	}
+	.albumgrid {
+		display: flex;
+		flex-wrap: wrap;
+		margin: -0.5rem;
+	}
+	.albumgrid > * {
+		flex: 1;
+		margin: 0.5rem;
+		min-width: 150px;
+		max-width: 250px;
+	}
+
+	</style>
+
+</head>
+<body light fx-app>
+
+	<flexus-scene type="dragup">
+
+
+		<flexus-view master subtle primary="red">
+			<flexus-toolbar multisection colored>
+				<section>
+					<button icon="menu"></button>
+					<h1>Music library</h1>
+				</section>
+			</flexus-toolbar>
+			<main>
+				<h3>Recently played</h3>
+				<div class="albumgrid">
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div></div><div></div><div></div><div></div>
+				</div>
+			</main>
+			<button fab bottom right icon="pause"></button>
+		</flexus-view>
+
+
+		<flexus-view detail elevation="5" primary="blue">
+
+			<flexus-toolbar multisection colored>
+				<section>
+					<button icon="arrow-back"></button>
+					<div flex animation="songtitle">An Act of Kindness</div>
+				</section>
+			</flexus-toolbar>
+
+			<flexus-pages>
+				<div>
+					<div fx-item two-line>
+						<div>An Act of Kindness</div>
+						<div secondary>Bastille</div>
+					</div>
+					<div ratio="1:1" class="albumart"></div>
+				</div>
+				<div>
+					<div fx-item two-line>
+						<div>Send Them Off</div>
+						<div secondary>Bastille</div>
+					</div>
+					<div ratio="1:1" class="albumart"></div>
+				</div>
+			</flexus-pages>
+
+			<div sneakpeek toolbar>
+				<div avatar></div>
+				<div two-line>
+					<div animation="songtitle">An Act of Kindness</div>
+					<div secondary>Bastille</div>
+				</div>
+				<button icon="play"></button>
+			</div>
+
+			<flexus-fabdial bottom right>
+				<button fab icon="share" title="Share"></button>
+				<button icon="link" title="Copy link"></button>
+				<button icon="content-copy" title="Copy"></button>
+				<button icon="email" title="Email"></button>
+			</flexus-fabdial>
+
+		</flexus-view>
+
+
+<!--
+		<div detail elevation="5" primary="blue" style="width: 100%">
+
+			<flexus-pages style="height: 100%">
+				<flexus-view>
+					<flexus-toolbar>
+						<button icon="arrow-back"></button>
+						<div two-line>
+							<div>An Act of Kindness</div>
+							<div secondary>Bastille</div>
+						</div>
+					</flexus-toolbar>
+					<main>
+						<div ratio="1:1" class="albumart"></div>
+					</main>
+				</flexus-view>
+				<flexus-view>
+					<flexus-toolbar>
+						<button icon="arrow-back"></button>
+						<div two-line>
+							<div>Send Them Off</div>
+							<div secondary>Bastille</div>
+						</div>
+					</flexus-toolbar>
+					<main>
+						<div ratio="1:1" class="albumart"></div>
+					</main>
+				</flexus-view>
+			</flexus-pages>
+
+			<div sneakpeek toolbar>
+				<div avatar></div>
+				<div two-line>
+					<div>An Act of Kindness</div>
+					<div secondary>Bastille</div>
+				</div>
+				<button icon="play"></button>
+			</div>
+
+		</div>
+
+-->
+
+
+
+	</flexus-scene>
+
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+	<script src="elements/fabdial.js"></script>
+	<script src="elements/view.js"></script>
+	<script src="elements/scene.js"></script>
+	<script src="elements/pages.js"></script>
+
+</body>
+</html>

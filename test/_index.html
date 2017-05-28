@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<script src="polyfill/webcomponents-lite.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+	<script>
+		window.customElements = window.customElements ? window.customElements : {
+			define: (name, Class) => document.registerElement(name, Class)
+		}
+	</script>
+	<script src="polyfill/shadycss.min.js"></script>
+
+</head>
+<body dark fx-app>
+
+
+	<flexus-drawer>
+		<a fx-item icon="edit">edit</a>
+		<a fx-item icon="star">star</a>
+		<a fx-item icon="settings" slot="sticky">settings</a>
+	</flexus-drawer>
+
+	<flexus-view flex>
+		<flexus-toolbar>
+			<button icon="menu"></button>
+			<div flex>title</div>
+			<button icon="share" slot="priority1">share</button>
+			<button icon="edit" slot="priority2">edit</button>
+			<button icon="star" slot="priority3">star</button>
+		</flexus-toolbar>
+		<main>
+			<button icon="settings" slot="s2"></button>
+		</main>
+	</flexus-view>
+
+
+
+	<flexus-dialog>
+		<h4>Something</h4>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua.</p>
+		<button disabled>First button</button>
+		<button>Second button</button>
+		<button accent>Third button</button>
+	</flexus-dialog>
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+	<script src="elements/toolbar.js"></script>
+	<script src="elements/drawer.js"></script>
+	<script src="elements/menu.js"></script>
+	<script src="elements/dialog.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<style>
+		[card] {
+			padding: 1rem;
+		}
+		[card] img {
+			width: calc(100% + 2rem);
+			margin: -1rem -1rem 1rem -1rem;
+		}
+		[flexible] {
+			height: 100px;
+		}
+		[waterfall] {
+			box-shadow: none !important;
+			padding-bottom: 6rem;
+			margin-bottom: -6rem;
+			z-index: 0;
+		}
+		[vertical][layout] > :not([layout])[left] {
+			align-self: flex-start;
+		}
+		[vertical][layout] > :not([layout])[right] {
+			align-self: flex-end;
+		}
+	</style>
+
+	<style>
+		body:before,
+		body:after {
+			content: '';
+			display: block;
+			position: absolute;
+			z-index: 999;
+			top: 0;
+			left: 50%;
+			height: 100%;
+			pointer-events: none;
+		}
+		body:before {
+			margin-left: -40px;
+			width: 80px;
+			border: 1px solid rgba(255,255,255,0.3);
+		}
+		body:after {
+			border-left: 1px solid rgba(255,255,255,0.6);
+		}
+	</style>
+
+</head>
+<body light fx-app primary="indigo">
+
+
+	<flexus-view>
+		<flexus-toolbar multisection waterfall tinted bg-transition="fade">
+			<section>
+				<button icon="menu"></button>
+				<div flex></div>
+				<button icon="search"></button>
+				<button icon="more"></button>
+			</section>
+			<section flexible>
+			</section>
+			<flexus-tabs spacious centered colorless-bar>
+				<div primary="indigo">Highlights</div>
+				<div primary="teal">News</div>
+				<div primary="blue-gray">Entertainment</div>
+				<div primary="deep-orange">Music</div>
+				<div primary="light-green">Film</div>
+				<div primary="orange">Overwatch</div>
+				<div primary="red">Marvel</div>
+				<div primary="green">Arrow</div>
+			</flexus-tabs>
+		</flexus-toolbar>
+		<main>
+			<div card vertical layout>
+				<img src="/flexus/demo/img/Ilios_small_4.jpg">
+				<h3 title colored>Ilios: The perfect vacation destination</h3>
+				<p>Situated atop a small island rising from the Aegean Sea, Ilios is a postcard-perfect Mediterranean town, with a bustling harbourside, winding paths for rambling hillside strolls, and gorgeous vistas. It is the ideal vacation stop for people looking for a place to relax, or for those interested in exploring the ruins scattered at the top of the island, where many artifacts and relics of the ancient world have been recently unearthed.</p>
+				<button colored-foreground right>read more</button>
+			</div>
+			<div card vertical layout>
+				<img src="/flexus/demo/img/Ilios_small_4.jpg">
+				<h3 title colored>Ilios: The perfect vacation destination</h3>
+				<p>Situated atop a small island rising from the Aegean Sea, Ilios is a postcard-perfect Mediterranean town, with a bustling harbourside, winding paths for rambling hillside strolls, and gorgeous vistas. It is the ideal vacation stop for people looking for a place to relax, or for those interested in exploring the ruins scattered at the top of the island, where many artifacts and relics of the ancient world have been recently unearthed.</p>
+				<button colored-foreground right>read more</button>
+			</div>
+			<div card vertical layout>
+				<img src="/flexus/demo/img/Ilios_small_4.jpg">
+				<h3 title colored>Ilios: The perfect vacation destination</h3>
+				<p>Situated atop a small island rising from the Aegean Sea, Ilios is a postcard-perfect Mediterranean town, with a bustling harbourside, winding paths for rambling hillside strolls, and gorgeous vistas. It is the ideal vacation stop for people looking for a place to relax, or for those interested in exploring the ruins scattered at the top of the island, where many artifacts and relics of the ancient world have been recently unearthed.</p>
+				<button colored-foreground right>read more</button>
+			</div>
+			<div card vertical layout>
+				<img src="/flexus/demo/img/Ilios_small_4.jpg">
+				<h3 title colored>Ilios: The perfect vacation destination</h3>
+				<p>Situated atop a small island rising from the Aegean Sea, Ilios is a postcard-perfect Mediterranean town, with a bustling harbourside, winding paths for rambling hillside strolls, and gorgeous vistas. It is the ideal vacation stop for people looking for a place to relax, or for those interested in exploring the ruins scattered at the top of the island, where many artifacts and relics of the ancient world have been recently unearthed.</p>
+				<button colored-foreground right>read more</button>
+			</div>
+		</main>
+	</flexus-view>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<!--script src="/flexus/elements/toolbar.js"></script-->
+	<script src="/flexus/elements/tabs.js"></script>
+
+</body>
+</html>

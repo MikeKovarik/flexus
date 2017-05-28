@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+	<style>
+
+		[screensize="m"] flexus-toolbar[card],
+		[screensize="l"] flexus-toolbar[card] {
+			max-width: 340px;
+		}
+
+		flexus-view {
+			background-color: transparent !important;
+		}
+		flexus-view > :not(flexus-toolbar):not(flexus-tabs) {
+			background-color: var(--theme-background);
+		}
+		[toolbar] {
+			height: calc(40px + 1rem);
+			padding: 0 1rem;
+		}
+
+	</style>
+
+</head>
+<body light fx-app>
+
+
+	<flexus-view subtle accent="red">
+		<flexus-toolbar card>
+			<button icon="menu"></button>
+			<!--h1>Title</h1-->
+			<input flex type="search" placeholder="search">
+			<button icon="x"></button>
+		</flexus-toolbar>
+		<main>
+			<img image-cover fit src="test/img/gmap.png">
+		</main>
+		<button fab bottom right icon="edit" title="Edit"></button>
+	</flexus-view>
+
+
+	<flexus-view explode subtle accent="lightblue">
+
+		<flexus-toolbar>
+			<section></section>
+			<flexus-tabs center>
+				<button icon="edit"></button>
+				<button icon="edit"></button>
+				<button icon="edit"></button>
+			</flexus-tabs>
+		</flexus-toolbar>
+
+		<main>
+			secondary view main
+			<input>
+			<input type="checkbox">
+		</main>
+
+	</flexus-view>
+
+
+
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+	<script src="elements/fabdial.js"></script>
+	<script src="elements/toolbar.js"></script>
+	<script src="elements/view.js"></script>
+	<script src="elements/scene.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+	<style>
+		#more-space {
+			height: 100px;
+		}
+		main [card] {
+			max-width: 500px;
+			margin: auto;
+		}
+		[card] + [card] {
+			margin-top: 1rem;
+		}
+	</style>
+
+</head>
+<body light fx-app primary="indigo">
+
+	<flexus-view>
+
+		<flexus-toolbar tinted waterfall>
+			<section>
+				<!--button icon="menu"></button-->
+				<h1 flex></h1>
+				<button icon="search"></button>
+				<button icon="more"></button>
+			</section>
+			<section search card>
+				<button icon="x"></button>
+				<input type="search" placeholder="Search">
+			</section>
+			<section collapse id="more-space"></section>
+			<flexus-tabs centered>
+				<div primary="indigo">Highlights</div>
+				<div primary="red">News</div>
+				<div primary="blue-gray">Entertainment</div>
+				<div primary="deep-orange">Music</div>
+				<div primary="light-green">Film</div>
+				<div primary="teal">Vacation</div>
+				<div primary="green">Games</div>
+			</flexus-tabs>
+		</flexus-toolbar>
+
+		<main>
+			<div card>
+				<img src="/flexus/demo/img/dovolene/zapad1.jpg">
+				<h3 title colored>Ilios: The perfect vacation destination</h3>
+				<p>Situated atop a small island rising from the Aegean Sea, Ilios is a postcard-perfect Mediterranean town, with a bustling harbourside, winding paths for rambling hillside strolls, and gorgeous vistas. It is the ideal vacation stop for people looking for a place to relax, or for those interested in exploring the ruins scattered at the top of the island, where many artifacts and relics of the ancient world have been recently unearthed.</p>
+			</div>
+			<div card>
+				<img src="/flexus/demo/img/dovolene/zapad1.jpg">
+				<h3 title colored>Ilios: The perfect vacation destination</h3>
+				<p>Situated atop a small island rising from the Aegean Sea, Ilios is a postcard-perfect Mediterranean town, with a bustling harbourside, winding paths for rambling hillside strolls, and gorgeous vistas. It is the ideal vacation stop for people looking for a place to relax, or for those interested in exploring the ruins scattered at the top of the island, where many artifacts and relics of the ancient world have been recently unearthed.</p>
+			</div>
+			<div card>
+				<img src="/flexus/demo/img/dovolene/zapad1.jpg">
+				<h3 title colored>Ilios: The perfect vacation destination</h3>
+				<p>Situated atop a small island rising from the Aegean Sea, Ilios is a postcard-perfect Mediterranean town, with a bustling harbourside, winding paths for rambling hillside strolls, and gorgeous vistas. It is the ideal vacation stop for people looking for a place to relax, or for those interested in exploring the ruins scattered at the top of the island, where many artifacts and relics of the ancient world have been recently unearthed.</p>
+			</div>
+			<div card>
+				<img src="/flexus/demo/img/dovolene/zapad1.jpg">
+				<h3 title colored>Ilios: The perfect vacation destination</h3>
+				<p>Situated atop a small island rising from the Aegean Sea, Ilios is a postcard-perfect Mediterranean town, with a bustling harbourside, winding paths for rambling hillside strolls, and gorgeous vistas. It is the ideal vacation stop for people looking for a place to relax, or for those interested in exploring the ruins scattered at the top of the island, where many artifacts and relics of the ancient world have been recently unearthed.</p>
+			</div>
+		</main>
+
+	</flexus-view>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/tabs.js"></script>
+
+</body>
+</html>

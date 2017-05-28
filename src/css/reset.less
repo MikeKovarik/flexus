@@ -1,0 +1,46 @@
+// css reset
+body, html {
+	// prevents pinch zoom in uwp
+	-ms-content-zooming: none;
+	touch-action: none;
+}
+body, * {
+	//-webkit-user-select: none;
+	//-webkit-user-drag: none;
+	//pointer-events: none;
+	//touch-action: none;
+	// get rid of the annoying chrome outline around inputs, etc...
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	outline: none;
+
+	// -webkit-touch-callout // todo
+}
+// note: very broad and indeterminate selectors so it's not colliding with other style rules
+input {
+	margin: 0;
+}
+body,
+h1, h2, h3, h4, h5, h6,
+p {
+	margin: 0;
+}
+button {
+	padding: 0;
+}
+a {
+	text-decoration: none;
+	color: inherit; // TODO. global (accet) vs custom? todo solve this at some point
+}
+
+
+// make inputs and buttons plain invisible and inherit default color
+input,
+textarea,
+button {
+	background-color: transparent;
+	border: none;
+	color: inherit;
+}
+/*
+button, input, select, textarea { color: inherit; font-family: inherit; font-style: inherit; font-weight: inherit; }
+*/

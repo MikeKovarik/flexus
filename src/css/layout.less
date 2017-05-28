@@ -1,0 +1,233 @@
+// todo: probably remove since [fullbleed] should be used instead
+img[fit=""] {
+	width: 100%;
+	height: 100%;
+}
+
+/*
+body[fullbleed=""] {
+	margin: 0;
+	height: 100vh;
+}
+[fill=""], // to be removed?
+:not(body)[fullbleed], // is this better than plain?
+[fullbleed=""] {
+	width: 100%;
+	height: 100%;
+}
+*/
+
+.fx-fixed-top() {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+.fx-fixed-right() {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+.fx-fixed-bottom() {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.fx-fixed-left() {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+}
+[fixed-top]    {.fx-fixed-top}
+[fixed-right]  {.fx-fixed-right}
+[fixed-bottom] {.fx-fixed-bottom}
+[fixed-left]   {.fx-fixed-left}
+
+.fx-absolute-top() {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+.fx-absolute-right() {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+.fx-absolute-bottom() {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.fx-absolute-left() {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+}
+[absolute-top]    {.fx-absolute-top !important}
+[absolute-right]  {.fx-absolute-right !important}
+[absolute-bottom] {.fx-absolute-bottom !important}
+[absolute-left]   {.fx-absolute-left !important}
+
+.fx-fit() {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+[fit=""] {
+	.fx-fit;
+}
+
+
+
+
+[noshrink] {
+	flex-shrink: 0;
+}
+
+[inline=""] {
+	display: inline-block;
+}
+[inline=""][layout] {
+	display: inline-flex;
+}
+
+[block=""] {
+	display: block;
+}
+[display-none=""] {
+	display: none !important;
+}
+/*
+// moved to core-util
+[hidden=""] {
+	visibility: hidden;
+}
+*/
+[relative=""] {
+	position: relative;
+}
+[absolute=""] {
+	position: absolute;
+}
+
+[sticky=""]:not(flexus-toolbar):not(flexus toolbar > *) {
+	top: 0;
+	position: sticky !important;
+}
+
+
+
+// background and image sizing
+
+img[image-cover] {
+	object-fit: cover;
+}
+:not(img)[image-cover] {
+	background-size: cover;
+	background-position: center;
+}
+img[image-contain] {
+	object-fit: contain;
+}
+:not(img)[image-contain] {
+	background-size: contain;
+	background-position: center;
+}
+
+
+// float
+
+[clear] {
+	clear: both;
+}
+
+[float-left] {
+	float: left;
+}
+[float-right] {
+	float: right;
+}
+
+
+
+.fx-vertical-scrollable() {
+	touch-action: pan-y;
+	overflow-x: hidden;
+	overflow-y: auto; // should be scrool, not auto, for performance
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+
+	// do not shrink items if [scrollable] is also layout layout
+	&[layout] > * {
+		flex-shrink: 0;
+	}
+}
+.fx-horizontal-scrollable() {
+	touch-action: pan-x;
+	overflow-y: hidden;
+	overflow-x: auto; // should be scrool, not auto, for performance
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+	// TODO: make a variant with scrollbar hidden and arrow buttons on side
+	// -ms-overflow-style can be set to 'none' to hide scroolbar but remain
+	// scrollable with touch or touchpad 
+}
+
+// V2.0
+/*
+.fx-horizontal-scrollable() {
+	// set orientation
+	touch-action: pan-x;
+	overflow-x: auto;
+	overflow-y: hidden;
+	// hide scrollbars
+	-ms-overflow-style: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	// inertia scrolling
+	-webkit-overflow-scrolling: touch;
+	// prevents internal inline elements from wrapping
+	white-space: nowrap;
+}
+*/
+
+[scroll],
+[vertical-scroll] {
+	.fx-vertical-scrollable;
+}
+[horizontal-scroll] {
+	.fx-horizontal-scrollable;
+}
+
+
+
+
+
+
+[overflow] {
+	overflow: hidden;
+}
+[line-overflow] {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+[text-overflow] {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+
+[click-through] {
+	pointer-events: none;
+}

@@ -1,0 +1,63 @@
+
+flexus-toast {
+	[screensize="s"] & {
+		width: 100%;
+		position: static;
+		border-radius: 0;
+	}
+	[screensize="m"] & {
+		// TODO: slide in animation from bottom
+		min-width: 288px;
+		max-width: 568px;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		animation: toast-tablet-show 0.2;
+	}
+	[screensize="l"] & {
+		// TODO validate and finish, this is just a wild guess
+		// nothing about this in specs
+		left: 1rem;
+		bottom: 1rem;
+		animation: toast-desktop-show 0.2;
+	}
+	box-shadow: var(--shadow-elevation-6dp);
+	border-radius: 3px;
+	position: absolute;
+	z-index: 60; // 6dp
+	background-color: var(--toast-background, #323232);
+	color: #FFF;
+	padding: 14px 24px;
+	font-size: 14px;
+	min-height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	button {
+		color: var(--toast-foreground, var(--theme-accent, var(--theme-primary, #FFF)));
+		min-width: 0 !important;
+		height: 100%;
+		margin: -10px -12px -10px 48px;
+	}
+	[screensize="s"] & button {
+		margin: -10px -12px -10px 24px;
+	}
+}
+
+@keyframes toast-tablet-show {
+	0%   {transform: translateY(100%)}
+	100% {transform: translateY(0)}
+}
+@keyframes toast-tablet-hide {
+	0%   {transform: translateY(0)}
+	100% {transform: translateY(100%)}
+}
+
+@keyframes toast-desktop-show {
+	0%   {transform: translateY(calc(100% + 1rem))}
+	100% {transform: translateY(0)}
+}
+@keyframes toast-desktop-hide {
+	0%   {transform: translateY(0)}
+	100% {transform: translateY(calc(100% + 1rem))}
+}

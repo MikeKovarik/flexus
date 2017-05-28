@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>flexus-toolbar demo</title>
+
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material-icons.css">
+
+	<style>
+	#contacts {
+		// pink & cyan
+		--color-primary: #e91e63;
+		--color-toolbar: #e91e63;
+		--color-primary-dark: #C2185B;
+		--color-accent: #18ffff;
+		--color-toolbar-text: #FFF;
+		--color-fab-text: #0e9494;
+	}
+	#files {
+		--color-primary: #4891f0;
+		--color-primary-dark: #4283d5;
+		--color-accent: #5bfffd;
+		--color-toolbar-text: #FFF;
+		--color-toolbar-icons: #1b3c5b;
+		--color-fab-text: #0e9494;
+	}
+	</style>
+
+</head>
+<body light fx-app>
+
+	<!--button icon="star" fab bottom right hide-near-top elevation="4"></button-->
+
+
+
+	<!--flexus-view id="contacts" flex>
+
+		<flexus-toolbar elevation="0" experimental style="top:100px;">
+			<section>
+				<button icon="arrow-back"></button>
+				<div flex two-line>
+					<div>The Title</div>
+					<div subhead>subhead text</div>
+				</div>
+				<button icon="map"></button>
+				<button icon="share"></button>
+			</section>
+		</flexus-toolbar>
+
+		<main>
+			<lorem-ipsum paragraphs="10"></lorem-ipsum>
+		</main>
+
+	</flexus-view-->
+
+
+	<flexus-view id="contacts" flex>
+
+		<flexus-toolbar elevation="0" experimental>
+			<!--section sticky>
+				<div flex></div>
+				<button icon="more"></button>
+			</section-->
+			<section main sticky overlay>
+				<button icon="arrow-back"></button>
+				<div flex></div>
+				<button icon="map"></button>
+				<button icon="share"></button>
+			</section>
+			<img flexible bg src="img/coulson.jpg" ratio="16:9">
+			<!--div flexible ratio="2:1"></div-->
+			<section indent sticky subhead collapse overlay>
+				<span scale>Ali Connors</span>
+			</section>
+			<section indent sticky subhead darker>Lorem ipsum</section>
+		</flexus-toolbar>
+
+		<main>
+			<lorem-ipsum paragraphs="10"></lorem-ipsum>
+		</main>
+
+	</flexus-view>
+
+
+	<!--flexus-view id="contacts" flex>
+
+		<flexus-toolbar elevation="0" experimental style="top: 200px">
+			<section main sticky overlay>
+				<button icon="arrow-back"></button>
+				<div flex></div>
+				<button icon="map"></button>
+				<button icon="share"></button>
+			</section>
+			<div flexible ratio="2:1"></div>
+			<section indent sticky overlay collapse>Ali Connors</section>
+			<section indent sticky subhead darker>Lorem ipsum</section>
+		</flexus-toolbar>
+
+		<main>
+			<lorem-ipsum paragraphs="10"></lorem-ipsum>
+		</main>
+
+	</flexus-view-->
+
+
+	<!--flexus-view id="contacts" flex>
+
+		<flexus-toolbar waterfall experimental>
+			<section main sticky>
+				<button icon="arrow-back"></button>
+				<div flex></div>
+				<button icon="map"></button>
+				<button icon="share"></button>
+			</section>
+			<img flexible bg src="img/wall1.jpg" ratio="16:9">
+			<section indent sticky>Ali Connors</section>
+		</flexus-toolbar>
+
+		<main>
+			<lorem-ipsum paragraphs="10"></lorem-ipsum>
+		</main>
+
+	</flexus-view-->
+
+
+	<!--flexus-view id="contacts" flex>
+
+		<flexus-toolbar elevation="0" experimental>
+			<section main sticky overlay>
+				<button icon="arrow-back"></button>
+				<div flex></div>
+				<button icon="map"></button>
+				<button icon="share"></button>
+			</section>
+			<img flexible bg src="img/coulson.jpg" ratio="16:9">
+			<section indent sticky overlay>Ali Connors</section>
+			<section indent sticky subhead darker>Lorem ipsum</section>
+		</flexus-toolbar>
+
+		<main>
+			<lorem-ipsum paragraphs="10"></lorem-ipsum>
+		</main>
+
+	</flexus-view-->
+
+
+	<!--flexus-view id="files" flex>
+
+		<flexus-toolbar waterfall experimental>
+			<section main sticky>
+				<button icon="arrow-back"></button>
+				<div flex></div>
+				<button icon="more"></button>
+			</section>
+			<section flexible vertical left style="padding: 1rem">
+				<div title transition-title>Collapsing header</div>
+				<div>This text will fade out when you start scrolling the the page and will reappear once you scroll to top</div>
+			</section>
+		</flexus-toolbar>
+
+		<main>
+			<lorem-ipsum paragraphs="10"></lorem-ipsum>
+		</main>
+
+	</flexus-view-->
+
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.shadowmaster.js"></script>
+	<script src="build/elements/flexus-toolbar.js"></script>
+	<script src="build/elements/flexus-list.js"></script>
+	<script src="build/elements/lorem-ipsum.js"></script>
+
+</body>
+</html>

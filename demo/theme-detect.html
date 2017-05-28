@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="../css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="../css/flexus-neon-icons.css">
+
+	<script src="../polyfills/fx-polyfill.js"></script>
+	<script src="../polyfills/animate-polyfill.js"></script>
+	<script src="../polyfills/custom-elements.min.js"></script>
+	<script src="../polyfills/shadydom.min.js"></script>
+
+</head>
+<body fx-app>
+
+
+	<flexus-view>
+
+		<flexus-toolbar tinted>
+			<button icon="menu"></button>
+			<div flex>Title</div>
+			<button icon="search"></button>
+			<button icon="star"></button>
+		</flexus-toolbar>
+
+		<main>
+			<h3 tinted>Hello world</h3>
+			<p>This is very simple Windows UWP demo.</p>
+			<p>No color, nor theme was defined, but system theme and color will be automatically detected and applied and updated uppon any change</p>
+			<button tinted>Button</button>
+			<button>Button</button>
+			<br>
+			<input type="checkbox" checked>
+			<input type="checkbox">
+			<input type="radio" checked>
+			<input type="radio">
+		</main>
+
+	</flexus-view>
+
+
+
+	<script src="../lib/ganymede.js"></script>
+	<script src="../lib/flexus.js"></script>
+
+</body>
+</html>

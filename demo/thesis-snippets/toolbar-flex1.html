@@ -1,0 +1,72 @@
+<!doctype html>
+<html touch>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+</head>
+<body light>
+
+	<flexus-view flex primary="blue" accent="yellow">
+		<flexus-toolbar tinted>
+			<section>
+				<h1>Social hub</h1>
+				<button icon="search"></button>
+				<button icon="more"></button>
+			</section>
+			<section search card>
+				<button icon="arrow-back"></button>
+				<input type="search" placeholder="search people">
+				<button icon="more"></button>
+			</section>
+			<section card collapse fade fx-item>
+				<div avatar></div>
+				<div two-line>
+					<div normal>Michal Kovařík</div>
+					<div secondary>Missed call, 5 minutes ago</div>
+				</div>
+			</section>
+			<flexus-tabs fixed>
+				<div>Speed dial</div>
+				<div>Recents</div>
+				<div>Contacts</div>
+			</flexus-tabs>
+		</flexus-toolbar>
+		<main>
+
+		<div fx-item icon="cloud">Online Storage</div>
+
+		<div fx-item>
+			<i icon="edit"></i>
+			Lorem ipsum
+		</div>
+
+		<div fx-item>
+			<input type="checkbox" checked>
+			<input type="text" placeholder="This is a text field">
+		</div>
+
+		<div fx-item indent>This is indented [fx-item]</div>
+
+		<div fx-item>This is plain [fx-item]</div>
+
+		<p>This is a paragraph</p>
+
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</main>
+	</flexus-view>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/tabs.js"></script>
+
+</body>
+</html>

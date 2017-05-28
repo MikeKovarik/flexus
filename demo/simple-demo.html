@@ -1,0 +1,115 @@
+<!doctype html>
+<html touch>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=1">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<!-- polyfills -->
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+</head>
+<body light fx-app primary="green">
+
+	<flexus-drawer>
+		<button fx-item icon="menu"></button>
+		<div fx-item icon="edit">Drawer item</div>
+		<div fx-item icon="edit">Drawer item</div>
+		<div fx-item icon="edit">Drawer item</div>
+		<div fx-item icon="edit">Drawer item</div>
+	</flexus-drawer>
+
+
+	<flexus-view master>
+		<flexus-toolbar tinted darker>
+			<section>
+				<button icon="menu"></button>
+				<div flex>The app</div>
+				<button icon="more"></button>
+			</section>
+			<section selection>
+				<button icon="x"></button>
+				<div flex>X Selected</div>
+			</section>
+			<flexus-tabs>
+				<div>one</div>
+				<div>two</div>
+				<div>three</div>
+			</flexus-tabs>
+		</flexus-toolbar>
+		<flexus-pages>
+			<main>
+				<div fx-item>
+					<input type="checkbox">
+					<div two-line>
+						<div>Lorem ipsum</div>
+						<div secondary>Lorem ipsum</div>
+					</div>
+				</div>
+				<div fx-item>
+					<input type="checkbox">
+					<div two-line>
+						<div>Lorem ipsum</div>
+						<div secondary>Lorem ipsum</div>
+					</div>
+				</div>
+				<div fx-item>
+					<input type="checkbox">
+					<div two-line>
+						<div>Lorem ipsum</div>
+						<div secondary>Lorem ipsum</div>
+					</div>
+				</div>
+			</main>
+			<main>
+				Second tab content
+			</main>
+			<main>
+				Third tab content
+			</main>
+		</flexus-pages>
+	</flexus-view>
+
+	<flexus-view subtle right panel detail elevation="4" id="panel">
+		<flexus-toolbar cover image-cover style="background-image: url('/flexus/demo/img/dovolene/vransko4.jpg')">
+			<section card>
+				<input type="search" placeholder="search">
+			</section>
+			<section display1 style="padding-top: 60px">
+				Coratia
+			</section>
+		</flexus-toolbar>
+		<main>
+			<div fx-item two-line><div>Lorem ipsum</div><div secondary>Lorem ipsum</div></div>
+			<div fx-item two-line><div>Lorem ipsum</div><div secondary>Lorem ipsum</div></div>
+			<div fx-item two-line><div>Lorem ipsum</div><div secondary>Lorem ipsum</div></div>
+			<div fx-item two-line><div>Lorem ipsum</div><div secondary>Lorem ipsum</div></div>
+		</main>
+		<!--main>
+			<div fx-item icon="edit">Single line item</div>
+			<div fx-item icon="edit">Single line item</div>
+			<div fx-item icon="edit">Single line item</div>
+			<div fx-item icon="edit">Single line item</div>
+		</main-->
+	</flexus-view>
+
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/drawer.js"></script>
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/view.js"></script>
+	<script src="/flexus/elements/scene.js"></script>
+	<script src="/flexus/elements/tabs.js"></script>
+	<script src="/flexus/elements/pages.js"></script>
+
+</body>
+</html>

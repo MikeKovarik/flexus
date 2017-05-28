@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+	<style>
+		.grid {
+			display: flex;
+			flex-wrap: wrap;
+			margin: -2px;
+		}
+			.grid > div {
+				flex: 1;
+				margin: 2px;
+				min-width: 30%;
+				position: relative;
+			}
+				.grid > div div {
+					background-size: cover;
+					background-position: center;
+					padding-top: 100%;
+				}
+
+		/*[subhead] {
+			height: 48px;
+			margin: 0 -1rem 8px -1rem;
+			padding: 0 1rem;
+			display: flex;
+			align-items: center;
+		}*/
+	</style>
+
+</head>
+<body light fx-app>
+
+	<flexus-view flex id="gallery">
+
+		<flexus-toolbar waterfall>
+			<button icon="menu"></button>
+			<div flex></div>
+			<button icon="search"></button>
+			<button icon="more"></button>
+		</flexus-toolbar>
+
+		<main nopadding="small">
+			<div indent display1 style="margin-top: 1rem">The Avengers</div>
+			<div indent subhead style="height: 48px;">Jun 12, 2013</div>
+			<div relative clickable><div image-cover ratio="16:9" style="background-image: url('/flexus/demo/img/avengers.jpg')"></div></div>
+			<div indent subhead style="height: 48px; display: flex; align-items: center">Jun 10, 2013</div>
+			<div class="grid">
+				<div clickable><div style="background-image: url('/flexus/demo/img/bruce.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/hawkeye.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/fury.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/thor.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/widow.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/stark.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/coulson.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/captain.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/bruce.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/hawkeye.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/fury.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/thor.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/widow.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/stark.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/coulson.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/captain.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/bruce.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/hawkeye.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/fury.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/thor.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/widow.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/stark.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/coulson.jpg')"></div></div>
+				<div clickable><div style="background-image: url('/flexus/demo/img/captain.jpg')"></div></div>
+			</div>
+		</main>
+
+	</flexus-view>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/toolbar.js"></script>
+
+</body>
+</html>

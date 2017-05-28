@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="/flexus/polyfill/custom-elements.min.js"></script>
+	<script src="/flexus/polyfill/shadydom.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<style>
+		[icon="microphone"]::before {
+			content: '\E720';
+		}
+		[icon="tvmonitor"]::before {
+			content: '\E7F4';
+		}
+		[icon="speakers"]::before {
+			content: '\E7F5';
+		}
+		[icon="headphone"]::before {
+			content: '\E7F6';
+		}
+		[icon="camera"]::before {
+			content: '\E722';
+		}
+		[icon="package"]::before {
+			content: '\E7B8';
+		}
+		[icon="earth"]::before {
+			content: '\E774';
+		}
+	</style>
+
+</head>
+<body debug grid light fx-app>
+
+	<!--flexus-drawer breakpoint2="800">
+		<button icon="menu"></button>
+		<button icon="star">Star</button>
+		<a icon="home" fx-item>Home</a>
+		<a icon="folder">Folder</a>
+		<button icon="av:queue-music">Playlist</button>
+		<button icon="image:crop"></button>
+		<a drawer-noclose icon="switch" fx-item>switch</a>
+		<a drawer-close icon="usb"></a>
+		<a drawer-noclose icon="switch" fx-item>switch</a>
+		<a drawer-noclose icon="switch" fx-item>switch</a>
+		<a drawer-noclose icon="switch" fx-item>switch</a>
+		<a drawer-noclose icon="switch" fx-item>switch</a>
+		<a icon="account-circle" bottom></a>
+		<a icon="settings" bottom>Settings</a>
+	</flexus-drawer-->
+
+		<!--div user-thing ratio="16:9" style="background-color: gray; background-image: url('img/wall4.jpg')" image-cover>
+			<img avatar src="/flexus/img/coulson.jpg">
+		</div-->
+
+	<!--flexus-drawer>
+		<a fx-item icon="star"></a>
+		<button fx-item icon="home"></button>
+		<a fx-item icon="folder">Folder</a>
+		<button fx-item icon="av:queue-music">Playlist</button>
+		<button fx-item icon="image:crop">Crop</button>
+		<button fx-item drawer-noclose icon="switch">Switch</button>
+		<div fx-item drawer-close icon="usb">
+			<span flex>Normal</span>
+			<button icon="x"></button>
+		</div>
+		<a fx-item icon="laptop" href="#">
+			<span flex>Href</span>
+			<button icon="x" drawer-noclose></button>
+		</a>
+		<div layout>
+			<a fx-item icon="laptop" href="#" flex>Href layout</a>
+			<button icon="x" drawer-noclose></button>
+		</div>
+		<div fx-item>
+			<i icon="phone"></i>
+			<span flex>Separate Icon</span>
+			<button icon="x" drawer-noclose></button>
+		</div>
+		<button fx-item icon="phone">Phone</button>
+		<button fx-item icon="phone">Phone</button>
+		<button fx-item icon="sync" bottom>Sync</button>
+		<a fx-item icon="account-circle" bottom></a>
+		<a fx-item icon="settings" bottom>Settings</a>
+	</flexus-drawer-->
+
+	<!--flexus-drawer>
+		<button icon="menu"></button>
+		<a fx-item icon="star"></a>
+		<a fx-item icon="folder">Folder</a>
+		<div fx-item drawer-close icon="usb">
+			<span flex>Normal</span>
+			<button icon="x"></button>
+		</div>
+		<a fx-item icon="laptop" href="#">
+			<span flex>Href</span>
+			<button icon="x" drawer-noclose></button>
+		</a>
+		<div layout>
+			<a fx-item icon="laptop" href="#" flex>Href layout</a>
+			<button icon="x" drawer-noclose></button>
+		</div>
+		<div fx-item>
+			<i icon="phone"></i>
+			<span flex>Separate Icon</span>
+			<button icon="x" drawer-noclose></button>
+		</div>
+		<a fx-item icon="account-circle" bottom></a>
+		<a fx-item icon="settings" bottom>Settings</a>
+	</flexus-drawer-->
+
+	<flexus-drawer>
+		<button icon="menu"></button>
+
+		<div fx-item sticky bold icon="tvmonitor">Devices</div>
+		<a fx-item indent icon="laptop">Laptop</a>
+		<a fx-item indent icon="cellphone">Phone</a>
+		<a fx-item indent icon="tablet">Tablet</a>
+		<a fx-item indent icon="computer">Computer</a>
+	
+		<div fx-item sticky bold icon="keyboard-mouse">Peripherals</div>
+		<a fx-item indent drawer-close icon="usb">USB</a>
+		<a fx-item indent drawer-close icon="microphone">Microphone</a>
+		<a fx-item indent drawer-close icon="speakers">Speakers</a>
+		<a fx-item indent drawer-close icon="headphone">Headphone</a>
+		<a fx-item indent drawer-close icon="camera">Camera</a>
+
+		<!--div fx-item sticky bold icon="edit">Editor</div-->
+		<div fx-item sticky bold icon="edit">
+			<div flex>Editor</div>
+			<!--button icon="chevron-down"></button-->
+		</div>
+		<a fx-item indent icon="phone">Phone</a>
+		<a fx-item indent icon="calendar">Calendar</a>
+		<a fx-item indent icon="folder">Folder</a>
+
+		<div fx-item sticky bold icon="earth">Online</div>
+		<a fx-item indent icon="clock">Clock</a>
+		<a fx-item indent icon="package">Archive</a>
+
+		<div fx-item sticky bold icon="star-outline">Favorites</div>
+
+		<div fx-item sticky bold icon="download">Downloads</div>
+
+		<div not-pinned>
+			some additional info
+		</div>
+
+		<a fx-item bottom icon="account-circle">User</a>
+		<a fx-item bottom icon="settings">Settings</a>
+	</flexus-drawer>
+
+	<flexus-view>
+		<flexus-toolbar elevation="1">
+			<button icon="menu"></button>
+			<div flex>Title</div>
+			<button icon="more"></button>
+		</flexus-toolbar>
+
+		<main>
+
+			wow
+			<label fx-item hoverable>
+				<input type="checkbox">
+				<span flex>Checkbox</span>
+			</label>
+			<div fx-item hoverable icon="laptop">
+				<span flex>Laptop</span>
+				<button icon="x"></button>
+			</div>
+			<div fx-item hoverable>
+				<i icon="phone"></i>
+				<span flex>Phone</span>
+				<button icon="x"></button>
+			</div>
+
+			<div fx-item hoverable>
+				<img avatar>
+				<div multi-line>
+					<div>Jarda</div>
+					<div secondary>Brunch this weekend?</div>
+				</div>
+				<i icon="edit"></i>
+			</div>
+			<div fx-item hoverable>
+				<img avatar>
+				<div multi-line>
+					<div>Kanty</div>
+					<div secondary>Brunch this weekend?</div>
+				</div>
+				<!--button icon="edit"></button-->
+			</div>
+			<div fx-item hoverable>
+				<img avatar>
+				<div multi-line>
+					<div>Mike</div>
+					<div secondary>Brunch this weekend?</div>
+				</div>
+			</div>
+			<div fx-item hoverable>
+				<img avatar>
+				<div multi-line>
+					<div>Junge</div>
+					<div secondary>Brunch this weekend?</div>
+				</div>
+			</div>
+			<div fx-item hoverable>
+				<img avatar>
+				<div multi-line>
+					<div>Ali Connors</div>
+					<div secondary>Brunch this weekend?</div>
+				</div>
+			</div>
+
+			<br>
+			<div fx-item icon="switch">switch</div>
+			<div fx-item icon="switch"></div>
+			<br>
+			<button icon="switch">switch</button>
+			<button icon="switch"></button>
+			<br>
+			<button>Install now</button>
+
+			<div fx-item><img avatar> Placeholder</div>
+			<div fx-item><img avatar> Placeholder</div>
+			<div fx-item><img avatar> Placeholder</div>
+			<div fx-item><img avatar> Placeholder</div>
+			<div fx-item><img avatar> Placeholder</div>
+
+			<div fx-item hoverable small>
+				<img avatar style="--size: 32px !important">
+				<div multi-line>
+					<div>Jarda</div>
+					<div secondary>Brunch this weekend?</div>
+				</div>
+				<i icon="edit"></i>
+			</div>
+			<div fx-item hoverable small>
+				<img avatar style="--size: 32px !important">
+				<div multi-line>
+					<div>Kanty</div>
+					<div secondary>Brunch this weekend?</div>
+				</div>
+			</div>
+			<div fx-item hoverable small>
+				<img avatar style="--size: 32px !important">
+				<div multi-line>
+					<div>Mike</div>
+					<div secondary>Brunch this weekend?</div>
+				</div>
+			</div>
+
+			<!--div fx-item-expandable swipeable hr>
+				<section fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Ali Connors</div>
+						<div secondary>Brunch this weekend?</div>
+					</div>
+				</section>
+				<section swipe-shadow></section>
+			</div>
+			<div fx-item-expandable swipeable hr>
+				<section fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Ali Connors</div>
+						<div secondary>Brunch this weekend?</div>
+					</div>
+				</section>
+				<section swipe-shadow></section>
+			</div>
+			<div fx-item-expandable swipeable hr>
+				<section fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Ali Connors</div>
+						<div secondary>Brunch this weekend?</div>
+					</div>
+				</section>
+				<section swipe-shadow></section>
+			</div>
+			<div fx-item-expandable swipeable hr>
+				<section fx-item>
+					<img avatar>
+					<div multi-line>
+						<div>Ali Connors</div>
+						<div secondary>Brunch this weekend?</div>
+					</div>
+				</section>
+				<section swipe-shadow></section>
+			</div-->
+
+			<!--h2>This is content</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean auctor interdum interdum. Fusce imperdiet vitae nunc a laoreet. Nam condimentum interdum mattis. Curabitur imperdiet risus nec diam euismod pretium. Vivamus urna est, consequat id eleifend vitae, pulvinar id arcu. Etiam malesuada vitae mi a laoreet. Maecenas auctor elementum metus quis malesuada. Quisque eget tempor tellus, nec feugiat ipsum. Quisque ultricies odio vitae quam fringilla, nec ultrices augue auctor.</p>
+			<button>natural</button>
+			<button light>light</button>
+			<button dark>dark</button>
+			<input>
+			<div style="padding: 5px">
+				<button>natural</button>
+				<button light>light</button>
+				<button dark>dark</button>
+				<input>
+			</div>
+			<div style="padding: 5px" light>
+				<button>natural</button>
+				<button light>light</button>
+				<button dark>dark</button>
+				<input>
+			</div>
+			<div style="padding: 5px" dark>
+				<button>natural</button>
+				<button light>light</button>
+				<button dark>dark</button>
+				<input>
+			</div-->
+		</main>
+	</flexus-view>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/drawer.js"></script>
+
+	<script>
+	var drawer = document.querySelector('flexus-drawer');
+	</script>
+
+</body>
+</html>

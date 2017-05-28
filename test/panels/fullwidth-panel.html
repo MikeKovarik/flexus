@@ -1,0 +1,74 @@
+<!doctype html>
+<html touch>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<style>
+	flexus-scene > div {
+		overflow: hidden;
+	}
+	.visible,
+	.hidden,
+	.pinned,
+	.pinnable {
+		display: none;
+	}
+	[visible] .visible {
+		display: inline-block;
+	}
+	[hidden] .hidden {
+		display: inline-block;
+	}
+	[pinned] .pinned {
+		display: inline-block;
+	}
+	[pinnable] .pinnable {
+		display: inline-block;
+	}
+	</style>
+
+</head>
+<body light fx-app primary="red">
+
+	<flexus-scene>
+
+		<flexus-view>
+			<flexus-toolbar seam>
+				<h1>Right panel[fullwidth]</h1>
+			</flexus-toolbar>
+			<main>
+				<button onclick="panel.show()">show</button>
+				<button onclick="panel.hide()">hide</button>
+			</main>
+		</flexus-view>
+
+		<flexus-view fullwidth="small" panel visible id="panel">
+			<flexus-toolbar seam>
+				<button icon="x"></button>
+				<h1>Right panel</h1>
+			</flexus-toolbar>
+			<main>
+				<p>This should be automatically picked up and detected as [right][panel]</p>
+				<p>
+					<strong blue tag class="visible">visible</strong>
+					<strong blue tag class="hidden">hidden</strong>
+					<strong blue tag class="pinned">pinned</strong>
+					<strong blue tag class="pinnable">pinnable</strong>
+				<p>
+			</main>
+		</flexus-view>
+
+	</flexus-scene>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/view.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>drawer</title>
+
+	<script src="polyfill/webcomponents-lite.js"></script>
+	<script src="polyfill/pep.js"></script>
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-metro.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-metro-icons.css">
+
+	<style>
+	flexus-input2 {
+		border: 2px solid gray;
+		padding: 2px;
+		height: 32px;
+	}
+	flexus-chip {
+		background-color: gray;
+		color: #FFF;
+		padding: 0 4px 1px 4px;
+		height: 24px;
+		font-size: 14px;
+		display: inline-flex;
+		align-items: center;
+	}
+		flexus-chip img {
+			width: 24px;
+			height: 24px;
+			margin: 0 6px -1px -4px;
+		}
+		flexus-chip button[icon="x"]:empty {
+			min-width: 24px;
+			min-height: 24px;
+			margin: 0 -4px -1px 4px;
+		}
+			flexus-chip button[icon="x"]:empty::before {
+				font-size: 16px;
+			}
+	</style>
+
+</head>
+<body light fx-app fullbleed>
+
+	<flexus-input2>
+		<flexus-chip>
+			<img src="img/fury.jpg" image-cover>
+			Nicolas Fury
+			<button icon="x"></button>
+		</flexus-chip>
+		<flexus-chip>
+			<img src="img/coulson.jpg" image-cover>
+			Phil Coulson
+			<button icon="x"></button>
+		</flexus-chip>
+	</flexus-input2>
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.shadowmaster.js"></script>
+</body>
+</html>

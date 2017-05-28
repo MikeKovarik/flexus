@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/demo/groove/groove.css">
+
+</head>
+<body dark fx-app>
+
+
+	<flexus-drawer hidden="phone">
+		<button icon="menu"></button>
+		<a fx-item icon="cloud-outline">Online Collection</a>
+		<a fx-item icon="cart">Shop</a>
+		<a fx-item icon="folder">Folders</a>
+		<a fx-item icon="account" slot="bottom">Account</a>
+		<a fx-item icon="settings" slot="bottom">settings</a>
+	</flexus-drawer>
+
+	<flexus-scene type="dragup" primary="blue" shade="300">
+
+		<flexus-view master>
+			<!--flexus-toolbar distinct="ml">
+				<button icon="menu"></button>
+				<h1>Albums</h1>
+				<button icon="star" title="Remove from favorites"></button>
+				<button icon="edit" title="Edit"></button>
+				<button icon="more"></button>
+			</flexus-toolbar-->
+			<flexus-toolbar distinct="ml">
+				<button icon="menu"></button>
+				<flexus-tabs indent="s">
+					<div>Songs</div>
+					<div>Artists</div>
+					<div>Albums</div>
+				</flexus-tabs>
+				<button icon="star" title="Remove from favorites"></button>
+				<button icon="edit" title="Edit"></button>
+			</flexus-toolbar>
+			<!--flexus-pages-->
+				<main>
+					<div fx-item spacious bare sticky class="filterheader">
+						<div flex></div>
+						<label>sort</label>
+						<select>
+							<option>alphabetically</option>
+						</select>
+					</div>
+					<div id="albums-list"></div>
+				</main>
+				<!--main>
+					<h3 fx-item spacious sticky opaque>${letter}</h3>
+					<div fx-item>${song.name}</div>
+					<div fx-item>${song.name}</div>
+					<div fx-item>${song.name}</div>
+				</main>
+			</flexus-pages-->
+		</flexus-view>
+
+		
+
+
+		<flexus-view
+		groove
+		subtle 
+		detail
+		bottom
+		draggable overlay dismissable
+		drag-orientation="vertical"
+		drag-close
+		elevation="5"
+		id="playlist"
+		hidden>
+		<!--flexus-view draggable overlay dismissable drag-orientation="vertical" hidden type="dragup" detail-->
+
+			<!--flexus-toolbar>
+				<button icon="menu"></button>
+				<h1>Currently playing</h1>
+				<button icon="more"></button>
+			</flexus-toolbar-->
+			<flexus-toolbar absolute-top tinted acrylic="strong">
+				<section>
+					<h2 id="album-name" h2-like-tempname>An Act of Kindness</h2>
+				</section>
+				<section fade hidden="phone" two-line>
+						<div id="album-artist">Bastille</div>
+						<div id="album-details">2014 * Classical * 30 songs</div>
+				</section>
+				<img flexible fade="s" parallax="gts" id="album-cover"
+				src="/flexus/demo/img/albums/bastille-wild-world.jpg">
+				<section>
+					<button icon="play">Play all</button>
+					<button icon="share">Share</button>
+					<button icon="add">Add to</button>
+					<button icon="download">Download</button>
+					<button icon="more"></button>
+				</section>
+			</flexus-toolbar>
+
+			<main highlight-odd>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+				<div fx-item><span flex>Next Song</span><span flex>Artist</span><button icon="more"></button></div>
+			</main>
+
+			<div sneakpeek transparent>
+			</div>
+
+			<!--div sneakpeek toolbar tinted>
+				<img src="test/img/albums/bastille-wild-world.jpg" avatar>
+				<div two-line flex>
+					<div animation="songtitle">An Act of Kindness</div>
+					<div secondary>Bastille</div>
+				</div>
+				<button icon="play"></button>
+			</div>
+
+		</flexus-view-->
+
+
+	</flexus-scene>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/drawer.js"></script>
+	<script src="/flexus/elements/view.js"></script>
+	<script src="/flexus/elements/scene.js"></script>
+
+	<script src="/flexus/demo/groove/groove.js"></script>
+	<script>
+
+	var albumCovers = albums.map(album => `
+		<div>
+			<div
+			ratio="1:1"
+			class="albumart"
+			style="background-image: url('${coverPath(album.cover)}')">
+			</div>
+		</div>
+	`).join('')
+
+	var albumGrid = `
+		<div class="grid spaced">
+			${albumCovers}
+			<div></div><div></div><div></div><div></div>
+		</div>
+	`
+
+	var albumList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K']
+		.map(letter => `
+			<h3 fx-item spacious sticky opaque>${letter}</h3>
+			${albumGrid}
+		`)
+
+	document.querySelector('#albums-list').innerHTML = albumList
+	</script>
+
+</body>
+</html>

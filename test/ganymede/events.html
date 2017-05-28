@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+	<script src="pep.js"></script>
+
+	<style>
+		div {
+			width: 300px;
+			height: 300px;
+			background-color: red;
+		}
+	</style>
+
+</head>
+<body touch-action="none">
+
+	<div touch-action="none"></div>
+
+<script>
+	var div = document.querySelector('div')
+	div.addEventListener('mousedown', e =>   console.log('mousedown  ', e.x, e.y, e.clientX, e.clientY, e.pageX, e.pageY, e.ctrlKey, e.shiftKey, e.altKey, e))
+	//div.addEventListener('touchstart', e =>  console.log('touchstart ', e))
+	div.addEventListener('pointerdown', e => console.log('pointerdown', e.x, e.y, e.clientX, e.clientY, e.pageX, e.pageY, e.ctrlKey, e.shiftKey, e.altKey, e.pointerId, e))
+</script>
+
+</body>
+</html>

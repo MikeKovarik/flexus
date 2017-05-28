@@ -1,0 +1,801 @@
+// http://tjvantoll.com/2013/04/15/list-of-pseudo-elements-to-style-form-controls/
+
+fieldset {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+
+select,
+input:not([type="checkbox"]):not([type="radio"]),
+button {
+
+	--input-size: 32px;
+	&[icon]:empty {
+		--input-size: 40px;
+	}
+	
+	&[dense][icon]:empty,
+	&[small][icon]:empty,
+	&[dense],
+	&[small] {
+		--input-size: 26px;
+	}
+	&[big],
+	&[spacious] {
+		--input-size: 40px;
+	}
+
+	// TODO: it'd be nice to have another size of 48px
+
+	&[small] {
+		// custom small icon size
+		--size: 16px;
+		--font-size: 14px;
+	}
+	&[big] {
+		//--size: 16px;
+		//--font-size: 14px;
+	}
+
+	--seam-size: 1px;
+	&[seam] {
+		border: var(--seam-size) solid var(--seam-color);
+	}
+
+}
+
+/*
+button,
+textarea,
+input,
+button,
+select {
+	&:disabled {
+		color: ~'rgba(var(--foreground-rgb), 0.4)' !important;
+	}
+}
+*/
+:disabled,
+[disabled=""] {
+	opacity: 0.4;
+	* {
+		opacity: initial;
+	}
+}
+
+
+// this might cause problems. but is needed (unless better solution is found) to align buttons with inline text
+label,
+input,
+button,
+select {
+	vertical-align: middle;
+}
+/*
+input[type="radio"],
+input[type="checkbox"] {
+	vertical-align: text-bottom;
+}
+*/
+
+/*
+input[type="checkbox"] {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	position: relative;
+}
+*/
+
+
+
+
+
+input[type='radio'],
+input[type='checkbox']:not([toggle]) {
+
+	--size: 20px;
+	border: 2px solid ~'rgba(var(--foreground-rgb), 0.8)';
+	overflow: hidden;
+	//vertical-align: text-bottom;
+
+	// NOTE: this is just a test. might be deleted
+	margin-top: 4px;
+	margin-bottom: 4px;
+
+	// NOTE: WinJS has these margin values
+	//margin-right: 8px;
+	//margin-top: 12px;
+	//margin-bottom: 12px;
+	
+}
+
+
+input[type='checkbox']:not([toggle]) {
+	//background-color: transparent; // disabled due to bg color of input[type="checkbox"][avatar]
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	&[icon] {
+		&:not([avatar]):not(:checked) {
+			border: none;
+		}
+		&:not(:checked):not(:active) {
+			color: inherit;
+			overflow: initial;
+		}
+	}
+
+	&::-ms-check {
+		background-color: transparent;
+		border: none;
+		width: 20px;
+		height: 20px;
+		color: var(--background);
+	}
+	&:checked::before {
+		//.fx-icon-pseudo();
+		.fx-icon-font();
+		content: '\E73E';
+		font-size: 16px;
+		font-weight: 800;
+		// take out of flow to be properly centered
+		position: absolute;
+		color: var(--background);
+		animation: 100ms scale-in;
+	}
+	// color is in separate selector due to possible combination with [icon] which is also located in
+	// ::before pseudo selector and should have different color
+	//&:not(:checked)::before {
+	//	display: none;
+	//}
+
+	&:checked {
+		background-color: currentColor;
+		border-color: transparent;
+		&::-ms-check {
+			color: #FFF; // both for white and dark
+		}
+	}
+
+	&:hover {
+		border-color: var(--foreground);
+	}
+
+	&:active {
+		background-color: ~'rgba(var(--foreground-rgb), 0.6)';
+		border-color: transparent !important;
+	}
+
+	&:disabled {
+		background-color: transparent;
+		border-color: ~'rgba(var(--foreground-rgb), 0.4)';
+	}
+	&:disabled:checked {
+		&::after {
+			border-color: ~'rgba(var(--foreground-rgb), 0.4)';
+		}
+		&::-ms-check {
+			color: ~'rgba(var(--foreground-rgb), 0.4)';
+		}
+	}
+
+
+
+
+
+}
+
+
+input[type='radio'] {
+	border-radius: 50%;
+
+	&::-ms-check {
+	}
+	&::after {
+		content: '';
+	}
+	&::-ms-check {
+		//display: block;
+		//position: absolute;
+		transition: all 100ms ease-out;
+	}
+	&::after {
+		display: block;
+		position: absolute;
+		transition: all 100ms ease-out;
+	}
+
+	// radio specific
+
+	&::-ms-check {
+		width: 10px;
+		height: 10px;
+		background-color: ~'rgba(var(--foreground-rgb), 0.8)';
+		//@{theme-dark}  & {color: fade(#FFF, 80)} // started rewriting according to winjs
+		//@{theme-light} & {color: #333}
+		transform: scale(0);
+		border: 2px solid white;
+		box-sizing: border-box;
+	}
+	&::after {
+		width: 10px;
+		height: 10px;
+		background-color: ~'rgba(var(--foreground-rgb), 0.8)';
+		//@{theme-dark}  & {background-color: fade(#FFF, 80)} // started rewriting according to winjs
+		//@{theme-light} & {background-color: #333}
+		transform: scale(0);
+		left: 3px;
+		top: 3px;
+		border-radius: 50%;
+	}
+
+	&:checked {
+		border-color: var(--tint);
+		//border-color: currentColor;
+		&::-ms-check {
+			transform: scale(1);
+		}
+		&::after {
+			transform: scale(1);
+		}
+		&:hover {
+			&::-ms-check {
+				background-color: var(--background);
+				//@{theme-dark}  & {color: #FFF} // started rewriting according to winjs
+				//@{theme-light} & {color: #000}
+			}
+			&::after {
+				background-color: var(--background);
+				//@{theme-dark}  & {background-color: #FFF} // started rewriting according to winjs
+				//@{theme-light} & {background-color: #000}
+			}
+		}
+		&:active {
+			&::-ms-check {
+				color: ~'rgba(var(--foreground-rgb), 0.6)';
+			}
+			&::after {
+				background-color: ~'rgba(var(--foreground-rgb), 0.6)';
+			}
+		}
+	}
+
+	&:not(:checked):not(:active):hover {
+		border-color: var(--foreground);
+	}
+
+	&:active {
+		border-color: ~'rgba(var(--foreground-rgb), 0.6)';
+	}
+}
+
+
+input[type='checkbox'][toggle] {
+	width: 44px;
+	height: 20px;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	overflow: hidden;
+
+	&::-ms-check {
+		background-color: transparent !important;
+		border-color: transparent !important;
+		width: 20px;
+		height: 20px;
+	}
+
+	&::after {
+		display: block;
+		position: absolute;
+		transition: transform 0.1s ease-out;
+		content: '';
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		left: 3px;
+		top: 3px;
+	}
+
+	border-color: ~'rgba(var(--foreground-rgb), 0.8)';
+	
+	background-color: transparent;
+	&::after {
+		background-color: ~'rgba(var(--foreground-rgb), 0.8)';
+	}
+
+	&:checked {
+		border-color: transparent;
+		//background-color: var(--tint);
+		background-color: currentColor;
+	}
+	&:checked::after {
+		transform: translateX(24px);
+	}
+
+	&:hover:not(:checked):not(:disabled):not(:active) {
+		border-color: ~'rgb(var(--foreground-rgb))';
+		&::after {
+			background-color: ~'rgb(var(--foreground-rgb))';
+		}
+	}
+	&:hover:checked:not(:disabled):not(:active) {
+		[light] & {opacity: 0.7}
+		[dark]  & {opacity: 0.9}
+	}
+
+	&:active {
+		border-color: transparent;
+		background-color: ~'rgba(var(--foreground-rgb), 0.6)';
+	}
+
+	&:active::after,
+	&:checked::after {
+		background-color: var(--background);
+	}
+
+	&:disabled {
+		&::after {
+			background-color: ~'rgba(var(--foreground-rgb), 0.2)';
+		}
+	}
+	&:disabled:checked {
+		border-color: transparent;
+		background-color: ~'rgba(var(--foreground-rgb), 0.2)';
+	}
+	&:disabled:not(:checked) {
+		border-color: ~'rgba(var(--foreground-rgb), 0.4)';
+		background-color: transparent;
+	}
+
+}
+
+
+
+
+
+
+
+
+select {
+
+	//min-height: 32px;
+	.fx-behavior-generalmargin;
+	height: var(--input-size);
+	padding-left: 6px;
+	padding-bottom: 3px; // ten padding to trochu rozhrazuje
+	vertical-align: top; // vertical align se snazi zachranit to rozhzeni po paddingu, jeste je mozne bottom
+
+	font-size: var(--font-size, 16px);
+	letter-spacing: -0.45px;
+	border: 2px solid transparent;
+	background-color: transparent; // TODO investigate. probbably the same as input
+	.fx-style-bordered;
+
+	&:active:not(:disabled) {
+		.theme-inherited(
+			{border-color: #999; background-color: #CCC},
+			{border-color: #666; background-color: #333},
+		);
+	}
+	&:focus:not(:disabled) {
+		// cancels the default inherited input/textbox behavior
+		.theme-inherited(
+			{border-color: #999 !important},
+			{border-color: #666 !important}
+		);
+	}
+
+	option {
+		.theme-inherited(
+			{background-color: #f2f2f2},
+			{background-color: #404040}
+		);
+		&:hover {
+			.theme-inherited(
+				{background-color: #dadada},
+				{background-color: #404040}
+			);
+		}
+		&:active {
+			.theme-inherited(
+				{background-color: #c2c2c2},
+				{background-color: #555555}
+			);
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TODO: this is just a guess. investigate
+select + * {
+	margin-left: 8px;
+}
+
+
+
+
+// TODO disabled checkbox active through label
+
+textarea,
+//input[type="text"],
+//input[type="number"],
+//input[type="password"],
+//input[type="search"],
+//input:not([type]),
+input:not([type="radio"]):not([type="checkbox"]) {
+
+	.fx-behavior-generalmargin;
+	.fx-style-bordered;
+
+	font-size: 16px;
+	line-height: 16px;
+	letter-spacing: -0.5px;
+	//padding: 2px 10px 5px 10px; // just like in settings
+	//padding: 3px 9px 4px 9px; // mine
+	padding: 0 9px;
+	border-width: 2px;
+	border-style: solid;
+
+	min-height: var(--input-size);
+
+	&[transparent] {
+		background-color: transparent !important;
+		border-color: transparent;
+	}
+
+	&::-ms-input-placeholder,
+	&::-moz-input-placeholder,
+	&::-webkit-input-placeholder {
+		color: ~'rgba(var(--foreground-rgb), 0.6)';
+		//@{theme-dark}  & {color: rgba(255, 255, 255, 0.6)}
+		//@{theme-light} & {color: red}
+	}
+
+}
+
+
+textarea {
+	padding-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+progress {
+	&:not([value]) {
+		// todo - indeterminate
+	}
+	&[value] {
+		width: 250px;
+		height: 4px;
+		&::-webkit-progress-bar {
+			background-color: #ddd; // TODO
+		}
+	}
+}
+
+
+
+
+
+
+
+
+.fx-style-bordered() {
+	//color: var(--primary);
+	border-color: ~'rgba(var(--foreground-rgb), 0.4)';
+	background-color: ~'rgba(var(--background-rgb), 0.4)';
+	&:hover:not(:disabled) {
+		border-color: ~'rgba(var(--foreground-rgb), 0.6)';
+		background-color: ~'rgba(var(--background-rgb), 0.6)';
+	}
+
+	// WARNING: tohle zmeneno z rozumu a bez testovani na vlivu neceho jineho nez textarea
+	// je prece blbost aby disabled vec sla focusnout
+	//&:focus:not(:disabled) { /////////////////////////////////////////////////////////////////////
+	&:focus { //////////////////////////////////////////////////////////////////////////////////////
+		border-color: var(--actionable, var(--tint)) !important;
+	}
+	&:disabled {
+		border-color: transparent;
+		background-color: ~'rgba(var(--foreground-rgb), 0.2)';
+	}
+	&:invalid:focus,
+	&:invalid {
+		color: red !important;
+		border-color: red !important;
+	}
+}
+
+.fx-behavior-generalmargin() {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+
+// todo: smaller buttons (like those in expandable list item e.g. uninstall app) are 32px tall
+.fx-style-button-notempty() {
+	font-size: var(--font-size);
+	line-height: var(--font-size);
+	letter-spacing: -0.4px;
+	min-width: 90px;
+	height: var(--input-size);
+	padding: 0 12px;
+
+	// make icon smaller and padded by 4px in button with icon & text
+	--size: 16px;
+	&[icon]:not(:empty)::before {
+		//font-size: 16px;
+		margin-right: 8px;
+	}
+}
+
+// PADDING left-right (edge to button, input, text)
+// phone: 12px
+// tablet: 24px
+// items have the same negative margin to get back to position
+
+
+.fx-style-button-flat() {
+	.fx-hoverable-flat;
+	.fx-clickable-flat;
+}
+.fx-hoverable-flat() {
+	&:not(:disabled):hover {
+		background-color: ~'rgba(var(--foreground-rgb), 0.1)'
+	}
+}
+.fx-clickable-flat() {
+	transition: transform 0.2s;
+	&:not(:disabled):active/*:hover*/ {
+		transition: transform 0s;
+		transform: scale(0.98);
+		background-color: ~'rgba(var(--foreground-rgb), 0.2)';
+	}
+}
+
+
+.fx-style-button-raised() {
+	.fx-hoverable-raised;
+	.fx-clickable-raised;
+	&:not([primary]):not([accent]):not([tinted]) {
+		--background: ~'rgba(var(--foreground-rgb), 0.2)';
+	}
+}
+.fx-hoverable-raised() {
+	border: 2px solid transparent;
+	&:not(:disabled):hover {
+		border-color: ~'rgba(var(--foreground-rgb), 0.4)'
+	}
+}
+.fx-clickable-raised() {
+	.fx-clickable-flat;
+	&:not(:disabled):active/*:hover*/ {
+		border-color: transparent !important;
+		--background: ~'rgba(var(--foreground-rgb), 0.4)';
+	}
+}
+
+
+[hoverable] {
+	.fx-hoverable-flat;
+}
+[clickable] {
+	.fx-clickable-flat;
+}
+
+
+
+.fx-style-button-simple() {
+	background-color: transparent !important;
+	border: none !important;
+	&:hover  {background-color: ~'rgba(var(--foreground-rgb), 0.1)' !important}
+	&:active {background-color: ~'rgba(var(--foreground-rgb), 0.2)' !important}
+}
+
+
+// NOTE: all buttons in windows are by default styled like [raised]
+//       through the :not([flat]) selector
+
+// NOTE: decide on implementing [small] and [big] besides [spacious] and [dense]
+// [small] not only has smaller height, but also decreses icon size to 16px
+// whereas [dense] could be only changing height, and leave icon intact
+// likewise [big] could make for a gigantic button big big icon
+// whereas [spacious] would only increate button's height and leave stylish small icon
+
+button {
+
+	.set-colors;
+	.apply-colors;
+
+	.fx-behavior-generalmargin;
+
+	&[icon]:not(:empty),
+	&:not([icon]) {
+		.fx-style-button-notempty;
+	}
+
+	&[raised],
+	&:not([flat]):not(:empty) {
+		// explicitly [raised] or not empty (has text, [icon] doesn't matter)
+		.fx-style-button-raised;
+	}
+
+	&[flat],
+	&:not([raised]):empty {
+		// explicitly [flat] or empty (no text but presumably [icon])
+		.fx-style-button-flat;
+	}
+
+	&[simple] {
+		// TODO, toolbar like buttons without scale on push
+	}
+
+	//&[dense],
+	&[small] {
+		min-width: initial;
+	}
+
+	&[icon]:empty {
+		&::before {
+			width: 100%;
+		}
+		min-width: var(--input-size);
+		min-height: var(--input-size);
+		&[raised] {
+			padding: 0;
+		}
+	}
+
+}
+
+
+
+
+label {
+	display: inline-flex;
+	align-items: center;
+}
+input[type="checkbox"],
+input[type="radio"] {
+	label & {
+		margin-right: 12px;
+	}
+	& + label {
+		margin-left: 8px;
+	}
+	label + & {
+		margin-left: 8px;
+	}
+}
+
+
+
+
+
+
+// reqrite according to WinJS
+// NOTE: doesnt work because of bug
+//       - unable to use css variables within ms-check (some work, most dont)
+
+/*
+
+input[type="radio"],
+input[type="checkbox"] {
+	width: 20px;
+	height: 20px;
+	margin-right: 8px;
+	margin-top: 12px;
+	margin-bottom: 12px;
+
+	border: 2px solid green;
+	&:hover {
+		border-color: pink;
+	}
+
+	&::-ms-check {
+		border-style: solid;
+		display: inline-block;
+		border-width: 2px;
+		background-clip: border-box;
+	}
+
+	&::-ms-check {
+		background-color: ButtonFace;
+		border-color: ButtonText;
+		color: var(--tint-foreground);
+	}
+	
+	&:checked::-ms-check {
+		--tint: Highlight;
+		background-color: var(--tint);
+		border-color: var(--tint-foreground);
+	}
+	
+	&:disabled::-ms-check,
+	&:disabled:active::-ms-check {
+		background-color: ButtonFace;
+		border-color: GrayText;
+		color: GrayText;
+	}
+
+}
+
+
+
+
+input[type="radio"] {
+	&::-ms-check {
+		color: ~'rgba(var(--foreground-rgb), 0.8)';
+		border-color: ~'rgba(var(--foreground-rgb), 0.8)';
+		background-color: transparent;
+	}
+	&:hover::-ms-check {
+		border-color: red;
+		color: #fff;
+	}
+	&:active::-ms-check {
+		color: ~'rgba(var(--foreground-rgb), 0.6)';
+		border-color: ~'rgba(var(--foreground-rgb), 0.6)';
+	}
+	&:disabled::-ms-check {
+		color: ~'rgba(var(--foreground-rgb), 0.2)';
+		border-color: ~'rgba(var(--foreground-rgb), 0.2)';
+	}
+}
+
+input[type="checkbox"] {
+	&::-ms-check {
+		color: #fff;
+		border-color: ~'rgba(var(--foreground-rgb), 0.8)';
+		background-color: transparent;
+	}
+	&:checked::-ms-check {
+		color: #fff;
+		border-color: transparent;
+	}
+	&:hover::-ms-check {
+		border-color: red;
+	}
+	&:active::-ms-check {
+		border-color: transparent;
+		background-color: ~'rgba(var(--foreground-rgb), 0.6)';
+	}
+	&:disabled::-ms-check {
+		color: ~'rgba(var(--foreground-rgb), 0.2)';
+		border-color: ~'rgba(var(--foreground-rgb), 0.2)';
+		background-color: transparent;
+	}
+}
+
+*/

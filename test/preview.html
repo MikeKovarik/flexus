@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro-icons.css">
+
+	<style>
+	div[layout] {
+		margin-bottom: 20px;
+	}
+
+visual-preview {
+	width: 360px;
+}
+	</style>
+
+</head>
+<body light>
+
+	<template id="t1">
+		<flexus-tabs>
+			<a href="">ITEM ONE</a>
+			<a href="">ITEM TWO</a>
+			<a href="">ITEM THREE</a>
+		</flexus-tabs>
+		<flexus-tabs>
+			<button href="">ITEM ONE</button>
+			<button href="">ITEM TWO</button>
+			<button href="">ITEM THREE</button>
+		</flexus-tabs>
+	</template>
+
+	<template id="t2">
+		<flexus-view>
+			<flexus-toolbar elevation="1" multisection>
+				<section main>
+					<button icon="menu"></button>
+					<div flex>title</div>
+					<button icon="share" title="Share"></button>
+					<button icon="edit" title="Edit"></button>
+					<button icon="star" title="Favorite"></button>
+				</section>
+				<flexus-tabs>
+					<a href="">ITEM ONE</a>
+					<a href="">ITEM TWO</a>
+					<a href="">ITEM THREE</a>
+				</flexus-tabs>
+			</flexus-toolbar>
+			<section>Section 1</section>
+			<section>Section 2</section>
+			<section>Section 3</section>
+		</flexus-view>
+	</template>
+
+	<template id="t3">
+		<flexus-toolbar elevation="1">
+			<flexus-tabs>
+				<a href="">Home</a>
+				<a href="">Apps</a>
+				<a href="">Games</a>
+				<a href="">Music</a>
+			</flexus-tabs>
+			<div flex></div>
+			<button icon="more" title="More"></button>
+		</flexus-toolbar>
+	</template>
+
+	<template id="t4">
+		<flexus-toolbar elevation="1">
+			<flexus-tabs>
+				<button icon="star" title="Favorite"></button>
+				<a icon="star" title="Favorite"></a>
+				<i icon="star" title="Favorite"></i>
+			</flexus-tabs>
+			<div flex></div>
+			<button icon="more" title="More"></button>
+		</flexus-toolbar>
+	</template>
+
+	<template id="t5">
+		<flexus-toolbar elevation="1" multisection>
+			<section main>
+				<button icon="menu"></button>
+				<div flex>title</div>
+				<button icon="share" title="Share"></button>
+				<button icon="edit" title="Edit"></button>
+				<button icon="star" title="Favorite"></button>
+			</section>
+			<flexus-tabs>
+				<button href="">ITEM ONE</button>
+				<button href="">ITEM TWO</button>
+				<button href="">ITEM THREE</button>
+			</flexus-tabs>
+		</flexus-toolbar>
+	</template>
+
+	<template id="t6">
+		<flexus-toolbar elevation="1" multisection>
+			<section main>
+				<button icon="menu"></button>
+				<div flex>title</div>
+				<button icon="share" title="Share"></button>
+				<button icon="edit" title="Edit"></button>
+				<button icon="star" title="Favorite"></button>
+			</section>
+			<flexus-tabs>
+				<a href="" icon="star">Favorites</a>
+				<a href="" icon="star">Favorites</a>
+				<a href="" icon="star">Favorites</a>
+			</flexus-tabs>
+		</flexus-toolbar>
+	</template>
+
+
+	<div layout>
+		<visual-preview template="t1" design="metro"></visual-preview>
+		<visual-preview template="t1" design="material"></visual-preview>
+	</div>
+
+	<div layout>
+		<visual-preview template="t2" design="metro"></visual-preview>
+		<visual-preview template="t2" design="material"></visual-preview>
+	</div>
+
+	<div layout>
+		<visual-preview template="t3" design="metro"></visual-preview>
+		<visual-preview template="t3" design="material"></visual-preview>
+	</div>
+
+	<div layout>
+		<visual-preview template="t4" design="metro"></visual-preview>
+		<visual-preview template="t4" design="material"></visual-preview>
+	</div>
+
+	<div layout>
+		<visual-preview template="t5" design="metro"></visual-preview>
+		<visual-preview template="t5" design="material"></visual-preview>
+	</div>
+
+	<div layout>
+		<visual-preview template="t6" design="metro"></visual-preview>
+		<visual-preview template="t6" design="material"></visual-preview>
+	</div>
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+	<script src="elements/tabs.js"></script>
+	<script src="elements/visual-preview.js"></script>
+
+</body>
+</html>

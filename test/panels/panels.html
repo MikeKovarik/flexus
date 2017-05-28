@@ -1,0 +1,59 @@
+<!doctype html>
+<html touch>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+</head>
+<body light fx-app primary="red">
+
+	<flexus-scene>
+
+		<flexus-view panel id="leftpanel">
+			<flexus-toolbar seam>
+				<button icon="x"></button>
+				<h1>Left panel</h1>
+			</flexus-toolbar>
+			<main>
+				<p>This should be automatically picked up and detected as [left][panel]</p>
+			</main>
+		</flexus-view>
+
+		<flexus-view subtle>
+			<flexus-toolbar tinted>
+				<h1>Panels on both sides</h1>
+			</flexus-toolbar>
+			<main layout center>
+				<div>
+					<button onclick="leftpanel.show()">show left</button>
+					<button onclick="leftpanel.hide()">hide left</button>
+				</div>
+				<div>
+					<button onclick="rightpanel.show()">show right</button>
+					<button onclick="rightpanel.hide()">hide right</button>
+				</div>
+			</main>
+		</flexus-view>
+
+		<flexus-view no-show-overlay-bg panel id="rightpanel">
+			<flexus-toolbar seam>
+				<button icon="x"></button>
+				<h1>Right panel</h1>
+			</flexus-toolbar>
+			<main>
+				<p>This should be automatically picked up and detected as [right][panel]</p>
+			</main>
+		</flexus-view>
+
+	</flexus-scene>
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/view.js"></script>
+
+</body>
+</html>

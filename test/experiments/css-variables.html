@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<style>
+	[primary="red"] {
+    	--theme-primary: '#FF0000';
+	}
+	</style>
+</head>
+<body primary="red">
+
+	<button class="alert-value">alert</button>
+
+	<script>
+	document.querySelector('.alert-value').addEventListener('click', () => {
+		const rootStyles = getComputedStyle(document.body)
+		const varValue = rootStyles.getPropertyValue('--theme-primary').trim()
+		alert(varValue)
+	})
+
+var primaryElement = document.querySelector('[primary]:not([primary=""])')
+var rootStyles = getComputedStyle(primaryElement)
+var varValue = rootStyles.getPropertyValue('--theme-primary').trim()
+console.log('varValue', varValue)
+
+var rootStyles = getComputedStyle(document.body)
+var varValue = rootStyles.getPropertyValue('--theme-primary').trim()
+console.log('varValue', varValue)
+
+	</script>
+
+</body>
+</html>

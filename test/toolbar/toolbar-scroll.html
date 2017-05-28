@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
+	<meta charset="UTF-8">
+
+	<script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="import.head.html">
+	<link rel="import" href="build/elements/split-view.html">
+	<link rel="import" href="build/elements/lorem-ipsum.html">
+	<link rel="import" href="build/elements/flexus-toolbar.html">
+	<link rel="stylesheet" type="text/css" href="build/css/material.css">
+	<link rel="stylesheet" type="text/css" href="build/css/material-icons.css">
+	<style>
+		flexus-toolbar {
+			background-color: #00bcd4;
+			color: #004446;
+		}
+	</style>
+</head>
+<body>
+
+
+	<flexus-view flex id="event">
+
+		<flexus-toolbar waterfall>
+			<section flexible scrollable ratio="16:9" style="background-image: url('img/wall1.jpg')" image-cover>
+			</section>
+			<section main>
+				<button icon="arrow-back"></button>
+				<div flex></div>
+				<button icon="map"></button>
+				<button icon="share"></button>
+			</section>
+		</flexus-toolbar>
+
+		<main indent>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sem nunc, rhoncus ut viverra at, vulputate a lorem.</p>
+			<p>In tortor dolor, aliquet ac pulvinar vitae, ullamcorper vitae dui. Mauris in rutrum velit, volutpat iaculis augue.</p>
+			<nexus-subtitle>Speakers</nexus-subtitle>
+			<div nx-item counter-indent>
+				<img avatar src="img/coulson.jpg">
+				Agent Coulson
+			</div>
+			<nexus-subtitle>Description</nexus-subtitle>
+			<lorem-ipsum paragraphs="8"></lorem-ipsum>
+		</main>
+
+	</flexus-view>
+
+
+</body>
+</html>

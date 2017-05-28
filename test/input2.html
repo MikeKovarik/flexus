@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<style>
+	#settings {
+		max-width: 400px;
+	}
+	[spaced-items] > * + * {
+		margin-left: 20px;
+	}
+	</style>
+
+</head>
+<body fx-app dark subtle primary="blue" accent="yellow">
+<flexus-view>
+<main>
+
+	<h3>normal</h3>
+	<button>button</button>
+	<button flat>flat</button>
+	<button raised>raised</button>
+	<button seam>seam</button>
+	<input value="button">
+	<input flat value="flat">
+	<input raised value="raised">
+	<input seam value="seam">
+
+	<h3>[transparent]</h3>
+	<button transparent>button</button>
+	<button transparent flat>flat</button>
+	<button transparent raised>raised</button>
+	<button transparent seam>seam</button>
+	<input transparent value="button">
+	<input transparent flat value="flat">
+	<input transparent raised value="raised">
+	<input transparent seam value="seam">
+
+	<h3>[distinct]</h3>
+	<button distinct>button</button>
+	<button distinct flat>flat</button>
+	<button distinct raised>raised</button>
+	<button distinct seam>seam</button>
+	<input distinct value="button">
+	<input distinct flat value="flat">
+	<input distinct raised value="raised">
+	<input distinct seam value="seam">
+	<span muted>note: this doesn't exist yet</span>
+
+	<h3>[tinted]</h3>
+	<button tinted>button</button>
+	<button tinted flat>flat</button>
+	<button tinted raised>raised</button>
+	<button tinted seam>seam</button>
+	<input tinted value="button">
+	<input tinted flat value="flat">
+	<input tinted raised value="raised">
+	<input tinted seam value="seam">
+
+	<h3>[primary]</h3>
+	<button primary>button</button>
+	<button primary flat>flat</button>
+	<button primary raised>raised</button>
+	<button primary seam>seam</button>
+	<input primary value="button">
+	<input primary flat value="flat">
+	<input primary raised value="raised">
+	<input primary seam value="seam">
+
+	<h3>[accent]</h3>
+	<button accent>button</button>
+	<button accent flat>flat</button>
+	<button accent raised>raised</button>
+	<button accent seam>seam</button>
+	<input accent value="button">
+	<input accent flat value="flat">
+	<input accent raised value="raised">
+	<input accent seam value="seam">
+
+	<h3>TODO</h3>
+	<p>Decide on replacing [flat] and [raised] with something like [transparent] and [distinct]</p>
+	<p>Properly implement [seam]</p>
+
+</main>
+</flexus-view>
+</body>
+</html>

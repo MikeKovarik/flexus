@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>flexus-toolbar demo</title>
+
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material-icons.css">
+
+	<style>
+	[subtoolbar] {
+		margin: -1rem -1rem 1rem -1rem;
+	}
+	flexus-toolbar {
+		background-color: red;
+	}
+
+	</style>
+
+</head>
+<body light fx-app>
+
+
+	<flexus-view>
+
+		<!--flexus-toolbar experimental>
+			<section overlay>
+				<button icon="arrow-back"></button>
+			</section>
+			<video flexible ratio="16:9" src=""></video>
+			<section>
+				<img style="width: 70px; height: 120px">
+				<div flex vertical layout>
+					<div title>The Flash</div>
+					<div subhead>Crime, Action</div>
+					<div>2014</div>
+					<div>8 / 10</div>
+				</div>
+			</section>
+			<flexus-tabs>
+				<div>one</div>
+				<div>two</div>
+				<div>three</div>
+				<div>four</div>
+			</flexus-tabs>
+		</flexus-toolbar-->
+
+		<flexus-toolbar experimental>
+			<section overlay>
+				<button icon="arrow-back"></button>
+			</section>
+			<img flexible ratio="16:9" src="img/coulson.jpg"></div>
+			<div layout style="padding: 1rem">
+				<img style="width: 80px; height: 110px">
+				<div flex vertical layout>
+					<div title>The Flash</div>
+					<div subhead>Crime, Action</div>
+					<div>2014</div>
+					<div>8 / 10</div>
+				</div>
+			</div>
+			<!--flexus-tabs>
+				<div>one</div>
+				<div>two</div>
+				<div>three</div>
+				<div>four</div>
+			</flexus-tabs-->
+		</flexus-toolbar>
+
+		<main>
+			<lorem-ipsum paragraphs="8"></lorem-ipsum>
+		</main>
+
+	</flexus-view>
+
+
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.shadowmaster.js"></script>
+	<script src="build/elements/flexus-toolbar.js"></script>
+	<script src="build/elements/flexus-list.js"></script>
+	<script src="build/elements/lorem-ipsum.js"></script>
+
+</body>
+</html>

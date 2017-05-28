@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="test/scripts/Vibrant.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css" polyfill>
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+	<style>
+	flexus-toolbar[absolute-top] {
+		margin: 0;
+	}
+	flexus-pages {
+		padding: 0;
+	}
+	flexus-pages > img {
+		max-width: 100%;
+	}
+	</style>
+
+</head>
+<body dark fx-app primary="brown" accent="pink" shade="300">
+
+	<flexus-view primary>
+		<flexus-toolbar multisection absolute-top transparent>
+			<section slot="before">
+				<button icon="x"></button>
+				<div flex></div>
+				<button icon="star-outline"></button>
+				<button icon="more"></button>
+			</section>
+		</flexus-toolbar>
+		<flexus-pages nopadding>
+			<img src="test/img/albums/assassins-creed-unity.jpg">
+			<!--img src="test/img/albums/assassins-creed-unity.jpg">
+			<img src="test/img/albums/assassins-creed-unity.jpg"-->
+		</flexus-pages>
+		<div fx-item>
+			<div flex></div>
+			<button icon="skip-previous"></button>
+			<button fab light icon="play"></button>
+			<button icon="skip-next"></button>
+			<div flex></div>
+		</div>
+		<div flex>
+		</div>
+	</flexus-view>
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+	<script src="elements/toolbar.js"></script>
+	<script src="elements/drawer.js"></script>
+	<script src="elements/view.js"></script>
+	<!--script src="elements/pages.js"></script-->
+
+</body>
+</html>

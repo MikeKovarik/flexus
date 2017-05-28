@@ -1,0 +1,116 @@
+<!doctype html>
+<html touch>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<style>
+	body {
+		background-color: #DDD;
+	}
+	.albumart {
+		background-image: url('test/img/bastille.jpg');
+		background-size: cover;
+	}
+	.albumgrid {
+		display: flex;
+		flex-wrap: wrap;
+		margin: -0.5rem;
+	}
+		.albumgrid > * {
+			flex: 1;
+			margin: 0.5rem;
+			min-width: 150px;
+			max-width: 250px;
+		}
+	</style>
+
+</head>
+<body light fx-app>
+
+
+	<flexus-drawer>
+		<div fx-item icon="menu"></div>
+		<div fx-item icon="edit">Edit</div>
+		<div fx-item icon="edit">Edit</div>
+		<div fx-item icon="edit">Edit</div>
+	</flexus-drawer>
+
+
+	<flexus-scene master type="sidepane" breakpoint="750">
+		<flexus-view master subtle primary="red">
+			<flexus-toolbar tinted>
+				<button icon="menu"></button>
+				<h1>Music library</h1>
+			</flexus-toolbar>
+			<main>
+				<h3>Recently played</h3>
+				<button onclick="panel.show()">show sidepane</button>
+				<button onclick="panel.hide()">hide sidepane</button>
+				<div class="albumgrid">
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div><div ratio="1:1" class="albumart"></div></div>
+					<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+				</div>
+			</main>
+			<button fab bottom right icon="pause"></button>
+		</flexus-view>
+		<flexus-view right panel detail elevation="4" id="panel"
+		drag-orientation="horizontal">
+			<flexus-toolbar seam>
+				<button icon="x"></button>
+				<h1>Details</h1>
+			</flexus-toolbar>
+			<main>
+				<div fx-item two-line><div>Bastille</div><div secondary>Band</div></div>
+				<div fx-item two-line><div>An Act of Kindness</div><div secondary>Title</div></div>
+				<div fx-item two-line><div>Alternative Rock</div><div secondary>Genre</div></div>
+				<div fx-item two-line><div>2007</div><div secondary>Year</div></div>
+			</main>
+		</flexus-view>
+	</flexus-scene>
+
+
+
+
+
+
+
+	<!--flexus-panel panel right drag-orientation="horizontal">
+		<flexus-toolbar seam>foo</flexus-toolbar>
+		<main>
+			<div fx-item two-line><div>Bastille</div><div secondary>Band</div></div>
+			<div fx-item two-line><div>An Act of Kindness</div><div secondary>Title</div></div>
+			<div fx-item two-line><div>Alternative Rock</div><div secondary>Genre</div></div>
+			<div fx-item two-line><div>2007</div><div secondary>Year</div></div>
+		</main>
+	</flexus-panel-->
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/view.js"></script>
+	<script src="/flexus/elements/scene.js"></script>
+	<script src="/flexus/elements/pages.js"></script>
+	<script src="/flexus/elements/drawer.js"></script>
+	<script src="/flexus/elements/fabdial.js"></script>
+
+</body>
+</html>

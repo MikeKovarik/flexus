@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<!-- polyfills -->
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+	<!-- custom app styles -->
+	<style>
+		#home-content {
+			flex-wrap: wrap;
+		}
+		#home-content > [card] {
+			min-width: 220px;
+		}
+		[neon] [card] {
+			background-color: transparent;
+		}
+		table:not([reset]) {
+			margin: 0 -10px;
+			border-spacing: 0;
+			line-height: 16px;
+		}
+		table:not([reset]) td {
+			padding: 8px 10px;
+		}
+		#infobar {
+			height: 100px;
+		}
+	</style>
+
+</head>
+<body fx-app dark primary="green">
+
+
+	<flexus-view id="layout-defender">
+		<flexus-toolbar>
+			<section tinted center text-center thin display1 id="infobar">
+				Your device is being monitored and protected
+			</section>
+			<flexus-tabs center small>
+				<a href="#" icon="home">Home</a>
+				<a href="#" icon="sync">Update</a>
+				<a href="#" icon="history">History</a>
+				<a href="#" icon="settings">Settings</a>
+				<a href="#" icon="help">Help</a>
+			</flexus-tabs>
+		</flexus-toolbar>
+
+		<flexus-pages>
+		
+			<section layout spaced id="home-content">
+
+				<div flex card>
+					<div text-center>
+						<i icon="checkbox-marked-circle-outline"></i>
+						<h3 thin text-center title>Real-time protection</h3>
+						<p tinted>turned on</p>
+					</div>
+					<hr spaced>
+					<div fx-item>
+						<span flex>Files scanned:</span>
+						<span>19 276</span>
+					</div>
+					<div fx-item>
+						<span flex>Quarantined:</span>
+						<span>8</span>
+					</div>
+					<div fx-item>
+						<span flex>Allowed:</span>
+						<span>5</span>
+					</div>
+				</div>
+
+				<div flex card vertical layout center top>
+					<i icon="checkbox-marked-circle-outline"></i>
+					<h3 thin title text-center>Virus and spyware definitions</h3>
+					<p tinted>up to date</p>
+					<hr spaced>
+					<flexus-list fullwidth>
+						<div fx-item>
+							<span flex>Updated:</span>
+							<span>25.08.2016 08:30</span>
+						</div>
+						<div fx-item>
+							<span flex>Version:</span>
+							<span>1.227.638.0</span>
+						</div>
+					</flexus-list>
+					<button>Update</button>
+				</div>
+
+				<div flex card primary="orange" vertical layout center top>
+					<div text-center>
+						<i icon="information-outline"></i>
+						<h3 thin title text-center>Last quick scan</h3>
+						<p tinted>24 days ago</p>
+					</div>
+					<hr spaced>
+					<div fx-item>
+						<span flex>Time:</span>
+						<span>01.08.2016 14:43</span>
+					</div>
+					<div fx-item>
+						<span flex>Files scanned:</span>
+						<span>247 952</span>
+					</div>
+					<div fx-item>
+						<span flex>Threats</span>
+						<span>2</span>
+					</div>
+					<button id="scan-button">Scan now</button>
+				</div>
+
+			</section>
+
+			<section primary="green">
+				<div indent>
+					<div fx-item outdent>
+						<i icon="checkbox-marked-circle-outline"></i>
+						<div two-line>
+							<div>Virus and spyware definitions</div>
+							<span tinted>up to date</span>
+						</div>
+					</div>
+					<br>
+					<table>
+						<tr>
+							<td>Definitions created on:</td><td>25.08.2016 08:30</td>
+						</tr>
+						<tr>
+							<td>Definitions updated on:</td><td>25.08.2016 14:43</td>
+						</tr>
+						<tr>
+							<td>Virus definitions versions:</td><td>1.227.638.0</td>
+						</tr>
+						<tr>
+							<td>Spyware definitions versions:</td><td>1.227.638.0</td>
+						</tr>
+					</table>
+					<br>
+					<button>Update</button>
+				</div>
+			</section>
+
+
+			<section>
+				History
+			</section>
+
+			<section>
+				Settings
+			</section>
+
+			<section>
+				Help
+			</section>
+
+		</flexus-pages>
+
+
+	</flexus-view>
+
+
+	<script>
+		var infobar = document.querySelector('#infobar')
+		var scanButton = document.querySelector('#scan-button')
+		scanButton.addEventListener('click', e => {
+			setThreat()
+			setTimeout(setOk, 4000)
+		})
+
+		function setThreat() {
+			document.body.setAttribute('primary', 'red')
+			infobar.textContent = 'Threat was found'
+		}
+		function setWarning() {
+			document.body.setAttribute('primary', 'orange')
+			infobar.textContent = 'Warning'
+		}
+		function setOk() {
+			document.body.setAttribute('primary', 'green')
+			infobar.textContent = 'Your device is being monitored and protected'
+		}
+	</script>
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/tabs.js"></script>
+	<script src="/flexus/elements/pages.js"></script>
+
+
+</body>
+</html>

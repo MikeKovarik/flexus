@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>content-test demo</title>
+	<!--script>
+		window.Polymer = window.Polymer || {};
+		window.Polymer.dom = 'shadow';
+	</script-->
+
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+	<link rel="import" href="bower_components/polymer/polymer.html">
+
+	<link rel="import" href="build/elements/content-test.html">
+
+</head>
+<body>
+
+	<button onclick="appendElement('wow', 'div')">add div</button>
+	<button onclick="appendElement('button')">add button</button>
+	<button onclick="appendElement('command', 'button', 'command')">add command</button>
+
+	<br><br><br><br>
+
+	<content-test>
+		<button icon="menu">menu</button>
+		<div flex>title</div>
+		<button icon="search">search</button>
+		<button icon="delete" command>delete</button>
+		<button icon="archive" command>archive</button>
+		<button icon="reply" command>reply</button>
+	</content-test>
+
+
+	<script>
+	var wow = document.querySelector('content-test');
+	var i = 0;
+	function appendElement(text, type, attr) {
+		type = type || 'button';
+		var elm = document.createElement(type);
+		elm.textContent = text + ' ' + ++i;
+		elm.setAttribute(attr, '');
+		wow.appendChild(elm);
+	}
+	</script>
+
+</body>
+</html>

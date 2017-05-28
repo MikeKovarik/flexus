@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<style>
+	#settings {
+		max-width: 400px;
+	}
+	[spaced-items] > * + * {
+		margin-left: 20px;
+	}
+	</style>
+
+</head>
+<body fx-app dark subtle primary="blue" accent="yellow">
+<flexus-view>
+<main>
+
+	<input type="radio">
+	<input type="checkbox">
+	<input type="text">
+	<button>button</button>
+	<select><option>Select</option></select>
+	<button>button</button>
+	<input type="text">
+
+	<br>
+
+	<input type="radio">
+	<input type="radio" checked>
+	<br>
+	<input type="radio" disabled>
+	<input type="radio" disabled checked>
+
+	<br>
+
+	<input type="checkbox">
+	<input type="checkbox" checked>
+	<br>
+	<input type="checkbox" disabled>
+	<input type="checkbox" disabled checked>
+
+	<br>
+
+	<input type="checkbox" toggle>
+	<input type="checkbox" toggle checked>
+	<br>
+	<input type="checkbox" toggle disabled>
+	<input type="checkbox" toggle disabled checked>
+
+	<br>
+
+	<br><input value="Text" type="text"><input disabled value="Text" type="text">
+	<br><input value="pass" type="password"><input disabled value="pass" type="password">
+	<br><input value="Search" type="search"><input disabled value="Search" type="search">
+	<br><input value="42" type="number"><input disabled value="42" type="number">
+
+	<br>
+
+	<br>
+	<select><option>Select</option></select>
+	<select disabled><option>Select</option></select>
+
+	<br>
+	<textarea>textarea</textarea>
+	<textarea disabled>textarea</textarea>
+
+	<br>
+	<button>button</button>
+	<button disabled>button</button>
+	<button icon="edit">edit</button>
+	<button icon="edit" disabled>edit</button>
+	<button icon="add" small></button>
+	<button icon="add" small disabled></button>
+	<button icon="add"></button>
+	<button icon="add" disabled></button>
+	<button accent disabled>button</button>
+	<button accent icon="edit">edit</button>
+	<button accent icon="edit" disabled>edit</button>
+	<button accent icon="add" small></button>
+	<button accent icon="add" small disabled></button>
+	<button accent icon="add"></button>
+	<button accent icon="add" disabled></button>
+
+	<br>
+	<button raised>button</button>
+	<button raised disabled>button</button>
+	<button icon="edit" raised>edit</button>
+	<button icon="edit" raised disabled>edit</button>
+	<button icon="add" small raised></button>
+	<button icon="add" small raised disabled></button>
+	<button icon="add" raised></button>
+	<button icon="add" raised disabled></button>
+	<button accent raised>button</button>
+	<button accent raised disabled>button</button>
+	<button accent icon="edit" raised>edit</button>
+	<button accent icon="edit" raised disabled>edit</button>
+	<button accent icon="add" small raised></button>
+	<button accent icon="add" small raised disabled></button>
+	<button accent icon="add" raised></button>
+	<button accent icon="add" raised disabled></button>
+
+	<br>
+	<button flat>button</button>
+	<button flat disabled>button</button>
+	<button icon="edit" flat>edit</button>
+	<button icon="edit" flat disabled>edit</button>
+	<button icon="add" small flat></button>
+	<button icon="add" small flat disabled></button>
+	<button icon="add" flat></button>
+	<button icon="add" flat disabled></button>
+	<button accent flat>button</button>
+	<button accent flat disabled>button</button>
+	<button accent icon="edit" flat>edit</button>
+	<button accent icon="edit" flat disabled>edit</button>
+	<button accent icon="add" small flat></button>
+	<button accent icon="add" small flat disabled></button>
+	<button accent icon="add" flat></button>
+	<button accent icon="add" flat disabled></button>
+
+	<br>
+
+	<button primary>primary</button>
+	<button accent>accent</button>
+	<button tinted>tinted</button>
+
+
+	<div>
+		<input id="check1" type="checkbox">
+		<label for="check1">Something to be checked</label>
+	</div>
+	<div>
+		<label for="check2">
+			<input id="check2" type="checkbox">
+			Something to be checked
+		</label>
+	</div>
+	<div>
+		<label for="check3">Something to be checked</label>
+		<input id="check3" type="checkbox">
+	</div>
+	<div>
+		<label for="text1">Label</label>
+		<input id="text1">
+	</div>
+
+	<hr>
+
+	<p>Inspired by settings > network > proxy. But it's unfinished and ugly as hell</p>
+	<section id="settings">
+		<h3>Manual proxy setup</h3>
+		<p>Use a proxy server for Ethernet or Wi-Fi connections. These settings don't apply to VPN connections.</p>
+		<label>Use a proxy server</label>
+		<br>
+		<input type="checkbox" toggle>
+		<br>
+		<br>
+		<fieldset>
+			<div layout spaced-items>
+				<div vertical layout flex-3>
+					<label>Address</label>
+					<input type="text">
+				</div>
+				<div vertical layout flex>
+					<label>Port</label>
+					<input type="text">
+				</div>
+			</div>
+			<div>
+				<p>Use the proxy server except for addresses that start with the following entries. Use semicolons (;) to separate entries</p>
+				<textarea></textarea>
+			</div>
+			<br>
+			<div>
+				<input type="checkbox">
+				<label>Don't use the proxy server for local (intranet) addresses</label>
+			</div>
+		</fieldset>
+		<br>
+		<button>save</button>
+	</section>
+
+</main>
+</flexus-view>
+</body>
+</html>

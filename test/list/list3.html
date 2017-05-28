@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material-icons.css">
+
+</head>
+<body horizontal layout fx-app light>
+
+<style>
+flexus-view {
+	width: 360px;
+}
+[fx-item] {
+	background-color: #FFF;
+}
+
+flexus-item[elevation="-1"] {
+	background-color: #EEE;
+}
+flexus-item[swipeable="done"] {
+	background-color: #8BC34A;
+}
+flexus-item[swipeable="delete"] {
+	background-color: #FF5722;
+}
+[template][swipeable] {
+	background-color: #EEE;
+}
+</style>
+
+
+	<flexus-view>
+
+
+		<flexus-toolbar elevation="2">
+				<button nav icon="menu"></button>
+				<div flex>Main Section</div>
+				<button icon="checklist"></button>
+				<button icon="more"></button>
+		</flexus-toolbar>
+
+		<!--flexus-toolbar>
+
+			<section main>
+				<button nav icon="menu"></button>
+				<div flex>Main Section</div>
+				<a href="#" icon="edit"></a>
+				<button icon="more"></button>
+			</section>
+
+			<section selection>
+				<button icon="arrow-back"></button>
+				<div flex>Selected: 1</div>
+				<button icon="share"></button>
+				<button icon="delete"></button>
+				<button icon="more"></button>
+			</section>
+
+		</flexus-toolbar-->
+
+		<main>
+
+			<flexus-list>
+
+				<flexus-item template swipeable elevation="-1">
+					<i icon="star-outline"></i>
+					<div flex></div>
+					<i icon="delete"></i>
+				</flexus-item>
+				<!--flexus-item template swipeable="done">
+					<i icon="check"></i>
+				</flexus-item>
+				<flexus-item template swipeable="delete">
+					<div flex></div>
+					<i icon="delete"></i>
+				</flexus-item-->
+
+				<div fx-item swipeable-left="done">
+					<input type="checkbox" hidden>
+					Swipeable left
+				</div>
+				<div fx-item swipeable-right="delete">
+					<input type="checkbox" hidden>
+					Swipeable right
+				</div>
+				<div fx-item swipeable-left="1" swipeable-right="2">
+					<input type="checkbox" hidden>
+					Swipeable both
+				</div>
+				<div fx-item>
+					<input type="checkbox" hidden>
+					Item 1
+				</div>
+
+			</flexus-list>
+
+			<br><br>
+
+			<flexus-list>
+
+				<flexus-item template swipeable>
+					<i icon="star-outline"></i>
+					<div flex></div>
+					<i icon="delete"></i>
+				</flexus-item>
+
+				<flexus-subtitle>Today</flexus-subtitle>
+
+				<div fx-item elevation="1">
+					<input type="checkbox" hidden>
+					<div flex>Item 1</div>
+				</div>
+				<div fx-item elevation="1">
+					<input type="checkbox" hidden>
+					<div flex>Item 1</div>
+					<i icon="more"></i>
+				</div>
+				<div fx-item elevation="1" icon="edit">
+					<input type="checkbox" hidden>
+					<div flex>Item 1</div>
+					<i icon="more"></i>
+				</div>
+				<div fx-item elevation="1">
+					<i icon="edit"></i>
+					<input type="checkbox" hidden>
+					<div flex>Item 1</div>
+					<i icon="more"></i>
+				</div>
+
+				<flexus-subtitle>Yesterday</flexus-subtitle>
+
+				<div fx-item elevation="1" icon="edit">
+					<div flex>Item 1</div>
+					<i icon="more"></i>
+				</div>
+				<div fx-item elevation="1">
+					<i icon="edit"></i>
+					<div flex>Item 1</div>
+					<i icon="more"></i>
+				</div>
+
+			</flexus-list>
+
+			<hr>
+			
+			<flexus-list swipeable>
+				<div card elevation="3">
+					<h3>Card</h3>
+				</div>
+				<br><br>
+				<div card elevation="3">
+					<h3>Card</h3>
+				</div>
+			</flexus-list>
+
+			<hr>
+			<h3>TODO</h3>
+			<ul>
+				<li>material: shadows need to be adjusted</li>
+				<li>-> card should have side shadows more visible</li>
+				<li>-> fx-item should also have shadow above</li>
+			</ul>
+
+		</main>
+
+
+	</flexus-view>
+
+
+
+	<flexus-view>
+
+		<flexus-toolbar elevation="2">
+				<button nav icon="menu"></button>
+				<div flex>Another list</div>
+				<button icon="more"></button>
+		</flexus-toolbar>
+
+		<flexus-list sortable>
+
+			<div fx-item>
+				<div flex>1 basic sortable</div>
+				<i handle icon="drag-vertical"></i>
+			</div>
+			<div fx-item>
+				<div flex>2 basic sortable</div>
+				<i handle icon="drag-vertical"></i>
+			</div>
+			<div fx-item>
+				<div flex>3 basic sortable</div>
+				<i handle icon="drag-vertical"></i>
+			</div>
+			<div fx-item>
+				<div flex>4 basic sortable</div>
+				<i handle icon="drag-vertical"></i>
+			</div>
+			<div fx-item>
+				<div flex>5 basic sortable</div>
+				<i handle icon="drag-vertical"></i>
+			</div>
+
+		</flexus-list>
+
+	</flexus-view>
+
+
+
+	<flexus-view>
+
+		<flexus-toolbar elevation="2">
+				<button nav icon="menu"></button>
+				<div flex>Another list</div>
+				<button icon="more"></button>
+		</flexus-toolbar>
+
+		<flexus-list swipeable sortable>
+
+			<flexus-item template swipeable>
+				<i icon="star-outline"></i>
+				<div flex></div>
+				<i icon="delete"></i>
+			</flexus-item>
+
+			<div fx-item elevation="1">
+				<div multi-line><div>basic sortable</div><div secondary>swipeable</div></div>
+				<i handle icon="drag-vertical"></i>
+			</div>
+			<div fx-item elevation="1">
+				<div multi-line><div>basic sortable</div><div secondary>swipeable</div></div>
+				<i handle icon="drag-vertical"></i>
+			</div>
+			<div fx-item elevation="1">
+				<div multi-line><div>basic sortable</div><div secondary>swipeable</div></div>
+				<i handle icon="drag-vertical"></i>
+			</div>
+			<div fx-item elevation="1">
+				<div multi-line><div>basic sortable</div><div secondary>swipeable</div></div>
+				<i handle icon="drag-vertical"></i>
+			</div>
+			<div fx-item elevation="1">
+				<div multi-line><div>basic sortable</div><div secondary>swipeable</div></div>
+				<i handle icon="drag-vertical"></i>
+			</div>
+
+		</flexus-list>
+
+	</flexus-view>
+
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.shadowmaster.js"></script>
+	<script src="build/elements/flexus-list.js"></script>
+
+</body>
+</html>

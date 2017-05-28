@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title>flexus-toolbar demo</title>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<style>
+	:root {
+		--theme-primary: #0078d7;
+		--theme-primary-foreground: #FFF;
+	}
+	.green {
+		--theme-primary: #4CAF50;
+		--theme-primary-foreground: #000;
+	}
+	.yellow {
+		--theme-primary: yellow;
+		--theme-primary-foreground: #000;
+	}
+	</style>
+
+</head>
+<body dark scroll>
+
+	<flexus-toolbar primary inline style="margin-bottom: 20px;">
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<a disabled href="#" icon="playlist" title="Playlist"></a>
+		<button icon="repeat" title="Repeat"></button>
+		<hr>
+		<a href="#" icon="playlist" title="Playlist"></a>
+		<button icon="repeat" title="Repeat"></button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar primary light class="yellow">
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<a disabled href="#" inline icon="playlist" title="Playlist"></a>
+		<button inline icon="repeat" title="Repeat"></button>
+		<hr>
+		<a href="#" icon="playlist">Playlist</a>
+		<button icon="repeat">Repeat</button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar primary light class="green">
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button narrow icon="shuffle" title="Shuffle"></button>
+		<button narrow icon="repeat" title="Repeat"></button>
+		<hr>
+		<button narrow icon="shuffle" title="Shuffle"></button>
+		<button narrow icon="repeat" title="Repeat"></button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar narrow>
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button icon="shuffle" title="Shuffle"></button>
+		<button icon="repeat" title="Repeat"></button>
+		<hr>
+		<button icon="shuffle" title="Shuffle"></button>
+		<button icon="repeat" title="Repeat"></button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button>Repeat</button>
+		<button icon="shuffle" title="Shuffle"></button>
+		<hr>
+		<button>Shuffle</button>
+		<button icon="repeat" title="Repeat"></button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button icon="shuffle" title="Shuffle"></button>
+		<button>Repeat</button>
+		<hr>
+		<button icon="repeat" title="Repeat"></button>
+		<button>Shuffle</button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button icon="shuffle" title="Shuffle"></button>
+		<button>Repeat</button>
+		<hr>
+		<button>Shuffle</button>
+		<button icon="repeat" title="Repeat"></button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button>Repeat</button>
+		<button narrow icon="shuffle" title="Shuffle"></button>
+		<hr>
+		<button>Shuffle</button>
+		<button narrow icon="repeat" title="Repeat"></button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button narrow icon="shuffle" title="Shuffle"></button>
+		<button>Repeat</button>
+		<hr>
+		<button narrow icon="repeat" title="Repeat"></button>
+		<button>Shuffle</button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button>Repeat</button>
+		<button>Shuffle</button>
+		<hr>
+		<button narrow icon="repeat" title="Repeat"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button>Shuffle</button>
+		<button narrow icon="repeat" title="Repeat"></button>
+		<hr>
+		<button>Repeat</button>
+		<select>
+			<option>select</option>
+		</select>
+		<button>Shuffle</button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button narrow icon="shuffle" title="Shuffle"></button>
+		<hr>
+		<select>
+			<option>select</option>
+		</select>
+		<button narrow icon="repeat" title="Repeat"></button>
+		<button>Shuffle</button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>Title</div>
+		<button>Shuffle</button>
+		<select>
+			<option>select</option>
+		</select>
+		<hr>
+		<button>Shuffle</button>
+	</flexus-toolbar>
+
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<button icon="shuffle" title="Shuffle" narrow></button>
+		<button icon="repeat" title="Repeat" narrow></button>
+		<button icon="star" title="Favorites" narrow></button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<div flex>Title</div>
+		<button icon="shuffle" title="Shuffle" disabled></button>
+		<button icon="repeat" title="Repeat"></button>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<input transparent flex>
+		<div>baud rate:</div>
+		<select>
+			<option>select</option>
+		</select>
+		<button>connect</button>
+		<hr>
+		<i icon="check" accent></i>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>[icon][title][inline]</div>
+		<button icon="shuffle" title="Shuffle"></button>
+		<button icon="repeat" title="Refresh" inline></button>
+		<button icon="checklist" title="Select" inline></button>
+		<button icon="slideshow" title="Slideshow" inline></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>[icon]content</div>
+		<button icon="shuffle" title="Shuffle"></button>
+		<button icon="repeat">Refresh</button>
+		<button icon="checklist">Select</button>
+		<button icon="slideshow">Slideshow</button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>[icon][title]</div>
+		<button icon="shuffle" title="Shuffle"></button>
+		<button icon="repeat" title="Refresh"></button>
+		<button icon="checklist" title="Select"></button>
+		<button icon="slideshow" title="Slideshow"></button>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<button icon="menu"></button>
+		<div flex>content</div>
+		<button icon="shuffle" title="Shuffle"></button>
+		<button>Refresh</button>
+		<button>Select</button>
+		<button>Slideshow</button>
+	</flexus-toolbar>
+
+	<flexus-toolbar inline>
+		<button icon="menu"></button>
+		<div flex>[icon][title]</div>
+		<button icon="repeat" title="Refresh"></button>
+		<button icon="checklist" title="Select"></button>
+		<button icon="slideshow" title="Slideshow"></button>
+		<button icon="more" title="More"></button>
+	</flexus-toolbar>
+
+
+
+	<h3>TODO</h3>
+	<p>toggle buttons</p>
+	<img src="todo toolbar.png">
+
+</body>
+</html>

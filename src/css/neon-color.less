@@ -1,0 +1,83 @@
+/*body:not([primary]) {
+	--default-theme-primary: #03A9F4;
+	--default-theme-primary-foreground: #FFF;
+}*/
+
+
+
+:root {
+	--secondary-color: ~'rgba(var(--foreground-rgb), 80)';
+}
+
+[light] {
+	--background-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+}
+[light][subtle] {
+	--background-rgb: 238, 238, 238;
+}
+
+[light] {
+	--avatar-background: #CCCCCC;
+	// flexus-toolbar
+	--toolbar-background-rgb: 220, 220, 220;
+	--toolbar-foreground-rgb: 0, 0, 0;
+	// flexus-drawer
+	--drawer-background-rgb: 242, 242, 242;
+	// flyout and dialog
+	--flyout-background-rgb: 242, 242, 242;
+	--flyout-background: #f2f2f2; // 242,242,242
+	// toolbar seam
+	//--seam-color: #CCCCCC;
+
+	::-webkit-scrollbar-track {
+		background-color: #f2f2f2; // 242,242,242
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: #c2c2c2;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background-color: #919191;
+	}
+}
+
+[dark] {
+	--background-rgb: 0, 0, 0;
+	--foreground-rgb: 255, 255, 255;
+}
+[dark][subtle] {
+	--background-rgb: 23, 23, 23; // #171717
+	// some side panels are lighter
+	//--background-rgb: 34, 34, 34; // #222
+}
+
+[dark] {
+	--avatar-background: #444;
+	// flexus-toolbar
+	--toolbar-background-rgb: 31, 31, 31;
+	--toolbar-foreground-rgb: 255, 255, 255;
+	// flexus-drawer
+	--drawer-background-rgb: 23, 23, 23;
+	// flyout and dialog
+	--flyout-background-rgb: 43, 43, 43;
+	--flyout-background: #2b2b2b;
+	// toolbar seam
+	//--seam-color: #747474;
+
+	::-webkit-scrollbar-track {
+		background-color: #171717; // 23,23,23
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: #454545;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background-color: #747474;
+	}
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+
+

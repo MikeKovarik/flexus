@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-metro-icons.css">
+
+	<!--script src="www/polyfill/webcomponents.js"></script-->
+	<script src="polyfill/webcomponents-lite.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+	<script>
+		window.customElements = window.customElements ? window.customElements : {
+			define: (name, Class) => document.registerElement(name, Class)
+		}
+	</script>
+	<script src="polyfill/shadycss.min.js"></script>
+
+	<style>
+		html {
+			--content-color: orange;
+		}
+	</style>
+	<custom-style>
+		<style>
+			html {
+				--content-color: pink;
+			}
+		</style>
+	</custom-style>
+</head>
+<body dark>
+
+
+
+
+
+	<testy-two>
+		<button icon="settings" slot="s1"></button>
+		<input type="checkbox" slot="s2">
+	</testy-two>
+
+	<testy-two>
+		<input type="checkbox" slot="s2">
+	</testy-two>
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+	<script src="elements/testy-two.js"></script>
+
+</body>
+</html>

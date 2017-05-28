@@ -1,0 +1,802 @@
+/*
+WARNING: Foreground of transparent/acrylic varies
+for example blue-300 has black foreground but as an acrylic with 50% opacity
+in a dark theme (black is below that) the background color turns out way darker
+and initial black foreground is inapropriate
+*/
+
+:root {
+	--seam-opacity: 0.3;
+}
+[light],
+[dark] {
+	--seam-color: ~'rgba(var(--foreground-rgb), var(--seam-opacity))';
+}
+
+// mixins for applying variable colors to elements
+.apply-background() {
+	background-color: var(--background);
+}
+.apply-foreground() {
+	color: var(--foreground);
+}
+.apply-colors() {
+	.apply-background;
+	.apply-foreground;
+}
+// mixins for conversion of rgb partials to actual color variables
+.set-background() {
+	--background: ~'rgb(var(--background-rgb))';
+}
+.set-foreground() {
+	--foreground: ~'rgb(var(--foreground-rgb))';
+}
+.set-colors() {
+	.set-background;
+	.set-foreground;
+}
+
+
+
+[opaque],
+[dark],
+[light],
+[darker],
+[lighter],
+[transparent],
+[translucent],
+[acrylic] {
+	.apply-background;
+	.apply-foreground;
+}
+
+[transparent],
+[translucent],
+[acrylic] {
+	.set-foreground;
+}
+
+[subtle],
+[opaque],
+[light],
+[dark] {
+	.set-background;
+	.set-foreground;
+}
+
+[background] {
+	.set-background;
+	.set-foreground;
+	.apply-background;
+	.apply-foreground;
+	// this resets checkboxes and radios within block with custom background color
+	--actionable: var(--foreground);
+}
+[foreground] {
+	.set-foreground;
+	.apply-foreground;
+	// this resets checkboxes and radios within block with custom background color
+	--actionable: var(--foreground);
+}
+
+
+
+.calculate-primary-single() {
+	--foreground-rgb: var(--primary-rgb);
+}
+.calculate-accent-single() {
+	--foreground-rgb: var(--accent-rgb);
+}
+.calculate-tint-single() {
+	--foreground-rgb: var(--tint-rgb, var(--accent-rgb, var(--primary-rgb)));
+}
+.calculate-primary-mixed() {
+	--background-rgb: var(--primary-rgb);
+	--foreground-rgb: var(--primary-foreground-rgb);
+}
+.calculate-accent-mixed() {
+	--background-rgb: var(--accent-rgb);
+	--foreground-rgb: var(--accent-foreground-rgb);
+}
+.calculate-tint-mixed() {
+	--background-rgb: var(--tint-rgb, var(--accent-rgb, var(--primary-rgb)));
+	--foreground-rgb: var(--tint-foreground-rgb, var(--accent-foreground-rgb, var(--primary-foreground-rgb)));
+}
+
+
+[foreground="primary"] {
+	.calculate-primary-single();
+}
+[foreground="accent"] {
+	.calculate-accent-single();
+}
+[foreground="tinted"] {
+	.calculate-tint-single();
+}
+
+[background="primary"] {
+	.calculate-primary-mixed();
+}
+[background="accent"] {
+	.calculate-accent-mixed();
+}
+[background="tinted"] {
+	.calculate-tint-mixed();
+}
+
+
+input, label, i, a, p, span, h1, h2, h3, h4, h5, h6 {
+	&[primary=""] {
+		.calculate-primary-single();
+	}
+	&[accent=""] {
+		.calculate-accent-single();
+	}
+	&[tinted] {
+		.calculate-tint-single();
+	}
+	&[red], &[pink], &[purple], &[deep-purple], &[indigo], &[blue], &[light-blue], &[cyan], &[teal], &[green], &[light-green], &[lime], &[yellow], &[amber], &[orange], &[deep-orange], &[brown], &[gray], &[blue-gray],
+	&[primary=""],
+	&[accent=""],
+	&[tinted] {
+		.set-foreground;
+		.apply-foreground;
+	}
+}
+:not(input):not(label):not(i):not(a):not(p):not(span):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+	&[primary=""] {
+		.calculate-primary-mixed();
+	}
+	&[accent=""] {
+		.calculate-accent-mixed();
+	}
+	&[tinted] {
+		.calculate-tint-mixed();
+	}
+	&[red], &[pink], &[purple], &[deep-purple], &[indigo], &[blue], &[light-blue], &[cyan], &[teal], &[green], &[light-green], &[lime], &[yellow], &[amber], &[orange], &[deep-orange], &[brown], &[gray], &[blue-gray],
+	&[primary=""],
+	&[accent=""],
+	&[tinted] {
+		.set-background;
+		.set-foreground;
+		.apply-background;
+		.apply-foreground;
+		// this resets checkboxes and radios within block with custom background color
+		--actionable: var(--foreground);
+	}
+}
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////// TINT MIXING ///////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+[primary] {
+	--tint-rgb:            var(--primary-rgb);
+	--tint-foreground-rgb: var(--primary-foreground-rgb);
+}
+
+
+[accent="red"],
+[accent="pink"],
+[accent="purple"],
+[accent="deep-purple"],
+[accent="indigo"],
+[accent="blue"],
+[accent="light-blue"],
+[accent="cyan"],
+[accent="teal"],
+[dark] [accent="green"],
+[dark][accent="green"],
+[dark] [accent="light-green"],
+[dark][accent="light-green"],
+[dark] [accent="lime"],
+[dark][accent="lime"],
+[dark] [accent="yellow"],
+[dark][accent="yellow"],
+[dark] [accent="amber"],
+[dark][accent="amber"],
+[accent="orange"],
+[accent="deep-orange"] {
+//[accent]:not([accent=""]) {
+	--tint-rgb:            var(--accent-rgb);
+	--tint-foreground-rgb: var(--accent-foreground-rgb);
+}
+
+[primary]:not([primary=""]),
+[accent]:not([accent=""]) {
+	--tint:            ~'rgb(var(--tint-rgb))';
+	--tint-foreground: ~'rgb(var(--tint-foreground-rgb))';
+	//--actionable: var(--tint);
+}
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////// PRIMARY / TINT COMPUTATION //////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+[primary]:not([primary=""]) {
+	//--primary-50:  ~'rgb(var(--primary-50-rgb))';
+	--primary-100: ~'rgb(var(--primary-100-rgb))';
+	//--primary-200: ~'rgb(var(--primary-200-rgb))';
+	--primary-300: ~'rgb(var(--primary-300-rgb))';
+	//--primary-400: ~'rgb(var(--primary-400-rgb))';
+	--primary-500: ~'rgb(var(--primary-500-rgb))';
+	//--primary-600: ~'rgb(var(--primary-600-rgb))';
+	--primary-700: ~'rgb(var(--primary-700-rgb))';
+	//--primary-800: ~'rgb(var(--primary-800-rgb))';
+	--primary-900: ~'rgb(var(--primary-900-rgb))';
+	--primary-100-foreground: ~'rgb(var(--primary-100-foreground-rgb))';
+	//--primary-200-foreground: ~'rgb(var(--primary-200-foreground-rgb))';
+	--primary-300-foreground: ~'rgb(var(--primary-300-foreground-rgb))';
+	//--primary-400-foreground: ~'rgb(var(--primary-400-foreground-rgb))';
+	--primary-500-foreground: ~'rgb(var(--primary-500-foreground-rgb))';
+	//--primary-600-foreground: ~'rgb(var(--primary-600-foreground-rgb))';
+	--primary-700-foreground: ~'rgb(var(--primary-700-foreground-rgb))';
+	//--primary-800-foreground: ~'rgb(var(--primary-800-foreground-rgb))';
+	--primary-900-foreground: ~'rgb(var(--primary-900-foreground-rgb))';
+
+	--primary-rgb:            var(--primary-500-rgb);
+	--primary-foreground-rgb: var(--primary-500-foreground-rgb);
+	--primary:            ~'rgb(var(--primary-rgb))';
+	--primary-foreground: ~'rgb(var(--primary-foreground-rgb))';
+}
+
+[accent]:not([accent=""]) {
+	--accent-rgb:            var(--accent-A400-rgb);
+	--accent-foreground-rgb: var(--accent-A400-foreground-rgb);
+	--accent:            ~'rgb(var(--accent-rgb))';
+	--accent-foreground: ~'rgb(var(--accent-foreground-rgb))';
+}
+
+
+
+[primary]:not([primary=""]),
+[shade]
+[lighter]
+[darker]
+[shade] {
+	--primary:            ~'rgb(var(--primary-rgb))';
+	--primary-foreground: ~'rgb(var(--primary-foreground-rgb))';
+}
+
+
+[shade="100"] {
+	--primary-rgb:            var(--primary-100-rgb) !important;
+	--primary-foreground-rgb: var(--primary-100-foreground-rgb) !important;
+}
+[shade="300"] {
+	--primary-rgb:            var(--primary-300-rgb) !important;
+	--primary-foreground-rgb: var(--primary-300-foreground-rgb) !important;
+}
+[shade="500"] {
+	--primary-rgb:            var(--primary-500-rgb) !important;
+	--primary-foreground-rgb: var(--primary-500-foreground-rgb) !important;
+}
+[shade="700"] {
+	--primary-rgb:            var(--primary-700-rgb) !important;
+	--primary-foreground-rgb: var(--primary-700-foreground-rgb) !important;
+}
+[shade="900"] {
+	--primary-rgb:            var(--primary-900-rgb) !important;
+	--primary-foreground-rgb: var(--primary-900-foreground-rgb) !important;
+}
+
+
+
+
+
+
+
+
+
+[light] [transparent],
+[light] [translucent],
+[light] [acrylic] {
+	--foreground-rgb: 0, 0, 0 !important;
+}
+[dark] [transparent],
+[dark] [translucent],
+[dark] [acrylic] {
+	--foreground-rgb: 255, 255, 255 !important;
+}
+
+
+/*
+[transparent] {
+	--background: transparent;
+}
+[translucent] {
+	--background: ~'rgba(var(--background-rgb), var(--translucent-opacity))';
+}
+[acrylic]:not([transparent]) {
+	// !important is not that necessary here, but helps with [acrylic] > [acrylic]
+	--background: ~'rgba(var(--background-rgb), var(--acrylic-opacity, var(--translucent-opacity)))' !important;
+}
+[acrylic] {
+	backdrop-filter: blur(var(--acrylic-blur));
+}
+*/
+.responsive-screensize(transparent, {
+	--background: transparent;
+});
+.responsive-screensize(translucent, {
+	--background: ~'rgba(var(--background-rgb), var(--translucent-opacity))';
+});
+// TODO: MOVE, FLUENT EXCLUSIVE
+.responsive-screensize(acrylic, {
+	backdrop-filter: blur(var(--acrylic-blur));
+	--background: ~'rgba(var(--background-rgb), var(--acrylic-opacity, var(--translucent-opacity)))';
+});
+
+
+[translucent="10"],
+[translucent="0.1"] {
+	--translucent-opacity: 0.1;
+}
+[translucent="light"],
+[translucent="20"],
+[translucent="0.2"] {
+	--translucent-opacity: 0.2;
+}
+[translucent="30"],
+[translucent="0.3"] {
+	--translucent-opacity: 0.3;
+}
+[translucent="40"],
+[translucent="0.4"] {
+	--translucent-opacity: 0.4;
+}
+[translucent="50"],
+[translucent="0.5"] {
+	--translucent-opacity: 0.5;
+}
+[translucent="60"],
+[translucent="0.6"] {
+	--translucent-opacity: 0.6;
+}
+:root,
+[translucent="normal"],
+[translucent="70"],
+[translucent="0.7"] {
+	--translucent-opacity: 0.7;
+}
+[translucent="80"],
+[translucent="0.8"] {
+	--translucent-opacity: 0.8;
+}
+[translucent="strong"],
+[translucent="90"],
+[translucent="0.9"] {
+	--translucent-opacity: 0.9;
+}
+
+[acrylic="very-light"] {
+	--acrylic-blur: 3px;
+	--acrylic-opacity: 0.3;
+}
+[acrylic="light"] {
+	--acrylic-blur: 6px;
+	--acrylic-opacity: 0.4;
+}
+:root,
+[acrylic="normal"] {
+	--acrylic-blur: 10px;
+	--acrylic-opacity: 0.5;
+}
+[acrylic="strong"] {
+	--acrylic-blur: 15px;
+	--acrylic-opacity: 0.55;
+}
+[acrylic="very-strong"] {
+	--acrylic-blur: 20px;
+	--acrylic-opacity: 0.55;
+}
+[acrylic="ultry-strong"] {
+	--acrylic-blur: 25px;
+	--acrylic-opacity: 0.6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[primary="red"] {
+	--primary-100-rgb: 255, 205, 210;
+	--primary-300-rgb: 229, 115, 115;
+	--primary-500-rgb: 244, 67, 54;
+	--primary-700-rgb: 211, 47, 47;
+	--primary-900-rgb: 183, 28, 28;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 255, 255, 255;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="pink"] {
+	--primary-100-rgb: 248, 187, 208;
+	--primary-300-rgb: 240, 98, 146;
+	--primary-500-rgb: 233, 30, 99;
+	--primary-700-rgb: 194, 24, 91;
+	--primary-900-rgb: 136, 14, 79;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 255, 255, 255;
+	--primary-500-foreground-rgb: 255, 255, 255;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="purple"] {
+	--primary-100-rgb: 225, 190, 231;
+	--primary-300-rgb: 186, 104, 200;
+	--primary-500-rgb: 156, 39, 176;
+	--primary-700-rgb: 123, 31, 162;
+	--primary-900-rgb: 74, 20, 140;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 255, 255, 255;
+	--primary-500-foreground-rgb: 255, 255, 255;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="deep-purple"] {
+	--primary-100-rgb: 209, 196, 233;
+	--primary-300-rgb: 149, 117, 205;
+	--primary-500-rgb: 103, 58, 183;
+	--primary-700-rgb: 81, 45, 168;
+	--primary-900-rgb: 49, 27, 146;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 255, 255, 255;
+	--primary-500-foreground-rgb: 255, 255, 255;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="indigo"] {
+	--primary-100-rgb: 197, 202, 233;
+	--primary-300-rgb: 121, 134, 203;
+	--primary-500-rgb: 63, 81, 181;
+	--primary-700-rgb: 48, 63, 159;
+	--primary-900-rgb: 26, 35, 126;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 255, 255, 255;
+	--primary-500-foreground-rgb: 255, 255, 255;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="blue"] {
+	--primary-100-rgb: 187, 222, 251;
+	--primary-300-rgb: 100, 181, 246;
+	--primary-500-rgb: 33, 150, 243;
+	--primary-700-rgb: 25, 118, 210;
+	--primary-900-rgb: 13, 71, 161;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 255, 255, 255;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="light-blue"] {
+	--primary-100-rgb: 179, 229, 252;
+	--primary-300-rgb: 79, 195, 247;
+	--primary-500-rgb: 3, 169, 244;
+	--primary-700-rgb: 2, 136, 209;
+	--primary-900-rgb: 1, 87, 155;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 0, 0, 0;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="cyan"] {
+	--primary-100-rgb: 178, 235, 242;
+	--primary-300-rgb: 77, 208, 225;
+	--primary-500-rgb: 0, 188, 212;
+	--primary-700-rgb: 0, 151, 167;
+	--primary-900-rgb: 0, 96, 100;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 0, 0, 0;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="teal"] {
+	--primary-100-rgb: 178, 223, 219;
+	--primary-300-rgb: 77, 182, 172;
+	--primary-500-rgb: 0, 150, 136;
+	--primary-700-rgb: 0, 121, 107;
+	--primary-900-rgb: 0, 77, 64;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 255, 255, 255;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="green"] {
+	--primary-100-rgb: 200, 230, 201;
+	--primary-300-rgb: 129, 199, 132;
+	--primary-500-rgb: 76, 175, 80;
+	--primary-700-rgb: 56, 142, 60;
+	--primary-900-rgb: 27, 94, 32;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 0, 0, 0;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="light-green"] {
+	--primary-100-rgb: 220, 237, 200;
+	--primary-300-rgb: 174, 213, 129;
+	--primary-500-rgb: 139, 195, 74;
+	--primary-700-rgb: 104, 159, 56;
+	--primary-900-rgb: 51, 105, 30;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 0, 0, 0;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="lime"] {
+	--primary-100-rgb: 240, 244, 195;
+	--primary-300-rgb: 220, 231, 117;
+	--primary-500-rgb: 205, 220, 57;
+	--primary-700-rgb: 175, 180, 43;
+	--primary-900-rgb: 130, 119, 23;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 0, 0, 0;
+	--primary-700-foreground-rgb: 0, 0, 0;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="yellow"] {
+	--primary-100-rgb: 255, 249, 196;
+	--primary-300-rgb: 255, 241, 118;
+	--primary-500-rgb: 255, 235, 59;
+	--primary-700-rgb: 251, 192, 45;
+	--primary-900-rgb: 245, 127, 23;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 0, 0, 0;
+	--primary-700-foreground-rgb: 0, 0, 0;
+	--primary-900-foreground-rgb: 0, 0, 0;
+}
+[primary="amber"] {
+	--primary-100-rgb: 255, 236, 179;
+	--primary-300-rgb: 255, 213, 79;
+	--primary-500-rgb: 255, 193, 7;
+	--primary-700-rgb: 255, 160, 0;
+	--primary-900-rgb: 255, 111, 0;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 0, 0, 0;
+	--primary-700-foreground-rgb: 0, 0, 0;
+	--primary-900-foreground-rgb: 0, 0, 0;
+}
+[primary="orange"] {
+	--primary-100-rgb: 255, 224, 178;
+	--primary-300-rgb: 255, 183, 77;
+	--primary-500-rgb: 255, 152, 0;
+	--primary-700-rgb: 245, 124, 0;
+	--primary-900-rgb: 230, 81, 0;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 0, 0, 0;
+	--primary-700-foreground-rgb: 0, 0, 0;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="deep-orange"] {
+	--primary-100-rgb: 255, 204, 188;
+	--primary-300-rgb: 255, 138, 101;
+	--primary-500-rgb: 255, 87, 34;
+	--primary-700-rgb: 230, 74, 25;
+	--primary-900-rgb: 191, 54, 12;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 255, 255, 255;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="brown"] {
+	--primary-100-rgb: 215, 204, 200;
+	--primary-300-rgb: 161, 136, 127;
+	--primary-500-rgb: 121, 85, 72;
+	--primary-700-rgb: 93, 64, 55;
+	--primary-900-rgb: 62, 39, 35;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 255, 255, 255;
+	--primary-500-foreground-rgb: 255, 255, 255;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="gray"] {
+	--primary-100-rgb: 245, 245, 245;
+	--primary-300-rgb: 224, 224, 224;
+	--primary-500-rgb: 158, 158, 158;
+	--primary-700-rgb: 97, 97, 97;
+	--primary-900-rgb: 33, 33, 33;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 0, 0, 0;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+[primary="blue-gray"] {
+	--primary-100-rgb: 207, 216, 220;
+	--primary-300-rgb: 144, 164, 174;
+	--primary-500-rgb: 96, 125, 139;
+	--primary-700-rgb: 69, 90, 100;
+	--primary-900-rgb: 38, 50, 56;
+	--primary-100-foreground-rgb: 0, 0, 0;
+	--primary-300-foreground-rgb: 0, 0, 0;
+	--primary-500-foreground-rgb: 255, 255, 255;
+	--primary-700-foreground-rgb: 255, 255, 255;
+	--primary-900-foreground-rgb: 255, 255, 255;
+}
+
+
+
+
+
+
+
+
+
+[accent="red"] {
+	--accent-A400-rgb: 255, 82, 82;
+	--accent-A400-foreground-rgb: 255, 255, 255;
+}
+[accent="pink"] {
+	--accent-A400-rgb: 255, 64, 129;
+	--accent-A400-foreground-rgb: 255, 255, 255;
+}
+[accent="purple"] {
+	--accent-A400-rgb: 224, 64, 251;
+	--accent-A400-foreground-rgb: 255, 255, 255;
+}
+[accent="deep-purple"] {
+	--accent-A400-rgb: 124, 77, 255;
+	--accent-A400-foreground-rgb: 255, 255, 255;
+}
+[accent="indigo"] {
+	--accent-A400-rgb: 83, 109, 254;
+	--accent-A400-foreground-rgb: 255, 255, 255;
+}
+[accent="blue"] {
+	--accent-A400-rgb: 68, 138, 255;
+	--accent-A400-foreground-rgb: 255, 255, 255;
+}
+[accent="light-blue"] {
+	--accent-A400-rgb: 64, 196, 255;
+	--accent-A400-foreground-rgb: 0, 0, 0;
+}
+[accent="cyan"] {
+	--accent-A400-rgb: 24, 255, 255;
+	--accent-A400-foreground-rgb: 0, 0, 0;
+}
+[accent="teal"] {
+	--accent-A400-rgb: 100, 255, 218;
+	--accent-A400-foreground-rgb: 0, 0, 0;
+}
+[accent="green"] {
+	--accent-A400-rgb: 105, 240, 174;
+	--accent-A400-foreground-rgb: 0, 0, 0;
+}
+[accent="light-green"] {
+	--accent-A400-rgb: 178, 255, 89;
+	--accent-A400-foreground-rgb: 0, 0, 0;
+}
+[accent="lime"] {
+	--accent-A400-rgb: 238, 255, 65;
+	--accent-A400-foreground-rgb: 0, 0, 0;
+}
+[accent="yellow"] {
+	--accent-A400-rgb: 255, 255, 0;
+	--accent-A400-foreground-rgb: 0, 0, 0;
+}
+[accent="amber"] {
+	--accent-A400-rgb: 255, 215, 64;
+	--accent-A400-foreground-rgb: 0, 0, 0;
+}
+[accent="orange"] {
+	--accent-A400-rgb: 255, 171, 64;
+	--accent-A400-foreground-rgb: 0, 0, 0;
+}
+[accent="deep-orange"] {
+	--accent-A400-rgb: 255, 110, 64;
+	--accent-A400-foreground-rgb: 0, 0, 0;
+}
+
+
+
+
+
+
+.create-color-background(@name, @color, @foreground) {
+	[@{name}]:not(input):not(label):not(i):not(a):not(p):not(span):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6),
+	[background="@{name}"] {
+		--background-rgb: @color;
+		--foreground-rgb: @foreground;
+	}
+}
+
+.create-color-foreground(@name, @color) {
+	input[@{name}], label[@{name}], i[@{name}], a[@{name}], p[@{name}], span[@{name}], h1[@{name}], h2[@{name}], h3[@{name}], h4[@{name}], h5[@{name}], h6[@{name}],
+	[foreground="@{name}"] {
+		--foreground-rgb: @color;
+	}
+}
+
+
+.create-color-background(red,         ~'244, 67, 54',   ~'255,255,255');
+.create-color-background(pink,        ~'233, 30, 99',   ~'255,255,255');
+.create-color-background(purple,      ~'156, 39, 176',  ~'255,255,255');
+.create-color-background(deep-purple, ~'103, 58, 183',  ~'255,255,255');
+.create-color-background(indigo,      ~'63, 81, 181',   ~'255,255,255');
+.create-color-background(blue,        ~'33, 150, 243',  ~'255,255,255');
+.create-color-background(light-blue,  ~'3, 169, 244',   ~'0,0,0');
+.create-color-background(cyan,        ~'0, 188, 212',   ~'0,0,0');
+.create-color-background(teal,        ~'0, 150, 136',   ~'255,255,255');
+.create-color-background(green,       ~'76, 175, 80',   ~'0,0,0');
+.create-color-background(light-green, ~'139, 195, 74',  ~'0,0,0');
+.create-color-background(lime,        ~'205, 220, 57',  ~'0,0,0');
+.create-color-background(yellow,      ~'255, 235, 59',  ~'0,0,0');
+.create-color-background(amber,       ~'255, 193, 7',   ~'0,0,0');
+.create-color-background(orange,      ~'255, 152, 0',   ~'0,0,0');
+.create-color-background(deep-orange, ~'255, 87, 34',   ~'255,255,255');
+.create-color-background(brown,       ~'121, 85, 72',   ~'255,255,255');
+.create-color-background(gray,        ~'158, 158, 158', ~'0,0,0');
+.create-color-background(blue-gray,   ~'96, 125, 139',  ~'255,255,255');
+
+.create-color-foreground(red,         ~'244, 67, 54');
+.create-color-foreground(pink,        ~'233, 30, 99');
+.create-color-foreground(purple,      ~'156, 39, 176');
+.create-color-foreground(deep-purple, ~'103, 58, 183');
+.create-color-foreground(indigo,      ~'63, 81, 181');
+.create-color-foreground(blue,        ~'33, 150, 243');
+.create-color-foreground(light-blue,  ~'3, 169, 244');
+.create-color-foreground(cyan,        ~'0, 188, 212');
+.create-color-foreground(teal,        ~'0, 150, 136');
+.create-color-foreground(green,       ~'76, 175, 80');
+.create-color-foreground(light-green, ~'139, 195, 74');
+.create-color-foreground(lime,        ~'205, 220, 57');
+.create-color-foreground(yellow,      ~'255, 235, 59');
+.create-color-foreground(amber,       ~'255, 193, 7');
+.create-color-foreground(orange,      ~'255, 152, 0');
+.create-color-foreground(deep-orange, ~'255, 87, 34');
+.create-color-foreground(brown,       ~'121, 85, 72');
+.create-color-foreground(gray,        ~'158, 158, 158');
+.create-color-foreground(blue-gray,   ~'96, 125, 139');
+
+
+

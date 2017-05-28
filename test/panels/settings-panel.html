@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+</head>
+<body dark fx-app>
+
+	<flexus-drawer pinned collapsed>
+		<div fx-item icon="edit">Edit</div>
+		<div fx-item icon="edit">Edit</div>
+		<div fx-item icon="edit">Edit</div>
+		<div fx-item icon="settings" bottom for="settings">Settings</div>
+	</flexus-drawer>
+
+	<flexus-scene>
+
+		<flexus-view subtle dark panel id="settings">
+			<flexus-toolbar transparent>
+				<button icon="x"></button>
+				<h1>Settings</h1>
+			</flexus-toolbar>
+			<main>
+				<button fullwidth>Delete all files in Downloads</button>
+				<div fx-item>
+					<div flex>Launch app on Windows Startup</div>
+					<input type="checkbox">
+				</div>
+				<div fx-item>
+					<div flex>Start download automatically</div>
+					<input type="checkbox" checked>
+				</div>
+				<div fx-item>
+					<div flex>Don't download over mobile internet</div>
+					<input type="checkbox" checked>
+				</div>
+				<div fx-item>
+					<div flex>Enable DHT network</div>
+					<input type="checkbox" checked>
+				</div>
+				<label>Listening port</label>
+				<input fullwidth value="6881">
+				<button fullwidth>Reset defaults</button>
+			</main>
+		</flexus-view>
+
+		<flexus-view>
+			<flexus-toolbar transparent="medium,large">
+				<button icon="menu"></button>
+				<h1>Left panel settings demo</h1>
+			</flexus-toolbar>
+			<main vertical layout>
+				<div>
+					<button onclick="settings.show()">show settings</button>
+					<button onclick="settings.hide()">hide settings</button>
+				</div>
+				<div flex></div>
+				<p><- this button also settings</p>
+			</main>
+		</flexus-view>
+
+	</flexus-scene>
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/drawer.js"></script>
+	<script src="/flexus/elements/view.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+//*:not(pre):not(font) {
+body,
+button,
+input,
+textarea {
+	.fx-font-base();
+}
+
+
+.fx-text-overflow() {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+[headline],
+[title],
+[subhead],
+[display1],
+[display2],
+[display3],
+[display4] {
+	&[spaced] {
+		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+}
+
+pre,
+code,
+[monospace] {
+	.fx-font-monospace();
+}
+
+// MONOLITHIC PRESETS
+
+[monospace] {
+	.fx-font-monospace;
+}
+
+[display4] {
+	.fx-font-display4 !important;
+}
+[display3] {
+	.fx-font-display3 !important;
+}
+[display2] {
+	.fx-font-display2 !important;
+}
+[display1] {
+	.fx-font-display1 !important;
+}
+[headline] {
+	.fx-font-headline !important;
+}
+[title] {
+	.fx-font-title !important;
+}
+[subhead] {
+	.fx-font-subhead !important;
+}
+
+
+
+// UNIVERSAL FONT SIZES
+// TODO
+[small] {
+}	
+[normal] {
+	font-size: 15px;
+}
+// big?
+[large] {
+	font-size: 24px;
+}
+[larger] {
+	font-size: 34px;
+}
+[huge] {
+}
+
+
+
+// FONT STYLE
+
+.responsive-screensize(italic, {
+	font-style: italic !important;
+});
+
+.responsive-screensize(underline, {
+	text-decoration: underline !important;
+});
+.responsive-screensize(strike, {
+	text-decoration: line-through !important;
+});
+
+.responsive-screensize(uppercase, {
+    text-transform: uppercase;
+});
+.responsive-screensize(lowercase, {
+    text-transform: lowercase;
+});
+.responsive-screensize(capitalize, {
+    text-transform: capitalize;
+});
+
+.responsive-screensize(normal, {
+	font-style: normal !important;
+	font-weight: 400 !important;
+	text-decoration: none;
+});
+
+.responsive-screensize(thin, {
+	font-weight: 100 !important;
+});
+.responsive-screensize(regular, {
+	font-weight: 400 !important;
+});
+.responsive-screensize(strong, {
+	font-weight: 600 !important;
+});
+.responsive-screensize(bold, {
+	font-weight: 600 !important;
+});
+
+
+// FONT WEIGHT
+
+[weight="thin"],
+[weight="100"] {
+	font-weight: 100 !important;
+}
+[weight="200"] {
+	font-weight: 200 !important;
+}
+[weight="light"],
+[weight="300"] {
+	font-weight: 300 !important;
+}
+[weight="normal"],
+[weight="400"] {
+	font-weight: 400 !important;
+}
+[weight="medium"],
+[weight="500"] {
+	font-weight: 500 !important;
+}
+[weight="600"] {
+	font-weight: 600 !important;
+}
+[weight="bold"],
+[weight="700"] {
+	font-weight: 700 !important;
+}
+[weight="800"] {
+	font-weight: 800 !important;
+}
+[weight="black"],
+[weight="900"]  {
+	font-weight: 900 !important;
+}
+
+
+// TEXT ALIGN
+
+
+.responsive-screensize(text-left, {
+	text-align: left;
+});
+.responsive-screensize(text-center, {
+	text-align: center;
+});
+.responsive-screensize(text-right, {
+	text-align: right;
+});
+
+[text-align="left"] {
+	text-align: left;
+}
+[text-align="center"] {
+	text-align: center;
+}
+[text-align="right"] {
+	text-align: right;
+}

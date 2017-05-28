@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-metro.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-metro-icons.css">
+	<style>
+	flexus-menu * {
+		cursor: default;
+	}
+
+	html {
+		overflow: scroll;
+	}
+	/*body {
+		height: 3000px;
+	}*/
+	#trap {
+		position: absolute;
+		left: 200px;
+		top: 200px;
+		width: 200px;
+		height: 200px;
+		background-color: #CCC;
+	}
+	#customtarget {
+		position: absolute;
+		left: 50px;
+		top: 50px;
+		width: 50px;
+		height: 50px;
+		background-color: #CCC;
+	}
+	</style>
+
+</head>
+<body light>
+
+	<flexus-menu>
+		<div fx-item>Open in new tab</div>
+		<div fx-item>Open in new window</div>
+		<div fx-item>Save target as</div>
+		<div fx-item>Copy link</div>
+		<div fx-item>Bing lookup</div>
+		<hr>
+		<div fx-item>Save image as</div>
+		<div fx-item>Share picture</div>
+		<div fx-item>Copy picture</div>
+		<div fx-item>
+			<div flex>Dummy</div>
+			<i icon="arrow-forward"></i>
+			<!--flexus-menu>
+				<div fx-item>Share picture</div>
+				<div fx-item>Copy picture</div>
+			</flexus-menu-->
+		</div>
+	</flexus-menu>
+
+	<div id="trap">manually listening for contextmenu event and triggering</div>
+	<flexus-menu id="menu2">
+		<div fx-item>unpin</div>
+		<div fx-item>resize</div>
+		<div fx-item>remove</div>
+	</flexus-menu>
+
+	<div id="customtarget" fx-menu-target="menu3">automatic due to fx-menu-target attribute</div>
+	<flexus-menu id="menu3">
+		<div fx-item>copy</div>
+	</flexus-menu>
+
+	<script src="polyfill/webcomponents.js"></script>
+	<script src="build/flexus.js"></script>
+	<script src="build/ganymede.js"></script>
+	<script src="build/elements/flexus-slider.js"></script>
+	<script src="build/elements/flexus-menu.js"></script>
+
+	<script>
+	var trap = document.querySelector('#trap')
+	var menu2 = document.querySelector('#menu2')
+	trap.addEventListener('contextmenu', e => menu2.show(e))
+	</script>
+
+</body>
+</html>

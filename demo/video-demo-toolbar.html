@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<link rel="manifest" href="manifest.json">
+
+	<title>Flexus Demo</title>
+	<meta name=application-name content="Flexus Demo">
+	<meta name=apple-mobile-web-app-title content="Flexus Demo">
+
+	<meta name="description" content="Flexus test description">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-material-icons.css">
+
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/animate-polyfill.js"></script>
+	<script src="/flexus/polyfills/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/shadydom.min.js"></script>
+
+</head>
+<body light fx-app primary="blue" accent="yellow">
+
+	<flexus-view>
+
+		<flexus-toolbar tinted>
+			<section>
+				<button icon="menu"></button>
+				<h1>Title</h1>
+				<button icon="search"></button>
+			</section>
+			<section search card>
+				<button icon="arrow-back"></button>
+				<input type="search" placeholder="Search">
+			</section>
+		</flexus-toolbar>
+
+		<main></main>
+
+	</flexus-view>
+
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/toolbar.js"></script>
+
+</body>
+</html>

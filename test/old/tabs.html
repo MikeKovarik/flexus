@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="build/css/flexus-material-icons.css">
+
+</head>
+<body horizontal layout fx-app light>
+
+<style>
+body[layout][horizontal=""] {
+	flex-direction: column !important;
+}
+flexus-view {
+	width: 360px;
+	min-height: 200px;
+}
+flexus-toolbar {
+	background-color: #03A9F4;
+	color: #FFF;
+}
+flexus-tabs {
+	position: relative;
+	display: flex;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 600;
+	/* todo 500 */
+}
+	flexus-tabs > *:not(.selection) {
+		padding: 0 12px;
+		height: 48px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+	flexus-tabs[fixed] > *:not(.selection) {
+		flex: 1;
+	}
+	flexus-tabs[scrollable] > *:not(.selection) {
+		flex-shrink: 0;
+	}
+	flexus-tabs .selection {
+		height: 2px;
+		background-color: currentColor;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transform-origin: left center;
+	}
+</style>
+
+
+	<flexus-view>
+
+		<flexus-toolbar elevation="1" multisection>
+			<!--section card-->
+			<section>
+				<button nav icon="menu"></button>
+				<input flex placeholder="Search">
+				<button icon="more"></button>
+			</section>
+			<flexus-tabs>
+				<div>item One</div>
+				<div>item Two</div>
+				<div>item Three</div>
+			</flexus-tabs>
+		</flexus-toolbar>
+
+		<section>
+			Section 1
+		</section>
+		<section>
+			Section 2
+		</section>
+		<section>
+			Section 3
+		</section>
+
+	</flexus-view>
+
+
+	<flexus-view>
+
+		<flexus-toolbar elevation="1" multisection>
+			<section>
+			</section>
+			<flexus-tabs>
+				<div>item One</div>
+				<div>item Two</div>
+				<div>item Three</div>
+				<div>item four</div>
+			</flexus-tabs>
+		</flexus-toolbar>
+
+		<main>
+			Content
+		</main>
+
+	</flexus-view>
+
+
+	<flexus-view>
+
+
+		<flexus-toolbar elevation="1" multisection>
+
+			<section main>
+				<button nav icon="menu"></button>
+				<div flex>Main Section</div>
+				<button icon="search"></button>
+				<a href="#" icon="edit"></a>
+				<button icon="more"></button>
+			</section>
+
+			<section selection>
+				<button icon="arrow-back"></button>
+				<div flex>Selected: 1</div>
+				<button icon="share"></button>
+				<button icon="delete"></button>
+				<button icon="more"></button>
+			</section>
+
+			<flexus-tabs>
+				<i icon="star"></i>
+				<i icon="star"></i>
+				<i icon="star"></i>
+			</flexus-tabs>
+
+		</flexus-toolbar>
+
+		<main>
+			Content
+		</main>
+
+	</flexus-view>
+
+	<script src="build/flexus.js"></script>
+	<script src="build/flexus.shadowmaster.js"></script>
+	<script src="build/elements/flexus-toolbar.js"></script>
+	<script src="build/elements/flexus-tabs.js"></script>
+
+</body>
+</html>

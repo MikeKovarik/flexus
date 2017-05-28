@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="flexus/polyfill/custom-elements.min.js"></script>
+	<script src="flexus/polyfill/shadydom.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="flexus/css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="flexus/css/flexus-material-icons.css">
+
+</head>
+<body light fx-app primary="indigo">
+
+	<flexus-view>
+
+		<flexus-toolbar retractable tinted>
+			Retractable Toolbar
+		</flexus-toolbar>
+
+		<main>
+			<div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div>
+			<div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div>
+			<div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div><div fx-item>Item</div>
+		</main>
+
+		<flexus-footer retractable absolute-bottom tinted style="height: 200px">
+			Retractable Footer
+		</flexus-footer>
+
+	</flexus-view>
+
+
+	<script src="flexus/lib/Ganymede.js"></script>
+	<script src="flexus/lib/Flexus.js"></script>
+
+	<script src="flexus/elements/toolbar.js"></script>
+
+	<script>
+		var {ganymedeElement} = ganymede
+		var {Retractable, Scrollable} = flexus
+		class FlexusFooter extends ganymedeElement(Retractable, Scrollable) {
+			constructor() {
+				super()
+				this.retractDirMod = FlexusFooter.DOWN
+				var canScroll = this.setupScrollable(this.previousElementSibling)
+			}
+			show() {
+				var y = this.retractDirMod
+				this.style.transform = `translate3d(0px, 0%, 0)`
+			}
+			hide() {
+				this.style.transform = `translate3d(0px, ${this.retractDirMod * 100}%, 0)`
+			}
+		}
+		ganymede.customElement(FlexusFooter)
+	</script>
+
+</body>
+</html>

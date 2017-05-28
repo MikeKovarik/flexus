@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="/flexus/demo/scripts/Vibrant.min.js"></script>
+	
+	<!--script src="/flexus/polyfills/backup/custom-elements.min.js"></script>
+	<script src="/flexus/polyfills/backup/shadydom.min.js"></script-->
+	
+	<script src="/flexus/polyfills/fx-polyfill.js"></script>
+	<script src="/flexus/polyfills/webcomponents-lite.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<link rel="stylesheet" type="text/css" href="groove.css">
+
+	<style>
+	
+
+	/*flexus-toolbar[multisection] > section > [h2-like-tempname] {
+		margin-top: 1.5rem !important;
+		margin-bottom: 1rem !important;
+	}
+	flexus-toolbar img {
+		margin: 1.5rem 0 1.5rem 1.5rem;
+		float: left;
+	}*/
+	</style>
+
+</head>
+<body dark fx-app primary="blue" shade="500">
+
+
+	<flexus-drawer hidden="phone">
+		<button icon="menu"></button>
+		<a fx-item icon="cloud-outline">Online Collection</a>
+		<a fx-item icon="cart">Shop</a>
+		<a fx-item icon="folder">Folders</a>
+		<a fx-item icon="account" slot="bottom">Account</a>
+		<a fx-item icon="settings" slot="bottom">settings</a>
+	</flexus-drawer>
+
+	<flexus-view groove>
+		<!--flexus-toolbar tinted groove acrylic="tablet"-->
+		<flexus-toolbar absolute-top tinted acrylic="strong">
+			<section>
+				<h2 id="album-name" h2-like-tempname>Assassin's Creed Unity, Vol, 1, Original Game Soundtrack</h2>
+			</section>
+			<section fade="gts" hidden="s" two-line>
+				<div id="album-artist">Ubisoft</div>
+				<div id="album-details">2014 * Classical * 30 songs</div>
+			</section>
+			<img flexible fade="s" parallax="s" id="album-cover">
+			<section>
+				<button icon="play">Play all</button>
+				<button icon="share">Share</button>
+				<button icon="add">Add to</button>
+				<button icon="download">Download</button>
+			</section>
+			<!--section darker>
+				darker
+			</section>
+			<section shade="700">
+				shade="700"
+			</section>
+			<section shade="300">
+				shade="300"
+			</section>
+			<section opaque>
+				opaque
+			</section>
+			<section tinted shade="700">
+				tinted shade="700"
+			</section>
+			<section tinted>
+				tinted
+			</section>
+			<section hideable hidden="phone" two-line light>
+					<div id="album-artist">Ubisoft</div>
+					<div id="album-details">2014 * Classical * 30 songs</div>
+			</section>
+			<section acrylic>
+				<button icon="play">Play all</button>
+				<button icon="share">Share</button>
+				<button icon="add">Add to</button>
+				<button icon="download">Download</button>
+				<button icon="more"></button>
+			</section-->
+		</flexus-toolbar>
+		<main>
+
+			<flexus-list highlight-odd spacious>
+			</flexus-list>
+
+		</main>
+	</flexus-view>
+
+	<script>
+	console.log('typeof window.customElements', window.customElements)
+	</script>
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script src="/flexus/elements/toolbar.js"></script>
+	<script src="/flexus/elements/view.js"></script>
+	<script src="/flexus/elements/drawer.js"></script>
+
+	<script src="groove.js"></script>
+	<script>
+
+	var toolbar = document.querySelector('flexus-toolbar')
+
+	async function renderAlbum(index) {
+		var album = albums[index]
+		album.songs = album.songs || []
+		//view.setAttribute('primary', album.color)
+		view.querySelector('#album-name').textContent = album.name
+		view.querySelector('#album-artist').textContent = album.artist
+		var details = `${album.year} * ${album.genre} * ${album.songs.length}`
+		view.querySelector('#album-details').textContent = details
+		var songsHtml = album.songs.map(renderSong).join('')
+		view.querySelector('flexus-list').innerHTML = songsHtml
+
+		var coverImg = view.querySelector('#album-cover')
+		coverImg.src = coverPath(album.cover)
+		//Iridescent.applyImageColor(coverImg, view)
+		view.setAttribute('primary', parseColor(album.color))
+		view.setAttribute('shade', parseShade(album.color))
+
+		toolbar.measureHeight()
+	}
+
+	function renderSong({name, artist, length}, i) {
+		return `
+		<div fx-item>
+			<input type="checkbox" icon="${i}">
+			<div flex>${name}</div>
+			<div flex>${artist}</div>
+			<div flex>${length}</div>
+		</div>
+		`
+	}
+
+	toolbar.addEventListener('ready', e => {
+
+		console.log('this is toolbar', toolbar)
+
+		renderAlbum(0)
+
+	})
+
+	</script>
+
+</body>
+</html>

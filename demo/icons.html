@@ -1,0 +1,481 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon.css">
+	<link rel="stylesheet" type="text/css" href="/flexus/css/flexus-neon-icons.css">
+
+	<style>
+	main {
+		--indent: 32px;
+	}
+	[neon] {
+		--size: 20px;
+	}
+	flexus-list {
+		display: flex !important;
+		flex-wrap: wrap;
+	}
+	[fx-item] {
+		min-height: initial !important;
+		padding-top: 4px !important;
+		padding-bottom: 4px !important;
+		white-space: nowrap;
+		min-width: 280px;
+		flex: 1;
+	}
+	[fx-item] span {
+		user-select: initial;
+	}
+	</style>
+
+	<script src="/flexus/lib/ganymede.js"></script>
+	<script src="/flexus/lib/flexus.js"></script>
+
+	<script>
+		flexus.ready.then(() => {
+			loadmaterial.onclick = flexus.loadMaterial
+			loadneon.onclick = flexus.loadNeon
+		})
+
+		var range = document.createRange()
+		var sel = window.getSelection()
+		document.addEventListener('click', e => {
+			if (e.target.hasAttribute('icon')) {
+				range.selectNode(e.target.nextElementSibling.firstChild)
+				sel.removeAllRanges()
+				sel.addRange(range)
+			}
+		})
+	</script>
+
+</head>
+<body fx-app dense primary="blue">
+
+	<flexus-view>
+		<flexus-toolbar tinted>
+			<h1>Flexus icons gallery</h1>
+			<button hidden="material" id="loadmaterial">Load Material Icons</button>
+			<button hidden="neon" id="loadneon">Load Neon Icons</button>
+		</flexus-toolbar>
+		<main>
+			<h3 tinted>Disclaimer</h3>
+			<p>Material Design Icons, courtesy of Google and icon font maintained by <a underline href="https://materialdesignicons.com/">https://materialdesignicons.com/</a> project</p>
+			<p>Segoe UI Icons (UWP Neon Icons), courtesy of Microsoft <a underline href="https://docs.microsoft.com/en-us/windows/uwp/design-downloads/index">https://docs.microsoft.com/</a> and their Segoe UI Assets (segmdl2) icon font</p>
+			<p>Flexus tries to mix and match icons from both icon sets. Both Segoe and Material have currently over thousand icons, but not all of them have similar counterpart in the other icon library.</p>
+			<p>Following list contains about 400 icons (some of them are aliasm like 'add', 'plus' and 'create') that are avaiable in both icon sets and are safe to use.</p>
+			<h3 tinted>Usage</h3>
+			<p>Universal <code>[icon]</code> attribute can be used on most elements where <code>::before</code> pseudo element is not already in use:</p>
+			<p monospace>&lt;button <strong>icon="insert-name-here"</strong>&gt;&lt;/button&gt;</p>
+			<p monospace>&lt;div fx-item <strong>icon="insert-name-here"</strong>&gt;&lt;/div&gt;</p>
+			<p>Otherwise <code>&lt;i&gt;</code> element can be used:</p>
+			<p monospace>&lt;i <strong>icon="insert-name-here"</strong>&gt;&lt;/i&gt;</p>
+			<h3 tinted>Icon List</h3>
+			<flexus-list>
+				<div fx-item><i icon="menu"></i><span flex>menu</span></div>
+				<div fx-item><i icon="cancel"></i><span flex>cancel</span></div>
+				<div fx-item><i icon="block-helper"></i><span flex>block-helper</span></div>
+				<div fx-item><i icon="wifi"></i><span flex>wifi</span></div>
+				<div fx-item><i icon="bluetooth"></i><span flex>bluetooth</span></div>
+				<div fx-item><i icon="vpn"></i><span flex>vpn</span></div>
+				<div fx-item><i icon="brightness-5"></i><span flex>brightness-5</span></div>
+				<div fx-item><i icon="white-balance-sunny"></i><span flex>white-balance-sunny</span></div>
+				<div fx-item><i icon="map-marker"></i><span flex>map-marker</span></div>
+				<div fx-item><i icon="airplane"></i><span flex>airplane</span></div>
+				<div fx-item><i icon="tablet"></i><span flex>tablet</span></div>
+				<div fx-item><i icon="note"></i><span flex>note</span></div>
+				<div fx-item><i icon="note-outline"></i><span flex>note-outline</span></div>
+				<div fx-item><i icon="chevron-down"></i><span flex>chevron-down</span></div>
+				<div fx-item><i icon="chevron-up"></i><span flex>chevron-up</span></div>
+				<div fx-item><i icon="edit"></i><span flex>edit</span></div>
+				<div fx-item><i icon="pencil"></i><span flex>pencil</span></div>
+				<div fx-item><i icon="add"></i><span flex>add</span></div>
+				<div fx-item><i icon="plus"></i><span flex>plus</span></div>
+				<div fx-item><i icon="create"></i><span flex>create</span></div>
+				<div fx-item><i icon="x"></i><span flex>x</span></div>
+				<div fx-item><i icon="close"></i><span flex>close</span></div>
+				<div fx-item><i icon="clear"></i><span flex>clear</span></div>
+				<div fx-item><i icon="more"></i><span flex>more</span></div>
+				<div fx-item><i icon="settings"></i><span flex>settings</span></div>
+				<div fx-item><i icon="video"></i><span flex>video</span></div>
+				<div fx-item><i icon="mail"></i><span flex>mail</span></div>
+				<div fx-item><i icon="email"></i><span flex>email</span></div>
+				<div fx-item><i icon="people"></i><span flex>people</span></div>
+				<div fx-item><i icon="account-multiple"></i><span flex>account-multiple</span></div>
+				<div fx-item><i icon="account-multiple-outline"></i><span flex>account-multiple-outline</span></div>
+				<div fx-item><i icon="accounts"></i><span flex>accounts</span></div>
+				<div fx-item><i icon="accounts-outline"></i><span flex>accounts-outline</span></div>
+				<div fx-item><i icon="phone"></i><span flex>phone</span></div>
+				<div fx-item><i icon="pin"></i><span flex>pin</span></div>
+				<div fx-item><i icon="shopping"></i><span flex>shopping</span></div>
+				<div fx-item><i icon="stop"></i><span flex>stop</span></div>
+				<div fx-item><i icon="link"></i><span flex>link</span></div>
+				<div fx-item><i icon="filter"></i><span flex>filter</span></div>
+				<div fx-item><i icon="magnify"></i><span flex>magnify</span></div>
+				<div fx-item><i icon="magnify-minus"></i><span flex>magnify-minus</span></div>
+				<div fx-item><i icon="magnify-minus-outline"></i><span flex>magnify-minus-outline</span></div>
+				<div fx-item><i icon="microphone-outline"></i><span flex>microphone-outline</span></div>
+				<div fx-item><i icon="search"></i><span flex>search</span></div>
+				<div fx-item><i icon="camera"></i><span flex>camera</span></div>
+				<div fx-item><i icon="attachment"></i><span flex>attachment</span></div>
+				<div fx-item><i icon="send"></i><span flex>send</span></div>
+				<div fx-item><i icon="walk"></i><span flex>walk</span></div>
+				<div fx-item><i icon="arrow-right"></i><span flex>arrow-right</span></div>
+				<div fx-item><i icon="arrow-forward"></i><span flex>arrow-forward</span></div>
+				<div fx-item><i icon="arrow-left"></i><span flex>arrow-left</span></div>
+				<div fx-item><i icon="arrow-back"></i><span flex>arrow-back</span></div>
+				<div fx-item><i icon="refresh"></i><span flex>refresh</span></div>
+				<div fx-item><i icon="share"></i><span flex>share</span></div>
+				<div fx-item><i icon="lock"></i><span flex>lock</span></div>
+				<div fx-item><i icon="lock-outline"></i><span flex>lock-outline</span></div>
+				<div fx-item><i icon="star-outline"></i><span flex>star-outline</span></div>
+				<div fx-item><i icon="star"></i><span flex>star</span></div>
+				<div fx-item><i icon="minus"></i><span flex>minus</span></div>
+				<div fx-item><i icon="checkbox-blank-outline"></i><span flex>checkbox-blank-outline</span></div>
+				<div fx-item><i icon="checkbox-marked-outline"></i><span flex>checkbox-marked-outline</span></div>
+				<div fx-item><i icon="checkbox-blank"></i><span flex>checkbox-blank</span></div>
+				<div fx-item><i icon="checkbox-marked"></i><span flex>checkbox-marked</span></div>
+				<div fx-item><i icon="fullscreen-exit"></i><span flex>fullscreen-exit</span></div>
+				<div fx-item><i icon="fullscreen"></i><span flex>fullscreen</span></div>
+				<div fx-item><i icon="account-switch"></i><span flex>account-switch</span></div>
+				<div fx-item><i icon="printer"></i><span flex>printer</span></div>
+				<div fx-item><i icon="arrow-up"></i><span flex>arrow-up</span></div>
+				<div fx-item><i icon="arrow-down"></i><span flex>arrow-down</span></div>
+				<div fx-item><i icon="delete"></i><span flex>delete</span></div>
+				<div fx-item><i icon="save"></i><span flex>save</span></div>
+				<div fx-item><i icon="content-save"></i><span flex>content-save</span></div>
+				<div fx-item><i icon="mute"></i><span flex>mute</span></div>
+				<div fx-item><i icon="volume-off"></i><span flex>volume-off</span></div>
+				<div fx-item><i icon="backspace"></i><span flex>backspace</span></div>
+				<div fx-item><i icon="keyboard-return"></i><span flex>keyboard-return</span></div>
+				<div fx-item><i icon="cloud"></i><span flex>cloud</span></div>
+				<div fx-item><i icon="cloud-outline"></i><span flex>cloud-outline</span></div>
+				<div fx-item><i icon="flashlight"></i><span flex>flashlight</span></div>
+				<div fx-item><i icon="screen-rotation-lock"></i><span flex>screen-rotation-lock</span></div>
+				<div fx-item><i icon="eraser"></i><span flex>eraser</span></div>
+				<div fx-item><i icon="dialpad"></i><span flex>dialpad</span></div>
+				<div fx-item><i icon="arrow-left-bold-circle"></i><span flex>arrow-left-bold-circle</span></div>
+				<div fx-item><i icon="arrow-left-bold-circle-outline"></i><span flex>arrow-left-bold-circle-outline</span></div>
+				<div fx-item><i icon="arrow-right-bold-circle"></i><span flex>arrow-right-bold-circle</span></div>
+				<div fx-item><i icon="arrow-right-bold-circle-outline"></i><span flex>arrow-right-bold-circle-outline</span></div>
+				<div fx-item><i icon="select"></i><span flex>select</span></div>
+				<div fx-item><i icon="selection"></i><span flex>selection</span></div>
+				<div fx-item><i icon="keyboard"></i><span flex>keyboard</span></div>
+				<div fx-item><i icon="play"></i><span flex>play</span></div>
+				<div fx-item><i icon="pause"></i><span flex>pause</span></div>
+				<div fx-item><i icon="chevron-left"></i><span flex>chevron-left</span></div>
+				<div fx-item><i icon="chevron-right"></i><span flex>chevron-right</span></div>
+				<div fx-item><i icon="drag-horizontal"></i><span flex>drag-horizontal</span></div>
+				<div fx-item><i icon="laptop"></i><span flex>laptop</span></div>
+				<div fx-item><i icon="earth"></i><span flex>earth</span></div>
+				<div fx-item><i icon="backup-restore"></i><span flex>backup-restore</span></div>
+				<div fx-item><i icon="phone-hangup"></i><span flex>phone-hangup</span></div>
+				<div fx-item><i icon="unpin"></i><span flex>unpin</span></div>
+				<div fx-item><i icon="pin-off"></i><span flex>pin-off</span></div>
+				<div fx-item><i icon="account"></i><span flex>account</span></div>
+				<div fx-item><i icon="account-outline"></i><span flex>account-outline</span></div>
+				<div fx-item><i icon="account-circle"></i><span flex>account-circle</span></div>
+				<div fx-item><i icon="paste"></i><span flex>paste</span></div>
+				<div fx-item><i icon="content-paste"></i><span flex>content-paste</span></div>
+				<div fx-item><i icon="led-on"></i><span flex>led-on</span></div>
+				<div fx-item><i icon="alert-circle"></i><span flex>alert-circle</span></div>
+				<div fx-item><i icon="alert-circle-outline"></i><span flex>alert-circle-outline</span></div>
+				<div fx-item><i icon="drag-vertical"></i><span flex>drag-vertical</span></div>
+				<div fx-item><i icon="unlock"></i><span flex>unlock</span></div>
+				<div fx-item><i icon="lock-open"></i><span flex>lock-open</span></div>
+				<div fx-item><i icon="calendar"></i><span flex>calendar</span></div>
+				<div fx-item><i icon="open-in-new"></i><span flex>open-in-new</span></div>
+				<div fx-item><i icon="format-color-fill"></i><span flex>format-color-fill</span></div>
+				<div fx-item><i icon="brightness-6"></i><span flex>brightness-6</span></div>
+				<div fx-item><i icon="brightness"></i><span flex>brightness</span></div>
+				<div fx-item><i icon="redo"></i><span flex>redo</span></div>
+				<div fx-item><i icon="undo"></i><span flex>undo</span></div>
+				<div fx-item><i icon="crop"></i><span flex>crop</span></div>
+				<div fx-item><i icon="rotate-right"></i><span flex>rotate-right</span></div>
+				<div fx-item><i icon="rotate"></i><span flex>rotate</span></div>
+				<div fx-item><i icon="package"></i><span flex>package</span></div>
+				<div fx-item><i icon="alert"></i><span flex>alert</span></div>
+				<div fx-item><i icon="cart"></i><span flex>cart</span></div>
+				<div fx-item><i icon="train"></i><span flex>train</span></div>
+				<div fx-item><i icon="flag"></i><span flex>flag</span></div>
+				<div fx-item><i icon="flag-outline"></i><span flex>flag-outline</span></div>
+				<div fx-item><i icon="file-document"></i><span flex>file-document</span></div>
+				<div fx-item><i icon="star-half"></i><span flex>star-half</span></div>
+				<div fx-item><i icon="record"></i><span flex>record</span></div>
+				<div fx-item><i icon="marker"></i><span flex>marker</span></div>
+				<div fx-item><i icon="power"></i><span flex>power</span></div>
+				<div fx-item><i icon="bell-off"></i><span flex>bell-off</span></div>
+				<div fx-item><i icon="closed-caption"></i><span flex>closed-caption</span></div>
+				<div fx-item><i icon="sd"></i><span flex>sd</span></div>
+				<div fx-item><i icon="television"></i><span flex>television</span></div>
+				<div fx-item><i icon="monitor"></i><span flex>monitor</span></div>
+				<div fx-item><i icon="speaker"></i><span flex>speaker</span></div>
+				<div fx-item><i icon="headphones"></i><span flex>headphones</span></div>
+				<div fx-item><i icon="laptop"></i><span flex>laptop</span></div>
+				<div fx-item><i icon="laptop-chromebook"></i><span flex>laptop-chromebook</span></div>
+				<div fx-item><i icon="laptop-mac"></i><span flex>laptop-mac</span></div>
+				<div fx-item><i icon="laptop-windows"></i><span flex>laptop-windows</span></div>
+				<div fx-item><i icon="gamepad"></i><span flex>gamepad</span></div>
+				<div fx-item><i icon="gamepad-variant"></i><span flex>gamepad-variant</span></div>
+				<div fx-item><i icon="car"></i><span flex>car</span></div>
+				<div fx-item><i icon="walk"></i><span flex>walk</span></div>
+				<div fx-item><i icon="bus"></i><span flex>bus</span></div>
+				<div fx-item><i icon="grid"></i><span flex>grid</span></div>
+				<div fx-item><i icon="home"></i><span flex>home</span></div>
+				<div fx-item><i icon="home-outline"></i><span flex>home-outline</span></div>
+				<div fx-item><i icon="alert"></i><span flex>alert</span></div>
+				<div fx-item><i icon="alert-outline"></i><span flex>alert-outline</span></div>
+				<div fx-item><i icon="gesture-tap"></i><span flex>gesture-tap</span></div>
+				<div fx-item><i icon="directions"></i><span flex>directions</span></div>
+				<div fx-item><i icon="history"></i><span flex>history</span></div>
+				<div fx-item><i icon="crosshairs-gps"></i><span flex>crosshairs-gps</span></div>
+				<div fx-item><i icon="layers"></i><span flex>layers</span></div>
+				<div fx-item><i icon="briefcase"></i><span flex>briefcase</span></div>
+				<div fx-item><i icon="clock"></i><span flex>clock</span></div>
+				<div fx-item><i icon="bank"></i><span flex>bank</span></div>
+				<div fx-item><i icon="dictionary"></i><span flex>dictionary</span></div>
+				<div fx-item><i icon="book"></i><span flex>book</span></div>
+				<div fx-item><i icon="book-variant"></i><span flex>book-variant</span></div>
+				<div fx-item><i icon="book-plus"></i><span flex>book-plus</span></div>
+				<div fx-item><i icon="ethernet"></i><span flex>ethernet</span></div>
+				<div fx-item><i icon="ethernet-cable"></i><span flex>ethernet-cable</span></div>
+				<div fx-item><i icon="desktop-tower"></i><span flex>desktop-tower</span></div>
+				<div fx-item><i icon="signal"></i><span flex>signal</span></div>
+				<div fx-item><i icon="sim-alert"></i><span flex>sim-alert</span></div>
+				<div fx-item><i icon="vibrate"></i><span flex>vibrate</span></div>
+				<div fx-item><i icon="skip-previous"></i><span flex>skip-previous</span></div>
+				<div fx-item><i icon="prev"></i><span flex>prev</span></div>
+				<div fx-item><i icon="skip-next"></i><span flex>skip-next</span></div>
+				<div fx-item><i icon="next"></i><span flex>next</span></div>
+				<div fx-item><i icon="sync"></i><span flex>sync</span></div>
+				<div fx-item><i icon="download"></i><span flex>download</span></div>
+				<div fx-item><i icon="help"></i><span flex>help</span></div>
+				<div fx-item><i icon="help-box"></i><span flex>help-box</span></div>
+				<div fx-item><i icon="help-circle"></i><span flex>help-circle</span></div>
+				<div fx-item><i icon="help-circle-outline"></i><span flex>help-circle-outline</span></div>
+				<div fx-item><i icon="upload"></i><span flex>upload</span></div>
+				<div fx-item><i icon="camera-rear"></i><span flex>camera-rear</span></div>
+				<div fx-item><i icon="camera-rear-variant"></i><span flex>camera-rear-variant</span></div>
+				<div fx-item><i icon="camera-front"></i><span flex>camera-front</span></div>
+				<div fx-item><i icon="camera-front-variant"></i><span flex>camera-front-variant</span></div>
+				<div fx-item><i icon="magnify-plus"></i><span flex>magnify-plus</span></div>
+				<div fx-item><i icon="magnify-plus-outline"></i><span flex>magnify-plus-outline</span></div>
+				<div fx-item><i icon="file-document"></i><span flex>file-document</span></div>
+				<div fx-item><i icon="open-in-new"></i><span flex>open-in-new</span></div>
+				<div fx-item><i icon="grid-large"></i><span flex>grid-large</span></div>
+				<div fx-item><i icon="message-video"></i><span flex>message-video</span></div>
+				<div fx-item><i icon="swap-horizontal"></i><span flex>swap-horizontal</span></div>
+				<div fx-item><i icon="rename"></i><span flex>rename</span></div>
+				<div fx-item><i icon="rename-box"></i><span flex>rename-box</span></div>
+				<div fx-item><i icon="shuffle"></i><span flex>shuffle</span></div>
+				<div fx-item><i icon="shuffle-variant"></i><span flex>shuffle-variant</span></div>
+				<div fx-item><i icon="movie"></i><span flex>movie</span></div>
+				<div fx-item><i icon="select-all"></i><span flex>select-all</span></div>
+				<div fx-item><i icon="import"></i><span flex>import</span></div>
+				<div fx-item><i icon="folder"></i><span flex>folder</span></div>
+				<div fx-item><i icon="folder-outline"></i><span flex>folder-outline</span></div>
+				<div fx-item><i icon="image"></i><span flex>image</span></div>
+				<div fx-item><i icon="close"></i><span flex>close</span></div>
+				<div fx-item><i icon="message"></i><span flex>message</span></div>
+				<div fx-item><i icon="message-outline"></i><span flex>message-outline</span></div>
+				<div fx-item><i icon="message-text"></i><span flex>message-text</span></div>
+				<div fx-item><i icon="message-text-outline"></i><span flex>message-text-outline</span></div>
+				<div fx-item><i icon="leaf"></i><span flex>leaf</span></div>
+				<div fx-item><i icon="translate"></i><span flex>translate</span></div>
+				<div fx-item><i icon="email-open"></i><span flex>email-open</span></div>
+				<div fx-item><i icon="email-open-outline"></i><span flex>email-open-outline</span></div>
+				<div fx-item><i icon="cut"></i><span flex>cut</span></div>
+				<div fx-item><i icon="content-cut"></i><span flex>content-cut</span></div>
+				<div fx-item><i icon="copy"></i><span flex>copy</span></div>
+				<div fx-item><i icon="content-copy"></i><span flex>content-copy</span></div>
+				<div fx-item><i icon="sort"></i><span flex>sort</span></div>
+				<div fx-item><i icon="sort-variant"></i><span flex>sort-variant</span></div>
+				<div fx-item><i icon="cellphone-link"></i><span flex>cellphone-link</span></div>
+				<div fx-item><i icon="server-network-off"></i><span flex>server-network-off</span></div>
+				<div fx-item><i icon="server-network"></i><span flex>server-network</span></div>
+				<div fx-item><i icon="contact-mail"></i><span flex>contact-mail</span></div>
+				<div fx-item><i icon="contacts"></i><span flex>contacts</span></div>
+				<div fx-item><i icon="priority-high"></i><span flex>priority-high</span></div>
+				<div fx-item><i icon="priority-low"></i><span flex>priority-low</span></div>
+				<div fx-item><i icon="format-font"></i><span flex>format-font</span></div>
+				<div fx-item><i icon="format-color-text"></i><span flex>format-color-text</span></div>
+				<div fx-item><i icon="account-box"></i><span flex>account-box</span></div>
+				<div fx-item><i icon="account-box-outline"></i><span flex>account-box-outline</span></div>
+				<div fx-item><i icon="music"></i><span flex>music</span></div>
+				<div fx-item><i icon="music-box"></i><span flex>music-box</span></div>
+				<div fx-item><i icon="music-box-outline"></i><span flex>music-box-outline</span></div>
+				<div fx-item><i icon="music-circle"></i><span flex>music-circle</span></div>
+				<div fx-item><i icon="key"></i><span flex>key</span></div>
+				<div fx-item><i icon="key-variant"></i><span flex>key-variant</span></div>
+				<div fx-item><i icon="star-off"></i><span flex>star-off</span></div>
+				<div fx-item><i icon="format-italic"></i><span flex>format-italic</span></div>
+				<div fx-item><i icon="format-underline"></i><span flex>format-underline</span></div>
+				<div fx-item><i icon="format-bold"></i><span flex>format-bold</span></div>
+				<div fx-item><i icon="format-align-right"></i><span flex>format-align-right</span></div>
+				<div fx-item><i icon="format-align-center"></i><span flex>format-align-center</span></div>
+				<div fx-item><i icon="format-align-left"></i><span flex>format-align-left</span></div>
+				<div fx-item><i icon="selection-off"></i><span flex>selection-off</span></div>
+				<div fx-item><i icon="select-off"></i><span flex>select-off</span></div>
+				<div fx-item><i icon="format-size"></i><span flex>format-size</span></div>
+				<div fx-item><i icon="cellphone"></i><span flex>cellphone</span></div>
+				<div fx-item><i icon="cellphone-android"></i><span flex>cellphone-android</span></div>
+				<div fx-item><i icon="cellphone-iphone"></i><span flex>cellphone-iphone</span></div>
+				<div fx-item><i icon="tag"></i><span flex>tag</span></div>
+				<div fx-item><i icon="tag-outline"></i><span flex>tag-outline</span></div>
+				<div fx-item><i icon="tag-text-outline"></i><span flex>tag-text-outline</span></div>
+				<div fx-item><i icon="repeat-once"></i><span flex>repeat-once</span></div>
+				<div fx-item><i icon="repeat"></i><span flex>repeat</span></div>
+				<div fx-item><i icon="calculator"></i><span flex>calculator</span></div>
+				<div fx-item><i icon="folder-plus"></i><span flex>folder-plus</span></div>
+				<div fx-item><i icon="account-minus"></i><span flex>account-minus</span></div>
+				<div fx-item><i icon="account-plus"></i><span flex>account-plus</span></div>
+				<div fx-item><i icon="check"></i><span flex>check</span></div>
+				<div fx-item><i icon="accept"></i><span flex>accept</span></div>
+				<div fx-item><i icon="format-list-bulleted"></i><span flex>format-list-bulleted</span></div>
+				<div fx-item><i icon="scanner"></i><span flex>scanner</span></div>
+				<div fx-item><i icon="earth"></i><span flex>earth</span></div>
+				<div fx-item><i icon="message-reply"></i><span flex>message-reply</span></div>
+				<div fx-item><i icon="message-reply-text"></i><span flex>message-reply-text</span></div>
+				<div fx-item><i icon="wrench"></i><span flex>wrench</span></div>
+				<div fx-item><i icon="at"></i><span flex>at</span></div>
+				<div fx-item><i icon="fingerprint"></i><span flex>fingerprint</span></div>
+				<div fx-item><i icon="keyboard-close"></i><span flex>keyboard-close</span></div>
+				<div fx-item><i icon="checkbox-marked-circle"></i><span flex>checkbox-marked-circle</span></div>
+				<div fx-item><i icon="checkbox-marked-circle-outline"></i><span flex>checkbox-marked-circle-outline</span></div>
+				<div fx-item><i icon="album"></i><span flex>album</span></div>
+				<div fx-item><i icon="code-braces"></i><span flex>code-braces</span></div>
+				<div fx-item><i icon="code-brackets"></i><span flex>code-brackets</span></div>
+				<div fx-item><i icon="code-parentheses"></i><span flex>code-parentheses</span></div>
+				<div fx-item><i icon="code-tags"></i><span flex>code-tags</span></div>
+				<div fx-item><i icon="flash"></i><span flex>flash</span></div>
+				<div fx-item><i icon="info"></i><span flex>info</span></div>
+				<div fx-item><i icon="information"></i><span flex>information</span></div>
+				<div fx-item><i icon="information-outline"></i><span flex>information-outline</span></div>
+				<div fx-item><i icon="minus"></i><span flex>minus</span></div>
+				<div fx-item><i icon="minus-box"></i><span flex>minus-box</span></div>
+				<div fx-item><i icon="division"></i><span flex>division</span></div>
+				<div fx-item><i icon="division-box"></i><span flex>division-box</span></div>
+				<div fx-item><i icon="square-root"></i><span flex>square-root</span></div>
+				<div fx-item><i icon="percent"></i><span flex>percent</span></div>
+				<div fx-item><i icon="equal"></i><span flex>equal</span></div>
+				<div fx-item><i icon="backspace"></i><span flex>backspace</span></div>
+				<div fx-item><i icon="chip"></i><span flex>chip</span></div>
+				<div fx-item><i icon="remote"></i><span flex>remote</span></div>
+				<div fx-item><i icon="headset"></i><span flex>headset</span></div>
+				<div fx-item><i icon="projector"></i><span flex>projector</span></div>
+				<div fx-item><i icon="heart-pulse"></i><span flex>heart-pulse</span></div>
+				<div fx-item><i icon="webcam"></i><span flex>webcam</span></div>
+				<div fx-item><i icon="mouse"></i><span flex>mouse</span></div>
+				<div fx-item><i icon="credit-card"></i><span flex>credit-card</span></div>
+				<div fx-item><i icon="keyboard-return"></i><span flex>keyboard-return</span></div>
+				<div fx-item><i icon="network"></i><span flex>network</span></div>
+				<div fx-item><i icon="access-point-network"></i><span flex>access-point-network</span></div>
+				<div fx-item><i icon="video"></i><span flex>video</span></div>
+				<div fx-item><i icon="reply"></i><span flex>reply</span></div>
+				<div fx-item><i icon="xbox"></i><span flex>xbox</span></div>
+				<div fx-item><i icon="volume-low"></i><span flex>volume-low</span></div>
+				<div fx-item><i icon="volume-medium"></i><span flex>volume-medium</span></div>
+				<div fx-item><i icon="volume-high"></i><span flex>volume-high</span></div>
+				<div fx-item><i icon="volume"></i><span flex>volume</span></div>
+				<div fx-item><i icon="robot"></i><span flex>robot</span></div>
+				<div fx-item><i icon="frigid"></i><span flex>frigid</span></div>
+				<div fx-item><i icon="chart-areaspline"></i><span flex>chart-areaspline</span></div>
+				<div fx-item><i icon="chart-bar"></i><span flex>chart-bar</span></div>
+				<div fx-item><i icon="chart-bar-stacked"></i><span flex>chart-bar-stacked</span></div>
+				<div fx-item><i icon="chart-histogram"></i><span flex>chart-histogram</span></div>
+				<div fx-item><i icon="chart-line"></i><span flex>chart-line</span></div>
+				<div fx-item><i icon="content-save-all"></i><span flex>content-save-all</span></div>
+				<div fx-item><i icon="asterisk"></i><span flex>asterisk</span></div>
+				<div fx-item><i icon="close-circle-outline"></i><span flex>close-circle-outline</span></div>
+				<div fx-item><i icon="checkbox-blank-circle-outline"></i><span flex>checkbox-blank-circle-outline</span></div>
+				<div fx-item><i icon="checkbox-blank-circle"></i><span flex>checkbox-blank-circle</span></div>
+				<div fx-item><i icon="lightbulb"></i><span flex>lightbulb</span></div>
+				<div fx-item><i icon="lightbulb-outline"></i><span flex>lightbulb-outline</span></div>
+				<div fx-item><i icon="bell"></i><span flex>bell</span></div>
+				<div fx-item><i icon="thought-bubble"></i><span flex>thought-bubble</span></div>
+				<div fx-item><i icon="thought-bubble-outline"></i><span flex>thought-bubble-outline</span></div>
+				<div fx-item><i icon="heart-broken"></i><span flex>heart-broken</span></div>
+				<div fx-item><i icon="phone-outgoing"></i><span flex>phone-outgoing</span></div>
+				<div fx-item><i icon="broom"></i><span flex>broom</span></div>
+				<div fx-item><i icon="chart-pie"></i><span flex>chart-pie</span></div>
+				<div fx-item><i icon="heart-outline"></i><span flex>heart-outline</span></div>
+				<div fx-item><i icon="heart"></i><span flex>heart</span></div>
+				<div fx-item><i icon="close-circle"></i><span flex>close-circle</span></div>
+				<div fx-item><i icon="certificate"></i><span flex>certificate</span></div>
+				<div fx-item><i icon="fast-forward"></i><span flex>fast-forward</span></div>
+				<div fx-item><i icon="fast-forward-outline"></i><span flex>fast-forward-outline</span></div>
+				<div fx-item><i icon="rewind"></i><span flex>rewind</span></div>
+				<div fx-item><i icon="rewind-outline"></i><span flex>rewind-outline</span></div>
+				<div fx-item><i icon="image"></i><span flex>image</span></div>
+				<div fx-item><i icon="image-filter-hdr"></i><span flex>image-filter-hdr</span></div>
+				<div fx-item><i icon="file-cloud"></i><span flex>file-cloud</span></div>
+				<div fx-item><i icon="cast"></i><span flex>cast</span></div>
+				<div fx-item><i icon="cast-connected"></i><span flex>cast-connected</span></div>
+				<div fx-item><i icon="monitor-multiple"></i><span flex>monitor-multiple</span></div>
+				<div fx-item><i icon="screen-rotation-lock"></i><span flex>screen-rotation-lock</span></div>
+				<div fx-item><i icon="network"></i><span flex>network</span></div>
+				<div fx-item><i icon="account-network"></i><span flex>account-network</span></div>
+				<div fx-item><i icon="keyboard-variant"></i><span flex>keyboard-variant</span></div>
+				<div fx-item><i icon="sleep"></i><span flex>sleep</span></div>
+				<div fx-item><i icon="speedometer"></i><span flex>speedometer</span></div>
+				<div fx-item><i icon="music-note"></i><span flex>music-note</span></div>
+				<div fx-item><i icon="microphone-off"></i><span flex>microphone-off</span></div>
+				<div fx-item><i icon="checkbox-marked-circle"></i><span flex>checkbox-marked-circle</span></div>
+				<div fx-item><i icon="microphone"></i><span flex>microphone</span></div>
+				<div fx-item><i icon="calendar-clock"></i><span flex>calendar-clock</span></div>
+				<div fx-item><i icon="ruler"></i><span flex>ruler</span></div>
+				<div fx-item><i icon="plus-circle-outline"></i><span flex>plus-circle-outline</span></div>
+				<div fx-item><i icon="minus-circle-outline"></i><span flex>minus-circle-outline</span></div>
+				<div fx-item><i icon="library-plus"></i><span flex>library-plus</span></div>
+				<div fx-item><i icon="usb"></i><span flex>usb</span></div>
+				<div fx-item><i icon="folder-outline"></i><span flex>folder-outline</span></div>
+				<div fx-item><i icon="folder-open"></i><span flex>folder-open</span></div>
+				<div fx-item><i icon="eraser"></i><span flex>eraser</span></div>
+				<div fx-item><i icon="cloud-print-outline"></i><span flex>cloud-print-outline</span></div>
+				<div fx-item><i icon="cloud-print"></i><span flex>cloud-print</span></div>
+				<div fx-item><i icon="pen"></i><span flex>pen</span></div>
+				<div fx-item><i icon="battery-outline"></i><span flex>battery-outline</span></div>
+			</flexus-list>
+			<h3 tinted>Windows specific icons</h3>
+			<flexus-list>
+				<div fx-item><i icon="personalfolder"></i><span flex>personalfolder</span></div>
+				<div fx-item><i icon="homegroup"></i><span flex>homegroup</span></div>
+				<div fx-item><i icon="pc-desktop"></i><span flex>pc-desktop</span></div>
+				<div fx-item><i icon="computer"></i><span flex>computer</span></div>
+				<div fx-item><i icon="pc"></i><span flex>pc</span></div>
+				<div fx-item><i icon="this-pc"></i><span flex>this-pc</span></div>
+				<div fx-item><i icon="trackers"></i><span flex>trackers</span></div>
+				<div fx-item><i icon="fileexplorer"></i><span flex>fileexplorer</span></div>
+				<div fx-item><i icon="file-explorer"></i><span flex>file-explorer</span></div>
+				<div fx-item><i icon="swipe-left"></i><span flex>swipe-left</span></div>
+				<div fx-item><i icon="swipe-right"></i><span flex>swipe-right</span></div>
+				<div fx-item><i icon="slideshow"></i><span flex>slideshow</span></div>
+				<div fx-item><i icon="media"></i><span flex>media</span></div>
+				<div fx-item><i icon="reminder"></i><span flex>reminder</span></div>
+				<div fx-item><i icon="musicinfo"></i><span flex>musicinfo</span></div>
+				<div fx-item><i icon="handwriting"></i><span flex>handwriting</span></div>
+				<div fx-item><i icon="rotatecamera"></i><span flex>rotatecamera</span></div>
+				<div fx-item><i icon="trim"></i><span flex>trim</span></div>
+				<div fx-item><i icon="leavechat"></i><span flex>leavechat</span></div>
+				<div fx-item><i icon="mailforward"></i><span flex>mailforward</span></div>
+				<div fx-item><i icon="mailfill"></i><span flex>mailfill</span></div>
+				<div fx-item><i icon="dullsound"></i><span flex>dullsound</span></div>
+				<div fx-item><i icon="stopwatch"></i><span flex>stopwatch</span></div>
+				<div fx-item><i icon="wifihotspot"></i><span flex>wifihotspot</span></div>
+				<div fx-item><i icon="folderfill"></i><span flex>folderfill</span></div>
+				<div fx-item><i icon="feedbackapp"></i><span flex>feedbackapp</span></div>
+				<div fx-item><i icon="dictionaryadd"></i><span flex>dictionaryadd</span></div>
+				<div fx-item><i icon="ink"></i><span flex>ink</span></div>
+				<div fx-item><i icon="page"></i><span flex>page</span></div>
+			</flexus-list>
+			<h3 tinted>Material specific icons</h3>
+			<p>Visit <a underline href="https://materialdesignicons.com/">https://materialdesignicons.com/</a></p>
+		</main>
+	</flexus-view>
+
+
+</body>
+</html>

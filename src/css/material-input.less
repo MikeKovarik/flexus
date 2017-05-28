@@ -1,0 +1,601 @@
+// https://www.google.com/design/spec/components/selection-controls.html#selection-controls-switch
+/* NOTE: not everything is perfectly according to spec
+         - focus ripple
+         - disabled focus ripple
+         - ripples should be opaque 0.07 gray (white/black) for unchecked 
+                                    0.1 accent for checked
+           and it's currently not because these spec valus are almost invisible
+   TODO: - ripple easing and duration
+*/
+
+
+// experimental
+// TODO: implement (to core) if it doesn't break anything
+input,
+button {
+	vertical-align: middle;
+}
+
+:disabled,
+[disabled=""] {
+	opacity: 0.38;
+	* {
+		opacity: initial;
+	}
+}
+
+
+[light] {
+	// todo the glow around active knob
+	--slider-disabled-default: fade(#000, 26);
+}
+[dark] {
+	--slider-disabled-default: fade(#FFF, 30);
+}
+// TODO -----------------------
+input[type=range] {
+	-webkit-appearance: none;
+	height: 48px;
+}
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background-color: var(--slider-knob, var(--actionable, var(--tint)));
+	border-radius: 50%;
+	height: 12px;
+	width: 12px;
+	margin-top: -5px;
+}
+input[type=range]:active::-webkit-slider-thumb {
+	// ????
+	height: 20px;
+	width: 20px;
+	margin-top: -9px;
+}
+input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 2px;
+	background-color: var(--slider-track, var(--actionable, var(--tint)));
+}
+input[type=range]:focus {
+	outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+
+
+
+input[type='checkbox']:not([toggle]) {
+	&:active::before {
+		transform: scale(0.8) !important;
+	}
+}
+// radio and checkbox style
+input[type='radio'],
+input[type='checkbox']:not([toggle]) {
+
+	--size: 24px;
+
+	// checkmark / radio font symbol
+	&::before {
+		.fx-icon-pseudo;
+		z-index: 2;
+		//display: block;
+		transition: transform 40ms ease-out;
+	}
+
+	// ripple
+	&::after {
+		z-index: 1;
+		content: '';
+		position: absolute;
+		left: -12px;
+		right: -12px;
+		top: -12px;
+		bottom: -12px;
+		border-radius: 50%;
+		transform: scale(0);
+		// note: not really according to spec which says: 0.07 for checked accent, 0.1 for unchecked gray
+		opacity: 0.2;
+	}
+
+	&:checked::before {
+		color: inherit;
+	}
+	
+	&:not(:checked)::before {
+		color: ~'rgba(var(--foreground-rgb), var(--opacity-normal))';
+	}
+	&:disabled::before {
+		color: ~'rgba(var(--foreground-rgb), var(--opacity-disabled))';
+	}
+	// ripple color when not checked
+	&::after {
+		background-color: var(--checkbox-ripple);
+	}
+
+}
+
+
+// radio and chechbox symbols
+input[type='radio'] {
+	// TODO: this is just temporary, recreate into two circles again
+	&:not([icon])::before {
+		content: '\F43D';
+		//content: '\e836';
+	}
+	&:checked::before {
+		content: '\F43E' !important;
+		//content: '\e837' !important;
+	}
+}
+input[type='checkbox']:not([toggle]) {
+	//&[icon]:not([avatar]):hover::before,
+	[nontouch] &[icon]:hover::before,
+	&:not([icon])::before {
+		content: '\F131';
+	}
+	&:checked::before {
+		content: '\F132' !important;
+	}
+}
+
+// ripple animation
+input[type='radio']:not([noripple]):checked::after {
+	animation: fx-ripple-animation 0.4s;
+}
+input[type='checkbox']:not([toggle]):not([noripple]) {
+	&:checked::after {
+		animation: fx-ripple-animation 0.4s;
+	}
+	&:not(:checked)::after {
+		animation: fx-ripple-animation 0.4s;
+	}
+}
+@keyframes fx-ripple-animation {
+  0%   {opacity: 0;   transform: scale(0.7)}
+  65%  {opacity: 0.07;transform: scale(1)}
+  100% {opacity: 0;   transform: scale(0.9)}
+}
+/*
+@keyframes flexus-scalein {
+	0%   {transform: scale(0)}
+	100% {transform: scale(1)}
+}
+//:active > input[type='checkbox'][parent-ripple]:not([noripple])::after,
+input[type='checkbox']:not([noripple]):active::after {
+	animation: flexus-scalein 1000ms ease-out 150ms forwards running;
+}
+*/
+
+
+
+input[type='checkbox'][toggle] {
+
+	--size: 36px;
+	width: var(--size);
+	height: 24px;
+
+	&::before,
+	&::after {
+		display: block;
+		//content: '\e3fa';
+		content: '';
+		font-size: 50px;
+		line-height: 0;
+		position: absolute;
+		top: 50%;
+		left: 0;
+	}
+
+	&::before {
+		width: var(--size);
+		height: 14px;
+		border-radius: 8px;
+		margin-top: -7px;
+	}
+	&::after {
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.6);
+		margin-top: -10px;
+		transition: 0.1s ease-out;
+	}
+
+	&:checked {
+		&::before {
+			background-color: currentColor;
+			opacity: 0.5;
+		}
+		&::after {
+			background-color: currentColor;
+			transform: translateX(16px);
+		}
+	}
+
+ 	&:not(:checked)::before,
+	&:disabled::before {
+		background-color: ~'rgb(var(--foreground-base-rgb))';
+	}
+
+	[light] &:not(:checked) {
+		&::before {
+			//background-color: #000;
+			opacity: 0.26;
+		}
+		&::after {
+			background-color: #FAFAFA;
+		}
+	}
+	[dark] &:not(:checked) {
+		&::before {
+			//background-color: #FFF;
+			opacity: 0.3;
+		}
+		&::after {
+			background-color: #BDBDBD;
+		}
+	}
+
+	[light] &:disabled {
+		&::before {
+			//background-color: #000;
+			opacity: 0.12;
+		}
+		&::after {
+			background-color: #BDBDBD;
+		}
+	}
+	[dark] &:disabled {
+		&::before {
+			//background-color: #FFF;
+			opacity: 0.1;
+		}
+		&::after {
+			background-color: #424242;
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+input[type="text"],
+input:not([type]) {
+	font-size: 16px;
+	padding-top: 16px;
+	padding-bottom: 8px;
+	border: none;
+	color: inherit;
+	transition: none; // prevent animating 1 to 2px border size
+	&,
+	&:focus {
+		background-color: transparent;
+	}
+
+	&:not(:focus) {
+		border-bottom: 1px solid gray; // TODO
+		margin-bottom: 7px;
+	}
+	&:focus {
+		border-bottom: 2px solid var(--foreground-custom, var(--tint)); // var(--theme-accent, var(--theme-primary)) this didnt work for yellow accent
+		margin-bottom: 6px;
+	}
+}
+
+
+
+.fx-style-button() {
+	padding: 0 16px;
+	height: 36px;
+	min-width: 88px;
+}
+
+.fx-style-button-flat() {
+	.fx-style-button;
+}
+
+.fx-style-button-raised() {
+	.fx-style-button;
+	box-shadow: var(--shadow-elevation-2dp);
+	.apply-colors;
+	background-color: var(--background);
+	color: var(--foreground);
+	//&[tinted] {
+		//background-color: var(--background-custom, var(--tint));
+		//color: var(--foreground-custom, var(--tint-foreground));
+		//background-color: var(--foreground-custom, var(--tint, var(--foreground, var(--theme-foreground))));
+		//color: var(--background-custom, var(--background, var(--theme-background)));
+	//}
+/*
+	[tinted] & {
+		background-color: var(--theme-background);
+		color: var(--theme-foreground);
+	}
+*/
+	&[hover] {
+		box-shadow: var(--shadow-elevation-6dp);
+	}
+}
+
+// NOTE: all buttons in material are by default styled like [flat]
+//       through the :not([raised]) selector
+button {
+	// todo: https://www.google.com/design/spec/components/buttons.html#buttons-usage
+	text-align: center;
+	min-width: 64px;
+	//.fx-behavior-item-padding(8px);
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 500;
+	border-radius: 2px;
+	position: relative;
+	height: 36px;
+
+	&[raised] {
+		.fx-style-button-raised;
+	}
+
+	&[flat],
+	&:not([raised]) {
+		.fx-style-button-flat;
+	}
+
+	&[icon] {
+		&:empty {
+			min-width: 0;
+			padding: 0;
+			width: 36px;
+		}
+		// make icon padded by 4px in button with icon & text
+		&:not(:empty)::before {
+			margin-right: 8px;
+		}
+		[touch] &:empty::after {
+			margin: -6px;
+		}
+	}
+
+	// ensure 48px tall hitbox on touchscreen devices
+	[touch] &::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: -6px 0;
+	}
+}
+
+body[desktop] button {
+	// no need for 48px hitboxes on non-touchscreen devices
+	&:after {
+		content: none;
+	}
+}
+
+
+flexus-toolbar {
+	[fab] {
+		&[bottom] {
+			bottom: -28px;
+			&[small] {
+				bottom: -20px;
+			}
+		}
+	}
+}
+[fab] {
+
+	//background-color: var(--fab-background, var(--background-custom, var(--tint))) !important;
+	//color: var(--fab-foreground, var(--foreground-custom, var(--tint-foreground))) !important;
+	//--background: var(--fab-background, var(--tint)) !important;
+	//--foreground: var(--fab-foreground, var(--tint-foreground)) !important;
+	//--background: var(--fab-background, var(--background)) !important;
+	//--foreground: var(--fab-foreground, var(--foreground)) !important;
+
+	--background-rgb: var(--tint-rgb);
+	--foreground-rgb: var(--tint-foreground-rgb);
+
+	--background: ~'var(--fab-background, rgb(var(--background-rgb)))';
+	--foreground: ~'var(--fab-foreground, rgb(var(--foreground-rgb)))';
+	//.set-colors;
+	.apply-colors;
+
+	z-index: 60; // 6dp
+	box-shadow: var(--shadow-elevation-6dp);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	border-radius: 50%;
+	transition: color 200ms, background-color 200ms, transform 200ms;
+	button& {
+		min-width: initial !important;
+	}
+	&:not(:empty) {
+		font-size: 0 !important;
+	}
+
+	// prevent any other button styles to spill into fab
+	padding: 0px !important;
+	&:before {
+		padding: 0px !important;
+		margin: 0px !important;
+	}
+
+	&:not([small]) {
+		width: 56px !important; // !imporant is here to overwrite button[icon]:empty width rule
+		height: 56px !important;
+		// 48px hitbox inherited from buttons is not needed
+		&:after {
+			content: none;
+		}
+	}
+	&[small] {
+		width: 40px !important; // !imporant is here to overwrite button[icon]:empty width rule
+		height: 40px !important;
+		// 48px hitbox inherited from buttons. slightly modified
+		&:after {
+			top: -4px;
+			right: -4px;
+			bottom: -4px;
+			left: -4px;
+		}
+	}
+
+	animation: fab-show 0.2s forwards;
+	// TODO: add more states like [hiding] or [ofscreen]
+	// when each tab page has fab and going from tab to tab
+	// doesn't hide the tab page, it just shifts it away
+	// and the fab button has to hide as well
+	&[hidden],
+	[hidden] &,
+	[offscreen] & {
+		animation: fab-hide 0.2s forwards;
+	}
+	&[hidden] {
+		visibility: visible !important;
+	}
+
+	// positioning
+
+	&[top],
+	&[right],
+	&[bottom],
+	&[top] {
+		position: absolute !important;
+	}
+	&[top] {
+		top: 1rem;
+	}
+	&[right] {
+		right: 1rem;
+	}
+	&[bottom] {
+		bottom: 1rem;
+	}
+	&[left] {
+		left: 1rem;
+	}
+	// ???
+	//&:not([right]) {
+	//	left: 1rem;
+	//}
+	//&:not([left]) {
+	//	right: 1rem;
+	//}
+
+	// EXPERIMENTAL! based on testing with [fab] inside <flexus-menu>
+
+	[top] > & {
+		top: 1rem
+	}
+	[right] > & {
+		right: 1rem
+	}
+	[bottom] > & {
+		bottom: 1rem
+	}
+	[left] > & {
+		left: 1rem
+	}
+
+	//background-color: #ff4081;
+	//color: #FFF;
+}
+
+
+
+
+@keyframes fab-hide {
+	0%   {transform: scale(1); visibility: visible;}
+	99%  {transform: scale(0); visibility: visible;}
+	100% {transform: scale(0); visibility: hidden;}
+}
+@keyframes fab-show {
+	0%   {transform: scale(0)}
+	100% {transform: scale(1)}
+}
+
+
+@keyframes fab-dial-show-from-bottom {
+	from {opacity: 0; transform: translateY(20px) scale(0.6)}
+	to   {opacity: 1; transform: translateX(0px) scale(1)}
+}
+@keyframes fab-dial-show-from-top {
+	from {opacity: 0; transform: translateY(-20px) scale(0.6)}
+	to   {opacity: 1; transform: translateX(0px) scale(1)}
+}
+
+
+flexus-fabdial {
+	background-color: transparent !important;
+
+	[fab]::after {
+		.fx-icon-pseudo;
+		// the X icon
+		content: '\f223' !important;
+		position: absolute;
+		top: 16px;
+		bottom: 16px;
+		transform: rotate(-90deg) scale(0);
+		opacity: 0;
+	}
+	&[expanded] [fab]::before {
+		transform: rotate(90deg) scale(0);
+		opacity: 0;
+	}
+	[fab]::before,
+	&[expanded] [fab]::after {
+		transform: rotate(0deg) scale(1);
+		opacity: 1;
+	}
+	[fab]::before,
+	[fab]::after {
+		transition: 200ms transform, 200ms opacity;
+	}
+
+	&[top] [fab] ~ * {
+		animation-name: fab-dial-show-from-top;
+	}
+	&[bottom] [fab] ~ * {
+		animation-name: fab-dial-show-from-bottom;
+	}
+	[fab] ~ * {
+		animation-duration: 0.15s;
+		animation-fill-mode: backwards;
+	}
+	// note: cant use :nth-of-type because it takes all buttons, even [fab]
+	// maybe n+1 would work
+	[fab] + * {
+		animation-delay: 30ms;
+	}
+	[fab] + * + * {
+		animation-delay: 55ms;
+	}
+	[fab] + * + * + * {
+		animation-delay: 75ms;
+	}
+	[fab] + * + * + * + * {
+		animation-delay: 100ms;
+	}
+	[fab] + * + * + * + * + * {
+		animation-delay: 110ms;
+	}
+	[fab] + * + * + * + * + * + * {
+		animation-delay: 115ms;
+	}
+
+	:not([fab])[icon]:before {
+		color: ~'rgba(var(--foreground), 0.54)';
+	}
+}

@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>flexus-toolbar demo</title>
+
+	<link rel="stylesheet" type="text/css" href="../css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="../css/flexus-material-icons.css">
+
+	<style>
+
+		body {
+			margin: 0;
+			background-color: #EEE;
+			color: #FFF;
+		}
+
+		flexus-toolbar {
+			background-color: #03A9F4;
+		}
+
+		flexus-toolbar + flexus-toolbar {
+			margin-top: 20px;
+		}
+
+		iron-icon:not(:last-child) {
+			margin-right: 8px;
+		}
+
+	</style>
+
+</head>
+<body fullbleed vertical layout fx-app>
+
+
+	<flexus-toolbar>
+		<button nav icon="menu"></button>
+		<div flex>Sectionless</div>
+		<button icon="more"></button>
+	</flexus-toolbar>
+
+	<!--flexus-toolbar>
+		<section search>
+			<button nav icon="menu"></button>
+			<div flex>Title</div>
+			<button wow icon="search"></button>
+			<button icon="more"></button>
+		</section>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<section search card>
+			<button nav icon="arrow-back"></button>
+			<input type="text">
+			<button icon="more"></button>
+		</section>
+	</flexus-toolbar-->
+
+	<!--flexus-toolbar>
+		<section main>
+			<button nav icon="menu"></button>
+			<div flex>Main & Search card</div>
+			<button wow icon="search"></button>
+			<button icon="more"></button>
+		</section>
+		<section search card>
+			<button nav icon="arrow-back"></button>
+			<input type="text">
+			<button icon="more"></button>
+		</section>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<section main>
+			<button nav icon="menu"></button>
+			<div flex>Main & Search</div>
+			<button wow icon="search"></button>
+			<button icon="more"></button>
+		</section>
+		<section search>
+			<button nav icon="arrow-back"></button>
+			<input type="text" placeholder="Search">
+			<button icon="more"></button>
+		</section>
+	</flexus-toolbar-->
+
+	<flexus-toolbar>
+		<section main>
+			<button nav icon="menu"></button>
+			<div flex>Main & Search light</div>
+			<button wow icon="search"></button>
+			<button icon="more"></button>
+		</section>
+		<section search light>
+			<button nav icon="arrow-back"></button>
+			<input type="text" placeholder="Search">
+			<button icon="more"></button>
+		</section>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<section main>
+			<button nav icon="menu"></button>
+			<div flex>Main & Selection</div>
+			<button icon="map"></button>
+			<button icon="more"></button>
+		</section>
+		<section selection>
+			<button wow icon="arrow-back"></button>
+			<div flex title>Selected: 1</div>
+			<button wow icon="share"></button>
+			<button wow icon="delete"></button>
+			<button wow icon="more"></button>
+		</section>
+	</flexus-toolbar>
+
+	<!--flexus-toolbar>
+		<section main>
+			<button nav icon="menu"></button>
+			<div flex>Main & Selection light</div>
+			<button icon="more"></button>
+		</section>
+		<section selection light>
+			<button wow icon="arrow-back"></button>
+			<div flex title>Selected: 1</div>
+			<button wow icon="share"></button>
+			<button wow icon="delete"></button>
+			<button wow icon="more"></button>
+		</section>
+	</flexus-toolbar>
+
+	<flexus-toolbar>
+		<section main>
+			<button nav icon="menu"></button>
+			<div flex>Main & Search & Selection</div>
+			<button wow icon="search"></button>
+			<button icon="more"></button>
+		</section>
+		<section search light enter-animation="circle" leave-animation="fade">
+			<button nav icon="arrow-back"></button>
+			<input type="text" placeholder="Search">
+			<button icon="more"></button>
+		</section>
+		<section selection dark enter-animation="fade" leave-animation="fade">
+			<button wow icon="arrow-back"></button>
+			<div flex title>Selected: 1</div>
+			<button wow icon="share"></button>
+			<button wow icon="delete"></button>
+			<button wow icon="more"></button>
+		</section>
+	</flexus-toolbar-->
+
+	<div style="margin-top: 20px">
+		<button onclick="fire('fx-selection')">event: selection</button>
+		<button onclick="fire('fx-selection-clear')">event: selection-clear</button>
+		<br>
+		<button onclick="fire('fx-search')">event: search</button>
+		<button onclick="fire('fx-search-close')">event: search-close</button>
+	</div>
+
+	<script>
+	function fire(name) {
+		var e = new Event(name);
+		document.dispatchEvent(e);
+	}
+	</script>
+
+</body>
+</html>

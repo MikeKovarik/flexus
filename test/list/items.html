@@ -1,0 +1,499 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+	<style>
+
+		[neon] [icon="antenna"]:before {
+			content: '\ec05' !important;
+			/*content: '\ec44' !important;*/
+		}
+		[neon] [icon="bluetooth"]:before {
+			content: '\ec41' !important;
+		}
+		[neon] [icon="usb"]:before {
+			content: '\ecf0' !important;
+		}
+		[neon] [icon="dongle"]:before {
+			content: '\ecf1' !important;
+		}
+		[neon] [icon="wireless"]:before {
+			content: '\e952' !important;
+		}
+		[neon] [icon="chip"]:before {
+			content: '\e964' !important;
+		}
+		[neon] [icon="desktop-tower"]:before {
+			content: '\e977' !important;
+		}
+		[neon] [icon="remote-controller"]:before {
+			content: '\e951' !important;
+		}
+		[neon] [icon="send"]:before {
+			content: '\e724' !important;
+		}
+		[neon] [icon="network"]:before {
+			content: '\ec27' !important;
+		}
+		[neon] [icon="homegroup"]:before {
+			content: '\eC26' !important;
+		}
+		[material] [icon="wireless"]:before {
+			content: '\f5db' !important;
+		}
+		[material] [icon="network"]:before {
+			content: '\f4ea' !important;
+		}
+		[material] [icon="homegroup"]:before {
+			content: '\f2a6' !important;
+		}
+
+
+		/* move to flexus */
+		
+		flexus-view {
+			max-width: 370px;
+		}
+		/*[multi-line] {
+			margin-top: 4px;
+			margin-bottom: 4px;
+		}*/
+		[fx-item] {
+			white-space: normal;
+		}
+		/*[fx-item] i[icon] {
+			height: auto;
+		}*/
+
+
+		[material] h3 {
+			font-size: 16px;
+			line-height: 16px;
+			margin-top: 32px;
+		}
+	</style>
+
+</head>
+<body dark fx-app grid>
+
+
+	<flexus-view>
+
+		<flexus-toolbar multisection>
+			<section>
+				<button icon="menu"></button>
+				<div flex>Single line items</div>
+			</section>
+			<!--section></section>
+			<button small fab icon="edit" bottom left></button-->
+		</flexus-toolbar>
+
+		<main>
+
+			<div fx-item>Single-line item</div>
+			<div fx-item>
+				<i icon="phone"></i>
+				<div>Single-line item with icon</div>
+			</div>
+			<div fx-item icon="phone">
+				<div>Single-line item with icon</div>
+			</div>
+			<div fx-item indent>Indented item</div>
+			<div fx-item>
+				<input type="checkbox">
+				<div flex>Single-line item with icon</div>
+				<i icon="star-outline"></i>
+			</div>
+			<div fx-item>
+				<div flex>Single-line item with icon</div>
+				<input type="checkbox">
+			</div>
+
+
+			<h3>Avatars</h3>
+			<div fx-item>
+				<input type="checkbox" avatar icon="phone">
+				<div>Sharing options</div>
+			</div>
+			<div fx-item>
+				<i avatar icon="phone"></i>
+				<div>Sharing options</div>
+			</div>
+			<div fx-item>
+				<div avatar>
+					<i icon="phone"></i>
+				</div>
+				<div>Sharing options</div>
+			</div>
+			<div fx-item purple>
+				<div avatar>S</div>
+				<div>Sombra</div>
+			</div>
+			<div fx-item purple>
+				<div avatar title="S"></div>Sombra
+			</div>
+
+			<h3>Settings app, left panel list</h3>
+			<p>items are simple, single line without anything else than icon and short text. But are 48px high</p>
+			<p>[spacious] makes [fx-item] min-height: 48px</p>
+			<p>[small] makes [icon] font-size: 16px which leads to smaller thin icons</p>
+			<div fx-item small icon="wireless">Wireless</div>
+			<div fx-item spacious small icon="wireless">Wireless</div>
+			<div fx-item spacious small icon="bluetooth">Bluetooth</div>
+			<div fx-item spacious><i small icon="network"></i>Network</div>
+			<div fx-item spacious><i small icon="homegroup"></i>HomeGroups</div>
+			<div fx-item>
+				<i icon="homegroup"></i>
+				HomeGroups
+			</div>
+			<div fx-item>
+				<i icon="homegroup"></i>
+				<div flex>HomeGroups</div>
+			</div>
+
+			<h3>[small] sized item</h3>
+			<div fx-item small icon="desktop-tower">Desktop computer</div>
+			<div fx-item small icon="laptop">Laptop</div>
+			<div fx-item small icon="phone">Smartphone</div>
+
+			<h3>[dense] sized item</h3>
+			<div fx-item dense icon="desktop-tower">Desktop computer</div>
+			<div fx-item dense icon="laptop">Laptop</div>
+			<div fx-item dense icon="phone">Smartphone</div>
+
+			<h3>normal sized item</h3>
+			<div fx-item icon="desktop-tower">Desktop computer</div>
+			<div fx-item icon="laptop">Laptop</div>
+			<div fx-item icon="phone">Smartphone</div>
+
+			<h3>[spacious] sized item</h3>
+			<div fx-item spacious icon="desktop-tower">Desktop computer</div>
+			<div fx-item spacious icon="laptop">Laptop</div>
+			<div fx-item spacious icon="phone">Smartphone</div>
+
+
+
+
+
+
+			<br>
+
+			<div fx-item>
+				<i icon="homegroup"></i>
+				<div flex>HomeGroups</div>
+				<i icon="x"></i>
+			</div>
+			<div fx-item icon="homegroup">
+				<div flex>HomeGroups</div>
+				<i icon="x"></i>
+			</div>
+			<div fx-item>
+				<i icon="homegroup"></i>
+				<div flex>HomeGroups</div>
+				<button icon="x"></button>
+			</div>
+			<div fx-item icon="homegroup">
+				<div flex>HomeGroups</div>
+				<button icon="x"></button>
+			</div>
+			<div fx-item icon="homegroup">
+				<div flex>HomeGroups</div>
+				<button>delete</button>
+			</div>
+
+
+
+		</main>
+	</flexus-view>
+	<flexus-view>
+		<flexus-toolbar multisection>
+			<section>
+				<button icon="menu"></button>
+				<div flex>Two-line items</div>
+			</section>
+			<!--section></section>
+			<button small fab icon="edit" bottom left></button-->
+		</flexus-toolbar>
+		<main>
+
+
+			<div fx-item two-line>
+				<div>Two-line item</div>
+				<div secondary>secondary text</div>
+			</div>
+			<div fx-item two-line>
+				<div>Brunch this weekend?</div>
+				<div>Ali Connors - <span secondary>I'll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</span></div>
+			</div>
+			<div fx-item>
+				<i icon="phone"></i>
+				<div two-line>
+					<div>123 456 789</div>
+					<div secondary>Personal</div>
+				</div>
+			</div>
+			<div fx-item two-line icon="email">
+				<div>ali.connors@gmail.com</div>
+				<div secondary>Personal</div>
+			</div>
+			<div fx-item two-line indent>
+				<div>aliconnors@example.com</div>
+				<div secondary>work</div>
+			</div>
+			<div fx-item>
+				<div avatar></div>
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</span></div>
+				</div>
+				<i small icon="more"></i>
+			</div>
+			<div fx-item>
+				<input type="checkbox">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</span></div>
+				</div>
+				<i small icon="more"></i>
+			</div>
+
+
+			<h3>[small] sized item</h3>
+			<div fx-item small two-line icon="desktop-tower">
+				<div>Mike-PC</div>
+				<div secondary>192.168.1.103</div>
+			</div>
+			<div fx-item small icon="laptop">
+				<div two-line>
+					<div>Mike-Surface</div>
+					<div secondary>192.168.1.106</div>
+				</div>
+			</div>
+			<div fx-item small>
+				<i small icon="phone"></i>
+				<div two-line>
+					<div>Mike-Nexus</div>
+					<div secondary>192.168.1.107</div>
+				</div>
+			</div>
+
+			<br>
+
+			<h3>[dense] sized item</h3>
+			<div fx-item dense two-line icon="desktop-tower">
+				<div>Mike-PC</div>
+				<div secondary>192.168.1.103</div>
+			</div>
+			<div fx-item dense icon="laptop">
+				<div two-line>
+					<div>Mike-Surface</div>
+					<div secondary>192.168.1.106</div>
+				</div>
+			</div>
+			<div fx-item dense>
+				<i icon="phone"></i>
+				<div two-line>
+					<div>Mike-Nexus</div>
+					<div secondary>192.168.1.107</div>
+				</div>
+			</div>
+
+			<br>
+
+			<h3>normal sized item</h3>
+			<div fx-item two-line icon="desktop-tower">
+				<div>Mike-PC</div>
+				<div secondary>192.168.1.103</div>
+			</div>
+			<div fx-item icon="laptop">
+				<div two-line>
+					<div>Mike-Surface</div>
+					<div secondary>192.168.1.106</div>
+				</div>
+			</div>
+			<div fx-item>
+				<i icon="phone"></i>
+				<div two-line>
+					<div>Mike-Nexus</div>
+					<div secondary>192.168.1.107</div>
+				</div>
+			</div>
+
+			<h3>[spacious] items</h3>
+			<div fx-item spacious two-line icon="desktop-tower">
+				<div>Mike-PC</div>
+				<div secondary>192.168.1.103</div>
+			</div>
+			<div fx-item spacious icon="laptop">
+				<div two-line>
+					<div>Mike-Surface</div>
+					<div secondary>192.168.1.106</div>
+				</div>
+			</div>
+			<div fx-item spacious>
+				<i icon="phone"></i>
+				<div two-line>
+					<div>Mike-Nexus</div>
+					<div secondary>192.168.1.107</div>
+				</div>
+			</div>
+
+
+
+		</main>
+	</flexus-view>
+	<flexus-view>
+		<flexus-toolbar multisection>
+			<section>
+				<button icon="menu"></button>
+				<div flex>Multi-line items</div>
+			</section>
+			<!--section></section>
+			<button small fab icon="edit" bottom left></button-->
+		</flexus-toolbar>
+		<main>
+
+
+
+			<div fx-item>
+				<i icon="homegroup"></i>
+				<div multi-line>
+					<div>HomeGroups</div>
+					<div secondary>Set up a homegroup to share pictures, music, filex and printers with other PCs on you network.</div>
+				</div>
+			</div>
+			<div fx-item icon="homegroup">
+				<div multi-line>
+					<div>HomeGroups</div>
+					<div secondary>Set up a homegroup to share pictures, music, filex and printers with other PCs on you network.</div>
+				</div>
+			</div>
+			<p>added icon on the right side</p>
+			<div fx-item top icon="homegroup">
+				<div multi-line>
+					<div>HomeGroups</div>
+					<div secondary>Set up a homegroup to share pictures, music, filex and printers with other PCs on you network.</div>
+				</div>
+				<i icon="x"></i>
+			</div>
+			<p>added button on the right side</p>
+			<div fx-item top icon="homegroup">
+				<div multi-line>
+					<div>HomeGroups</div>
+					<div secondary>Set up a homegroup to share pictures, music, filex and printers with other PCs on you network.</div>
+				</div>
+				<button icon="x"></button>
+			</div>
+			<p>vertically self-aligned right side icon/button</p>
+			<div fx-item top icon="homegroup">
+				<div multi-line>
+					<div>HomeGroups</div>
+					<div secondary>Set up a homegroup to share pictures, music, filex and printers with other PCs on you network.</div>
+				</div>
+				<i icon="x" center></i>
+			</div>
+			<div fx-item top icon="homegroup">
+				<div multi-line>
+					<div>HomeGroups</div>
+					<div secondary>Set up a homegroup to share pictures, music, filex and printers with other PCs on you network.</div>
+				</div>
+				<button icon="x" center></button>
+			</div>
+			<div fx-item>
+				<i icon="homegroup" top></i>
+				<div multi-line>
+					<div>HomeGroups</div>
+					<div secondary>Set up a homegroup to share pictures, music, filex and printers with other PCs on you network.</div>
+				</div>
+				<button icon="x"></button>
+			</div>
+
+			<p>with checkboxes</p>
+			<div fx-item top>
+				<input type="checkbox">
+				<div multi-line>
+					<div>HomeGroups</div>
+					<div secondary>Set up a homegroup to share pictures, music, filex and printers with other PCs on you network.</div>
+				</div>
+				<input type="checkbox">
+			</div>
+			<div fx-item>
+				<input top type="checkbox">
+				<div multi-line>
+					<div>HomeGroups</div>
+					<div secondary>Set up a homegroup to share pictures, music, filex and printers with other PCs on you network.</div>
+				</div>
+				<input top type="checkbox">
+			</div>
+			<div fx-item>
+				<input type="checkbox">
+				<div multi-line>
+					<div>HomeGroups</div>
+					<div secondary>Set up a homegroup to share pictures, music, filex and printers with other PCs on you network.</div>
+				</div>
+				<input type="checkbox">
+			</div>
+
+			<p>with avatar</p>
+			<div fx-item top>
+				<div avatar></div>
+				<div multi-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</span></div>
+				</div>
+				<input type="checkbox">
+			</div>
+			<div fx-item top>
+				<input type="checkbox" avatar>
+				<div multi-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</span></div>
+				</div>
+				<i small icon="more"></i>
+			</div>
+
+
+
+			<div fx-item>
+				<i icon="share"></i>
+				<div multi-line>
+					<div>Sharing options</div>
+					<div secondary>For the networks you connect to, decide waht you want to share.</div>
+				</div>
+			</div>
+			<div fx-item icon="share">
+				<div multi-line>
+					<div>Sharing options</div>
+					<div secondary>For the networks you connect to, decide waht you want to share.</div>
+				</div>
+			</div>
+			<div fx-item icon="share" multi-line>
+				<div>Sharing options</div>
+				<div secondary>For the networks you connect to, decide waht you want to share.</div>
+			</div>
+
+
+
+		</main>
+	</flexus-view>
+
+
+
+	<script>
+		
+	</script>
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+</body>
+</html>

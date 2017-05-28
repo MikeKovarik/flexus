@@ -1,0 +1,77 @@
+/* move to flexus */
+flexus-view {
+	overflow: hidden;
+}
+flexus-toolbar {
+	transition: background-color 250ms;
+}
+flexus-list[no-baseline] {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+[highlight-odd] > *:nth-child(odd) {
+	background-color: rgba(var(--foreground-rgb), 0.10);
+}
+[highlight-even] > *:nth-child(even) {
+	background-color: rgba(var(--foreground-rgb), 0.10);
+}
+
+
+
+/* styles */
+
+[groove] flexus-toolbar {
+	padding: 1.5rem;
+}
+[groove] flexus-toolbar img[flexible] {
+	width: 230px;
+	height: 230px;
+}
+
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+}
+	.grid::after {
+		content: '';
+		display: block;
+		flex: 1;
+	}
+	.grid > * {
+		flex: 1;
+	}
+.grid.spaced {
+	margin: -0.5rem;
+}
+	.grid.spaced > * {
+		margin: 0 0.5rem;
+	}
+		.grid.spaced > * > * {
+			margin: 0.5rem 0;
+		}
+
+		
+.grid::after,
+.grid > * {
+	min-width: 150px;
+	max-width: 250px;
+}
+	.albumart {
+		background-color: rgba(128,128,128, 0.2);
+		background-image: url('test/img/albums/assassins-creed-unity.jpg');
+		background-size: cover;
+	}
+
+[distinct] {
+	padding-bottom: 0 !important;
+}
+.filterheader {
+	z-index: 1;
+}
+[sticky][opaque]:nth-of-type(1) {
+	margin-top: 0;
+}
+
+:root {
+	--sneakpeek-height: 80px;
+}

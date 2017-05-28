@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+	<style>
+	[card] {
+		margin: 8px;
+	}
+	main [card]:not([fullwidth]) {
+		--indent: 48px;
+		margin: 8px calc(8px - var(--gutter));
+	}
+	</style>
+
+</head>
+<body light primary="blue" accent="yellow">
+
+	<flexus-view flex subtle>
+		<flexus-toolbar tinted multisection>
+			<section card>
+				<button icon="search"></button>
+				<input type="search" placeholder="search people">
+				<button icon="microphone"></button>
+				<button icon="more"></button>
+			</section>
+			<section card fade fx-item>
+				<div avatar></div>
+				<div two-line>
+					<div normal>Mike Kovařík</div>
+					<div secondary>Mobile, 5 minutes ago</div>
+				</div>
+			</section>
+			<flexus-tabs>
+				<div>Speed dial</div>
+				<div>Recents</div>
+				<div>Contacts</div>
+			</flexus-tabs>
+		</flexus-toolbar>
+		<main>
+			<p>Here goes the content!</p>
+			<div fx-item>Lorem Ipsum</div>
+			<div fx-item icon="phone">Lorem Ipsum</div>
+			<div fx-item>
+				<input type="checkbox">
+				Lorem Ipsum
+			</div>
+			<div fx-item card icon="phone">Lorem Ipsum</div>
+			<div fx-item fullwidth card icon="phone">Lorem Ipsum</div>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</main>
+	</flexus-view>
+
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+</body>
+</html>

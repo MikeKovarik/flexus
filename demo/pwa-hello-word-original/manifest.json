@@ -1,0 +1,11 @@
+{
+  "name": "Flexus Test PWA App",
+  "short_name": "Flexus Test",
+  "icons": [],
+  "start_url": "http://mutiny.cz/flexus/demo/pwa-hello-word/",
+  "scope": "/flexus/demo/pwa-hello-word/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#2196F3",
+  "theme_color": "#2196F3"
+}

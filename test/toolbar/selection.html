@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+
+	<title>flexus-toolbar demo</title>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-material.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+	<style>
+		html {
+			--selection-background: gray;
+			--selection-foreground: white;
+		}
+		a, button, input {
+			-ms-touch-action: manipulation;	/* IE10  */
+			touch-action: manipulation;		/* IE11+ */
+		}
+
+	</style>
+
+	<script src="lib/ganymede.js"></script>
+	<script src="lib/flexus.js"></script>
+
+	<script src="elements/toolbar.js"></script>
+	<script src="elements/tabs.js"></script>
+
+</head>
+<body fx-app>
+
+	<flexus-view id="view" primary="blue" accent="yellow">
+
+		<flexus-toolbar tinted>
+			<section>
+				<button icon="menu"></button>
+				<div flex></div>
+				<!--h2 flex>Title</h2-->
+				<button icon="plus"></button>
+				<button icon="search"></button>
+				<button icon="more"></button>
+			</section>
+			<!--section selection dark transition-show="center" transition-hide="fade"-->
+			<section selection light>
+				<button icon="arrow-back"></button>
+				<h2>1 items selected</h2>
+				<button icon="delete" title="Delete"></button>
+				<button icon="share" title="Share"></button>
+				<button icon="more"></button>
+			</section>
+			<section search light card>
+				<button icon="arrow-back"></button>
+				<input type="text">
+				<button icon="x"></button>
+			</section>
+			<section free indent vertical>
+				<h3 headline>Hello world</h3>
+				<!--label>Project name</label>
+				<input type="text">
+				<label>Description</label>
+				<input-->
+			</section>
+			<flexus-tabs indent>
+				<div primary="blue" accent="yellow">First</div>
+				<div primary="pink" accent="cyan">Second</div>
+				<div primary="light-green" accent="pink">Third</div>
+				<!--div disabled>disabled</div>
+				<div hidden="small">hidden</div>
+				<div primary="purple" accent="orange">Last</div-->
+			</flexus-tabs>
+		</flexus-toolbar>
+
+		<main>
+			<div fx-item>
+				<input type="checkbox">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood</span></div>
+				</div>
+			</div>
+			<div fx-item>
+				<input type="checkbox" icon="phone">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood</span></div>
+				</div>
+			</div>
+
+			<h3>input[avatar] with hoverable checkbox on non touch displays</h3>
+
+			<div fx-item>
+				<input avatar type="checkbox" icon="phone">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood</span></div>
+				</div>
+			</div>
+			<div fx-item>
+				<input avatar tinted type="checkbox" icon="phone">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood</span></div>
+				</div>
+			</div>
+			<div fx-item>
+				<input avatar pink type="checkbox" icon="phone">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood</span></div>
+				</div>
+			</div>
+			<div fx-item>
+				<input avatar orange type="checkbox" icon="phone">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood</span></div>
+				</div>
+			</div>
+			<div fx-item>
+				<input avatar tinted type="checkbox" title="AC">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood</span></div>
+				</div>
+			</div>
+			<div fx-item>
+				<input avatar pink type="checkbox" title="AC">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood</span></div>
+				</div>
+			</div>
+			<div fx-item>
+				<input avatar orange type="checkbox" title="AC">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood</span></div>
+				</div>
+			</div>
+			<div fx-item>
+				<input avatar type="checkbox" style="background-image: url('test/img/portrait/mercy.png')">
+				<div two-line>
+					<div>Brunch this weekend?</div>
+					<div>Ali Connors - <span secondary>I'll be in your neighborhood</span></div>
+				</div>
+			</div>
+
+			<br><br><br>
+
+			<button onclick="ganymede.emit(view, 'selection-show')">selection show</button>
+			<button onclick="ganymede.emit(view, 'selection-hide')">selection hide</button>
+			<br>
+			<br>
+			<button onclick="ganymede.emit(view, 'search-show')">search show</button>
+			<button onclick="ganymede.emit(view, 'search-hide')">search hide</button>
+
+		</main>
+
+	</flexus-view>
+
+</body>
+</html>

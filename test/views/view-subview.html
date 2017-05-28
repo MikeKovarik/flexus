@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<base href="../">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+<script src="polyfill/custom-elements.min.js"></script>
+<script src="polyfill/shadydom.min.js"></script>
+<!--script src="polyfill/shadycss.min.js"></script-->
+<!--script src="lib/css-polyfill.js"></script-->
+
+<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+<link rel="stylesheet" type="text/css" href="css/flexus-material.css" polyfill>
+<link rel="stylesheet" type="text/css" href="css/flexus-material-icons.css">
+
+<style>
+flexus-toolbar > img {
+	width: 100%;
+}
+
+flexus-toolbar > img {
+	max-height: 160px;
+	object-fit: cover;
+}
+
+flexus-view flexus-view:not([expanded]) > flexus-toolbar {
+	box-shadow: none;
+}
+
+flexus-toolbar > [overlay] {
+	background-color: transparent !important;
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 1;
+}
+</style>
+
+</head>
+<body light fx-app>
+
+
+
+	<flexus-view subtle>
+
+		<flexus-toolbar multisection colored>
+			<section>
+				<button icon="arrow-back"></button>
+				<h1>Search results</h1>
+				<button>Cancel</button>
+				<button icon="content-save">Save</button>
+				<button icon="more"></button>
+			</section>
+		</flexus-toolbar>
+
+		<main>
+
+			<div card>
+				<button icon="edit"></button>
+				<button icon="edit"></button>
+				<button icon="edit">Edit</button>
+				<button>Edit</button>
+				<br>
+				<button raised icon="edit"></button>
+				<button raised icon="edit"></button>
+				<button raised icon="edit">Edit</button>
+				<button raised>Edit</button>
+			</div>
+
+			<div card>Some search result</div>
+
+			<br>
+
+			<div card>Some other result</div>
+
+			<br>
+
+			<flexus-view card>
+				<flexus-toolbar multisection>
+					<section transparent overlay dark>
+						<button icon="arrow-back"></button>
+					</section>
+					<img src="test/img/Ilios_small_13.jpg">
+					<section free colored vertical indent>
+						<h2 headline>Ilios, Greece</h2>
+						<div secondary>Perfect vacation destination</div>
+					</section>
+				</flexus-toolbar>
+				<main>
+					<div fx-item icon="edit">Something</div>
+					<div fx-item icon="edit">Something</div>
+					<div fx-item icon="edit">Something</div>
+					<div fx-item icon="edit">Something else</div>
+				</main>
+			</flexus-view>
+
+		</main>
+
+	</flexus-view>
+
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+</body>
+</html>

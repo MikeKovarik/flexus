@@ -1,0 +1,307 @@
+:root ::before, // TODO: Remove when Edge fixes a bug with CSS variables inside pseudo elements
+:root {
+	--drawer-width-collapsed: 48px;
+	--drawer-width-expanded: 250px;
+}
+
+
+
+
+
+[fx-app] {
+	&[drawer-pinned] {
+		padding-left: var(--drawer-width-collapsed);
+	}
+}
+
+flexus-drawer {
+
+	[screensize="s"] & {
+		transition: width 200ms, transform 200ms, background-color 200ms;
+	}
+	[screensize="m"] &,
+	[screensize="l"] & {
+		transition: width 200ms, max-width 200ms, background-color 200ms, min-width 200ms, transform 200ms;
+	}
+
+	--indent: var(--drawer-width-collapsed);
+	width: 100% !important;
+	//width: var(--drawer-width-expanded);
+	min-width: var(--drawer-width-collapsed) !important;
+	max-width: var(--drawer-width-expanded) !important;
+
+	[screensize="m"] &,
+	[screensize="l"] & {
+		&[pinned][collapsed] {
+			max-width: var(--drawer-width-collapsed) !important;
+			//width: var(--drawer-width-collapsed);
+			//min-width: initial;
+		}
+		&[pinned]:not([collapsed]) {
+			//width: var(--drawer-width-expanded);
+		}
+	}
+
+	// override default [hidden] behavior to enable animations
+	&[hidden] {
+		display: block !important;
+		visibility: initial;
+	}
+/*
+	[screensize="m"] & {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		&[visible] + * {
+			margin-left: var(--drawer-width-collapsed);
+		}
+	}
+*/
+	[drawer-pinned] & {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+	}
+
+	&[transparent] {
+		// negates wat has been done by globar !important [transparent]
+		//--background: rgb(var(--background-rgb)) !important;
+		--background: ~'rgb(var(--background-rgb))';
+	}
+	//&[breakpoint-state="1"] {
+	[screensize="m"] & {
+		//&[subtle], // todo, probably remove
+		&[pinned][transparent][collapsed] {
+			background-color: transparent !important;
+		}
+	}
+	//&[breakpoint-state="2"] {
+	[screensize="l"] & {
+		&[pinned][transparent] {
+			background-color: transparent !important;
+		}
+	}
+
+
+
+
+/*
+	//&[breakpoint-state="0"],
+	//&[breakpoint-state="1"] {
+	@{screensize-s} &,
+	@{screensize-m} & {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+	}
+	//&[breakpoint-state="1"] {
+	@{screensize-m} & {
+		& + * {
+			margin-left: var(--drawer-width-collapsed);
+		}
+	}
+	//&[breakpoint-state="1"],
+	//&[breakpoint-state="2"] {
+	@{screensize-m} &,
+	@{screensize-l} & {
+		&[pinned][hidden] {
+			transform: translate3d(0%, 0px, 0px) !important;
+			width: var(--drawer-width-collapsed);
+		}
+		&[pinned]:not([hidden]) {
+			transform: translate3d(0%, 0px, 0px) !important;
+			width: var(--drawer-width-expanded);
+		}
+	}
+
+	&[transparent] {
+		// negates wat has been done by globar !important [transparent]
+		//--background: rgb(var(--background-rgb)) !important;
+		--background: ~'rgb(var(--background-rgb))';
+	}
+	//&[breakpoint-state="1"] {
+	@{screensize-m} & {
+		//&[subtle], // todo, probably remove
+		&[pinned][transparent][hidden] {
+			background-color: transparent !important;
+		}
+	}
+	//&[breakpoint-state="2"] {
+	@{screensize-l} & {
+		&[pinned][transparent] {
+			background-color: transparent !important;
+		}
+	}
+*/
+
+
+
+/*
+	&[breakpoint-state="0"],
+	&[breakpoint-state="1"] {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+	}
+	&[breakpoint-state="1"],
+	&[breakpoint-state="2"] {
+		overflow: hidden !important;
+	}
+	&:not([pinned]) {
+		transform: translate3d(0%, 0px, 0px);
+	}
+	&:not([pinned])[hidden] {
+		transform: translate3d(-100%, 0px, 0px);
+	}
+	&[pinned][hidden] {
+		transform: translate3d(0%, 0px, 0px);
+		width: var(--drawer-width-collapsed);
+	}
+	&[pinned]:not([hidden]) {
+		transform: translate3d(0%, 0px, 0px);
+		width: var(--drawer-width-expanded);
+	}
+	&[pinned] + * {
+		margin-left: var(--drawer-width-collapsed);
+	}
+*/
+	/*
+	&[expanded] {
+		width: var(--drawer-width-expanded);
+	}
+
+	&[below-toolbar] {
+		z-index: 1;
+	}
+	&[under-toolbar] {
+		.fx-absolute-left;
+		margin-top: 48px;
+	}
+	&[under-toolbar] + flexus-view {
+		& > main {
+			margin-left: var(--drawer-width-collapsed);
+		}
+	}
+
+	//&[hidden] {
+	.layout-formfactor(hidden, {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: var(--drawer-width-expanded);
+		transform: translate3d(-100%, 0, 0);
+		&[expanded] {
+			transform: translate3d(0%, 0, 0);
+		}
+	});
+	//}
+
+
+	.layout-formfactor(pinned, {
+		// TODO
+	});
+
+	// to be able to overlay content drawer has to be absolutely positioned
+	&[overlay] {
+		.fx-absolute-left;
+	}
+	// which disrupts the flow, hence this artificial spacing
+	&[overlay]:not([hidden]) + * {
+		margin-left: var(--drawer-width-collapsed);
+	}
+
+	// todo - onclick flickers (just like polymer did) or rather blurs by 0.5px
+	// spotted on ratio1 screen
+	//button[fx-item] {
+		//background-color: transparent !important;
+	//}
+*/
+	
+	// the hover/active styles
+	// NOTE: it isn't the best solution and won't work well with transparent toolbars
+	&[hidden] [fx-item],
+	&:not([hidden]) [fx-item]:not([sticky]) {
+		.fx-style-button-simple();
+	}
+
+	button,
+	[fx-item] {
+		margin: 0;
+		transform: none !important;
+	}
+	[fx-item] {
+		// cancel default clickable behavior
+		margin: 0 !important;
+		transform: none !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+
+		//.fx-style-button-simple();
+
+		//.fx-nowrap;
+		min-width: var(--drawer-width-collapsed); // keeps icon in place if used in complex layouts
+		height: var(--drawer-width-collapsed);
+		flex-shrink: 0;
+		font-size: 16px; // todo investigate
+
+		//i[icon],
+		i[icon]::before,
+		&[icon]::before {
+			width: var(--drawer-width-collapsed, 48px) !important;
+			margin-right: 0 !important;
+		}
+		&[icon="menu"]::before {
+			font-size: 20px;
+		}
+
+	}
+
+	[icon]::before, // TODO: Remove when Edge fixes a bug with CSS variables inside pseudo elements
+	& {
+		--size: 16px;
+	}
+	[icon="menu"]::before, // TODO: Remove when Edge fixes a bug with CSS variables inside pseudo elements
+	[icon="menu"] {
+		--size: 24px;
+		background-color: transparent !important;
+	}
+	[icon]::before {
+		text-align: center;
+		flex-shrink: 0;
+	}
+
+	//& /*>*/ [bold] {
+	//	font-weight: 500;
+	//}
+	& /*>*/ [indent] {
+		margin-left: var(--drawer-width-collapsed) !important;
+	}
+	&[pinned] /*>*/ [indent] {
+		padding: 0;
+		min-height: 0;
+		transition: height 200ms;
+	}
+	&[pinned][hidden] /*>*/ [indent] {
+		height: 0px;
+	}
+
+	[icon]:empty {
+		min-width: var(--drawer-width-collapsed) !important;
+		min-height: var(--drawer-width-collapsed) !important;
+	}
+	[icon="menu"] {
+		width: var(--drawer-width-collapsed);
+		height: var(--drawer-width-collapsed);
+	}
+
+	// temporary. this wont be needed when toolbar is scrollable
+	/*[icon="menu"]::before {
+		flex-shrink: 0;
+	}*/
+
+}
