@@ -7,6 +7,7 @@ import './theme'
 import './battery'
 
 export * from './appElement'
+export * from './app'
 export * from './platform'
 export * from './animation'
 export * from './utils'

@@ -1,17 +1,17 @@
-export var app
+export var root
 export var appElementReady = new Promise(resolve => {
-	app = document.querySelector('[fx-app]')
-	if (app) {
-		return resolve(app)
+	root = document.querySelector('[fx-app]')
+	if (root) {
+		return resolve(root)
 	}
 	function listener(e) {
-		app = document.querySelector('[fx-app]')
-		if (app) {
-			resolve(app)
+		root = document.querySelector('[fx-app]')
+		if (root) {
+			resolve(root)
 		} else {
-			app = document.body
-			app.setAttribute('fx-app', '')
-			resolve(app)
+			root = document.body
+			root.setAttribute('fx-app', '')
+			resolve(root)
 		}
 		document.removeEventListener('DOMContentLoaded', listener)
 	}

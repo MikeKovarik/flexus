@@ -1,5 +1,5 @@
 import {$, $$, emit, awaitPromises} from 'ganymede'
-import {app} from './appElement'
+import {app} from './app'
 
 
 var head = document.head
@@ -107,8 +107,8 @@ export function loadNeon() {
 	]).then(() => {
 		platform.material = false
 		platform.neon = true
-		app.removeAttribute('material')
-		app.setAttribute('neon', '')
+		app.root.removeAttribute('material')
+		app.root.setAttribute('neon', '')
 		if (style) style.remove()
 		if (icons) icons.remove()
 	})
@@ -122,8 +122,8 @@ export function loadMaterial() {
 	]).then(() => {
 		platform.neon = false
 		platform.material = true
-		app.removeAttribute('neon')
-		app.setAttribute('material', '')
+		app.root.removeAttribute('neon')
+		app.root.setAttribute('material', '')
 		if (style) style.remove()
 		if (icons) icons.remove()
 	})

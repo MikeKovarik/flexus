@@ -1,5 +1,5 @@
 import {platform} from './platform'
-import {app, appElementReady} from './appElement'
+import {app} from './app'
 
 
 export var effectSuppresion = {
@@ -13,10 +13,10 @@ var cpuWise = navigator.hardwareConcurrency < effectSuppresion.minCpuCores
 function update() {
 	if (batteryWise || cpuWise) {
 		console.log('TODO: disable effects')
-		app.setAttribute('noeffects', '')
+		app.root.setAttribute('noeffects', '')
 	} else {
 		console.log('TODO: enable effects')
-		app.removeAttribute('noeffects')
+		app.root.removeAttribute('noeffects')
 	}
 }
 
@@ -45,7 +45,7 @@ function batteryUpdated(level, charging) {
 
 // web platform outside any app runtime might have W3C Battery API available
 if (platform.web && navigator.getBattery) {
-	appElementReady
+	app.rootReady
 		.then(navigator.getBattery())
 		.then(battery => {
 			var check = () => batteryUpdated(battery.level, battery.charging)

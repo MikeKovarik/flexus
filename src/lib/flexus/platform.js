@@ -19,17 +19,19 @@ export var platform = {
 	chromeos: ua.includes('CrOS'),
 	// browser
 	edge:   ua.includes('Edge'),
-	chrome: ua.includes('Chrome') && !ua.includes('Edge'), ///////////////////////////////
+	chrome: ua.includes('Chrome') && !ua.includes('Edge'), // TODO: veify
 	// runtime
+	browser: undefined,
+	pwa: window.matchMedia('(display-mode: standalone)').matches,
 	uwp: typeof Windows !== 'undefined',
-	cordova: undefined,
+	cordova: !!window.cordova,
 	chromeapp: undefined,
+	nwjs:     !!(typeof process !== 'undefined' && process.versions && process.versions.nw),
+	electron: !!(typeof process !== 'undefined' && process.versions && process.versions.electron),
 	// apis
 	nativeCustomComponents: window.customElements && customElements.constructor.name === 'CustomElementRegistry',
-	// TODO - deprecate
-	phone: undefined,
-	tablet: undefined,
 }
+platform.browser = !platform.uwp && !platform.uwp && !platform.cordova && !platform.nwjs && !platform.electron
 
 platform.csp = platform.uwp || platform.chromeapp
 
@@ -45,53 +47,12 @@ if (navigator.maxTouchPoints > 0) {
 
 window.platform = platform
 
-// TODO deprecate
-function determineFormfactor() {
-	platform.phone = platform.phablet = platform.tablet = platform.laptop = platform.desktop = false
-	//if (platform.touch) {
-		switch (platform.screensize) {
-			case 'small':
-				platform.phone = true
-				break
-			case 'medium':
-				platform.phablet = true
-				platform.tablet = true
-				break
-			case 'large':
-				platform.tablet = true
-				break
-		}
-	//} else {
-	//}
-	applyFormfactorAttributes()
-}
-
-// todo deprecate
-function applyFormfactorAttributes() {
-	var htmlNode = document.body.parentElement
-	//console.log('applyFormfactorAttributes')
-	if (platform.phone)
-		htmlNode.setAttribute('phone', '')
-	else
-		htmlNode.removeAttribute('phone')
-	if (platform.phablet)
-		htmlNode.setAttribute('phablet', '')
-	else
-		htmlNode.removeAttribute('phablet')
-	if (platform.tablet)
-		htmlNode.setAttribute('tablet', '')
-	else
-		htmlNode.removeAttribute('tablet')
-}
-
-
 
 // assign default color theme if none provided
-appElementReady.then(appElement => {
-	determineFormfactor()
+appElementReady.then(root => {
 
 	var targetNode = document.body.parentElement
-	//var targetNode = appElement
+	//var targetNode = root
 
 	// assigning [touch] or [nontouch]
 	if (targetNode.hasAttribute('touch') || targetNode.hasAttribute('nontouch')) {
@@ -109,36 +70,26 @@ appElementReady.then(appElement => {
 	}
 })
 
-document.addEventListener('formfactor-update', determineFormfactor)
-
-
-
-
 /*
-export function PlatformBool(element, propName, attrValue) {
-	if (!element[propName + 'temp']) {
-		document.addEventListener('formfactor-update', e => {
-			PlatformBool(element, propName, attrValue)
-		})
-		element[propName + 'temp'] = true
+
+var {UIViewSettings, UserInteractionMode} = Windows.UI.ViewManagement
+var {AnalyticsInfo} = Windows.System.Profile
+var {EasClientDeviceInformation} = Windows.Security.ExchangeActiveSyncProvisioning
+
+
+function getFormFactor() {
+	switch (AnalyticsInfo.versionInfo.deviceFamily) {
+		case 'Windows.Mobile':
+			return 'Phone'
+		case 'Windows.Desktop':
+			return UIViewSettings.getForCurrentView().UserInteractionMode == UserInteractionMode.Mouse ? 'Desktop' : 'Tablet'
+		case 'Windows.Universal':
+			return 'IoT'
+		case 'Windows.Team':
+			return 'SurfaceHub'
+		default:
+			return 'Other'
 	}
-	element[propName] = platformConditionParser(attrValue)
 }
 
-function platformConditionParser(condition) {
-	return condition
-		.split(';')
-		.map(platformConditionParserLogic)
-		.some(a => a)
-}
-function platformConditionParserLogic(condition) {
-	switch(condition) {
-		case 'phone':
-			return platform.phone
-			break
-		case 'tablet':
-			return platform.tablet
-			break
-	}
-}
 */

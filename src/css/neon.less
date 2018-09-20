@@ -14,10 +14,6 @@
 	--gutter: 24px;
 }
 
-body {
-	font-size: 16px;
-}
-
 :root {
 	// baseline indendation
 	--indent: 48px;
@@ -44,53 +40,85 @@ progress[ring]::-ms-fill {
 }
 
 
+:root {
+	--titlebar-height: 31px;
+	/* 46 per button */
+	--titlebar-padding-left: 12px;
+	// TODO this is default padding, it has to be updated with the size of drawer
+	//--titlebar-padding-left: 48px;
+}
 
-/*
-[titlebar] {
+flexus-titlebar {
 	display: flex;
-	align-items: center;
-	//.fx-layout-horizontal;
-	//.fx-layout-align-center;
-	height: 30px;
-	padding-left: 12px;
-	line-height: 30px;
-	font-size: 13px;
+	align-items: stretch;
+	padding-left: var(--titlebar-padding-left);
+	height: var(--titlebar-height);
+	line-height: var(--titlebar-height);
+	font-size: 12px;
 	letter-spacing: 0;
+
+	z-index: 9999;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+
+	// Pushes content of all 
+	&:not([seamless]) ~ * {
+		padding-top: var(--titlebar-height);
+	}
+
+	[drag] {
+		-webkit-app-region: drag;
+	}
+	// It is critical to overflow everything in the titlebar besides native win buttons.
+	& > *:not([icon^="chrome"]) {
+		overflow: hidden;
+	}
 
 	i,
 	button {
-		width: 30px;
-		height: 30px;
+		margin: 0 !important;
+		padding: 0 !important;
+		width: var(--titlebar-height);
+		min-height: initial !important;
+		background-color: transparent;
 	}
 	i,
 	[icon]:before {
 		font-size: 10px;
 	}
-	[drag] {
-		-webkit-app-region: drag;
-	}
-	[icon^="win"] {
-		width: 48px;
+	[icon^="chrome"] {
+		width: 46px !important;
 		flex-shrink: 0;
+		transform: none !important;
 		&:before {
 			font-size: 10px;
 		}
 		&:hover {
-			@{theme-dark}  & {background-color: fade(#FFF, 10)}
-			@{theme-light} & {background-color: fade(#000, 10)}
+			background-color: ~'rgba(var(--foreground-rgb), 0.1)';
 		}
 		&:active {
-			@{theme-dark}  & {background-color: fade(#FFF, 20)}
-			@{theme-light} & {background-color: fade(#000, 20)}
+			background-color: ~'rgba(var(--foreground-rgb), 0.2)';
 		}
 	}
-	[icon="win-close"]:hover {
-		//background-color: #e04343;
+	[icon="chrome-fullscreen"]::before      {content: '\E92C'}
+	[icon="chrome-exit-fullscreen"]::before {content: '\E92D'}
+	[icon="chrome-back"]::before     {content: '\E830'}
+	[icon="chrome-minimize"]::before {content: '\E921'}
+	[icon="chrome-maximize"]::before {content: '\E922'}
+	[icon="chrome-unmaximize"]::before  {content: '\E923'}
+	[icon="chrome-close"]::before    {content: '\E8BB'}
+	[icon="chrome-close"]:hover {
 		background-color: #e81123 !important;
 		color: #FFF !important;
 	}
+	[icon="chrome-close"]:active {
+		opacity: 0.6;
+	}
 }
-*/
+
+
 
 [avatar] {
 	/*&:not(:checked) {

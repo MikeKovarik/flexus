@@ -12,7 +12,7 @@ function selectedValidator(newValue, self) {
 }
 
 
-
+var noop = () => {}
 
 @customElement
 //@draggable
@@ -222,6 +222,7 @@ class FlexusPages extends ganymedeElement(LinearSelectable) {
 				duration,
 				easing: 'ease-in-out',
 			})
+			this.currentAnimation.finished.catch(noop)
 			this.currentAnimation.oncancel = this.currentAnimation.onfinish = e => {
 				this.dragDistance = 0
 				this.currentAnimation = undefined

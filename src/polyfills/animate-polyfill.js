@@ -119,9 +119,9 @@
 				player.removeEventListener('finish', onfinish)
 				resolve()
 			}
-			function oncancel() {
+			function oncancel(abc) {
 				player.removeEventListener('cancel', oncancel)
-				reject()
+				reject(new Error('Animation canceled'))
 			}
 			player.addEventListener('finish', onfinish)
 			player.addEventListener('cancel', oncancel)

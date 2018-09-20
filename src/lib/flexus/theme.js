@@ -1,9 +1,10 @@
-import {app, appElementReady} from './appElement'
+import {app} from './app'
 import {platform} from './platform'
 import {iridescent} from './iridescent'
 import {loadNeon, loadMaterial} from './loader'
 
 
+// TODO: integrate this into app.js
 
 // unfold UWPs API
 if (platform.uwp) {
@@ -65,21 +66,21 @@ function detectTheme(node) {
 
 function applyDesignAttrs() {
 	if (platform.neon) {
-		app.setAttribute('neon', '')
-		app.removeAttribute('material')
+		app.root.setAttribute('neon', '')
+		app.root.removeAttribute('material')
 	} else {
-		app.setAttribute('material', '')
-		app.removeAttribute('neon')
+		app.root.setAttribute('material', '')
+		app.root.removeAttribute('neon')
 	}
 }
 
 function applyThemeAttrs() {
 	if (platform.theme === 'dark') {
-		app.setAttribute('dark', '')
-		app.removeAttribute('light')
+		app.root.setAttribute('dark', '')
+		app.root.removeAttribute('light')
 	} else {
-		app.setAttribute('light', '')
-		app.removeAttribute('dark')
+		app.root.setAttribute('light', '')
+		app.root.removeAttribute('dark')
 	}
 }
 
@@ -88,12 +89,12 @@ function applyThemeAttrs() {
 // if its rgb  -> calculates hex from it, applies the hex to CSS properties
 // if its name -> calculates hex from it
 // then applies hex color to <meta> theme tag (for android chrome)
-function applyPrimary(fromNode = app) {
+function applyPrimary(fromNode = app.root) {
 	if (!platform.primary)
 		return
 	var hex = iridescent.hex(platform.primary)
 	if (hex) {
-		applyHexColorToNode(app, 'primary', hex)
+		applyHexColorToNode(app.root, 'primary', hex)
 	} else {
 		var computed = getComputedStyle(fromNode)
 		var color = computed.getPropertyValue('--primary')
@@ -139,7 +140,7 @@ if (!platform.design)
 if (platform.design && !platform.designLoaded)
 	loadDesign()
 
-appElementReady.then(app => {
+app.rootReady.then(root => {
 
 	var body = document.body
 
@@ -147,8 +148,8 @@ appElementReady.then(app => {
 	if (!platform.designLoaded) {
 		// find out what style user wants to load
 		if (!platform.design)
-			detectNodeDesign(app)
-		if (!platform.design && body !== app)
+			detectNodeDesign(app.root)
+		if (!platform.design && body !== app.root)
 			detectNodeDesign(body)
 		// load some style but only in non-restrictive (non-cs)p environments
 		if (!platform.csp) {
@@ -162,8 +163,8 @@ appElementReady.then(app => {
 
 
 	if (!platform.theme)
-		detectTheme(app)
-	if (!platform.theme && body !== app)
+		detectTheme(app.root)
+	if (!platform.theme && body !== app.root)
 		detectTheme(body)
 	if (!platform.theme) {
 		if (platform.uwp) {
@@ -179,10 +180,10 @@ appElementReady.then(app => {
 
 	var primaryElement
 	if (!platform.primary) {
-		platform.primary = app.getAttribute('primary')
-		primaryElement = app
+		platform.primary = app.root.getAttribute('primary')
+		primaryElement = app.root
 	}
-	if (!platform.primary && body !== app) {
+	if (!platform.primary && body !== app.root) {
 		platform.primary = body.getAttribute('primary')
 		primaryElement = body
 	}

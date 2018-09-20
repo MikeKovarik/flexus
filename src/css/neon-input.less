@@ -215,8 +215,6 @@ input[type='radio'] {
 		width: 10px;
 		height: 10px;
 		background-color: ~'rgba(var(--foreground-rgb), 0.8)';
-		//@{theme-dark}  & {color: fade(#FFF, 80)} // started rewriting according to winjs
-		//@{theme-light} & {color: #333}
 		transform: scale(0);
 		border: 2px solid white;
 		box-sizing: border-box;
@@ -225,8 +223,6 @@ input[type='radio'] {
 		width: 10px;
 		height: 10px;
 		background-color: ~'rgba(var(--foreground-rgb), 0.8)';
-		//@{theme-dark}  & {background-color: fade(#FFF, 80)} // started rewriting according to winjs
-		//@{theme-light} & {background-color: #333}
 		transform: scale(0);
 		left: 3px;
 		top: 3px;
@@ -244,14 +240,10 @@ input[type='radio'] {
 		}
 		&:hover {
 			&::-ms-check {
-				background-color: var(--background);
-				//@{theme-dark}  & {color: #FFF} // started rewriting according to winjs
-				//@{theme-light} & {color: #000}
+				background-color: var(--foreground);
 			}
 			&::after {
-				background-color: var(--background);
-				//@{theme-dark}  & {background-color: #FFF} // started rewriting according to winjs
-				//@{theme-light} & {background-color: #000}
+				background-color: var(--foreground);
 			}
 		}
 		&:active {
@@ -449,9 +441,14 @@ input:not([type="radio"]):not([type="checkbox"]) {
 	letter-spacing: -0.5px;
 	//padding: 2px 10px 5px 10px; // just like in settings
 	//padding: 3px 9px 4px 9px; // mine
-	padding: 0 9px;
 	border-width: 2px;
 	border-style: solid;
+
+	padding: 0 9px;
+	padding-bottom: 1px;
+	&[type="number"] {
+		padding-bottom: 2px;
+	}
 
 	min-height: var(--input-size);
 

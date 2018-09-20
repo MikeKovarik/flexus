@@ -239,7 +239,7 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		//if (this.$.tabs.offsetWidth > width)
 		//	console.log('TODO scroling')
 		var parentName = this.parentElement.localName
-		var autofixing = platform.phone && (parentName === 'flexus-toolbar' || parentName === 'flexus-view')
+		//var autofixing = platform.phone && (parentName === 'flexus-toolbar' || parentName === 'flexus-view')
 		if (this.indent) {
 			width -= 56
 			//width -= Number(window.getComputedStyle(this).paddingLeft)
@@ -330,7 +330,7 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 	}
 
 	updateToolbar(direction) {
-		console.log('updateToolbar')
+		//console.log('updateToolbar')
 
 		var tab = this.children[this.selected]
 		// tell toolbar where to start the animation from
