@@ -1,0 +1,63 @@
+* {
+	box-sizing: border-box;
+}
+*:not(input):not(textarea) {
+	user-select: none;
+	cursor: default;
+}
+:root {
+	--foreground-rgb: 255, 255, 255;
+}
+html,
+body {
+	margin: 0;
+	height: 100%;
+}
+body {
+	color: rgb(var(--foreground-rgb));
+	background-color: #242424;
+	font-family: Segoe UI;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+[inline-block] {
+	display: inline-block;
+}
+
+[disabled] {
+	opacity: 0.4;
+}
+:root {
+	--reveal-size: 1px;
+}
+[fx-item] {
+	--reveal-size: 1px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-height: 48px;
+	padding: 0.5rem 1rem;
+}
+[scrollable] {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+button {
+	--reveal-size: 2px;
+	--border-size: 2px;
+	position: relative;
+	min-height: 32px;
+	min-width: 90px;
+	color: rgb(var(--foreground-rgb));
+	background-color: rgba(var(--foreground-rgb),0.2);
+	border: var(--border-size, var(--reveal-size)) solid transparent;
+	outline: none;
+}
+button:hover:not(:disabled) {
+	border-color: rgba(var(--foreground-rgb), 0.4);
+}
+button:active {
+	border-color: transparent;
+	background-color: rgba(var(--foreground-rgb), 0.4);
+}

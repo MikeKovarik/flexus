@@ -1,0 +1,503 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+
+	<style>
+	* {
+		box-sizing: border-box;
+	}
+	*:not(input):not(textarea) {
+		user-select: none;
+		cursor: default;
+	}
+	:root {
+		--foreground-rgb: 255, 255, 255;
+	}
+	html,
+	body {
+		margin: 0;
+		height: 100%;
+	}
+	body {
+		color: rgb(var(--foreground-rgb));
+		background-color: #242424;
+		font-family: Segoe UI;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	[disabled] {
+		opacity: 0.4;
+	}
+	:root {
+		--halo-size: 1px;
+	}
+	[fx-item] {
+		--halo-size: 1px;
+		position: relative;
+		display: flex;
+		align-items: center;
+		min-height: 48px;
+		padding: 0.5rem 1rem;
+	}
+	[scrollable] {
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+	button {
+		--halo-size: 2px;
+		--border-size: 2px;
+		position: relative;
+		min-height: 32px;
+		min-width: 90px;
+		color: rgb(var(--foreground-rgb));
+		background-color: rgba(var(--foreground-rgb),0.2);
+		border: var(--border-size, var(--halo-size)) solid transparent;
+		outline: none;
+	}
+	button:hover:not(:disabled) {
+		border-color: rgba(var(--foreground-rgb), 0.4);
+	}
+	button:active {
+		border-color: transparent;
+		background-color: rgba(var(--foreground-rgb), 0.4);
+	}
+
+
+
+
+	:root {
+		--halo-outline-radius: 88px;
+		--halo-outline-opacity: 0.16;
+		--halo-inner-radius: 120px;
+		--halo-inner-radius-click: 48px;
+		--halo-inner-opacity: 0.10;
+		--halo-inner-opacity-click: 0.09;
+	}
+
+	/**:not(:disabled):not([disabled]) > .halo {*/
+	.halo {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		pointer-events: none;
+		margin: calc(-1 * var(--border-size));
+		--halo-outline-size: var(--halo-size, 0px);
+	}
+	*:hover > .halo {
+		--halo-outline-size: var(--border-size, var(--halo-size, 0px));
+	}
+	.halo.outline {
+		clip-path: polygon(
+			0 0, 100% 0, 100% 100%, 0% 100%,
+			0% var(--halo-outline-size),
+			var(--halo-outline-size) var(--halo-outline-size),
+			var(--halo-outline-size) calc(100% - var(--halo-outline-size)),
+			calc(100% - var(--halo-outline-size)) calc(100% - var(--halo-outline-size)),
+			calc(100% - var(--halo-outline-size)) var(--halo-outline-size),
+			0 var(--halo-outline-size)
+		);
+	}
+	/**:hover > .halo {
+		opacity: 0.3;
+		clip-path: none;
+	}*/
+
+
+
+
+
+
+
+
+
+
+
+	[hoverable]:hover {
+		background-color: rgba(var(--foreground-rgb), 0.1)
+	}
+
+	flexus-drawer {
+		display: flex;
+		flex-direction: column;
+	}
+		flexus-drawer > button {
+			--border-size: 1px;
+			--halo-size: 1px;
+			height: 48px;
+			width: 320px;
+			padding-left: 16px;
+			text-align: left;
+			background-color: transparent;
+			border-color: transparent !important;
+		}
+		flexus-drawer > button:hover,
+		flexus-drawer > button:active {
+			background-color: rgba(var(--foreground-rgb), 0.1);
+		}
+
+	#contacts-grid {
+		display: flex;
+		flex-wrap: wrap;
+		width: 272px;
+		margin: -2px;
+	}
+		#contacts-grid > button {
+			font-size: 18px;
+			min-width: 0;
+			min-height: 0;
+			width: 64px;
+			height: 64px;
+			margin: 2px;
+			--halo-size: 1px;
+			background-color: transparent;
+		}
+		#contacts-grid > button:hover:not(:disabled),
+		#contacts-grid > button:active {
+			background-color: rgba(var(--foreground-rgb), 0.1);
+		}
+
+
+	#list {
+		width: 320px;
+	}
+
+	</style>
+
+</head>
+<body>
+
+
+	<flexus-drawer>
+		<button>Windows Update</button>
+		<button>Windows Defender</button>
+		<button>Backup</button>
+		<button>Troubleshoot</button>
+		<button>Recovery</button>
+		<button>Activation</button>
+		<button>Find my device</button>
+		<button>For developers</button>
+		<button disabled>Windows Insider Program</button>
+	</flexus-drawer>
+
+
+	<div scrollable>
+		<div id="contacts-grid">
+			<button disabled>&</button>
+			<button disabled>#</button>
+			<button>A</button>
+			<button>B</button>
+			<button>C</button>
+			<button>D</button>
+			<button>E</button>
+			<button>F</button>
+			<button>G</button>
+			<button>H</button>
+			<button>I</button>
+			<button>J</button>
+			<button>K</button>
+			<button>L</button>
+			<button>M</button>
+			<button>N</button>
+			<button>O</button>
+			<button>P</button>
+			<button disabled>Q</button>
+			<button>R</button>
+			<button>S</button>
+			<button>T</button>
+			<button disabled>U</button>
+			<button>V</button>
+			<button disabled>W</button>
+			<button disabled>X</button>
+			<button disabled>Y</button>
+			<button>Z</button>
+		</div>
+		lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>
+		lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>
+		lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>
+		lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>lorem ipsum<br>
+	</div>
+
+
+	<!--div scrollable id="list">
+		<button>Change</button>
+		<button disabled>Change</button>
+		<br><br>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+	</div-->
+
+
+
+	<script>
+
+	var bodyStyles = window.getComputedStyle(document.body)
+	var haloRadius = parseInt(bodyStyles.getPropertyValue('--halo-outline-radius'))
+
+	var currentEvent
+	var halos = new Set
+	var renderQueue = new Set
+
+	var pageX
+	var pageY
+
+	window.addEventListener('mousemove', throttleRaf(onMouseMove))
+	function onMouseMove(event) {
+		currentEvent = event
+		pageX = currentEvent.pageX
+		pageY = currentEvent.pageY
+		halos.forEach(halo => halo.renderSetup())
+		renderQueue.forEach(cb => cb())
+	}
+
+	function debounce(callback, millis = 50) {
+		var timeout
+		return arg => {
+			clearTimeout(timeout)
+			timeout = setTimeout(() => callback(arg), millis)
+		}
+	}
+	
+	function throttleRaf(callback) {
+		var raf
+		var ticking = false
+		return arg => {
+			if (!ticking)
+				raf = requestAnimationFrame(() => {
+					callback(arg)
+					ticking = false
+				})
+			ticking = true
+		}
+	}
+
+	window.addEventListener('scroll', debounce(e => {
+		halos.forEach(halo => halo.updateScrollPosition(e.target))
+	}), {
+		capture: true,
+		passive: true,
+	})
+
+
+	class UwpHalo {
+
+		constructor(element) {
+
+			this.element = element
+			halos.add(this)
+
+			this.scrollTop = 0
+			this.scrollLeft = 0
+
+			this.top = 0
+			this.right = 0
+			this.bottom = 0
+			this.left = 0
+
+			this.x = 0
+			this.y = 0
+
+			this.showInnerHalo = true
+			this.wasReachable = false
+			this.isReachable = false
+			this.isClicked = false
+
+			this.renderOutline = this.renderOutline.bind(this)
+			this.destroyOutline = this.destroyOutline.bind(this)
+			this.renderInner = this.renderInner.bind(this)
+			this.destroyInner = this.destroyInner.bind(this)
+			this.onMouseEnter = this.onMouseEnter.bind(this)
+			this.onMouseLeave = this.onMouseLeave.bind(this)
+			this.onMouseDown = this.onMouseDown.bind(this)
+			this.onMouseUp = this.onMouseUp.bind(this)
+			
+			// cache initial sizing
+			this.cacheElementSizing()
+
+			// create elements onto which is the halo rendered
+			this.haloOutline = document.createElement('div')
+			this.haloOutline.className = 'halo outline'
+			element.appendChild(this.haloOutline)
+			// inner halo requires additional element
+			if (this.showInnerHalo) {
+				this.haloInner = document.createElement('div')
+				this.haloInner.className = 'halo inner'
+				element.appendChild(this.haloInner)
+			}
+
+			// additional events has to be listened to ensure inner halo looks and behaves correctly
+			if (this.showInnerHalo) {
+				element.addEventListener('mouseenter', this.onMouseEnter)
+				element.addEventListener('mouseleave', this.onMouseLeave)
+				element.addEventListener('mousedown', this.onMouseDown)
+				element.addEventListener('mouseup', this.onMouseUp)
+			}
+
+		}
+
+		// Starts rendering inner halo when mouse enters element.
+		onMouseEnter() {
+			// Refresh sizing while hovering over the element.
+			this.cacheElementSizing()
+			renderQueue.add(this.renderInner)
+		}
+		// Removes inner halo when mouse leaves element.
+		onMouseLeave() {
+			renderQueue.delete(this.renderInner)
+			renderQueue.add(this.destroyInner)
+		}
+		// Immediately renders inner halo in clicked look.
+		onMouseDown(event) {
+			currentEvent = event
+			this.isClicked = true
+			this.render()
+		}
+		// Immediately releases clicked look of inner halo.
+		onMouseUp(event) {
+			currentEvent = event
+			this.isClicked = false
+			this.render()
+		}
+
+		// Immediate local rendering.
+		render() {
+			this.calculateMousePosition()
+			this.renderOutline()
+			if (this.showInnerHalo)
+				this.renderInner()
+		}
+		// Setup for async rendering handled globally by mousemove event listener.
+		renderSetup() {
+			this.calculateMousePosition()
+			this.isReachable = this.isWithinReach()
+			if (this.isReachable && !this.wasReachable) {
+				renderQueue.add(this.renderOutline)
+			} else if (!this.isReachable && this.wasReachable) {
+				renderQueue.delete(this.renderOutline)
+				renderQueue.add(this.destroyOutline)
+			}
+			this.wasReachable = this.isReachable
+		}
+
+		// Renders inner halo in either clicked or hover look.
+		renderInner() {
+			if (this.isClicked)
+				this.renderInnerClicked()
+			else
+				this.renderInnerHover()
+		}
+		// Renders inner halo as a ring with a hole inside, indicating a mouse click.
+		renderInnerClicked() {
+			this.haloInner.style.background = `radial-gradient(
+				circle var(--halo-inner-radius-click) at ${this.x}px ${this.y}px,
+				rgba(var(--foreground-rgb), 0) 20%,
+				rgba(var(--foreground-rgb), var(--halo-inner-opacity-click)) 60%,
+				rgba(var(--foreground-rgb), 0) 100%
+			)`
+		}
+		// Renders inner halo as a circle fading into edges.
+		renderInnerHover() {
+			this.haloInner.style.background = `radial-gradient(
+				circle var(--halo-inner-radius) at ${this.x}px ${this.y}px,
+				rgba(var(--foreground-rgb), var(--halo-inner-opacity)),
+				rgba(var(--foreground-rgb), 0)
+			)`
+		}
+		// Renders outline halo around the element.
+		renderOutline() {
+			this.haloOutline.style.background = `radial-gradient(
+				circle var(--halo-outline-radius) at ${this.x}px ${this.y}px,
+				rgba(var(--foreground-rgb), var(--halo-outline-opacity)) 20%,
+				rgba(var(--foreground-rgb), 0) 100%
+			)`
+		}
+
+		// Renders empty background into outline element and removes itself from render queue.
+		// note: this method should not be called but invoked through renderQueue
+		destroyOutline() {
+			this.haloOutline.style.background = ''
+			renderQueue.delete(this.destroyOutline)
+		}
+		// Renders empty background into inner element and removes itself from render queue.
+		// note: this method should not be called but invoked through renderQueue
+		destroyInner() {
+			this.haloInner.style.background = ''
+			renderQueue.delete(this.destroyInner)
+		}
+
+		isWithinReach() {
+			if (pageX < this.left - haloRadius) return false
+			if (pageX > this.right + haloRadius) return false
+			if (pageY < this.top - haloRadius) return false
+			if (pageY > this.bottom + haloRadius) return false
+			return true
+		}
+
+		updateScrollPosition(relativeTo) {
+			if (relativeTo.contains(this.element))
+				this.cacheScrollOffset(relativeTo)
+		}
+
+		cacheScrollOffset(relativeTo) {
+			this.scrollTop = relativeTo.scrollTop
+			this.scrollLeft = relativeTo.scrollLeft
+			this.calculateBounds()
+		}
+		cacheElementSizing() {
+			this._top    = this.element.offsetTop
+			this._left   = this.element.offsetLeft
+			this._right  = this.left + this.element.offsetWidth
+			this._bottom = this.top  + this.element.offsetHeight
+			this.calculateBounds()
+		}
+		calculateBounds() {
+			this.top    = this._top    - this.scrollTop
+			this.left   = this._left   - this.scrollLeft
+			this.right  = this._right  - this.scrollLeft
+			this.bottom = this._bottom - this.scrollTop
+		}
+		calculateMousePosition() {
+			this.x = pageX - this.left
+			this.y = pageY - this.top
+		}
+
+	}
+
+
+
+
+	var hoverables = document.querySelectorAll('button, [hoverable]')
+
+	Array.from(hoverables).forEach(element => new UwpHalo(element))
+
+	</script>
+
+
+</body>
+</html>

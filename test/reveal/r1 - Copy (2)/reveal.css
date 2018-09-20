@@ -1,0 +1,108 @@
+:root {
+	--reveal-outline-radius: 88px;
+	--reveal-outline-opacity: 0.16;
+	--reveal-inner-radius: 120px;
+	--reveal-inner-radius-click: 48px;
+	--reveal-inner-opacity: 0.10;
+	--reveal-inner-opacity-click: 0.09;
+}
+
+/**:not(:disabled):not([disabled]) > .reveal {*/
+.reveal {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	pointer-events: none;
+	margin: calc(-1 * var(--border-size));
+	--reveal-outline-size: var(--reveal-size, 0px);
+	border-radius: inherit;
+}
+.reveal.outline {
+	-webkit-mask-image: radial-gradient(circle at 0 0, transparent 0%, transparent 0%);
+	border: var(--reveal-outline-size, 0px) solid rgba(var(--foreground-rgb), var(--reveal-outline-opacity));
+}
+*:hover > .reveal {
+	--reveal-outline-size: var(--border-size, var(--reveal-size, 0px));
+}
+
+
+
+
+
+
+
+
+
+[hoverable]:hover {
+	background-color: rgba(var(--foreground-rgb), 0.1)
+}
+
+flexus-drawer {
+	display: flex;
+	flex-direction: column;
+}
+	flexus-drawer > button {
+		--border-size: 1px;
+		--reveal-size: 1px;
+		height: 48px;
+		width: 320px;
+		padding-left: 16px;
+		text-align: left;
+		background-color: transparent;
+		border-color: transparent !important;
+	}
+	flexus-drawer > button:hover,
+	flexus-drawer > button:active {
+		background-color: rgba(var(--foreground-rgb), 0.1);
+	}
+
+#contacts-grid {
+	display: flex;
+	flex-wrap: wrap;
+	width: 272px;
+	margin: -2px;
+}
+	#contacts-grid > button {
+		font-size: 18px;
+		min-width: 0;
+		min-height: 0;
+		width: 64px;
+		height: 64px;
+		margin: 2px;
+		--reveal-size: 1px;
+		background-color: transparent;
+	}
+	#contacts-grid > button:hover:not(:disabled),
+	#contacts-grid > button:active {
+		background-color: rgba(var(--foreground-rgb), 0.1);
+	}
+
+
+#list {
+	width: 320px;
+}
+
+
+
+
+
+
+.tab {
+	position: relative;
+	background-color: transparent !important;
+	border: none;
+	width: 100px;
+	height: 48px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.circle {
+	position: relative;
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+}

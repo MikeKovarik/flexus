@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+
+	<style>
+	* {
+		box-sizing: border-box;
+	}
+	body {
+		color: #FFF;
+		background-color: #000;
+		font-family: Segoe UI;
+	}
+	flexus-drawer {
+		display: flex;
+		flex-direction: column;
+	}
+	button {
+		height: 48px;
+		width: 320px;
+		padding-left: 16px;
+		text-align: left;
+		background-color: transparent;
+		/*border: 1px solid rgba(255, 255, 255, 0.16);*/
+		border: none;
+		color: #FFF;
+		outline: none;
+	}
+	button:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+	button:active {
+		background-color: rgba(255, 255, 255, 0.2);
+	}
+
+	button {
+		position: relative;
+	}
+	[disabled] {
+		opacity: 0.5;
+	}
+	*:not(:disabled):not([disabled]) > .halo {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		pointer-events: none;
+		--border-size: 1px;
+		clip-path: polygon(
+			0 0, 100% 0, 100% 100%, 0% 100%,
+			0% var(--border-size),
+			var(--border-size) var(--border-size),
+			var(--border-size) calc(100% - var(--border-size)),
+			calc(100% - var(--border-size)) calc(100% - var(--border-size)),
+			calc(100% - var(--border-size)) var(--border-size),
+			0 var(--border-size)
+		);
+	}
+
+	img {
+		/*clip-path: inset(10px 20px 30px 40px);*/
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%, 0% 2px, 2px 2px, 2px calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) 2px, 0 2px);
+	}
+	/*
+	width 180
+	255,255,255,0.16
+	*/
+	</style>
+
+</head>
+<body>
+
+	<flexus-drawer>
+		<button>Windows Update</button>
+		<button>Windows Defender</button>
+		<button>Backup</button>
+		<button>Troubleshoot</button>
+		<button>Recovery</button>
+		<button>Activation</button>
+		<button>Find my device</button>
+		<button>For developers</button>
+		<button disabled>Windows Insider Program</button>
+	</flexus-drawer>
+
+	<img src="https://img-fotki.yandex.ru/get/5607/5091629.6b/0_612e6_b9039c0d_M.jpg">
+
+
+	<script>
+
+	var buttons = document.querySelectorAll('button, [clickable]')
+
+	Array.from(buttons).forEach(attachHalo)
+
+	var haloColor = `255, 255, 255`
+	//var haloOpacity = `0.16`
+	//var haloSize = 90
+	var haloOpacity = `0.20`
+	var haloSize = 100
+
+	//attachHalo(drawer)
+
+	function attachHalo(element) {
+
+		var x, y, xy
+		var offsetLeft = 0
+		var offsetTop = 0
+
+		var halo = document.createElement('div')
+		halo.className = 'halo'
+		element.appendChild(halo)
+
+			offsetLeft = element.offsetLeft
+			offsetTop  = element.offsetTop
+		element.addEventListener('mouseenter', e => {
+			offsetLeft = element.offsetLeft
+			offsetTop  = element.offsetTop
+		})
+		window.addEventListener('mousemove', e => {
+			//offsetLeft = element.offsetLeft
+			//offsetTop  = element.offsetTop
+			x = e.pageX - offsetLeft
+			y = e.pageY - offsetTop
+			xy = `${x} ${y}`
+			halo.style.background = `-webkit-gradient(
+				radial, ${xy}, 0, ${xy}, ${haloSize},
+				from(rgba(${haloColor}, ${haloOpacity})),
+				to(rgba(${haloColor}, 0))
+			)`
+		})
+		window.addEventListener('mouseleave', e => {
+			halo.style.background = ''
+		})
+
+	}
+
+	</script>
+
+
+</body>
+</html>

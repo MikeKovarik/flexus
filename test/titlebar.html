@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, user-scalable=no">
+
+	<script src="polyfill/custom-elements.min.js"></script>
+	<script src="polyfill/shadydom.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/flexus-layout.css">
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon.css" polyfill>
+	<link rel="stylesheet" type="text/css" href="css/flexus-neon-icons.css">
+
+	<script>
+		// pseudocode off the top of my head:
+		/*
+		if (platform.uwp && extendIntoTitlebar) {
+			var titlebar = $('flexus-titlebar')
+			if (!titlebar) {
+				titlebar = document.createElement('flexus-titlebar')
+			}
+		}
+		*/
+	</script>
+
+	<style>
+		:root {
+			--titlebar-height: 31px;
+			/* 46 per button */
+			--titlebar-padding-right: 138px;
+			/* this is default padding, it has to be updated with the size of drawer */
+			--titlebar-padding-left: 48px;
+		}
+		flexus-titlebar {
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			height: var(--titlebar-height);
+		}
+		flexus-titlebar + * {
+			/* TODO*/
+			padding-top: var(--titlebar-height);
+		}
+	</style>
+
+</head>
+<body dark fx-app>
+
+	<flexus-titlebar>
+		Title of the window
+	</flexus-titlebar>
+
+	<flexus-drawer>
+		<div fx-item>Explore</div>
+		<div fx-item>Booking</div>
+		<div fx-item>Inventory</div>
+		<div fx-item>Listings</div>
+		<div fx-item>Settings</div>
+	</flexus-drawer>
+
+
+	<flexus-view id="panel" detail elevation="4">
+		<h3>More Destinations</h3>
+		<div layout horizontal padded>
+			<img>
+			<div>
+				<h2>Philippines</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce interdum tellus diam, non gravida magna dictum eu. Quisque justo nulla, viverra a nibh mattis, consectetur interdum lectus. Sed viverra ac nulla eu varius. Sed sollicitudin nisl ante. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque id venenatis turpis, id molestie neque. Nullam pharetra sollicitudin tempus. Curabitur lobortis est purus, id porttitor felis placerat vitae. Pellentesque congue sodales ornare. Nam fringilla vitae eros non pretium.</p>
+			</div>
+		</div>
+		<div layout horizontal scroll padded>
+			<img>
+			<img>
+			<img>
+			<img>
+		</div>
+	</flexus-view>
+
+
+
+	<flexus-view id="panel" detail elevation="4">
+		<flexus-toolbar seam>
+			<flexus-tabs>
+				<div>One</div>
+				<div>two</div>
+				<div>three</div>
+			</flexus-tabs>
+			<button icon="search"></button>
+			<button icon="more"></button>
+		</flexus-toolbar>
+		<main>
+			<h2>Philippines</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce interdum tellus diam, non gravida magna dictum eu. Quisque justo nulla, viverra a nibh mattis, consectetur interdum lectus. Sed viverra ac nulla eu varius. Sed sollicitudin nisl ante. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque id venenatis turpis, id molestie neque. Nullam pharetra sollicitudin tempus. Curabitur lobortis est purus, id porttitor felis placerat vitae. Pellentesque congue sodales ornare. Nam fringilla vitae eros non pretium.</p>
+		</main>
+	</flexus-view>
+
+
+
+	<script src="lib/Ganymede.js"></script>
+	<script src="lib/Flexus.js"></script>
+
+	<script src="elements/drawer.js"></script>
+	<script src="elements/fabdial.js"></script>
+	<script src="elements/view.js"></script>
+	<script src="elements/scene.js"></script>
+	<script src="elements/pages.js"></script>
+
+</body>
+</html>

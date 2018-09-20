@@ -1,0 +1,459 @@
+<!doctype html>
+<html>
+<head>
+	<base href="../">
+
+	<meta charset="utf-8">
+
+	<style>
+	* {
+		box-sizing: border-box;
+	}
+	:root {
+		--foreground-rgb: 255, 255, 255;
+	}
+	body {
+		color: rgb(var(--foreground-rgb));
+		background-color: #282828;
+		font-family: Segoe UI;
+	}
+
+	[disabled] {
+		opacity: 0.4;
+	}
+	[fx-item] {
+		position: relative;
+		--halo-size: 1px;
+		display: flex;
+		align-items: center;
+		min-height: 48px;
+		padding: 0.5rem 1rem;
+	}
+	button {
+		position: relative;
+		--halo-size: 2px;
+		min-height: 32px;
+		min-width: 90px;
+		color: rgb(var(--foreground-rgb));
+		background-color: rgba(var(--foreground-rgb),0.2);
+		border: var(--border-size, var(--halo-size)) solid transparent;
+		outline: none;
+	}
+	button:hover:not(:disabled) {
+		border-color: rgba(var(--foreground-rgb), 0.4);
+	}
+	button:active:not(:disabled) {
+		border-color: transparent;
+		background-color: rgba(var(--foreground-rgb), 0.4);
+	}
+
+
+
+
+	:root {
+		--halo-radius: 88;
+		--halo-outline-opacity: 0.16;
+		--halo-inner-opacity: 0.16;
+	}
+
+	/**:not(:disabled):not([disabled]) > .halo {*/
+	.halo {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		pointer-events: none;
+		margin: calc(-1 * var(--border-size));
+		--halo-outline-size: var(--halo-size, 0px);
+	}
+	*:hover > .halo {
+		--halo-outline-size: var(--border-size, var(--halo-size, 0px));
+	}
+	.halo.outline {
+		clip-path: polygon(
+			0 0, 100% 0, 100% 100%, 0% 100%,
+			0% var(--halo-outline-size),
+			var(--halo-outline-size) var(--halo-outline-size),
+			var(--halo-outline-size) calc(100% - var(--halo-outline-size)),
+			calc(100% - var(--halo-outline-size)) calc(100% - var(--halo-outline-size)),
+			calc(100% - var(--halo-outline-size)) var(--halo-outline-size),
+			0 var(--halo-outline-size)
+		);
+	}
+	/**:hover > .halo {
+		opacity: 0.3;
+		clip-path: none;
+	}*/
+
+
+
+
+
+
+
+
+
+
+	body {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	[hoverable]:hover {
+		background-color: rgba(var(--foreground-rgb), 0.13)
+	}
+
+	flexus-drawer {
+		display: flex;
+		flex-direction: column;
+	}
+		flexus-drawer > button {
+			height: 48px;
+			width: 320px;
+			padding-left: 16px;
+			text-align: left;
+			border: none;
+			background-color: transparent;
+			--halo-size: 1px;
+		}
+		flexus-drawer > button:hover {
+			background-color: rgba(var(--foreground-rgb), 0.1);
+		}
+		flexus-drawer > button:active {
+			background-color: rgba(var(--foreground-rgb), 0.2);
+		}
+
+	#contacts-grid {
+		display: flex;
+		flex-wrap: wrap;
+		width: 272px;
+		margin: -2px;
+	}
+		#contacts-grid > button {
+			font-size: 18px;
+			min-width: 0;
+			min-height: 0;
+			width: 64px;
+			height: 64px;
+			margin: 2px;
+			--halo-size: 1px;
+			--border-size: 2px;
+			background-color: transparent;
+		}
+
+
+	#list {
+		width: 320px;
+	}
+
+	</style>
+
+</head>
+<body>
+
+
+	<flexus-drawer>
+		<button>Windows Update</button>
+		<button>Windows Defender</button>
+		<button>Backup</button>
+		<button>Troubleshoot</button>
+		<button>Recovery</button>
+		<button>Activation</button>
+		<button>Find my device</button>
+		<button>For developers</button>
+		<button disabled>Windows Insider Program</button>
+	</flexus-drawer>
+
+
+	<div id="contacts-grid">
+		<button disabled>&</button>
+		<button disabled>#</button>
+		<button>A</button>
+		<button>B</button>
+		<button>C</button>
+		<button>D</button>
+		<button>E</button>
+		<button>F</button>
+		<button>G</button>
+		<button>H</button>
+		<button>I</button>
+		<button>J</button>
+		<button>K</button>
+		<button>L</button>
+		<button>M</button>
+		<button>N</button>
+		<button>O</button>
+		<button>P</button>
+		<button disabled>Q</button>
+		<button>R</button>
+		<button>S</button>
+		<button>T</button>
+		<button disabled>U</button>
+		<button>V</button>
+		<button disabled>W</button>
+		<button disabled>X</button>
+		<button disabled>Y</button>
+		<button>Z</button>
+	</div>
+
+
+	<div id="list">
+		<button>Change</button>
+		<button disabled>Change</button>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+		<div fx-item hoverable>Name Name</div>
+	</div>
+
+
+
+	<script>
+
+	var buttons = document.querySelectorAll('button, [hoverable]')
+
+	Array.from(buttons).forEach(attachHalo)
+
+	var haloColor = `255, 255, 255`
+	var bodyStyles = window.getComputedStyle(document.body)
+	var haloOpacity = bodyStyles.getPropertyValue('--halo-outline-opacity')
+	var haloRadius = bodyStyles.getPropertyValue('--halo-radius')
+
+
+
+
+	function attachHalo(element) {
+
+		var x
+		var y
+
+		var haloOutline = document.createElement('div')
+		var haloInner = document.createElement('div')
+		haloOutline.className = 'halo outline'
+		haloInner.className = 'halo inner'
+		element.appendChild(haloOutline)
+		element.appendChild(haloInner)
+
+		var top = 0
+		var right = 0
+		var bottom = 0
+		var left = 0
+		function cacheSizing() {
+			left = element.offsetLeft
+			top  = element.offsetTop
+			right = left + element.offsetWidth
+			bottom = top + element.offsetHeight
+		}
+		
+		// cache initial sizing
+		cacheSizing()
+
+		var wasReachable = false
+		var isReachable = false
+
+		var e
+		var raf1
+		var raf2
+		var ticking1 = false
+		var ticking2 = false
+
+		function onMoveGlobal(event) {
+			e = event
+			if (!ticking1)
+				raf1 = requestAnimationFrame(onMoveGlobalThrottled)
+			ticking1 = true
+		}
+		function onMoveLocal(event) {
+			e = event
+			if (!ticking2)
+				raf2 = requestAnimationFrame(onMoveLocalThrottled)
+			ticking2 = true
+		}
+
+		function onEnterElement(event) {
+			// refresh sizing while hovering over the element
+			cacheSizing()
+			cancelAnimationFrame(raf1)
+			ticking1 = false
+			window.removeEventListener('mousemove', onMoveGlobal)
+		}
+		function onLeaveElement(event) {
+			cancelAnimationFrame(raf2)
+			ticking2 = false
+			window.addEventListener('mousemove', onMoveGlobal)
+			haloInner.style.background = ''
+		}
+
+		window.addEventListener('mousemove', onMoveGlobal)
+		element.addEventListener('mouseleave', onLeaveElement)
+		element.addEventListener('mouseenter', onEnterElement)
+		element.addEventListener('mousemove', onMoveLocal)
+
+		function onMoveGlobalThrottled() {
+			pageX = e.pageX
+			pageY = e.pageY
+			x = pageX - left
+			y = pageY - top
+			isReachable = isWithinReach(left, right, top, bottom)
+			if (isReachable)
+				renderOutline()
+			else
+				haloOutline.style.background = ''
+			wasReachable = isReachable
+			ticking1 = false
+		}
+
+		function renderOutline() {
+			haloOutline.style.background = `-webkit-gradient(
+				radial, ${x} ${y}, 8, ${x} ${y}, ${haloRadius},
+				from(rgba(var(--foreground-rgb), var(--halo-outline-opacity))),
+				to(rgba(var(--foreground-rgb), 0))
+			)`
+		}
+		function renderInner() {
+			haloInner.style.background = `-webkit-gradient(
+				radial, ${x} ${y}, 8, ${x} ${y}, 120,
+				from(rgba(var(--foreground-rgb), var(--halo-outline-opacity))),
+				to(rgba(var(--foreground-rgb), 0))
+			)`
+		}
+
+		function onMoveLocalThrottled() {
+			pageX = e.pageX
+			pageY = e.pageY
+			x = pageX - left
+			y = pageY - top
+			renderInner()
+			renderOutline()
+			ticking2 = false
+		}
+
+		function isWithinReach(left, right, top, bottom) {
+			if (pageX < left - haloRadius) return false
+			if (pageX > right + haloRadius) return false
+			if (pageY < top - haloRadius) return false
+			if (pageY > bottom + haloRadius) return false
+			return true
+		}
+
+	}
+
+
+/*
+	function attachHalo(element) {
+
+		var x
+		var y
+
+		var haloOutline = document.createElement('div')
+		var haloInner = document.createElement('div')
+		haloOutline.className = 'halo outline'
+		haloInner.className = 'halo inner'
+		element.appendChild(haloOutline)
+		element.appendChild(haloInner)
+
+		var top = 0
+		var right = 0
+		var bottom = 0
+		var left = 0
+		function init() {
+			left = element.offsetLeft
+			top  = element.offsetTop
+			right = left + element.offsetWidth
+			bottom = top + element.offsetHeight
+		}
+		init()
+		//element.addEventListener('mouseenter', init)
+
+		var wasReachable = false
+		var isReachable = false
+
+		var e
+		var ticking = false
+		window.addEventListener('mousemove', event => {
+			e = event
+			if (!ticking)
+				requestAnimationFrame(render)
+			ticking = true
+		})
+
+		function render() {
+			x = e.pageX - left
+			y = e.pageY - top
+			//x = e.x - left
+			//y = e.y - top
+			isReachable = isWithinReach()
+			if (isReachable)
+				haloOutline.style.background = `-webkit-gradient(
+					radial, ${x} ${y}, 8, ${x} ${y}, ${haloRadius},
+					from(rgba(var(--foreground-rgb), var(--halo-outline-opacity))),
+					to(rgba(var(--foreground-rgb), 0))
+				)`
+			else
+				haloOutline.style.background = ''
+			wasReachable = isReachable
+			ticking = false
+		}
+
+		function isWithinReach() {
+			if (e.pageX < left - haloRadius) return false
+			if (e.pageX > right + haloRadius) return false
+			if (e.pageY < top - haloRadius) return false
+			if (e.pageY > bottom + haloRadius) return false
+			return true
+		}
+
+	}
+*/
+/*
+
+	var buttons = document.querySelectorAll('button, [hoverable]')
+
+	Array.from(buttons).forEach(attachHalo)
+
+	var haloColor = `255, 255, 255`
+	var bodyStyles = window.getComputedStyle(document.body)
+	var haloOpacity = bodyStyles.getPropertyValue('--halo-opacity')
+	var haloRadius = bodyStyles.getPropertyValue('--halo-radius')
+
+
+	function attachHalo(element) {
+
+		var x
+		var y
+		var offsetLeft = 0
+		var offsetTop = 0
+
+		var halo = document.createElement('div')
+		halo.className = 'halo'
+		element.appendChild(halo)
+
+		function init() {
+			offsetLeft = element.offsetLeft
+			offsetTop  = element.offsetTop
+		}
+		init()
+		element.addEventListener('mouseenter', init)
+
+		window.addEventListener('mousemove', e => {
+			x = e.pageX - offsetLeft
+			y = e.pageY - offsetTop
+			halo.style.background = `-webkit-gradient(
+				radial, ${x} ${y}, 8, ${x} ${y}, ${haloRadius},
+				from(rgba(${haloColor}, ${haloOpacity})),
+				to(rgba(${haloColor}, 0))
+			)`
+		})
+
+		window.addEventListener('mouseleave', e => {
+			halo.style.background = ''
+		})
+
+	}
+*/
+
+	</script>
+
+
+</body>
+</html>

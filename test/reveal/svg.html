@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>CSS &amp; SVG Clipping Demo #8</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+
+	<style>
+	image {
+		clip-path: url(#svgPath);
+	}
+	</style>
+
+</head>
+<body>
+
+
+<div id="content">
+  <span>Hi</span>
+  <svg width="400" height="400">
+		
+      <defs>
+        <clipPath id="myClipPath">
+          <circle cx=100 cy=100 r=50 />
+        </clipPath>
+      </defs>
+			
+	  <path id="foo" d="M 50,100 Q 150,50 250,100" stroke="hotpink" stroke-width="10" fill="white" style="clip-path: url('#myClipPath')"></path>
+  </svg>
+</div>
+
+	<img src="flowers.jpg">
+
+	<svg height="500" width="800">
+
+		<image xlink:href="flowers.jpg" x="0" y="0" width="800" height="500" />
+		<defs>
+			<clipPath id="svgPath">
+				<rect x="0" y="0" stroke="#000000" stroke-miterlimit="10" width="108" height="500"/>
+				<rect x="121" y="25" stroke="#000000" stroke-miterlimit="10" width="55" height="455"/>
+				<rect x="192" y="9" stroke="#000000" stroke-miterlimit="10" width="60" height="484"/>
+			</clipPath>
+		</defs>
+	</svg>
+</body>
+</html>
