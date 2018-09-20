@@ -1,7 +1,11 @@
-# How to use Flexus
+# Outdated & Not maintained
 
+Current version of the repo is working but no longer maintained.
 
-## Prerequisites
+Microsoft announced Fluent Design & Google came with Material Design 2 since the release of this lib.
+
+It is currently being rewritten and simplified to be used in my other projects.
+
 
 ### Notation
 This documentation uses following CSS notation for describing HML element, attributes, classes and IDs:

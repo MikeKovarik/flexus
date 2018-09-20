@@ -1,8 +1,0 @@
-This repository contains third party files that are required by flexus and/or are used for demonstration purposes.
-
-Specifically:
-
-directory /fonts contains icons and fonts openly distibuted by Microsoft, Google and https://materialdesignicons.com/
-directory /demo/scripts contains framework Angular by Google, that is used in some of the demos
-
-I do not own afore mentioned files. All rights goes to their respective owners.

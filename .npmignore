@@ -1,0 +1,10 @@
+# Ignore everything
+*
+.*
+
+# Except for
+!css/*
+!elements/*
+!fonts/*
+!lib/*
+!polyfills/*
