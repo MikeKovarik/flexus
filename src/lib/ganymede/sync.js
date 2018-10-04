@@ -176,7 +176,7 @@ function setupGetSet(ClassProto, descriptor, propMeta, meta) {
 
 		// call observers if there are any. And do so only after element is constructed
 		// (ignore all observers during bootrapping the deserialize/reflect phase)
-		if (observers.length && meta.constructed)
+		if (observers.length && this.isReady)
 			observers.forEach(observerName => this[observerName](newValue, oldValue))
 	}
 

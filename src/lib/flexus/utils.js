@@ -1,4 +1,5 @@
 import {scheduleEvent} from 'ganymede'
+import {emit} from 'ganymede'
 
 /*
 // create and inject multipurpose overlay
@@ -78,16 +79,10 @@ if (!Element.prototype.matches) {
 }
 
 var debounceMap = new Map
-// warning: very naive implementation for single event type.
-//          add some memory to store events in (and prevent duplicates) if used broadly
 export function debounceEmit(target, eventName, millis = 50) {
 	var debounceTimeout = debounceMap.get(eventName)
 	clearTimeout(debounceTimeout)
-	debounceTimeout = setTimeout(() => {
-		emit(target, eventName)
-		//console.log('emit', eventName)
-	}, millis)
-	//console.log('debounceEmit set', eventName, debounceTimeout)
+	debounceTimeout = setTimeout(() => emit(target, eventName), millis)
 	debounceMap.set(eventName, debounceTimeout)
 }
 
