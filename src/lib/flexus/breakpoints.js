@@ -1,6 +1,7 @@
 import ganymede from 'ganymede'
 import {reflect, observe, emit} from 'ganymede'
 import {platform} from './platform'
+import {debounceEmit} from './utils'
 
 
 var screensizes = ['s', 'm', 'l']
@@ -73,47 +74,28 @@ function registerQuery(query, onAlways, onUpdate, attrName, attrValue = '', i = 
 }
 
 
-var documentReady = false
-var htmlNode
+var isDocumentReady = false
+
 ganymede.ready.then(() => {
-	documentReady = true
-	htmlNode = document.body.parentElement
-	htmlNode.setAttribute('screensize', platform.screensize)
-	if (platform.portrait)
-		htmlNode.setAttribute('portrait', '')
-	if (platform.landscape)
-		htmlNode.setAttribute('landscape', '')
+	isDocumentReady = true
+	document.documentElement.setAttribute('screensize', platform.screensize)
+	if (platform.portrait)  document.documentElement.setAttribute('portrait', '')
+	if (platform.landscape) document.documentElement.setAttribute('landscape', '')
 })
+
 function applyQuery(mql, i) {
 	// assigns true or false and given attribute value if mql matches
+	var newValue = mql.attrVal
+	var {attrName} = mql
 	if (mql.matches) {
-		if (mql.attrVal)
-			platform[mql.attrName] = mql.attrVal
-		else
-			platform[mql.attrName] = mql.matches
-		if (documentReady)
-			htmlNode.setAttribute(mql.attrName, mql.attrVal)
-	} else if (!mql.attrVal) {
-		platform[mql.attrName] = mql.matches
-		if (documentReady)
-			htmlNode.removeAttribute(mql.attrName)
+		platform[attrName] = newValue !== undefined && newValue !== null ? newValue : mql.matches
+		if (isDocumentReady) document.documentElement.setAttribute(attrName, newValue)
+	} else if (!newValue) {
+		platform[attrName] = mql.matches
+		if (isDocumentReady) document.documentElement.removeAttribute(attrName)
 	}
 }
 
-
-var debounceMap = new Map
-// warning: very naive implementation for single event type.
-//          add some memory to store events in (and prevent duplicates) if used broadly
-function debounceEmit(target, eventName) {
-	var debounceTimeout = debounceMap.get(eventName)
-	clearTimeout(debounceTimeout)
-	debounceTimeout = setTimeout(() => {
-		emit(target, eventName)
-		//console.log('emit', eventName)
-	}, 50)
-	//console.log('debounceEmit set', eventName, debounceTimeout)
-	debounceMap.set(eventName, debounceTimeout)
-}
 
 function emitUpdateScreensize() {
 	//console.log('emitUpdateScreensize')
@@ -140,7 +122,7 @@ function setupLocalBreakpointQueries(element, onAlways, onUpdate, attrName, attr
 setupLocalBreakpointQueries(document.documentElement, applyQuery, emitUpdateScreensize, 'screensize', screensizes)
 //setupLocalBreakpointQueries(document.body, applyQuery, emitUpdateScreensize, 'screensize', screensizes)
 // setup additional orientation queries
-registerQuery('(orientation: portrait)', applyQuery, emitUpdateOrientation, 'portrait')
+registerQuery('(orientation: portrait)',  applyQuery, emitUpdateOrientation, 'portrait')
 registerQuery('(orientation: landscape)', applyQuery, emitUpdateOrientation, 'landscape')
 // inform other code relying on formfactor about the update
 
@@ -172,48 +154,6 @@ export let Breakpointable = SuperClass => class extends SuperClass {
 
 }
 
-Breakpointable.SMALL  = Breakpointable.S = SMALL
-Breakpointable.MEDIUM = Breakpointable.M = MEDIUM
-Breakpointable.LARGE  = Breakpointable.L = LARGE
-
-/*
-	// number of max reached states
-	statesCount = 1
-	@reflect breakpoint = ''
-
-	constructor() {
-		super()
-		if (this.breakpoint)
-			this._setupBreapointQueries()
-		else
-			this._processBreapointQueries(getCssBreakpoints(this))
-	}
-
-	//@observe('breakpoint')
-	_setupBreapointQueries() {
-		if (!this.breakpoint) return
-		var breakpoints = String(this.breakpoint).match(/\d+/g)
-		if (!breakpoints) return
-		this._processBreapointQueries(breakpoints)
-	}
-	_processBreapointQueries(breakpoints) {
-		console.log(breakpoints)
-		console.log(makeBreakpointQueries(breakpoints))
-		var handleQuery = (mql, i) => {
-			if (!mql.matches) return
-			this.breakpointState = i
-			this.emit('breakpoint', i)
-		}
-		var queries = makeBreakpointQueries(breakpoints)
-		this.statesCount = queries.length
-		queries
-			.map(query => window.matchMedia(query))
-			.forEach((mql, i) => {
-				if (mql.matches)
-					this.breakpointState = i
-				var listener = mql => handleQuery(mql, i)
-				mql.addListener(listener)
-				this.registerKillback(() => mql.removeListener(listener))
-			})
-	}
-*/
+Breakpointable.S = Breakpointable.SMALL  = SMALL
+Breakpointable.M = Breakpointable.MEDIUM = MEDIUM
+Breakpointable.L = Breakpointable.LARGE  = LARGE
