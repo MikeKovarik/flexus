@@ -1,4 +1,4 @@
-import {on, once, reflect, observe, autobind, defaultValue} from 'ganymede'
+import {on, once, reflect, observe, autobind} from 'ganymede'
 import {clamp} from './utils.js'
 import {platform} from './platform.js'
 import {queryDecorator} from './query.js'

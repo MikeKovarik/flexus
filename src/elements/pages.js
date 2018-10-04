@@ -4,14 +4,6 @@ import {LinearSelectable, isNodeAvailable} from 'flexus'
 //import {queryDecorator} from './query.js'
 
 
-function selectedValidator(newValue, self) {
-	if (self.children.length === 0)
-		return 0
-	else
-		return clamp(newValue, 0, self.children.length - 1)
-}
-
-
 var noop = () => {}
 
 @customElement

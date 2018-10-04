@@ -1,6 +1,6 @@
 import {on, autobind, template, css, reflect, customElement, ganymedeElement, emit, observe} from 'ganymede'
 import {platform, animation, traverseValue, Retractable, Scrollable, clamp} from 'flexus'
-import {getParallaxApplicator, matchFormFactorDef, addReadyAnimation, rafThrottle} from 'flexus'
+import {getParallaxApplicator, addReadyAnimation, rafThrottle} from 'flexus'
 
 
 function hasAttribute(attrName) {
@@ -433,7 +433,10 @@ class FlexusToolbar extends ganymedeElement(Retractable, Scrollable) {
 
 
 	findAttrNodes(name) {
+		console.warn(`DEPRECATION: <flexus-toolbar> called findAttrNodes(name) which is looking for attributes [${name}]. Due to change in screen-size and resize detection API changes, this for now does not support querying e.g. [${name}="l"] for large screens. TODO: reimplement using ./query.js`)
 		var nodes = Array.from(this.querySelectorAll(`[${name}]`))
+		return [nodes, []]
+		/*
 		var active = []
 		var inactive = []
 		nodes.forEach(node => {
@@ -442,6 +445,7 @@ class FlexusToolbar extends ganymedeElement(Retractable, Scrollable) {
 			stack.push(node)
 		})
 		return [active, inactive]
+		*/
 	}
 
 	@on(document, 'formfactor-update')

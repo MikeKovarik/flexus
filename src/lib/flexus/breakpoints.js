@@ -1,8 +1,10 @@
 import ganymede from 'ganymede'
-import {reflect, observe, emit} from 'ganymede'
+import {reflect} from 'ganymede'
 import {platform} from './platform'
 import {debounceEmit} from './utils'
 
+
+// TODO: deprecate formfactor-update event
 
 var screensizes = ['s', 'm', 'l']
 
@@ -11,26 +13,6 @@ const MEDIUM = 'm'
 const LARGE  = 'l'
 
 export const SCREENSIZE = {SMALL, MEDIUM, LARGE}
-
-var screenSizeFlags = {
-	s:   0b001,
-	m:   0b010,
-	l:   0b100,
-	gts: 0b110,
-	ltl: 0b011,
-}
-
-export function matchFormFactorDef(def) {
-	if (screenSizeFlags[def] === undefined) {
-		// custom value applicable for all formfactors
-		return true
-	} else {
-		// query to enable only for certain formfactors
-		def = screenSizeFlags[def]
-		var ss = screenSizeFlags[platform.screensize]
-		return (def & ss) > 0
-	}
-}
 
 // helpers for transforming numbers into breakpoint queries
 var makeFirstQuery = value => `(max-width: ${value}px)`
@@ -125,10 +107,6 @@ setupLocalBreakpointQueries(document.documentElement, applyQuery, emitUpdateScre
 registerQuery('(orientation: portrait)',  applyQuery, emitUpdateOrientation, 'portrait')
 registerQuery('(orientation: landscape)', applyQuery, emitUpdateOrientation, 'landscape')
 // inform other code relying on formfactor about the update
-
-ganymede.ready.then(() => {
-	emit(document, 'formfactor-update')
-})
 
 
 

@@ -1,4 +1,4 @@
-import {on, once, reflect, autobind, defaultValue, observe} from 'ganymede'
+import {on, once, reflect, autobind, observe} from 'ganymede'
 import {clamp, rafThrottle} from './utils.js'
 
 
