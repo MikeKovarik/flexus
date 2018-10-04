@@ -2,6 +2,11 @@ import {getMetadata, reflect} from 'ganymede'
 import {platform} from './platform'
 
 
+// TODO: Implement API for canceling query from updating value
+// usecase: flexus-tabs has preset that changes the way it is rendered if the tabs
+// are icons, icons+text, only text. and it changes based on the combination.
+// by default [fixed] is only on phones, but in some cases there has to be manual override
+
 export function reflectQuery(proto, propName, desc) {
 	// TODO: translate propName to kebab-case
 	// TODO: it'd be better to integrate deeper into ganymede
@@ -9,12 +14,25 @@ export function reflectQuery(proto, propName, desc) {
 	var meta = getMetadata(Class)
 	var propMeta = meta.get(propName)
 	var initialBuiltinValue = desc.initializer && desc.initializer()
+	var sharedQuery = new Query(initialBuiltinValue)
 	meta.initializers.push(element => {
 		var attrValue = element.getAttribute(propMeta.attrName)
-		var query = new Query(attrValue)
+		if (attrValue === null) {
+			// Attribute is not present on the element.
+			// User did not override anything and allowed us to apply query.
+			// Use default query to save resources.
+			var query = sharedQuery
+		} else if (attrValue === '') {
+			// Attribute is present on the element without any query.
+			// It's effectively 'true' value at all times. No need to use query
+			return
+		} else {
+			// User specified custom query. Use it.
+			var query = new Query(attrValue)
+		}
+		element[propName + 'Query'] = query
 		var updateValue = () => element[propName] = query.valid
 		updateValue()
-		element[propName + 'Query'] = query
 		var scopes = query.getScopes()
 		if (scopes.includes('screensize'))
 			document.addEventListener('screensize-update', updateValue)

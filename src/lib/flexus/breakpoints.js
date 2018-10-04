@@ -1,12 +1,10 @@
 import ganymede from 'ganymede'
-import {reflect} from 'ganymede'
+import {reflect, emit} from 'ganymede'
 import {platform} from './platform'
 import {debounceEmit} from './utils'
 
 
 // TODO: deprecate formfactor-update event
-
-var screensizes = ['s', 'm', 'l']
 
 const SMALL  = 's'
 const MEDIUM = 'm'
@@ -35,12 +33,6 @@ function makeBreakpointQueries(breakpoints) {
 	return queries
 }
 
-function registerQueries(queries, onAlways, onUpdate, attrName, attrValues = []) {
-	return queries.map((query, i) => {
-		return registerQuery(query, onAlways, onUpdate, attrName, attrValues[i], i)
-	})
-}
-
 function registerQuery(query, onAlways, onUpdate, attrName, attrValue = '', i = -1) {
 	var mql = window.matchMedia(query)
 	var listener = () => {
@@ -54,16 +46,6 @@ function registerQuery(query, onAlways, onUpdate, attrName, attrValue = '', i = 
 	onAlways(mql, i)
 	return killback
 }
-
-
-var isDocumentReady = false
-
-ganymede.ready.then(() => {
-	isDocumentReady = true
-	document.documentElement.setAttribute('screensize', platform.screensize)
-	if (platform.portrait)  document.documentElement.setAttribute('portrait', '')
-	if (platform.landscape) document.documentElement.setAttribute('landscape', '')
-})
 
 function applyQuery(mql, i) {
 	// assigns true or false and given attribute value if mql matches
@@ -79,35 +61,52 @@ function applyQuery(mql, i) {
 }
 
 
-function emitUpdateScreensize() {
-	//console.log('emitUpdateScreensize')
-	debounceEmit(document, 'screensize-update')
-	debounceEmit(document, 'formfactor-update')
-}
-function emitUpdateOrientation() {
-	//console.log('emitUpdateOrientation')
-	debounceEmit(document, 'orientation-update')
-	debounceEmit(document, 'formfactor-update')
-}
-
-function setupLocalBreakpointQueries(element, onAlways, onUpdate, attrName, attrValues) {
-	var computed = getComputedStyle(element)
-	var sm = computed.getPropertyValue('--breakpoint-s-m')
-	var ml = computed.getPropertyValue('--breakpoint-m-l')
-	var breakpoints = [sm, ml]
-	var queries = makeBreakpointQueries(breakpoints)
-	return registerQueries(queries, onAlways, onUpdate, attrName, attrValues)
-}
-
-
 // setup core screensize queries
-setupLocalBreakpointQueries(document.documentElement, applyQuery, emitUpdateScreensize, 'screensize', screensizes)
-//setupLocalBreakpointQueries(document.body, applyQuery, emitUpdateScreensize, 'screensize', screensizes)
+var screensizes = ['s', 'm', 'l']
+var computedStyle = getComputedStyle(document.documentElement)
+var breakpointBetweenSmallAndMedium = computedStyle.getPropertyValue('--breakpoint-s-m')
+var breakpointBetweenMediumAndLarge = computedStyle.getPropertyValue('--breakpoint-m-l')
+var breakpoints = [breakpointBetweenSmallAndMedium, breakpointBetweenMediumAndLarge]
+// returns three css queries (small, medium, large) covering screensize between the two breakpoints
+var queries = makeBreakpointQueries(breakpoints)
+var noop = () => {}
+registerQuery(queries[0], applyQuery, emitScreensize, 'screensize', 's', 0)
+registerQuery(queries[1], applyQuery, emitScreensize, 'screensize', 'm', 1)
+registerQuery(queries[2], applyQuery, emitScreensize, 'screensize', 'l', 2)
+
+var lastScreensize = platform.screensize
+function emitScreensize() {
+	// Skip if only the first of two queries fired. If so, the first was triggered beause it's changing from matchin
+	// to false. And the new querie that just becomes matching has not yet called this function.
+	if (lastScreensize === platform.screensize) return
+	lastScreensize = platform.screensize
+	emit(document, 'screensize-update')
+	emit(document, 'formfactor-update')
+}
+
+
 // setup additional orientation queries
 registerQuery('(orientation: portrait)',  applyQuery, emitUpdateOrientation, 'portrait')
 registerQuery('(orientation: landscape)', applyQuery, emitUpdateOrientation, 'landscape')
-// inform other code relying on formfactor about the update
 
+var lastOrientation = platform.orientation
+function emitUpdateOrientation() {
+	if (lastOrientation === platform.orientation) return
+	lastOrientation = platform.orientation
+	emit(document, 'orientation-update')
+	emit(document, 'formfactor-update')
+}
+
+
+
+var isDocumentReady = false
+
+ganymede.ready.then(() => {
+	isDocumentReady = true
+	document.documentElement.setAttribute('screensize', platform.screensize)
+	if (platform.portrait)  document.documentElement.setAttribute('portrait', '')
+	if (platform.landscape) document.documentElement.setAttribute('landscape', '')
+})
 
 
 export let Breakpointable = SuperClass => class extends SuperClass {
@@ -115,7 +114,9 @@ export let Breakpointable = SuperClass => class extends SuperClass {
 	@reflect breakpointState = Number
 
 	constructor() {
+		// TODO: implement api for inserting custom breakpoints to trigger on
 		super()
+		/*
 		//console.log('constructor', this)
 		var applyQuery = (mql, i) => {
 			if (!mql.matches) return
@@ -128,6 +129,7 @@ export let Breakpointable = SuperClass => class extends SuperClass {
 		}
 		var killbacks = setupLocalBreakpointQueries(this, applyQuery, emitUpdate)
 		killbacks.forEach(this.registerKillback)
+		*/
 	}
 
 }
