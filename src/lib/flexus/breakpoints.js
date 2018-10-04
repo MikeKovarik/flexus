@@ -109,6 +109,7 @@ ganymede.ready.then(() => {
 })
 
 
+/*
 export let Breakpointable = SuperClass => class extends SuperClass {
 
 	@reflect breakpointState = Number
@@ -116,7 +117,6 @@ export let Breakpointable = SuperClass => class extends SuperClass {
 	constructor() {
 		// TODO: implement api for inserting custom breakpoints to trigger on
 		super()
-		/*
 		//console.log('constructor', this)
 		var applyQuery = (mql, i) => {
 			if (!mql.matches) return
@@ -129,10 +129,10 @@ export let Breakpointable = SuperClass => class extends SuperClass {
 		}
 		var killbacks = setupLocalBreakpointQueries(this, applyQuery, emitUpdate)
 		killbacks.forEach(this.registerKillback)
-		*/
 	}
 
 }
+*/
 
 Breakpointable.S = Breakpointable.SMALL  = SMALL
 Breakpointable.M = Breakpointable.MEDIUM = MEDIUM

@@ -1,5 +1,5 @@
 import {template, css, reflect, on, customElement, ganymedeElement, autobind, defaultValue} from 'ganymede'
-import {platform, Visibility, Breakpointable, Draggable, Panel, Scrollable} from 'flexus'
+import {platform, Visibility, Draggable, Panel, Scrollable} from 'flexus'
 import {getParallaxApplicator, addReadyAnimation} from 'flexus'
 
 // TODO: change Panel & [panel] to [modal]

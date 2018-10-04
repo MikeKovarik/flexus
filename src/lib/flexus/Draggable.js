@@ -1,7 +1,6 @@
 import {on, once, reflect, observe, autobind} from 'ganymede'
 import {clamp} from './utils.js'
 import {platform} from './platform.js'
-import {queryDecorator} from './query.js'
 
 
 const TOP    = -1
@@ -35,7 +34,6 @@ export let Draggable = SuperClass => class extends SuperClass {
 	// For now we're adding another internal property.
 	dragPointerType = undefined
 
-	//@queryDecorator
 	@reflect draggable = true
 	@reflect dragOrientation = String
 

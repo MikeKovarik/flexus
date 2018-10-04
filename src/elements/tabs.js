@@ -3,7 +3,7 @@ import {autobind} from 'ganymede'
 import {_, on, template, css, reflect, customElement, ganymedeElement} from 'ganymede'
 import {animation} from 'flexus'
 import {LinearSelectable, isNodeAvailable, rafThrottle} from 'flexus'
-import {queryDecorator} from 'flexus'
+import {reflectQuery} from 'flexus'
 
 
 async function whenReady(element) {
@@ -108,6 +108,9 @@ function pickClosest(children, target, newIndex, oldIndex) {
 `)
 class FlexusTabs extends ganymedeElement(LinearSelectable) {
 
+	@reflectQuery disabled = false
+	@reflectQuery hidden = false
+
 	preseted = false
 	@reflect center = Boolean
 	@reflect fixed = Boolean
@@ -149,7 +152,8 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		// set element as focusable (to be able to catch key events)
 		this.setAttribute('tabindex', 0)
 
-		this.setupResizeDetector()
+		// TODO: implement
+		//this.setupResizeDetector()
 
 		//if (this.centered)
 		//if (this.hasAttribute('centered'))
@@ -186,19 +190,27 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		 && this.centered === undefined)
 			this.preset()
 	}
-
+/*
+	// TODO: implement
 	setupResizeDetector() {
-		return // TODO
 		// NOTE: nikdy nenaslouchat na window nebo toolbar resizer. vzdycky radsi vytvorit novy
 		// tabs muzou byt v toolbaru, pod toolbarem, na spoud view (novy material design),
 		// primo v contentu (fluent design), atd... 
 	}
 
+	// TODO: implement
+	@on(document, 'screensize-update')
+	onResize() {
+		// unlike setupResizeDetector(), this listens on global resize breakpoints
+		// enabling queries 's', 'm', 'l'
+	}
+*/
 	preset() {
+		// TODO: make this preset more dynamic like <flexus-drawer> does it with 'screensize-changed' event
 		this.preseted = true
 		var width = this.offsetWidth
 		//if (this.$.tabs.offsetWidth > width)
-		var parentName = this.parentElement.localName
+		//var parentName = this.parentElement.localName
 		//var autofixing = platform.phone && (parentName === 'flexus-toolbar' || parentName === 'flexus-view')
 		if (this.indent) {
 			width -= 56
@@ -330,6 +342,7 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 
 	@on('keyup')
 	onKeyup(data, e) {
+		if (this.disabled) return
 		var newIndex
 		if (e.keyCode === 37) {
 			// left arrow
@@ -358,6 +371,7 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 
 	@on('click')
 	onClick(data, e) {
+		if (this.disabled) return
 		e.preventDefault()
 		// save event as an animation origin for toolbar background transition
 		this.lastTransitionSource = e
@@ -391,14 +405,6 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 	}
 
 	focusTabs(index) {
-	}
-
-
-	@queryDecorator
-	@reflect disabled = false
-
-	disabledChanged() {
-		console.log('disabledChanged()')
 	}
 
 }

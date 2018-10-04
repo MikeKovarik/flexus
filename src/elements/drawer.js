@@ -1,5 +1,5 @@
 import {_, on, template, css, reflect, customElement, ganymedeElement, emit} from 'ganymede'
-import {app, platform, Visibility, Draggable, Panel, Breakpointable} from 'flexus'
+import {app, platform, Visibility, Draggable, Panel} from 'flexus'
 import {addReadyAnimation, SCREENSIZE} from 'flexus'
 
 
@@ -86,7 +86,7 @@ if (platform.material) {
 	<slot name="edge"></slot>
 `)
 //class FlexusDrawer extends Element {
-class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel, Breakpointable) {
+class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel/*, Breakpointable*/) {
 
 	//@reflect dragOrientation = 'horizontal'
 	dragPercentage = 0
@@ -132,7 +132,7 @@ class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel, Breakpo
 		this.overrideVisibilityEvents()
 		this.redistributeShadowNodes()
 		this.setupHamburger()
-		this.breakpointStateChanged()
+		this.onResize()
 		this.applyVisibilityState()
 		//this.autoAssignPosition()
 	}
@@ -168,8 +168,8 @@ class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel, Breakpo
 	}
 
 	@on(document, 'screensize-update')
-	breakpointStateChanged() {
-		//console.log('breakpointStateChanged', platform.screensize)
+	onResize() {
+		//console.log('onResize', platform.screensize)
 		switch (platform.screensize) {
 			case SCREENSIZE.SMALL:
 				this.dragPercentage = 0

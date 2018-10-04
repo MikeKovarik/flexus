@@ -433,7 +433,7 @@ class FlexusToolbar extends ganymedeElement(Retractable, Scrollable) {
 
 
 	findAttrNodes(name) {
-		console.warn(`DEPRECATION: <flexus-toolbar> called findAttrNodes(name) which is looking for attributes [${name}]. Due to change in screen-size and resize detection API changes, this for now does not support querying e.g. [${name}="l"] for large screens. TODO: reimplement using ./query.js`)
+		//console.warn(`DEPRECATION: <flexus-toolbar> called findAttrNodes(name) which is looking for attributes [${name}]. Due to change in screen-size and resize detection API changes, this for now does not support querying e.g. [${name}="l"] for large screens. TODO: reimplement using ./query.js`)
 		var nodes = Array.from(this.querySelectorAll(`[${name}]`))
 		return [nodes, []]
 		/*

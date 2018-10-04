@@ -1,5 +1,5 @@
 import {_, template, css, reflect, on, customElement, ganymedeElement, autobind} from 'ganymede'
-import {animation, platform, clamp, Breakpointable} from 'flexus'
+import {animation, platform, clamp} from 'flexus'
 
 
 var animationRuleLists = {
@@ -31,7 +31,7 @@ function hideView(view) {
 //`)
 
 @customElement
-class FlexusScene extends ganymedeElement(Breakpointable) {
+class FlexusScene extends ganymedeElement(/*Breakpointable*/) {
 
 	//@reflect vertical = PlatformBool
 

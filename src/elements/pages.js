@@ -1,7 +1,6 @@
 import {on, validate, template, css, reflect, observe, customElement, ganymedeElement} from 'ganymede'
 import {clamp, animation, platform, Draggable} from 'flexus'
 import {LinearSelectable, isNodeAvailable} from 'flexus'
-//import {queryDecorator} from './query.js'
 
 
 var noop = () => {}
