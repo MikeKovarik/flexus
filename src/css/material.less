@@ -11,10 +11,14 @@
 :root,
 [screensize="s"] {
 	--gutter: 16px;
+	--toolbar-min-height: 56px;
 }
+// TODO: this currently hides 24px and tall toolbar behind [touch] despite this being
+//       default material sizing. add some [optimized-density] attribute
 [screensize="m"][touch],
 [screensize="l"][touch] {
 	--gutter: 24px;
+	--toolbar-min-height: 64px;
 }
 
 body {

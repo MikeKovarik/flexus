@@ -65,14 +65,8 @@ export let LinearSelectable = SuperClass => class extends SuperClass {
 	linkToOtherSelectable(target) {
 		//console.log('link', this, 'to target', target)
 		this.selected = target.selected
-		target.on('selected', newIndex => {
-			//console.log('target changed', newIndex)
-			this.selected = newIndex
-		})
-		this.on('selected', newIndex => {
-			//console.log('pages changed', newIndex)
-			target.selected = newIndex
-		})
+		target.on('selected', newIndex => this.selected = newIndex)
+		this.on('selected', newIndex => target.selected = newIndex)
 	}
 
 

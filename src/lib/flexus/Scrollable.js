@@ -1,6 +1,5 @@
 import {on, once, reflect, autobind, defaultValue, observe} from 'ganymede'
-import {clamp} from './utils.js'
-import {rafThrottle} from './raf.js'
+import {clamp, rafThrottle} from './utils.js'
 
 
 
@@ -105,9 +104,7 @@ export let Scrollable = SuperClass => class extends SuperClass {
 
 	@observe('isScrolledToTop', 'isScrolledToBottom')
 	reflectTouchAction() {
-		//console.log('reflectTouchAction')
-		//if (!this.scrollTarget)
-		//	return
+		if (!this.scrollTarget) return
 		if (this.isScrolledToTop && this.isScrolledToBottom)
 			this.scrollTarget.style.touchAction = 'none'
 		else if (this.isScrolledToTop)
@@ -158,7 +155,6 @@ export let Retractable = SuperClass => class extends SuperClass {
 /*
 	@on('ready')
 	onRetractableReady() {
-		console.log('onRetractableReady', this.retractable)
 		if (!this.retractable) return
 		var thisStyle = this.style
 		var pivot = 0
@@ -173,7 +169,6 @@ export let Retractable = SuperClass => class extends SuperClass {
 				pivot = totalScrolled - this.offsetHeight
 				this.hide()
 			}
-			console.log('inactivated |',
 				'lastY', lastY,
 				'totalScrolled', totalScrolled,
 				'this.offsetHeight', this.offsetHeight,
@@ -185,7 +180,6 @@ export let Retractable = SuperClass => class extends SuperClass {
 			var y = (scrolled - pivot) * this.retractDirMod
 			totalScrolled = scrolled
 			lastY = y
-			console.log('onScroll', scrolled, pivot, '|', y)
 			thisStyle.transform = `translate3d(0px, ${y}px, 0)`
 		}
 		this.addScrollListeners(onScroll)

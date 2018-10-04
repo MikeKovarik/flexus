@@ -1,14 +1,14 @@
 import {_, on, template, css, reflect, customElement, ganymedeElement, emit} from 'ganymede'
-import {app, appElementReady, platform, Visibility, Draggable, Panel, Breakpointable} from 'flexus'
+import {app, platform, Visibility, Draggable, Panel, Breakpointable} from 'flexus'
 import {addReadyAnimation, SCREENSIZE} from 'flexus'
 
 
 
-app.addEventListener('click', ({target}) => {
+app.on('click', ({target}) => {
 	if (target.matches('flexus-toolbar [icon="menu"]'))
-		ganymede.emit(app, 'drawer-toggle')
+		app.emit('drawer-toggle')
 	if (target.matches('flexus-drawer [icon="menu"]'))
-		ganymede.emit(app, 'drawer-toggle')
+		app.emit('drawer-toggle')
 })
 
 var overlayMaxOpacity = 0.7
@@ -40,8 +40,7 @@ POSSIBILITIES
 
 addReadyAnimation('flexus-drawer')
 
-@customElement
-@css(`
+var cssStyles = `
 	.overflow {
 		overflow: hidden;
 		display: flex;
@@ -49,20 +48,40 @@ addReadyAnimation('flexus-drawer')
 		flex: 1;
 		height: 100%;
 	}
-	.scrollable {
+	.slot-scrollable {
 		flex:1;
 		overflow-x: hidden;
 		overflow-y: auto;
 		touch-action: pan-y;
 	}
-`)
+	slot {
+		display: block;
+	}
+`
+
+if (platform.material) {
+	cssStyles += `
+		.slot-scrollable {
+			display: block;
+			padding: 8px 0;
+		}
+		.slot-bottom {
+			display: block;
+			padding: 8px 0;
+			border-top: 1px solid var(--seam-color);
+		}
+	`
+}
+
+@customElement
+@css(cssStyles)
 @template(`
 	<div class="overflow">
 		<slot name="top"></slot>
-		<div class="scrollable">
+		<div class="slot-scrollable">
 			<slot></slot>
 		</div>
-		<slot name="bottom"></slot>
+		<slot class="slot-bottom" name="bottom"></slot>
 	</div>
 	<slot name="edge"></slot>
 `)
@@ -119,14 +138,17 @@ class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel, Breakpo
 	}
 
 	// automatically hides
+	// TODO: rename properties to dismiss - a more universal attribute
 	@on('click') 
 	onClickCloseHandler(value, {target}) {
 		if (target === this.hamburger) return
 		if (target === this) return
-		//console.log('click', target)
-		var preventHiding = target.hasAttribute('no-auto-hide') ||  target.getAttribute('auto-hide') !== 'false'
-		//console.log('preventHiding', preventHiding)
-		if (!preventHiding)
+		console.log('click', target)
+		if (target.localName === 'a' && target.href)
+			return this.softHide()
+		var preventDismiss = target.hasAttribute('prevent-dismiss')
+		console.log('preventDismiss', preventDismiss)
+		if (!preventDismiss)
 			this.softHide()
 	}
 
@@ -155,7 +177,7 @@ class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel, Breakpo
 				this.pinned = false
 				this.draggable = true
 				this.collapsed = false
-				app.removeAttribute('drawer-pinned')
+				app.root.removeAttribute('drawer-pinned')
 				if (platform.neon) {
 					// TODO: Neon's inline overlay state in medium screensize
 					//this.overlayBg = this.__overlayBgDefault
@@ -168,7 +190,7 @@ class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel, Breakpo
 					this.pinned = true
 					this.draggable = false
 					this.collapsed = true
-					app.setAttribute('drawer-pinned', '')
+					app.root.setAttribute('drawer-pinned', '')
 					// TODO: Neon's inline overlay state in medium screensize
 					//this.overlayBg = this.__overlayBgDefault
 				}
@@ -192,7 +214,7 @@ class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel, Breakpo
 						this.collapsed = true
 					}
 					//this.collapsed = false
-					app.removeAttribute('drawer-pinned')
+					app.root.removeAttribute('drawer-pinned')
 					// TODO: Neon's inline overlay state in medium screensize
 					//this.overlayBg = false
 				}
@@ -230,22 +252,22 @@ class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel, Breakpo
 	overrideVisibilityEvents() {
 		//console.log('this.overlayFade drawer', this.overlayFade, this._overlayFadeDefault)
 		// add event listener to app (and register killack through elements lifecycle) 
-		this.on(app, 'drawer-show', e => this.emit('show'))
-		this.on(app, 'drawer-hide', e => this.emit('hide'))
-		this.on(app, 'drawer-toggle', e => this.emit('toggle'))
+		app.on('drawer-show', e => this.emit('show'))
+		app.on('drawer-hide', e => this.emit('hide'))
+		app.on('drawer-toggle', e => this.emit('toggle'))
 	}
 
 	// overwrite Panel's show & hide methods by emitting
 	// events to app as well since drawer is only one and it's
 	// desired to be accessible through public events 
 	show() {
-		emit(app, 'drawer-show')
+		app.emit('drawer-show')
 	}
 	hide() {
-		emit(app, 'drawer-hide')
+		app.emit('drawer-hide')
 	}
 	toggle() {
-		emit(app, 'drawer-toggle')
+		app.emit('drawer-toggle')
 	}
 
 /*

@@ -1,5 +1,5 @@
 import {_, template, css, reflect, on, customElement, ganymedeElement, autobind} from 'ganymede'
-import {animation, platform, draggable, clamp, Breakpointable} from 'flexus'
+import {animation, platform, clamp, Breakpointable} from 'flexus'
 
 
 var animationRuleLists = {

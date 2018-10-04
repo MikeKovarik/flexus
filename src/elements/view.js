@@ -2,25 +2,7 @@ import {template, css, reflect, on, customElement, ganymedeElement, autobind, de
 import {platform, Visibility, Breakpointable, Draggable, Panel, Scrollable} from 'flexus'
 import {getParallaxApplicator, addReadyAnimation} from 'flexus'
 
-/*
-
-// NOTE: this is not meant to be any significant element.
-// Everything should be handled through <flexus-scene>.
-// This element is here only to sugar handling the element
-// with methods hide() and show()
-@customElement
-class FlexusView extends Element {
-
-	show() {
-		this.removeAttribute('hidden')
-	}
-
-	hide() {
-		this.setAttribute('hidden', '')
-	}
-
-}
-*/
+// TODO: change Panel & [panel] to [modal]
 
 addReadyAnimation('flexus-view')
 
@@ -40,7 +22,7 @@ class FlexusView extends ganymedeElement(Visibility, Draggable, Panel, Scrollabl
 	// simple dragup have no states - they're alaways pinned to bottom
 	// unless they are rearanged to be side by side
 
-	// some sidepanes remai side panes no matter what (image/song details)
+	// some sidepanes remain side panes no matter what (image/song details)
 	// some sidepanes stick
 
 	//constructor() {
@@ -51,8 +33,13 @@ class FlexusView extends ganymedeElement(Visibility, Draggable, Panel, Scrollabl
 		//console.log('this.hidden', this.hidden)
 		//console.log('this.visible', this.visible)
 		// pannels are hidden by default, all other views must be visible
-		if (!this.panel && this.hidden !== true)
+		if (!this.panel && this.hidden !== true) {
 			this.hidden = false
+		} else if (this.panel && this.hidden) {
+			// cancel out the default transition during setup period.
+			this.style.transition = 'none'
+			setTimeout(() => this.style.transition = '', 400)
+		}
 
 		window.view = this
 		this.setupCloseButtons()

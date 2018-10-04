@@ -1,54 +1,22 @@
 import ganymede from 'ganymede'
 import {autobind} from 'ganymede'
-import {_, on, validate, template, css, reflect, observe, customElement, ganymedeElement, draggable} from 'ganymede'
-import {clamp, animation, platform} from 'flexus'
+import {_, on, template, css, reflect, customElement, ganymedeElement} from 'ganymede'
+import {animation} from 'flexus'
 import {LinearSelectable, isNodeAvailable, rafThrottle} from 'flexus'
+import {queryDecorator} from 'flexus'
 
 
-/*
-function createResizeDetector(element, callback) {
-	if (element.resizeDetector)
-		return
-	var iframe = document.createElement('iframe')
-	var resizeRAF
-	function listener(e) {
-		if (resizeRAF) cancelAnimationFrame(resizeRAF)
-		resizeRAF = requestAnimationFrame(callback)
-	}
-	element.resizeDetector = {
-		listener,
-		iframe
-	}
-	(element.shadowRoot || element).appendChild(iframe)
-	iframe.contentWindow.addEventListener('resize', listener)
-}
-*/
-function hybridCustomComponent(element, Class) {
-	return undefined
-}
-
-function whenReady(element, callback) {
-	function listener() {
-		element.removeEventListener('ready', listener)
-		callback()
-	}
-	element.addEventListener('ready', listener)
+async function whenReady(element) {
+	return new Promise(resolve => {
+		if (element.elementReady)
+			resolve()
+		else
+			element.addEventListener('ready', resolve, {once: true})
+	})
 }
 
 function getDirection(newIndex, oldIndex) {
 	return oldIndex > newIndex ? 'left' : oldIndex < newIndex ? 'right' : 'none'
-}
-
-function selectedValidator(newIndex, self) {
-	var children = this.children
-	if (newIndex < 0) newIndex = 0
-	if (newIndex > children.length -1) newIndex = children.length -1
-	var target = children[newIndex]
-	if (isNodeAvailable(target)) {
-		return newIndex
-	} else {
-		return self.selected
-	}
 }
 
 function pickClosest(children, target, newIndex, oldIndex) {
@@ -177,7 +145,6 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 	lastTransitionSource = undefined
 
 	ready() {
-		//console.log('tabs ready')
 
 		// set element as focusable (to be able to catch key events)
 		this.setAttribute('tabindex', 0)
@@ -207,6 +174,8 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		this.on(window, 'resize', this.onResize)
 		// fix misligned tab bar due to ongoing rendering
 		setTimeout(this.render, 100)
+
+		this.elementReady = true
 	}
 
 	@on('beforeready')
@@ -219,25 +188,16 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 	}
 
 	setupResizeDetector() {
-		// TODO
-		var width = this.offsetWidth
-		if (width != window.innerWidth) {
-			// element resize detector z toolbaru			
-		} else {
-			// naslouchat na window resize
-		}
-		// ALSO: pokud se zmeni formfactor zpusobem ze puvodni podminka vyplni
-		// (kvuli dvoum view vele sebe), potom prestat naslouchat na window
-		// resize a aplikovat vlastni resize detector
+		return // TODO
+		// NOTE: nikdy nenaslouchat na window nebo toolbar resizer. vzdycky radsi vytvorit novy
+		// tabs muzou byt v toolbaru, pod toolbarem, na spoud view (novy material design),
+		// primo v contentu (fluent design), atd... 
 	}
 
 	preset() {
-		//console.log('preset')
 		this.preseted = true
 		var width = this.offsetWidth
-		//console.log(this.$.tabs.offsetWidth, width)
 		//if (this.$.tabs.offsetWidth > width)
-		//	console.log('TODO scroling')
 		var parentName = this.parentElement.localName
 		//var autofixing = platform.phone && (parentName === 'flexus-toolbar' || parentName === 'flexus-view')
 		if (this.indent) {
@@ -271,33 +231,19 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 				this.scrollable = true
 			}
 		}
-		//console.log(textContent.length, textContent)
 	}
 
-	assurePagesElement(target) {
-		if (target.localName !== 'flexus-pages')
-			return hybridCustomComponent(target, ganymede.constructors.FlexusPages)
-		return target
-	}
-	setupPages() {
-		var pages
-		//pages = this.parentView.children[1]
-		if (this.nextElementSibling && this.nextElementSibling.localName === 'flexus-pages')
-			pages = this.nextElementSibling
-		if (!pages && this.toolbar)
-			pages = this.assurePagesElement(this.toolbar.nextElementSibling)
-		if (!pages && this.hasAttribute('for')) {
+	async setupPages() {
+		if (this.hasAttribute('for')) {
 			var id = this.getAttribute('for')
-			var target = document.querySelector(`#${id}`)
-			if (target)
-				pages = this.assurePagesElement(target)
+			var pages = document.querySelector(`#${id}`)
+		} else {
+			var pages = this.parentElement.querySelector('flexus-pages')
 		}
 		if (!pages) return
-		whenReady(pages, e => {
-			//console.log('tabs ready')
-			pages.linkToOtherSelectable(this)
-			//pages.linkToTabs(this)
-		})
+		await whenReady(pages)
+		pages.linkToOtherSelectable(this)
+		//pages.linkToTabs(this)
 	}
 
 	setupCentered() {
@@ -305,7 +251,6 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		this.$.tabs.style.paddingLeft = `calc(50% - ${width/2}px)`
 		this.on('selected', () => {
 			var offset = this.activeTab.offsetLeft - this.firstElementChild.offsetLeft
-			//console.log(offset)
 			this.$.tabs.style.transition = `transform 0.2s`
 			this.$.tabs.style.transform = `translate(-${offset}px)`
 		})
@@ -330,7 +275,6 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 	}
 
 	updateToolbar(direction) {
-		//console.log('updateToolbar')
 
 		var tab = this.children[this.selected]
 		// tell toolbar where to start the animation from
@@ -386,18 +330,15 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 
 	@on('keyup')
 	onKeyup(data, e) {
-		//console.log('keyup tabs', e)
 		var newIndex
 		if (e.keyCode === 37) {
 			// left arrow
 			e.preventDefault()
-			//console.log('left', this.selected, '->', this.selected - 1)
 			newIndex = this.selected - 1
 		} else if (e.keyCode === 39) {
 			// right arrow
 			e.preventDefault()
 			newIndex = this.selected + 1
-			//console.log('right', this.selected, '->', this.selected + 1)
 		}
 		if (newIndex !== undefined) {
 			var children = this.children
@@ -406,7 +347,6 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 				newIndex = pickClosest(children, target, newIndex, this.selected)
 			// save tab element as an animation origin for toolbar background transition
 			this.lastTransitionSource = this.children[newIndex]
-			//console.log('onKeyup set', newIndex)
 			this.selected = newIndex
 		}
 		/*
@@ -422,9 +362,7 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		// save event as an animation origin for toolbar background transition
 		this.lastTransitionSource = e
 		var index = Array.from(this.children).indexOf(e.target)
-		//console.log('onClick', index)
 		if (index === -1) return
-		//console.log('setting selected to', index)
 		this.selected = index
 	}
 
@@ -433,7 +371,6 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 
 		if (this.centered) {
 			var offset = this.activeTab.offsetLeft - this.firstElementChild.offsetLeft
-			//console.log(offset)
 			offset += this.activeTab.offsetWidth / 2
 			offset = Math.round(offset)
 			this.$.tabs.style.transform = `translate(-${offset}px)`
@@ -454,6 +391,14 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 	}
 
 	focusTabs(index) {
+	}
+
+
+	@queryDecorator
+	@reflect disabled = false
+
+	disabledChanged() {
+		console.log('disabledChanged()')
 	}
 
 }

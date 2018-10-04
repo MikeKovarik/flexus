@@ -66,7 +66,7 @@ export function on(...args) {
 
 // property decorator: 
 export function once(...args) {
-	console.warn(`ganymede: @once decorator is not yet implemented`)
+	//console.warn(`ganymede: @once decorator is not yet implemented`)
 	return on(...args)
 }
 

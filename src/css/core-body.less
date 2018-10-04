@@ -42,7 +42,7 @@ flexus-view {
 
 
 .fx-panel-sizing() {
-	&:not([fullwidth]) {
+	&:not([fullwidth]):not([top]):not([bottom]) {
 		min-width: var(--panel-min-width);
 		max-width: var(--panel-max-width);
 

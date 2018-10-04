@@ -26,6 +26,7 @@ package-lock.json
 *.map
 
 
-elements
-lib
-css
+/polyfills
+/elements
+/lib
+/css

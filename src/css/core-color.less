@@ -125,7 +125,7 @@ and initial black foreground is inapropriate
 }
 
 
-input, label, i, a, p, span, h1, h2, h3, h4, h5, h6 {
+input, label, i, strong, a, p, span, h1, h2, h3, h4, h5, h6 {
 	&[primary=""] {
 		.calculate-primary-single();
 	}
@@ -143,7 +143,7 @@ input, label, i, a, p, span, h1, h2, h3, h4, h5, h6 {
 		.apply-foreground;
 	}
 }
-:not(input):not(label):not(i):not(a):not(p):not(span):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+:not(input):not(label):not(i):not(strong):not(a):not(p):not(span):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
 	&[primary=""] {
 		.calculate-primary-mixed();
 	}
@@ -743,7 +743,7 @@ input, label, i, a, p, span, h1, h2, h3, h4, h5, h6 {
 
 
 .create-color-background(@name, @color, @foreground) {
-	[@{name}]:not(input):not(label):not(i):not(a):not(p):not(span):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6),
+	[@{name}]:not(input):not(label):not(i):not(strong):not(a):not(p):not(span):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6),
 	[background="@{name}"] {
 		--background-rgb: @color;
 		--foreground-rgb: @foreground;
@@ -751,7 +751,7 @@ input, label, i, a, p, span, h1, h2, h3, h4, h5, h6 {
 }
 
 .create-color-foreground(@name, @color) {
-	input[@{name}], label[@{name}], i[@{name}], a[@{name}], p[@{name}], span[@{name}], h1[@{name}], h2[@{name}], h3[@{name}], h4[@{name}], h5[@{name}], h6[@{name}],
+	input[@{name}], label[@{name}], i[@{name}], strong[@{name}], a[@{name}], p[@{name}], span[@{name}], h1[@{name}], h2[@{name}], h3[@{name}], h4[@{name}], h5[@{name}], h6[@{name}],
 	[foreground="@{name}"] {
 		--foreground-rgb: @color;
 	}
