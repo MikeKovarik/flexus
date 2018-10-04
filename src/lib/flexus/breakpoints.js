@@ -132,8 +132,8 @@ export let Breakpointable = SuperClass => class extends SuperClass {
 	}
 
 }
-*/
 
 Breakpointable.S = Breakpointable.SMALL  = SMALL
 Breakpointable.M = Breakpointable.MEDIUM = MEDIUM
 Breakpointable.L = Breakpointable.LARGE  = LARGE
+*/
