@@ -1,6 +1,7 @@
 import {on, once, reflect, observe, autobind, defaultValue} from 'ganymede'
 import {clamp} from './utils.js'
 import {platform} from './platform.js'
+import {queryDecorator} from './query.js'
 
 
 const TOP    = -1
@@ -17,8 +18,25 @@ export let Draggable = SuperClass => class extends SuperClass {
 	static LEFT   = LEFT
 	static NO_DIR = NO_DIR
 
+
+	// TODO: make the attribute screensize aware
+	// PROBLEM: ideally here we'd extend Draggable's [draggable] property which is reflected to element
+	// but here there are two tings clashing. 1) in this element we want draggability enabled only on touch
+	// and 2) we want to give user ability to further limit when draggability is enabled/disabled.
+	// for example <flexus-pages> is draggable only on small devices and not not large monitor where the pages
+	// are displayed both alongside each other, effectively disabling functionality of <flexus-pages>
+	// TODO: ideally we need to introduce multiple layers of conditions.
+	// 1) Element's core - not overridable by user, e.g. <flexus-pages> can only be dragged on touch screens
+	// 2) Element's default - overridable by user, e.g. <flexus-page draggable="s">
+	// 3) External temporary override - App itself can enable/disable some properties ([draggable] and with it
+	//    the whole Draggable mixin) or whole element (<flexus-page> and all of its actions)
+	//    at any time for any period of time. Overruling everything, no matter the screensize or any builtin query.
+	//@reflect draggable = 'touch'
+	// For now we're adding another internal property.
+	dragPointerType = undefined
+
+	//@queryDecorator
 	@reflect draggable = true
-	//@reflect dragOrientation = 'vertical'
 	@reflect dragOrientation = String
 
 	// threshold
@@ -46,16 +64,9 @@ export let Draggable = SuperClass => class extends SuperClass {
 		}
 	}
 
-	// TODO: implement this
-	// usecase: flexus-pages are only draggable on touch devices. not with mouse.
-	// possible alternative approach: add option to limit draggable to touch/mouse events
-	enableDraggable() {}
-	disableDraggable() {}
-
 	//@once('beforeready')
 	@once('ready')
 	setupDraggable() {
-		console.log('setupDraggable', this.dragPercentage, this.hidden, this)
 		this.setupDraggableDirection()
 		if (!this.dragOrientation) return
 		this.setupDraggableHandlers()
@@ -88,39 +99,41 @@ export let Draggable = SuperClass => class extends SuperClass {
 
 
 	setupDraggableHandlers() {
-		this.addEventListener('pointerdown', this.onDragStart)
-		this.registerKillback(() => this.removeEventListener('pointerdown', this.onDragStart))
+		this.addEventListener('pointerdown', this._onPointerDown)
+		this.disableDraggableHandlers = () => this.removeEventListener('pointerdown', this._onPointerDown)
+		this.registerKillback(this.disableDraggableHandlers)
 	}
 
-	@autobind onDragStart(e) {
+	// Noop that gets overwritten with setupDraggableHandlers()
+	// TODO: This (method, not refference) should get called anytime this.draggable is set to false
+	disableDraggableHandlers() {}
+
+	@autobind _onPointerDown(e) {
 		// only continue if can drag
 		if (!this.draggable) return
-		//if (!this.dragOrientation) return
+		if (this.dragPointerType && e.pointerType !== this.dragPointerType) return
 		// default event handling and attaching following listeners
 		e.stopPropagation()
-		//if (e.pointerType == 'mouse')
-		//	e.preventDefault()
 		this.dragSkipFirstMoveBeforeCancel = true
-		document.addEventListener('pointercancel', this.onDragEnd)
-		document.addEventListener('pointermove', this.onDragMove)
-		document.addEventListener('pointerup', this.onDragEnd)
-		this.dragStartHandler(e)
+		document.addEventListener('pointercancel', this._onPointerUp)
+		document.addEventListener('pointermove', this._onPointerMove)
+		document.addEventListener('pointerup', this._onPointerUp)
+		this.onDragStart(e)
 	}
-	@autobind onDragMove(e) {
+	@autobind _onPointerMove(e) {
 		// default event handling
 		e.stopPropagation()
 		if (this.dragSkipFirstMoveBeforeCancel)
 			return this.dragSkipFirstMoveBeforeCancel = false
-		this.dragMoveHandler(e)
+		this.onDragMove(e)
 	}
-	@autobind onDragEnd(e) {
+	@autobind _onPointerUp(e) {
 		// default event handling
 		e.stopPropagation()
-		//e.preventDefault()
-		document.removeEventListener('pointercancel', this.onDragEnd)
-		document.removeEventListener('pointermove', this.onDragMove)
-		document.removeEventListener('pointerup', this.onDragEnd)
-		this.dragEndHandler(e)
+		document.removeEventListener('pointercancel', this._onPointerUp)
+		document.removeEventListener('pointermove', this._onPointerMove)
+		document.removeEventListener('pointerup', this._onPointerUp)
+		this.onDragEnd(e)
 	}
 
 
@@ -142,7 +155,7 @@ export let Draggable = SuperClass => class extends SuperClass {
 			return e.y
 	}
 
-	dragStartHandler(e) {
+	onDragStart(e) {
 		// individual code
 		this.totalDistance = this.getDragDistance()
 		// horizontal code
@@ -154,7 +167,7 @@ export let Draggable = SuperClass => class extends SuperClass {
 		this.setAttribute('dragging', '')
 		this.emit('drag-start')
 	}
-	dragMoveHandler(e) {
+	onDragMove(e) {
 		//e.preventDefault()
 		// only continue if can drag
 		//if (!this.dragOrientation) return
@@ -169,7 +182,7 @@ export let Draggable = SuperClass => class extends SuperClass {
 		this.dragRender(this.dragPercentage)
 		this.emit('drag', this.dragPercentage)
 	}
-	dragEndHandler(e) {
+	onDragEnd(e) {
 		// only continue if can drag
 		//if (!this.dragOrientation) return
 		// remove [dragging] attribute for elements to reenable transitions, etc...

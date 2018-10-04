@@ -1,7 +1,7 @@
 import {on, validate, template, css, reflect, observe, customElement, ganymedeElement} from 'ganymede'
-import {clamp, animation, platform, draggable} from 'flexus'
+import {clamp, animation, platform, Draggable} from 'flexus'
 import {LinearSelectable, isNodeAvailable} from 'flexus'
-
+//import {queryDecorator} from './query.js'
 
 
 function selectedValidator(newValue, self) {
@@ -15,7 +15,6 @@ function selectedValidator(newValue, self) {
 var noop = () => {}
 
 @customElement
-//@draggable
 @template(`
 	<div id="track">
 		<slot></slot>
@@ -53,14 +52,30 @@ var noop = () => {}
 		touch-action: pan-y;
 	}
 `)
-class FlexusPages extends ganymedeElement(LinearSelectable) {
+class FlexusPages extends ganymedeElement(LinearSelectable, Draggable) {
 
 	@reflect threshold = 0.3
 	@reflect noSkipping = false
 	@reflect cycle = false
 
-	@reflect swipeable = platform.touch && platform.material
-	@reflect noSideScroll = false
+	@reflect dragOrientation = 'horizontal'
+
+	// TODO: make the attribute screensize aware
+	// PROBLEM: ideally here we'd extend Draggable's [draggable] property which is reflected to element
+	// but here there are two tings clashing. 1) in this element we want draggability enabled only on touch
+	// and 2) we want to give user ability to further limit when draggability is enabled/disabled.
+	// for example <flexus-pages> is draggable only on small devices and not not large monitor where the pages
+	// are displayed both alongside each other, effectively disabling functionality of <flexus-pages>
+	// TODO: ideally we need to introduce multiple layers of conditions.
+	// 1) Element's core - not overridable by user, e.g. <flexus-pages> can only be dragged on touch screens
+	// 2) Element's default - overridable by user, e.g. <flexus-page draggable="s">
+	// 3) External temporary override - App itself can enable/disable some properties ([draggable] and with it
+	//    the whole Draggable mixin) or whole element (<flexus-page> and all of its actions)
+	//    at any time for any period of time. Overruling everything, no matter the screensize or any builtin query.
+	//@reflect draggable = 'touch'
+	// For now we're adding another internal property.
+	dragPointerType = 'touch'
+
 	@reflect transition = 'slide' // options: slide, fade
 
 	autoAdjustHeight = false
@@ -72,8 +87,6 @@ class FlexusPages extends ganymedeElement(LinearSelectable) {
 		//console.log('ready')
 		//console.log('this.selected', this.selected)
 		this.setupPages()
-		if (this.swipeable)
-			draggable(this)
 
 		// set element as focusable (to be able to catch key events)
 		this.setAttribute('tabindex', 0)
@@ -88,11 +101,25 @@ class FlexusPages extends ganymedeElement(LinearSelectable) {
 		}*/
 		if (this.autoAdjustHeight)
 			this.adjustHeight()
+
+		this.elementReady = true
 	}
 
-	@on('keyup')
-	onKeyup(data, e) {
-		//console.log('keyup pages', e)
+	disabledChanged() {
+		console.log('disabledChanged()')
+	}
+	foobarChanged() {
+		console.log('foobarChanged()')
+	}
+
+	disable() {
+		// TODO: this depends on the way we're handling query based properties
+		this.draggable = true
+	}
+
+	enable() {
+		// TODO: this depends on the way we're handling query based properties
+		this.draggable = false
 	}
 
 	calcDuration(distance) {
@@ -153,7 +180,6 @@ class FlexusPages extends ganymedeElement(LinearSelectable) {
 	}
 
 	adjustHeight() {
-		console.log('adjustHeight')
 		var setHeight = () => {
 			var selectedPageBbox = this.selectedPage.getBoundingClientRect()
 			var newPageHeight = selectedPageBbox.height
@@ -166,8 +192,6 @@ class FlexusPages extends ganymedeElement(LinearSelectable) {
 			}, true).then(() => {
 				this.style.overflowY = ''
 			})*/
-			console.log('this.selectedPage', this.selectedPage)
-			console.log(selectedPageBbox)
 		}
 		// set height now
 		setHeight()
@@ -373,6 +397,12 @@ class FlexusPages extends ganymedeElement(LinearSelectable) {
 		this.$.track.style.transform = `translate3d(${distance}px, 0px, 0)`
 	}
 
+/*
+	@on('keyup')
+	onKeyup(data, e) {
+		//console.log('keyup pages', e)
+	}
+*/
 
 }
 
