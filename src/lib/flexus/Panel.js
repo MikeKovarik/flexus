@@ -345,6 +345,14 @@ export let Panel = SuperClass => class extends SuperClass {
 		//console.log('setupDragEdge', this.edgeElement)
 	}
 
+
+	// todo, add event listener to pressing escape key to close view
+	//@reflect closeByEscape = false
+	setupEscClose() {
+		if (!this.dismissable) return
+		// TODO
+	}
+
 }
 
 function createOverlay(overlayForElement, overlayFade) {

@@ -46,10 +46,16 @@ export let Draggable = SuperClass => class extends SuperClass {
 		}
 	}
 
+	// TODO: implement this
+	// usecase: flexus-pages are only draggable on touch devices. not with mouse.
+	// possible alternative approach: add option to limit draggable to touch/mouse events
+	enableDraggable() {}
+	disableDraggable() {}
+
 	//@once('beforeready')
 	@once('ready')
 	setupDraggable() {
-		//console.log('setupDraggable', this.dragPercentage, this.hidden, this)
+		console.log('setupDraggable', this.dragPercentage, this.hidden, this)
 		this.setupDraggableDirection()
 		if (!this.dragOrientation) return
 		this.setupDraggableHandlers()
@@ -188,118 +194,6 @@ export let Draggable = SuperClass => class extends SuperClass {
 	}
 	_dragRenderVertical(value) {
 		this.style.transform = `translate3d(0px, ${value}%, 0)`
-	}
-
-
-	///////////////////////////////////////////////////////////////////////////
-	////////////////////////// MOUSEWHEEL EXPERIMENT //////////////////////////
-	///////////////////////////////////////////////////////////////////////////
-
-
-/*
-	@observe('draggable')
-	setupWheel() {
-		if (this.draggable && this.dragByWheel && !this.dragWheelListening) {
-			this.attachWheel()
-		} else {
-			this.detachWheel()
-		}
-	}
-
-	// stand in for PAN-UP/PAN-DOWN to close fom touch devices to wheel
-	@reflect dragByWheel = true
-	dragWheelListening = false
-	attachWheel() {
-		console.log('&&& attachWheel')
-		if (this.dragWheelListening) return
-		var name = 'mousewheel'// 'DOMMouseScroll'
-		this.addEventListener('mousewheel', this.onWheel)
-		console.log('attached')
-	}
-	detachWheel() {
-		if (!this.dragWheelListening) return
-		var name = 'mousewheel'// 'DOMMouseScroll'
-		this.removeEventListener('mousewheel', this.onWheel, {passive: true})
-	}
-	_wheelTimeout
-	wheelPristine = true
-	wheelTimeout = 100
-	wheelDragged = 0
-	@autobind onWheel(e) {
-		//var scrolled = e.wheelDeltaY
-		this.wheelDragged += e.wheelDeltaY
-		var scrolled = this.wheelDragged
-		console.log('', scrolled, '|', this.canDragDown, this.isScrolledToTop, scrolled >= 0, '|', this.canDragUp, this.isScrolledToBottom, scrolled <= 0)
-		if ((this.canDragDown && this.isScrolledToTop    && scrolled >= 0)
-		||  (this.canDragUp   && this.isScrolledToBottom && scrolled <= 0)) {
-			e.preventDefault()
-			e.stopPropagation()
-		} else {
-			return
-		}
-		// mousewheel events dont have start/move/end, so we have to figure out
-		// ourself through timeouts
-		clearTimeout(this._wheelTimeout)
-		this._wheelTimeout = setTimeout(this.onWheelTimeout, this.wheelTimeout)
-		if (this.wheelPristine) {
-			this.wheelPristine = false
-			this.wheelStartHandler(e)
-		} else {
-			this.wheelMoveHandler(e)
-		}
-	}
-	@autobind onWheelTimeout() {
-		this.wheelPristine = true
-		this.wheelEndHandler()
-	}
-
-	wheelStartHandler(e) {
-		// individual code
-		this.totalDistance = this.getDragDistance()
-		// horizontal code
-		//this.initDragPosition = this.getDragPosition(e)
-		// shared code
-		this.dragMoved = false
-		this.dragInitPercentage = this.dragPercentage
-		// show [dragging] attribute for elements to suppres transitions, etc...
-		this.setAttribute('dragging', '')
-		this.emit('drag-start')
-	}
-	wheelMoveHandler(e) {
-		//e.preventDefault()
-		// only continue if can drag
-		//if (!this.dragOrientation) return
-		var dragged = this.wheelDragged
-		console.log('dragged', dragged)
-		//var dragged = this.getDragPosition(e) - this.initDragPosition
-		// move events gets fired even though move didnt happen
-		if (dragged !== 0)
-			this.dragMoved = true
-		//var percentage = this.dragInitPercentage - (dragged / this.totalDistance)
-		var percentage = this.dragInitPercentage - ((dragged / this.totalDistance) * this.dragDirMod)
-		this.dragPercentage = clamp(percentage, 0, 1)
-		//this.dragPercentage = clamp(percentage, this.dragClampMin, this.dragClampMax)
-		this.dragRender(this.dragPercentage)
-		this.emit('drag', this.dragPercentage)
-	}
-	wheelEndHandler() {
-		// only continue if can drag
-		//if (!this.dragOrientation) return
-		// remove [dragging] attribute for elements to reenable transitions, etc...
-		this.removeAttribute('dragging')
-		this.emit('drag-end')
-		this.wheelDragged = 0
-	}
-*/
-
-
-
-
-	// todo, add event listener to pressing escape key to close view
-	//@reflect closeByEscape = false
-	setupEscClose() {
-		if (!this.dismissable) return
-		// TODO
 	}
 
 
