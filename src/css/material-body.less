@@ -37,25 +37,13 @@
 
 
 .fx-panel-behavior() {
+	.fx-panel-behavior-core;
 	&[hidden]:not([dragging]) {
 		box-shadow: 0 0 rgba(0,0,0,0) !important;
 	}
-	//&[dragging] {
-		// turn of transform transitions but keep the shadow!
-		transition: transform 0.3s, box-shadow 0.3s;
-	//}
-}
-
-[panel] {
-	.fx-panel-behavior;
 }
 
 flexus-drawer {
-
-	.fx-panel-behavior;
-
-	max-width: var(--drawer-max-width, var(--panel-max-width));
-	width: var(--drawer-width);
 	//.fx-view-panel-drawer();
 
 	& > &:first-child:not(flexus-toolbar) {

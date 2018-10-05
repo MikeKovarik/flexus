@@ -181,6 +181,16 @@ export let Draggable = SuperClass => class extends SuperClass {
 		this.emit('drag', this.dragPercentage)
 	}
 	onDragEnd(e) {
+		if (this.dragMoved) {
+			// NOTE: this may need to be moved up to _onPointerUp() because onDragEnd() can be overwitten by element.
+			// https://stackoverflow.com/questions/33639606/prevent-click-when-using-pointer-events-in-ie11
+			e.target.addEventListener('click', preventDefaultClick)
+			function preventDefaultClick(e) {
+				e.stopPropagation()
+				e.preventDefault()
+				e.target.removeEventListener('click', preventDefaultClick)
+			}
+		}
 		// only continue if can drag
 		//if (!this.dragOrientation) return
 		// remove [dragging] attribute for elements to reenable transitions, etc...

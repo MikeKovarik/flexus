@@ -31,6 +31,9 @@ export function traverse(startNode, condition) {
 	}
 	return node
 }
+
+// like traverse() but returns result of condition check if it's not undefined or null
+// e.g. find node with attribute and returns the value of the attribute. 
 export function traverseValue(startNode, condition) {
 	var node = startNode
 	var result

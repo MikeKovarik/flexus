@@ -1,8 +1,7 @@
 import ganymede from 'ganymede'
 import {autobind} from 'ganymede'
 import {_, on, template, css, reflect, customElement, ganymedeElement} from 'ganymede'
-import {animation} from 'flexus'
-import {LinearSelectable, isNodeAvailable, rafThrottle} from 'flexus'
+import {animation, traverse, LinearSelectable, isNodeAvailable, rafThrottle} from 'flexus'
 import {reflectQuery} from 'flexus'
 
 
@@ -164,7 +163,7 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		this.updateToolbar()
 
 		if (this.autoConnect)
-			this.setupPages()
+			this.linkToPages()
 
 		var parentName = this.parentElement.localName
 		if (parentName !== 'flexus-toolbar' && parentName !== 'flexus-view')
@@ -245,12 +244,14 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		}
 	}
 
-	async setupPages() {
+	async linkToPages() {
 		if (this.hasAttribute('for')) {
 			var id = this.getAttribute('for')
+			if (id === 'none') return
 			var pages = document.querySelector(`#${id}`)
 		} else {
-			var pages = this.parentElement.querySelector('flexus-pages')
+			var parent = traverse(this, node => node.localName === 'flexus-view') || this.parentElement
+			var pages = parent.querySelector('flexus-pages')
 		}
 		if (!pages) return
 		await whenReady(pages)

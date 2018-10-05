@@ -146,6 +146,16 @@ flexus-view > main > flexus-pages,
 	.fx-item-mixin-margin;
 }
 
+flexus-pages {
+	
+	&[seam]:not([vertical=""]) > *:not(:last-child) {
+		border-right: 1px solid var(--seam-color);
+	}
+	&[seam][vertical=""] > *:not(:last-child) {
+		border-bottom: 1px solid var(--seam-color);
+	}
+
+}
 
 
 
@@ -383,4 +393,5 @@ flexus-tabs {
 		bottom: 0;
 		transform-origin: left center;
 	}*/
+
 }

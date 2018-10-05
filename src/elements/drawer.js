@@ -11,8 +11,6 @@ app.on('click', ({target}) => {
 		app.emit('drawer-toggle')
 })
 
-var overlayMaxOpacity = 0.7
-
 /*
 POSSIBILITIES
 
@@ -143,11 +141,9 @@ class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel/*, Break
 	onClickCloseHandler(value, {target}) {
 		if (target === this.hamburger) return
 		if (target === this) return
-		console.log('click', target)
 		if (target.localName === 'a' && target.href)
 			return this.softHide()
 		var preventDismiss = target.hasAttribute('prevent-dismiss')
-		console.log('preventDismiss', preventDismiss)
 		if (!preventDismiss)
 			this.softHide()
 	}
@@ -156,15 +152,13 @@ class FlexusDrawer extends ganymedeElement(Visibility, Draggable, Panel/*, Break
 	// in drawer. Hamburgers are of course shown when drawer is not pinned
 	setupHamburger() {
 		if (!platform.neon) return
-		var hamburger = this.querySelector('[icon="menu"]')
-		if (!hamburger) {
-			hamburger = document.createElement('div')
-			hamburger.setAttribute('fx-item', '')
-			hamburger.setAttribute('icon', 'menu')
-			this.prepend(hamburger)
-		}
-		this.hamburger = hamburger
+		this.hamburger = this.querySelector('[icon="menu"]')
 		this.setAttribute('has-hamburger', '')
+		if (this.hamburger) return
+		this.hamburger = document.createElement('div')
+		this.hamburger.setAttribute('fx-item', '')
+		this.hamburger.setAttribute('icon', 'menu')
+		this.prepend(this.hamburger)
 	}
 
 	@on(document, 'screensize-update')

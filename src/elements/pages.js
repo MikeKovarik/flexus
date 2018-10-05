@@ -1,6 +1,6 @@
 import {on, validate, template, css, reflect, observe, customElement, ganymedeElement} from 'ganymede'
 import {clamp, animation, platform, Draggable} from 'flexus'
-import {LinearSelectable, isNodeAvailable} from 'flexus'
+import {LinearSelectable, reflectQuery} from 'flexus'
 
 
 var noop = () => {}
@@ -10,6 +10,7 @@ var noop = () => {}
 	<div id="track">
 		<slot></slot>
 	</div>
+	<slot name="disabled"></slot>
 `)
 @css(`
 	:host {
@@ -25,6 +26,9 @@ var noop = () => {}
 		right: 0;
 		bottom: 0;
 		will-change: transform;
+	}
+	:host-context([disabled=""]) #track {
+		display: none;
 	}
 	#track ::slotted(*) {
 		padding: inherit;
@@ -44,6 +48,8 @@ var noop = () => {}
 	}
 `)
 class FlexusPages extends ganymedeElement(LinearSelectable, Draggable) {
+
+	@reflectQuery disabled = false
 
 	@reflect threshold = 0.3
 	@reflect noSkipping = false
@@ -67,7 +73,7 @@ class FlexusPages extends ganymedeElement(LinearSelectable, Draggable) {
 	// For now we're adding another internal property.
 	dragPointerType = 'touch'
 
-	@reflect transition = 'slide' // options: slide, fade
+	//@reflect transition = 'slide' // options: slide, fade
 
 	autoAdjustHeight = false
 
@@ -94,23 +100,31 @@ class FlexusPages extends ganymedeElement(LinearSelectable, Draggable) {
 			this.adjustHeight()
 
 		this.elementReady = true
+
+		this.disabledChanged()
 	}
 
 	disabledChanged() {
-		console.log('disabledChanged()')
-	}
-	foobarChanged() {
-		console.log('foobarChanged()')
+		if (this.disabled)
+			this.disable()
+		else
+			this.enable()
 	}
 
 	disable() {
 		// TODO: this depends on the way we're handling query based properties
-		this.draggable = true
+		this.draggable = false
+		this.pages.forEach(page => {
+			page.setAttribute('slot', 'disabled')
+			this.resetPage(page)
+		})
 	}
 
 	enable() {
+		this.draggable = true
 		// TODO: this depends on the way we're handling query based properties
-		this.draggable = false
+		this.pages.forEach(page => page.removeAttribute('slot'))
+		this.resetPages()
 	}
 
 	calcDuration(distance) {
@@ -158,14 +172,18 @@ class FlexusPages extends ganymedeElement(LinearSelectable, Draggable) {
 		page.setAttribute('selected', '')
 		page.removeAttribute('offscreen')
 	}
+	resetPage(page) {
+		page.style.display = ''
+		page.style.left = ''
+		page.removeAttribute('offscreen')
+	}
 
 	//@on('$.track', 'transitionend')
 	resetPages() {
 		//this.$.track.style.transform = `translate3d(0px, 0px, 0)`
-		this.pages.forEach(page => {
-			if (page !== this.selectedPage)
-				this.hidePage(page)
-		})
+		this.pages
+			.filter(page => page !== this.selectedPage)
+			.forEach(page => this.hidePage(page))
 		//console.log('this.selectedPage', this.selectedPage)
 		this.showPage(this.selectedPage, true)
 	}

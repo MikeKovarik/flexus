@@ -182,7 +182,6 @@ export let Panel = SuperClass => class extends SuperClass {
 
 	@on('show')
 	onShowPanel(percentage) {
-		//console.log('### onShowPanel')
 		//if (!this.hidden) return
 		this.dragPercentage = 1
 		if (this.draggable)
@@ -199,7 +198,6 @@ export let Panel = SuperClass => class extends SuperClass {
 
 	@on('hide')
 	onHidePanel(percentage) {
-		//console.log('### onHidePanel')
 		//if (this.pinned) return
 		//if (this.hidden) return
 		this.dragPercentage = 0
@@ -317,25 +315,23 @@ export let Panel = SuperClass => class extends SuperClass {
 	setupDragOverlay() {
 		//console.log('setupDragOverlay')
 		this.overlayElement = createOverlay(this, this.overlayFade)
-		//this.on(this.overlayElement, 'click', () => this.hide())
-		this.on(this.overlayElement, 'click', () => this.onOverlayClick())
-		this.on('drag-start', () => {
-			if (!this.overlayBg) return
-			this.overlayElement.dragstart()
-			if (!this.overlayFade) return
-			this.on('drag', this.overlayElement.drag)
-		})
-		this.on('drag-end', () => {
-			if (!this.overlayBg) return
-			this.overlayElement.dragend()
-			if (!this.overlayFade) return
-			this.off('drag', this.overlayElement.drag)
-		})
+		this.overlayElement.addEventListener('click', e => this.hide())
 	}
 
-	// this is a separate function to be overriden by inheritors
-	onOverlayClick() {
-		this.hide()
+	@on('drag-start')
+	onPanelDragStart() {
+		if (!this.overlayBg) return
+		this.overlayElement.dragStart()
+		if (!this.overlayFade) return
+		this.on('drag', this.overlayElement.drag)
+	}
+
+	@on('drag-end')
+	onPanelDragEnd(e) {
+		if (!this.overlayBg) return
+		this.overlayElement.dragEnd()
+		if (!this.overlayFade) return
+		this.off('drag', this.overlayElement.drag)
 	}
 
 	setupDragEdge() {
@@ -382,14 +378,13 @@ function createOverlay(overlayForElement, overlayFade) {
 		overlay.setAttribute('hidden', '')
 	}
 	overlay.drag = percentage => {
-		//console.log('drag', percentage)
 		overlay.style.opacity = percentage * overlayMaxOpacity
 	}
-	overlay.dragstart = () => {
+	overlay.dragStart = () => {
 		//overlay.style.zIndex = this.zIndex - 1
 		overlay.style.transition = 'none'
 	}
-	overlay.dragend = () => {
+	overlay.dragEnd = () => {
 		overlay.style.transition = ''
 	}
 	return overlay

@@ -2,14 +2,10 @@
 	--sneakpeek-height: calc(40px + 1rem);
 	--panel-width-phone: calc(100% - 40px - 1rem);
 	//--panel-width-tablet: 320px;
-	--panel-min-width: 320px;
+	--panel-min-width: 200px;
 	--panel-max-width: 320px;
 }
 
-// experimental
-:root {
-	--drawer-width: calc(100% - 40px - 1rem);
-}
 /*
 @{screensize-s} {
 	--drawer-max-width: calc(100% - 40px - 1rem);
@@ -139,10 +135,33 @@ flexus-view {
 
 
 
+.fx-panel-behavior-core() {
+	//&[dragging] {
+		// turn of transform transitions but keep the shadow!
+		transition: transform 0.3s, box-shadow 0.3s;
+	//}
+}
 
+.fx-panel-behavior() {
+	.fx-panel-behavior-core;
+}
+
+[panel] {
+	.fx-panel-behavior;
+}
+
+:root {
+	--drawer-width: calc(100% - 40px - 1rem);
+}
 
 flexus-drawer {
 
+	// note: no need to duplicate the behavior here, [panel] gets always added to the <flexus-drawer>.
+	//.fx-panel-behavior;
+
+	min-width: var(--panel-min-width, var(--panel-min-width)) !important;
+	max-width: var(--drawer-max-width, var(--panel-max-width)) !important;
+	width: var(--drawer-width) !important;
 
 	.set-colors-override() {
 		--background: ~'rgb(var(--drawer-background-rgb, var(--background-rgb)))';
