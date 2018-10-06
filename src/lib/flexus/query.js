@@ -7,6 +7,16 @@ import {platform} from './platform'
 // are icons, icons+text, only text. and it changes based on the combination.
 // by default [fixed] is only on phones, but in some cases there has to be manual override
 
+/*
+// QUERY PART CAN LOOK LIKE:
+{
+	screensize: undefined, // 'xs', 's', 'm', 'l', 'xl'
+	inputType: undefined, // 'touch', ?mouse/nontouch?
+	design: undefined, // 'material', 'fluent'
+	theme: undefined, // 'dark', 'light'
+}
+*/
+
 export function reflectQuery(proto, propName, desc) {
 	// TODO: translate propName to kebab-case
 	// TODO: it'd be better to integrate deeper into ganymede
@@ -129,15 +139,17 @@ class QueryPart {
 }
 
 
-/*
-// QUERY PART CAN LOOK LIKE:
-{
-	screensize: undefined, // 'xs', 's', 'm', 'l', 'xl'
-	inputType: undefined, // 'touch', ?mouse/nontouch?
-	design: undefined, // 'material', 'fluent'
-	theme: undefined, // 'dark', 'light'
+
+export function queryAttrAvailability(node, attrName) {
+	var val = node.getAttribute(attrName)
+	if (val === null) return false
+	if (val === '') return true
+	if (attrName === 'disabled' && val === 'disabled') return true
+	var part = new QueryPart(val)
+	console.log('part.valid', part.valid)
+	return part.valid
 }
-*/
+
 
 
 

@@ -5,6 +5,12 @@ import {animation, traverse, LinearSelectable, isNodeAvailable, rafThrottle} fro
 import {reflectQuery} from 'flexus'
 
 
+// TODO: change bar rendering from percentual to width based (or at least on non-fixed)
+//       layouts because resizing window causes jittering on tabs that retain the same width.
+// TODO: make the present not rely on width, because tab element might be initialized
+//       while the window is resized to a size when the tabs are hidden through some query
+//       like [hidden="s"]
+
 async function whenReady(element) {
 	return new Promise(resolve => {
 		if (element.elementReady)
@@ -381,7 +387,12 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		this.selected = index
 	}
 
+	hiddenChanged() {
+		this.render()
+	}
+
 	@autobind render() {
+		if (this.hidden) return
 		if (this.activeTab === undefined) return
 
 		if (this.centered) {
@@ -390,7 +401,6 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 			offset = Math.round(offset)
 			this.$.tabs.style.transform = `translate(-${offset}px)`
 		}
-
 
 		var scaleX = this.activeTab.offsetWidth / this.$.tabs.offsetWidth
 		var translateX = this.activeTab.offsetLeft

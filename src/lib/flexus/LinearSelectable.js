@@ -1,22 +1,12 @@
 import {on, once, reflect, autobind, validate, observe} from 'ganymede'
-
+import {queryAttrAvailability} from 'flexus'
 
 
 export function isNodeAvailable(node) {
 	return !!node
 		&& !node.disabled
-		&& !isAttrBlocked(node, 'disabled')
-		&& !isAttrBlocked(node, 'hidden')
-}
-
-function isAttrBlocked(node, attrName) {
-	var val = node.getAttribute(attrName)
-	if (val === null) return false
-	if (val === '') return true
-	if (platform.screensize === 's' && val.includes('small'))  return true
-	if (platform.screensize === 'm' && val.includes('medium')) return true
-	if (platform.screensize === 'l' && val.includes('large'))  return true
-	return false
+		&& !queryAttrAvailability(node, 'disabled')
+		&& !queryAttrAvailability(node, 'hidden')
 }
 
 function selectedValidator(newIndex, self) {
@@ -27,8 +17,8 @@ function selectedValidator(newIndex, self) {
 		return 0
 	if (newIndex < 0) newIndex = 0
 	if (newIndex > children.length -1) newIndex = children.length -1
-	var target = children[newIndex]
-	if (isNodeAvailable(target)) {
+	var node = children[newIndex]
+	if (isNodeAvailable(node)) {
 		return newIndex
 	} else {
 		return self.selected
@@ -42,7 +32,7 @@ export let LinearSelectable = SuperClass => class extends SuperClass {
 	@on('ready')
 	onReady() {
 		//console.log('LinearSelectable', this.children.length, this.children)
-		//console.log('selected', this.querySelector('[selected]'))
+		//console.log('ready [selected]', this.querySelector('[selected]'))
 		this._selectedChanged(this.selected)
 	}
 

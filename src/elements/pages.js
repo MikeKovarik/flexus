@@ -1,7 +1,10 @@
 import {on, validate, template, css, reflect, observe, customElement, ganymedeElement} from 'ganymede'
 import {clamp, animation, platform, Draggable} from 'flexus'
-import {LinearSelectable, reflectQuery} from 'flexus'
+import {LinearSelectable, reflectQuery, addReadyAnimation} from 'flexus'
 
+
+
+addReadyAnimation('flexus-tabs')
 
 var noop = () => {}
 
