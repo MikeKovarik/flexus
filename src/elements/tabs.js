@@ -1,7 +1,7 @@
 import ganymede from 'ganymede'
-import {autobind} from 'ganymede'
+import {autobind, observe} from 'ganymede'
 import {_, on, template, css, reflect, customElement, ganymedeElement} from 'ganymede'
-import {animation, traverse, LinearSelectable, isNodeAvailable, rafThrottle} from 'flexus'
+import {animation, traverse, LinearSelectable, isNodeAvailable, rafThrottle, Visibility} from 'flexus'
 import {reflectQuery} from 'flexus'
 
 
@@ -111,7 +111,7 @@ function pickClosest(children, target, newIndex, oldIndex) {
 	}
 
 `)
-class FlexusTabs extends ganymedeElement(LinearSelectable) {
+class FlexusTabs extends ganymedeElement(LinearSelectable, Visibility) {
 
 	@reflectQuery disabled = false
 	@reflectQuery hidden = false
@@ -180,7 +180,7 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		// slow down resize callback by using requestAnimationFrame
 		this.onResize = rafThrottle(this.render)
 		// note: resize events cannot be listened to passively
-		this.on(window, 'resize', this.onResize)
+		window.addEventListener('resize', this.onResize, {passive: true})
 		// fix misligned tab bar due to ongoing rendering
 		setTimeout(this.render, 100)
 
@@ -387,13 +387,13 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 		this.selected = index
 	}
 
-	hiddenChanged() {
-		this.render()
-	}
-
-	@autobind render() {
-		if (this.hidden) return
+	@observe('isVisible')
+	@autobind
+	render() {
+		if (this.noBar) return
 		if (this.activeTab === undefined) return
+		if (!this.isVisible) return
+		//if (this.hidden) return
 
 		if (this.centered) {
 			var offset = this.activeTab.offsetLeft - this.firstElementChild.offsetLeft
@@ -401,6 +401,7 @@ class FlexusTabs extends ganymedeElement(LinearSelectable) {
 			offset = Math.round(offset)
 			this.$.tabs.style.transform = `translate(-${offset}px)`
 		}
+		//console.log('render', this.children.length, this)
 
 		var scaleX = this.activeTab.offsetWidth / this.$.tabs.offsetWidth
 		var translateX = this.activeTab.offsetLeft

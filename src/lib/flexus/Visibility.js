@@ -1,6 +1,8 @@
 import {on, once, reflect, autobind, validate, observe} from 'ganymede'
 
 
+var intersectionObserverAvailable = typeof IntersectionObserver !== 'undefined'
+
 export let Visibility = SuperClass => class extends SuperClass {
 
 	// todo implement visible in contrast to hidden
@@ -9,6 +11,26 @@ export let Visibility = SuperClass => class extends SuperClass {
 
 	@reflect hidden = Boolean
 	@reflect visible = Boolean
+
+	constructor() {
+		super()
+		if (intersectionObserverAvailable) {
+			this.onScreen = this.offsetWidth !== 0
+			var options = {threshold: [0, 0.001]}
+			var onObserve = ([entry]) => this.onScreen = entry.intersectionRatio > 0
+			this.intObserver = new IntersectionObserver(onObserve, options)
+			this.intObserver.observe(this)
+			this.isVisibleSetter()
+		} else {
+			this.isVisible = !this.hidden
+		}
+	}
+
+	@observe('hidden')
+	@observe('onScreen')
+	isVisibleSetter() {
+		this.isVisible = this.onScreen && !this.hidden
+	}
 
 	@once('ready')
 	configureVisibilityAttributes() {
