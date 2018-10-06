@@ -59,7 +59,8 @@
 	visibility: hidden;
 });
 .responsive-screensize(visible, {
-	display: initial;
+	// WARNING: having 'initial' on custom element makes it inline
+	//display: initial;
 	visibility: visible;
 });
 

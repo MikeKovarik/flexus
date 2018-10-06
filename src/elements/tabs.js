@@ -114,7 +114,6 @@ function pickClosest(children, target, newIndex, oldIndex) {
 class FlexusTabs extends ganymedeElement(LinearSelectable, Visibility) {
 
 	@reflectQuery disabled = false
-	@reflectQuery hidden = false
 
 	preseted = false
 	@reflect center = Boolean
@@ -182,7 +181,7 @@ class FlexusTabs extends ganymedeElement(LinearSelectable, Visibility) {
 		// note: resize events cannot be listened to passively
 		window.addEventListener('resize', this.onResize, {passive: true})
 		// fix misligned tab bar due to ongoing rendering
-		setTimeout(this.render, 100)
+		//setTimeout(this.render, 100)
 
 		this.elementReady = true
 	}
@@ -388,6 +387,7 @@ class FlexusTabs extends ganymedeElement(LinearSelectable, Visibility) {
 	}
 
 	@observe('isVisible')
+	@observe('activeTab')
 	@autobind
 	render() {
 		if (this.noBar) return
@@ -401,22 +401,19 @@ class FlexusTabs extends ganymedeElement(LinearSelectable, Visibility) {
 			offset = Math.round(offset)
 			this.$.tabs.style.transform = `translate(-${offset}px)`
 		}
-		//console.log('render', this.children.length, this)
 
 		var scaleX = this.activeTab.offsetWidth / this.$.tabs.offsetWidth
 		var translateX = this.activeTab.offsetLeft
 		this.$.bar.style.transform = `translate3d(${translateX}px, 0, 0) scaleX(${scaleX})`
 	}
 
-	@on(document, 'formfactor-update')
-	formfactorUpdate() {
+	@on(document, 'screensize-update')
+	@on(document, 'orientation-update')
+	onScreenUpdate() {
 		this.$.tabs.style.transition = 'none'
 		this.render()
 		this.$.tabs.offsetLeft
 		this.$.tabs.style.transition = ''
-	}
-
-	focusTabs(index) {
 	}
 
 }

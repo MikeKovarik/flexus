@@ -1,5 +1,8 @@
 import {on, once, reflect, autobind, validate, observe} from 'ganymede'
+import {reflectQuery} from 'flexus'
 
+
+var promiseTimeout = millis => new Promise(resolve => setTimeout(resolve, millis))
 
 var intersectionObserverAvailable = typeof IntersectionObserver !== 'undefined'
 
@@ -9,27 +12,36 @@ export let Visibility = SuperClass => class extends SuperClass {
 	// because some components that are usually hidden
 	// need an explicit way to define they are visible
 
-	@reflect hidden = Boolean
-	@reflect visible = Boolean
+	@reflectQuery hidden = false
+	visible = Boolean
 
-	constructor() {
-		super()
+	isOnScreen = false
+
+	@on('ready')
+	async setupIntersectionObserver() {
 		if (intersectionObserverAvailable) {
-			this.onScreen = this.offsetWidth !== 0
 			var options = {threshold: [0, 0.001]}
-			var onObserve = ([entry]) => this.onScreen = entry.intersectionRatio > 0
+			var onObserve = ([entry]) => this.isOnScreen = entry.intersectionRatio > 0
 			this.intObserver = new IntersectionObserver(onObserve, options)
 			this.intObserver.observe(this)
+			// Set initial value
+			this.isOnScreen = this.offsetWidth !== 0
 			this.isVisibleSetter()
+			// Wait a tick to compensate for slow rendeing (usually in MVC frameworks)
+			// to see if it's still false (out of screen) or if it's already rendered.
+			if (this.isOnScreen) return
+			await promiseTimeout()
+			this.isOnScreen = this.offsetWidth !== 0
 		} else {
 			this.isVisible = !this.hidden
 		}
+		this.isVisibleSetter()
 	}
 
 	@observe('hidden')
-	@observe('onScreen')
+	@observe('isOnScreen')
 	isVisibleSetter() {
-		this.isVisible = this.onScreen && !this.hidden
+		this.isVisible = this.isOnScreen && !this.hidden
 	}
 
 	@once('ready')
@@ -40,9 +52,9 @@ export let Visibility = SuperClass => class extends SuperClass {
 		// WARNING: at this point, attributes were read and if [visible] is defined
 		//          both hidden and visible properties could be true. Setting hidden to false
 		//          gets the ball rolling and keeps it properly synced
-		if (this.visible)
+		if (this.visible === true)
 			this.hidden = false
-		else if (this.hidden)
+		else if (this.hidden === true)
 			this.visible = false
 		//console.log('this.visible', this.visible, this.hasAttribute('visible'))
 		//console.log('this.hidden', this.hidden, this.hasAttribute('hidden'))
@@ -60,6 +72,7 @@ export let Visibility = SuperClass => class extends SuperClass {
 			this.__preventVisibleFromUpdatingHidden = false
 		}
 	}
+
 	@observe('visible')
 	visibleChangedReflector() {
 		//console.log('visibleChanged to', this.visible, '|', this.__preventVisibleFromUpdatingHidden)
@@ -82,7 +95,6 @@ export let Visibility = SuperClass => class extends SuperClass {
 	}
 
 	@autobind toggle() {
-		//console.log('toggle', this.hidden, this.visible)
 		if (this.hidden)
 			this.show()
 		else
@@ -90,7 +102,6 @@ export let Visibility = SuperClass => class extends SuperClass {
 	}
 
 	@autobind toggleVisibility() {
-		//console.log('toggle', this.hidden, this.visible)
 		if (this.hidden)
 			this.show()
 		else
