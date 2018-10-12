@@ -2,10 +2,13 @@
 
 Current version of the repo is working but no longer maintained.
 
-Microsoft announced Fluent Design & Google came with Material Design 2 since the release of this lib.
+Microsoft announced Fluent Design System & Google came with Material Design 2 spec since the release of this framework making it obsolete.
 
-It is currently being rewritten and simplified to be used in my other projects.
+I am currently developing next version (fresh start in a new private repo) and dogfooding it in other personal projects that are based on flexus.
 
+It will be ligher, faster, more efficient, and overall better. For now, it's stil a work in progress.
+
+---
 
 ### Notation
 This documentation uses following CSS notation for describing HML element, attributes, classes and IDs:
