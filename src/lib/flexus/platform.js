@@ -1,6 +1,7 @@
 import {emit} from 'ganymede'
 import {appElementReady} from './appElement'
 
+// TODO: remove this file in favor of platform-detect library
 
 // Windows.System.Profile.AnalyticsInfo.DeviceForm
 
